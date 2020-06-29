@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Card from "./Components/Card";
 
 class App extends React.Component{
   
   
   render() {
     return (
-      <div>
-        Hello World
-      </div>
+      <BrowserRouter>
+        <Card/>
+      </BrowserRouter>
     )
   }
 }

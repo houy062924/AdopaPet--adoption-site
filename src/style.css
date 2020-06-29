@@ -1,0 +1,90 @@
+/* Root ------- */
+:root {
+  --dark-blue: #4E598C;
+  --light-blue: #95B8D1;
+  --red: #A44A3F;
+  --light-red: #F7D1CD;
+  --yellow: #F7B538;
+}
+
+/* Card ------- */
+
+.cardCont {
+  width: 250px;
+  background-color: var(--yellow);
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.imgCont {
+  padding-top: 20px;
+}
+.imgTesting {
+  height: 200px;
+  width: 200px;
+  background-color: gray;
+  margin: 0 auto;
+}
+.heartCont {
+  padding: 20px;
+}
+.heart {
+  background-color: white;
+  height: 20px;
+  transform: rotate(-45deg);
+  width: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.heart:before, .heart:after {
+  content: "";
+  background-color: white;
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
+.heart:before {
+  top: -12px;
+  left: 0;
+}
+.heart:after {
+  top: 0;
+  left: 12px;
+}
+.heart:hover, .heart:hover:before, .heart:hover:after {
+  background-color: red;
+}
+
+.cardFormCont {
+  width: 90%;
+  margin: 0 auto;
+  background-color: gainsboro;
+  cursor: pointer;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: absolute;
+  left: 13px;
+}
+.expandText {
+  margin: 5px;
+  text-align: center;
+}
+.cardDetailCont {
+  width: 100%;
+  margin: 0 auto;
+  background-color: gainsboro;
+  cursor: pointer;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: 2px dashed gray;
+  outline-offset: -15px;
+  position: absolute;
+  top: -15px;
+  z-index: -10;
+  padding: 20px;
+  box-sizing: border-box;
+}
