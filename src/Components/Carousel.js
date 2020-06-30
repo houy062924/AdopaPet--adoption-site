@@ -1,5 +1,28 @@
 import React from "react";
+import 'materialize-css/dist/js/materialize.min'
+import 'materialize-css/dist/css/materialize.min.css'
+
 // import { Link } from "react-router-dom";
+
+class Carousel extends React.Component {
+  componentDidMount() {
+    const elems = window.document.querySelectorAll('.carousel');
+    const options = {
+      numVisible: 3
+    }
+    window.M.Carousel.init(elems, options)
+  }
+  
+  render() {
+    return (
+      <div className="carousel">
+        <a className="carousel-item" href="#one!"><Card/></a>
+        <a className="carousel-item" href="#two!"><Card/></a>
+        <a className="carousel-item" href="#three!"><Card/></a>
+      </div>
+    )
+  }
+}
 
 class Card extends React.Component {
   render() {
@@ -53,4 +76,4 @@ class CardForm extends React.Component {
 }
 
 
-export default Card;
+export default Carousel;

@@ -18,6 +18,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
 }
 .imgCont {
   padding-top: 20px;
@@ -68,10 +69,12 @@
   border-bottom-right-radius: 5px;
   position: absolute;
   left: 13px;
+  transform: translateZ(-1em);
 }
 .expandText {
   margin: 5px;
   text-align: center;
+  color: gray;
 }
 .cardDetailCont {
   width: 100%;
@@ -87,4 +90,8 @@
   z-index: -10;
   padding: 20px;
   box-sizing: border-box;
+}
+
+.cardRightCont {
+  transform: perspective(500px) translate3d(-50%, -50%, -200px);
 }

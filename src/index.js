@@ -2,15 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import Card from "./Components/Card";
+import Carousel from "./Components/Carousel";
 
 class App extends React.Component{
-  
   
   render() {
     return (
       <BrowserRouter>
-        <Card/>
+        <Carousel/>
       </BrowserRouter>
     )
   }
