@@ -1,14 +1,14 @@
 import React from "react";
-import 'materialize-css/dist/js/materialize.min'
-import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css/dist/js/materialize.min.js';
+import 'materialize-css/dist/css/materialize.min.css';
 
 class Carousel extends React.Component {
   componentDidMount() {
-    const elems = window.document.querySelectorAll('.carousel');
+    const elem = document.querySelector(".carousel");
     const options = {
       numVisible: 3
-    }
-    window.M.Carousel.init(elems, options)
+    };
+    const instance = M.Carousel.init(elem, options);
   }
   
   render() {
