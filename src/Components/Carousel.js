@@ -2,8 +2,6 @@ import React from "react";
 import 'materialize-css/dist/js/materialize.min'
 import 'materialize-css/dist/css/materialize.min.css'
 
-// import { Link } from "react-router-dom";
-
 class Carousel extends React.Component {
   componentDidMount() {
     const elems = window.document.querySelectorAll('.carousel');
