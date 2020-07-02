@@ -1,5 +1,8 @@
 /* Card ------- */
 
+#carouselCont {
+  overflow: visable;
+}
 .cardCont {
   width: 250px;
   background-color: var(--yellow);

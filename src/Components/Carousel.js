@@ -1,19 +1,43 @@
 import React from "react";
 import M from 'materialize-css/dist/js/materialize.min.js';
 import 'materialize-css/dist/css/materialize.min.css';
+import {firebase} from "../Components/Firebase";
+import {storage} from "../Components/Firebase";
 
 class Carousel extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      profiles: []
+    }
+  }
+
   componentDidMount() {
     const elem = document.querySelector(".carousel");
     const options = {
       numVisible: 3
     };
     const instance = M.Carousel.init(elem, options);
+
+    // get data
+    const profiles = []
+    const db = firebase.firestore();
+    const data = db.collection("animals").get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach(function(doc) {
+        console.log(doc.id, " => ", doc.data());
+        profiles.push(doc.data());
+      });
+
+      this.setState({
+        profiles: profiles
+      })
+    });
   }
   
   render() {
     return (
-      <div className="carousel">
+      <div className="carousel" id="carouselCont">
         <a className="carousel-item" href="#one!"><Card/></a>
         <a className="carousel-item" href="#two!"><Card/></a>
         <a className="carousel-item" href="#three!"><Card/></a>
@@ -66,9 +90,14 @@ class CardClosed extends React.Component {
 }
 
 class CardForm extends React.Component {
+  
+
   render() {
     return (
-      <div className="cardDetailCont">Content</div>
+      <div className="cardDetailCont">
+       
+        <h2>Content</h2>
+      </div>
     )
   }
 }

@@ -16,7 +16,6 @@ class SideNav extends React.Component {
       <div>
         <ul>
           <li><Link to="/dashboard/animalprofiles">Animal Profiles</Link></li>
-          <li><Link to="/dashboard/animalprofiles">Animal Profiles</Link></li>
         </ul>
         {/* <a href="#" data-target="slide-out" className="sidenav-trigger">menu</a>
         <ul id="slide-out" className="sidenav">

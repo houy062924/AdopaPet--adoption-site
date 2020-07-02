@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import 'materialize-css/dist/js/materialize.min';
 import 'materialize-css/dist/css/materialize.min.css';
 
 class Nav extends React.Component {

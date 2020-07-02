@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import 'firebase/storage';
 
 var firebaseConfig = {
   apiKey: "AIzaSyAsNP69Z8MRaqdsITt0Su2M797LwdbIsYE",
@@ -14,4 +15,20 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-export default firebase;
+const storage = firebase.storage();
+const db = firebase.firestore();
+
+/* Revert when building authentication system */
+
+// rules_version = '2';
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//     match /{allPaths=**} {
+//       allow read, write: if request.auth != null;
+//     }
+//   }
+// }
+
+export {
+  storage, firebase, db as default
+}
