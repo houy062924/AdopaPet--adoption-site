@@ -16,7 +16,7 @@ class App extends React.Component {
         <Nav></Nav>
 
 
-        <Route exact path="/" component={OrgDashboard}></Route>
+        <Route exact path="/" component={Carousel}></Route>
         <Route path="/dashboard" component={OrgDashboard}></Route>
         <Route path="/swipe" component={Carousel}></Route>
 

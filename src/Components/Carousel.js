@@ -25,7 +25,6 @@ class Carousel extends React.Component {
     const data = db.collection("animals").get()
     .then((querySnapshot) => {
       querySnapshot.forEach(function(doc) {
-        console.log(doc.id, " => ", doc.data());
         profiles.push(doc.data());
       });
 
@@ -53,19 +52,49 @@ class Carousel extends React.Component {
 }
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.handleLike = this.handleLike.bind(this);
+  }
+
+  handleLike() {
+    console.log("click")
+  }
+
   render() {
     return (
       <div className="cardCont">
         <div className="imgCont">
           { this.props.profile !== undefined &&
-            <img src={this.props.profile.url} className="imgProfile"></img>
+            <img src={this.props.profile.url} className="profileImg"></img>
           }
         </div>
-        <div className="heartCont">
+        <div className="textCont">
+          <h1 className="profileName">
+            { this.props.profile !== undefined &&
+              this.props.profile.name
+            }
+          </h1>
+          <p className="profileId">
+            { this.props.profile !== undefined &&
+              this.props.profile.id
+            }
+          </p>
+          <p className="profileDays">DAYS</p>
+          <p className="profileLocation">LOCATION</p>
+          <p className="profileStory">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <button onClick={this.handleLike}>Like</button>
+        </div>
+
+
+
+        {/* <div className="heartCont">
           <div className="heart"></div>
         </div>
 
-        <CardClosed profiles={this.props.profile}></CardClosed>
+        <CardClosed profiles={this.props.profile}></CardClosed> */}
       </div>
     )
   }
