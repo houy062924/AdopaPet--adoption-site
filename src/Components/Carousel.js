@@ -37,10 +37,16 @@ class Carousel extends React.Component {
   
   render() {
     return (
-      <div className="carousel" id="carouselCont">
-        <a className="carousel-item" href="#one!"><Card/></a>
-        <a className="carousel-item" href="#two!"><Card/></a>
-        <a className="carousel-item" href="#three!"><Card/></a>
+      <div id="carouselCont">
+        { this.state.profiles !== undefined &&
+          this.state.profiles.map((profile) => (
+            <Card profile={profile} key={profile.id} />
+          ))
+        }
+
+        {/* <a className="carousel-item" ><Card profiles={this.state.profiles} /></a>
+        <a className="carousel-item" href="#two!"><Card profiles={this.state.profiles} /></a>
+        <a className="carousel-item" href="#three!"><Card profiles={this.state.profiles} /></a> */}
       </div>
     )
   }
@@ -51,13 +57,15 @@ class Card extends React.Component {
     return (
       <div className="cardCont">
         <div className="imgCont">
-          <div className="imgTesting"></div>
+          { this.props.profile !== undefined &&
+            <img src={this.props.profile.url} className="imgProfile"></img>
+          }
         </div>
         <div className="heartCont">
           <div className="heart"></div>
         </div>
 
-        <CardClosed></CardClosed>
+        <CardClosed profiles={this.props.profile}></CardClosed>
       </div>
     )
   }
@@ -78,6 +86,7 @@ class CardClosed extends React.Component {
     }))
   }
   render() {
+    console.log(this.props)
     return (
       <div className="cardFormCont" onClick={this.expandForm}>
         { this.state.showForm ?
@@ -90,9 +99,10 @@ class CardClosed extends React.Component {
 }
 
 class CardForm extends React.Component {
-  
 
   render() {
+    console.log(this.state)
+
     return (
       <div className="cardDetailCont">
        

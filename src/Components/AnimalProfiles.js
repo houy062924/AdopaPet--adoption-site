@@ -45,7 +45,8 @@ class AddProfileForm extends React.Component {
       gender: "",
       age: 0,
       image: null,
-      url: ""
+      url: "",
+      id: ""
     }
     this.fileInput = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -99,7 +100,8 @@ class AddProfileForm extends React.Component {
       name: this.state.name,
       gender: this.state.gender,
       age: this.state.age,
-      url: this.state.url
+      url: this.state.url,
+      id: this.state.id
     })
     .then(()=>{
       console.log("Set")
@@ -108,7 +110,8 @@ class AddProfileForm extends React.Component {
         gender: "",
         age: 0,
         image: "",
-        url: ""
+        url: "",
+        id: ""
       })
       M.updateTextFields()
     })
@@ -151,6 +154,18 @@ class AddProfileForm extends React.Component {
                 <span>Male</span>
               </label>
             </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="input-field col s6">
+            <input 
+              id="id" 
+              name="id" 
+              type="text"
+              value={this.state.id}
+              onChange={this.handleInputChange}/>
+            <label htmlFor="name">ID</label>
           </div>
         </div>
 

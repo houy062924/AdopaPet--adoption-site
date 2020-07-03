@@ -15,9 +15,12 @@
   transform-style: preserve-3d;
 }
 .imgCont {
-  padding-top: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.imgTesting {
+.imgProfile {
   height: 200px;
   width: 200px;
   background-color: gray;
