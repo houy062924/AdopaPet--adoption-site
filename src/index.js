@@ -5,7 +5,7 @@ import "./styles/card.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Nav from "./Components/Nav";
 import Carousel from "./Components/Carousel";
-import Orgs from "./pages/orgs";
+import OrgDashboard from "./pages/orgDashboard";
 
 
 class App extends React.Component {
@@ -15,7 +15,9 @@ class App extends React.Component {
       <BrowserRouter>
         <Nav></Nav>
 
-        <Route path="/dashboard" component={Orgs}></Route>
+
+        <Route exact path="/" component={OrgDashboard}></Route>
+        <Route path="/dashboard" component={OrgDashboard}></Route>
         <Route path="/swipe" component={Carousel}></Route>
 
       </BrowserRouter>

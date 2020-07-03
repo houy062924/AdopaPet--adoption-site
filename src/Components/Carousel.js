@@ -1,22 +1,52 @@
 import React from "react";
-import 'materialize-css/dist/js/materialize.min'
-import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css/dist/js/materialize.min.js';
+import 'materialize-css/dist/css/materialize.min.css';
+import {firebase} from "../Components/Firebase";
+import {storage} from "../Components/Firebase";
 
 class Carousel extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      profiles: []
+    }
+  }
+
   componentDidMount() {
-    const elems = window.document.querySelectorAll('.carousel');
+    const elem = document.querySelector(".carousel");
     const options = {
       numVisible: 3
-    }
-    window.M.Carousel.init(elems, options)
+    };
+    const instance = M.Carousel.init(elem, options);
+
+    // get data
+    const profiles = []
+    const db = firebase.firestore();
+    const data = db.collection("animals").get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach(function(doc) {
+        console.log(doc.id, " => ", doc.data());
+        profiles.push(doc.data());
+      });
+
+      this.setState({
+        profiles: profiles
+      })
+    });
   }
   
   render() {
     return (
-      <div className="carousel">
-        <a className="carousel-item" href="#one!"><Card/></a>
-        <a className="carousel-item" href="#two!"><Card/></a>
-        <a className="carousel-item" href="#three!"><Card/></a>
+      <div id="carouselCont">
+        { this.state.profiles !== undefined &&
+          this.state.profiles.map((profile) => (
+            <Card profile={profile} key={profile.id} />
+          ))
+        }
+
+        {/* <a className="carousel-item" ><Card profiles={this.state.profiles} /></a>
+        <a className="carousel-item" href="#two!"><Card profiles={this.state.profiles} /></a>
+        <a className="carousel-item" href="#three!"><Card profiles={this.state.profiles} /></a> */}
       </div>
     )
   }
@@ -27,13 +57,15 @@ class Card extends React.Component {
     return (
       <div className="cardCont">
         <div className="imgCont">
-          <div className="imgTesting"></div>
+          { this.props.profile !== undefined &&
+            <img src={this.props.profile.url} className="imgProfile"></img>
+          }
         </div>
         <div className="heartCont">
           <div className="heart"></div>
         </div>
 
-        <CardClosed></CardClosed>
+        <CardClosed profiles={this.props.profile}></CardClosed>
       </div>
     )
   }
@@ -54,6 +86,7 @@ class CardClosed extends React.Component {
     }))
   }
   render() {
+    console.log(this.props)
     return (
       <div className="cardFormCont" onClick={this.expandForm}>
         { this.state.showForm ?
@@ -66,9 +99,15 @@ class CardClosed extends React.Component {
 }
 
 class CardForm extends React.Component {
+
   render() {
+    console.log(this.state)
+
     return (
-      <div className="cardDetailCont">Content</div>
+      <div className="cardDetailCont">
+       
+        <h2>Content</h2>
+      </div>
     )
   }
 }
