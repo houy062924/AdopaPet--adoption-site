@@ -1,0 +1,56 @@
+/* Likes ---------- */
+
+.likePageCont {
+  display: flex;
+  padding: 70px;
+}
+.likeCont {
+  background-color: gainsboro;
+  width: 33%;
+  margin: 15px;
+  padding: 30px;
+  position: relative;
+}
+.likeCont .removeCont {
+  width: 30px;
+  height: 30px;
+  background-color:red;
+  position: absolute;;
+  border-radius: 50%;
+  left: 280px;
+  top: -10px;
+  cursor: pointer;
+}
+.removeCont:before, .removeCont:after{
+  content:'';
+  position:absolute;
+  width:20px;
+  height:4px;
+  background-color:white;
+  border-radius:2px;
+  /* top:13px; */
+  /* box-shadow:0 0 2px 0 #ccc; */
+}
+.removeCont:before{
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  transform:rotate(45deg);
+  left:5px;
+  top: 13px;
+}
+.removeCont:after{
+  -webkit-transform:rotate(-45deg);
+  -moz-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  right: 5px;
+  top: 13px;
+}
+/* .likeCont .imgCont {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+} */
+.likeCont .profileImg {
+  width: 100%;
+  height: 100%;
+}

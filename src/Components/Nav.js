@@ -7,10 +7,11 @@ class Nav extends React.Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <div className="brand-logo"><Link to="/">LOGO</Link></div>
+          <div className="brand-logo left"><Link to="/">LOGO</Link></div>
           <ul className="right">
             <li><Link to="/dashboard">ORG DASHBOARD</Link></li>
-            <li><Link to="/swipe">SWIPE</Link></li>
+            <li><Link to="/carousel">CAROUSEL</Link></li>
+            <li><Link to="/users">USERS</Link></li>
           </ul>
         </div>
       </nav>
