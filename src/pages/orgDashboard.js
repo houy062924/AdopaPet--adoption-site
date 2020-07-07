@@ -1,5 +1,5 @@
 import React from "react";
-import SideNav from "../Components/SideBar";
+import SideNav from "../Components/SideNav";
 import { Route } from "react-router-dom";
 import AnimalProfiles from "../Components/AnimalProfiles";
 
