@@ -1,7 +1,6 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import M from 'materialize-css/dist/js/materialize.min.js';
-import 'materialize-css/dist/css/materialize.min.css';
+
 import {firebase} from "../Components/Firebase";
 import {storage} from "../Components/Firebase";
 // import {db} from "../Components/Firebase";

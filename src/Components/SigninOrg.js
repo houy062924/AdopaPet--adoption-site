@@ -9,131 +9,44 @@ class SigninOrg extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signedin: false,
-      name: "",
-      email: "",
-      password: "",
-      uid: "",
-      method: 0  // 0: sign up; 1: sign in; 2: signed in
+      method: 0, // 0: sign up; 1: sign in
     }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleSignIn = this.handleSignIn.bind(this);
-    this.handleAuth = this.handleAuth.bind(this);
+    
+    this.handleSignin = this.handleSignin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
-    this.switchMethod = this.switchMethod.bind(this);
   }
-
-  componentDidMount() {
-    this.handleAuth();
-  }
-  handleChange(e) {
-    console.log("changing")
+  handleSignup() {
     this.setState({
-      [e.target.name]: e.target.value,
+      method: 0,
     })
   }
-  handleSignUp(e) {
-    e.preventDefault();
-    console.log("submit");
-    let email = this.state.email;
-    let password = this.state.password
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(()=>{
-      console.log("success");
-      this.setState({
-        signedin: true
-      })
-    })
-    .catch((error)=>{
-      // Handle Errors here.
-      alert(error.message);
-    });
-  }
-  handleSignIn() {
-    console.log("Test")
+  handleSignin() {
     this.setState({
-      signedin: true
+      method: 1,
     })
-  }
-  handleAuth() {
-    firebase.auth().onAuthStateChanged((user)=>{
-      if (user) {
-        this.setState({
-          uid: user.uid
-        })
-
-        const db = firebase.firestore();
-        db.collection("organisations").doc(user.uid).set({
-          name: this.state.name,
-          email: user.email,
-          uid: user.uid
-        })
-      } 
-      else {
-
-      }
-    });
   }
   handleSignOut(e) {
-    firebase.auth().signOut()
-    .then(() => {
-      // Sign-out successful.
-      console.log("signed out");
-      this.setState({
-        signedin: false
-      })
-    }).catch(function(error) {
-      // An error happened.
-      alert(error.message)
-    });
+    console.log(this.props)
+    this.props.functions.handleSignOut(e);
   }
-  switchMethod(method, event) {
-    this.setState({
-      method: method
-    })
-  }
-
   
   render() {
     return (
       <div>
-        
-        { this.state.signedin === false
-          ? <SignupMethod handleChange={this.handleChange} handleSignUp={this.handleSignUp} handleSignIn={this.handleSignIn} handleAuth={this.handleAuth} switchMethod={this.switchMethod} statedata={this.state}></SignupMethod>
+        { this.props.statedata.signedin === false
+          ? <div>
+              <div onClick={this.handleSignup}>Sign Up</div>
+              <div onClick={this.handleSignin}>Sign In</div>
+              { this.state.method === 0
+                ? <SignupForm functions={this.props.functions}></SignupForm>
+                : <SigninForm functions={this.props.functions}></SigninForm>
+              }
+            </div>
           : <button type="button" onClick={this.handleSignOut}>Sign Out</button>
         }
-
-      </div>
-    )
-  }
-}
-
-class SignupMethod extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-  switchMethod(method, event) {
-    this.props.switchMethod(method, event);
-  }
-
-  render() {
-    return (
-      <div>
-        <div>
-          <div><Link to="org">Org</Link></div>
-          <div><Link to="user">User</Link></div>
-        </div>
-        <div>
-          <div onClick={(e)=>this.switchMethod(0, e)}>Sign Up</div>
-          <div onClick={(e)=>this.switchMethod(1, e)}>Sign In</div>
-        </div>
-        { this.props.statedata.method === 0
-          ? <SignupForm handleChange={this.props.handleChange} handleSignUp={this.props.handleSignUp} handleAuth={this.props.handleAuth}></SignupForm>
-          : <SigninForm handleChange={this.props.handleChange} handleSignIn={this.props.handleSignIn} handleAuth={this.props.handleAuth}></SigninForm>
-        }
+        
+        
       </div>
     )
   }
@@ -143,20 +56,30 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleAuth = this.handleAuth.bind(this);
   }
 
+
   handleChange(e) {
-    this.props.handleChange(e);
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
   handleSignUp(e) {
-    this.props.handleSignUp(e);
-  }
-  handleAuth(e) {
-    this.props.handleAuth(e)
+    let d = {
+      email: this.state.email,
+      password: this.state.password,
+      name: this.state.name
+    }
+    console.log(this.state)
+    this.props.functions.handleSignUp(e, d);
   }
 
   render() {
@@ -180,22 +103,29 @@ class SignupForm extends React.Component {
 class SigninForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: "",
+      password: ""
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
-    this.handleAuth = this.handleAuth.bind(this);
   }
 
   handleChange(e) {
-    this.props.handleChange(e);
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
   handleSignIn(e) {
-    this.props.handleSignIn(e);
-  }
-  handleAuth(e) {
-    this.props.handleAuth(e)
-  }
+    let d = {
+      email: this.state.email,
+      password: this.state.password
+    }
 
+    this.props.functions.handleSignIn(e, d)
+  }
+ 
 
   render() {
     return (

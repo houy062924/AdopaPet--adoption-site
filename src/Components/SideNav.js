@@ -1,16 +1,8 @@
 import React from "react";
-import M from 'materialize-css/dist/js/materialize.min.js';
-import 'materialize-css/dist/css/materialize.min.css';
 import { Link } from "react-router-dom";
 
 
 class SideNav extends React.Component {
-  componentDidMount() {
-    const elem = document.querySelector(".sidenav");
-    const options = {};
-    const instance = M.Sidenav.init(elem, options);
-  }
-
   render() {
     return (
       <div>

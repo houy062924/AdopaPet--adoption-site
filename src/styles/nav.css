@@ -1,0 +1,36 @@
+/* Nav --------- */
+
+.navCont {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--red);
+  height: 50px;
+  /* padding: 0 15px; */
+  align-items: center;
+}
+.navCont a {
+  color: var(--white);
+}
+.navCont .logoCont {
+  font-size: 25px;
+  margin: 0 15px;
+}
+.navCont .linkCont {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+.navCont .linkCont li {
+  padding: 0 15px;
+  line-height: 51px;
+}
+.navCont .linkCont li:hover {
+  background-color: var(--white);
+  cursor: pointer;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.navCont .linkCont li:hover a {
+  color: var(--black);
+}

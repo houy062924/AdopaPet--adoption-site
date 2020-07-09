@@ -9,8 +9,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <button><Link to="signin/org">Org Sign In</Link></button>
-        <button><Link to="signin/user">User Sign In</Link></button>
+        Home
 
       </div>
     )
