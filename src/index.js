@@ -23,13 +23,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       signedin: false,
-      identity: 0, // 0: org; 1: user
+      identity: 1, // 0: org; 1: user
       name: "",
       email: "",
-      uid: ""
+      uid: "",
+      slide: ""
     }
 
     this.functions = {
+      handleIdentityChange: this.handleIdentityChange.bind(this),
+
       handleSignUp: this.handleSignUp.bind(this),
       handleSignIn: this.handleSignIn.bind(this),
       handleAuth: this.handleAuth.bind(this),
@@ -41,7 +44,27 @@ class App extends React.Component {
   componentDidMount() {
     this.handleAuth();
   }
+  
+  // Identity process
+  handleIdentityChange(i) {
+    if ( i === 0 ) { // org
+      this.setState({
+        slide: "slideLeft"
+      })
+    }
+    else if ( i === 1 ) {
+      this.setState({
+        slide: "slideRight"
+      })
+    }
+    setTimeout(() => { 
+      this.setState({
+        identity: i,
+      });
+    }, 500);
+  }
 
+  // Sign in / up process
   handleSignUp(event, data) {
     event.preventDefault();
 

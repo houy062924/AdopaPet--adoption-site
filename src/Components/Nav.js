@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/nav.css"
+import "../styles/nav.css";
 
 class Nav extends React.Component {
   render() {
     let data = this.props.statedata;
-
     return (
       <nav>
-        <div className="navCont">
+        <div className={ this.props.statedata.identity === 1 ? "navCont userColor" : "navCont orgColor" }>
           <div className="logoCont">
             <Link to="/">LOGO</Link>
           </div>

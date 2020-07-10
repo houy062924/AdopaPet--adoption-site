@@ -1,7 +1,11 @@
 import React from "react";
 import "../styles/auth.css";
-import { firebase } from "../Components/Firebase";
-import { Link } from "react-router-dom";
+import UserIcon from "../styles/images/user.svg";
+import EmailIcon from "../styles/images/email.svg";
+import PasswordIcon from "../styles/images/password.svg";
+
+// import { firebase } from "../Components/Firebase";
+// import { Link } from "react-router-dom";
 
 
 
@@ -34,19 +38,29 @@ class SigninOrg extends React.Component {
   render() {
     return (
       <div>
-        { this.props.statedata.signedin === false
-          ? <div>
-              <div onClick={this.handleSignup}>Sign Up</div>
-              <div onClick={this.handleSignin}>Sign In</div>
-              { this.state.method === 0
-                ? <SignupForm functions={this.props.functions}></SignupForm>
-                : <SigninForm functions={this.props.functions}></SigninForm>
-              }
+        { this.props.statedata.signedin === false &&
+          <div>
+            <h1>Org</h1>
+            <div className="methodCont">
+              <p 
+                onClick={this.handleSignup} 
+                className={ this.state.method === 0 ? "methodButtonOrg  activeOrg" : "methodButtonOrg"}>
+                  Sign Up
+              </p>
+              <p 
+                onClick={this.handleSignin} 
+                className={ this.state.method === 1 ? "methodButtonOrg  activeOrg" : "methodButtonOrg"}>
+                  Sign In
+              </p>
             </div>
-          : <button type="button" onClick={this.handleSignOut}>Sign Out</button>
+            
+            { this.state.method === 0
+              ? <SignupForm functions={this.props.functions}></SignupForm>
+              : <SigninForm functions={this.props.functions}></SigninForm>
+            }
+          </div>
+          // : <button type="button" onClick={this.handleSignOut} >Sign Out</button>
         }
-        
-        
       </div>
     )
   }
@@ -84,18 +98,43 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSignUp}>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" onChange={this.handleChange}></input>
-          <label htmlFor="email">Email</label>
-          <input type="text" id="email" name="email" onChange={this.handleChange}></input>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={this.handleChange}></input>
-
-          <button type="submit" onSubmit={this.handleSignUp}>Submit</button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSignUp} className="formCont">
+        <div className="inputCont">
+          <img src={UserIcon} className="inputIcon"></img>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="Name" 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = "Name"} 
+            onChange={this.handleChange}></input>
+        </div>
+        <div className="inputCont">
+          <img src={EmailIcon} className="inputIcon"></img>
+          <input 
+            type="text" 
+            id="email" 
+            name="email" 
+            placeholder="Email" 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = "Email"} 
+            onChange={this.handleChange}></input>
+        </div>
+        <div className="inputCont">
+          <img src={PasswordIcon} className="inputIcon"></img>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Password" 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = "Password"} 
+            onChange={this.handleChange}></input>
+        </div>
+        
+        <button type="submit" onSubmit={this.handleSignUp} className="submitButtonOrg">Sign Up</button>
+      </form>
     )
   }
 }
@@ -118,6 +157,7 @@ class SigninForm extends React.Component {
     })
   }
   handleSignIn(e) {
+    console.log(this.state)
     let d = {
       email: this.state.email,
       password: this.state.password
@@ -129,16 +169,32 @@ class SigninForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSignIn}>
-          <label htmlFor="email">Email</label>
-          <input type="text" id="email" name="email" onChange={this.handleChange}></input>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={this.handleChange}></input>
-
-          <button type="submit" onSubmit={this.handleSignIn}>Submit</button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSignIn} className="formCont">
+        <div className="inputCont">
+          <img src={EmailIcon} className="inputIcon"></img>
+          <input 
+            type="text" 
+            id="email" 
+            name="email" 
+            placeholder="Email" 
+            onFocus={(e) => e.target.placeholder = ""}
+            onBlur={(e) => e.target.placeholder = "Email"}
+            onChange={this.handleChange} ></input>
+        </div>
+        <div className="inputCont">
+          <img src={PasswordIcon} className="inputIcon"></img>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Password" 
+            onFocus={(e) => e.target.placeholder = ""} 
+            onBlur={(e) => e.target.placeholder = "Password"} 
+            onChange={this.handleChange}></input>
+        </div>
+        
+        <button type="submit" onSubmit={this.handleSignIn} className="submitButtonOrg">Sign In</button>
+      </form>
     )
   }
 }
