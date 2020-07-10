@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/auth.css";
 import UserIcon from "../styles/images/user.svg";
 import EmailIcon from "../styles/images/email.svg";
 import PasswordIcon from "../styles/images/password.svg";

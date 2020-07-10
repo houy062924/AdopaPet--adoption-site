@@ -1,21 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/sidenav.css";
+import UserIcon from "../styles/images/user.svg";
 
 
 class SideNav extends React.Component {
   render() {
     return (
-      <div>
-        <ul>
-          <li><Link to="/dashboard/animalprofiles">Animal Profiles</Link></li>
-        </ul>
-        {/* <a href="#" data-target="slide-out" className="sidenav-trigger">menu</a>
-        <ul id="slide-out" className="sidenav">
-          <li>Personal Profile</li>
-          <li><Link to="/dashboard/animalprofiles">Animal Profiles</Link></li>
-          <li>Calender</li>
-        </ul> */}
-      </div>
+      <ul className="sidenavCont">
+        <div className="userCont">
+          <div className="imgCont">
+            <img src={UserIcon} className="userImg"></img>
+          </div>
+          <div className="userTextCont">
+            
+            <p className="userName">Welcome, {this.props.statedata.name}</p>
+            <p className="userEmail">{this.props.statedata.email}</p>
+          </div>
+          
+        </div>
+        <Link to="/dashboard/animalprofiles">
+          <li className="linkCont">Animal Profiles</li>
+        </Link>
+        <Link to="/dashboard/animalprofiles">
+          <li className="linkCont">Calender</li>
+        </Link>
+      </ul>
     )
   }
 }

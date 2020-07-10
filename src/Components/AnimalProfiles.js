@@ -1,19 +1,38 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-
+import "../styles/org.css";
 import {firebase} from "../Components/Firebase";
 import {storage} from "../Components/Firebase";
-// import {db} from "../Components/Firebase";
 
 
 class AnimalProfiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      adding: false
+      adding: false,
+      profiles: []
     }
     
     this.addProfile = this.addProfile.bind(this);
+  }
+
+  componentDidMount() {
+    let profilesarr = [];
+    const db = firebase.firestore();
+    db.collection("animals").where("orguid", "==", this.props.statedata.uid)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id, " => ", doc.data());
+        profilesarr = [...profilesarr, doc.data()]
+        console.log(profilesarr);
+        this.setState({
+          profiles: profilesarr
+        })
+      });
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
   }
 
   addProfile(event) {
@@ -24,13 +43,32 @@ class AnimalProfiles extends React.Component {
   }
 
   render() {
+    console.log(this.state.profiles)
     return (
-      <div>
+      <div className="addProfileCont">
         <button onClick={this.addProfile} type="button">Add profile</button>
-        { this.state.adding ? <AddProfileForm></AddProfileForm>
+        { this.state.adding 
+          ? <AddProfileForm statedata={this.props.statedata}></AddProfileForm>
           : null
         }
-        
+        <div className="profilesCont">
+          { 
+            this.state.profiles.map((profile)=>(
+              <div key={profile.id} className="cardCont">
+                <div className="profileImg">
+                  <img src={profile.url}></img>
+                </div>
+                <p className="profileName">
+                  {profile.name}
+                </p>
+                <p className="profileId">
+                  {profile.id}
+                </p>
+              
+              </div>
+            ))
+          }
+        </div>
       </div>
     )
   }
@@ -100,7 +138,9 @@ class AddProfileForm extends React.Component {
       gender: this.state.gender,
       age: this.state.age,
       url: this.state.url,
-      id: this.state.id
+      id: this.state.id,
+      orgname: this.props.statedata.name,
+      orguid: this.props.statedata.uid
     })
     .then(()=>{
       console.log("Set")
@@ -112,7 +152,6 @@ class AddProfileForm extends React.Component {
         url: "",
         id: ""
       })
-      M.updateTextFields()
     })
   }
 

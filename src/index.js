@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/shared.css";
 import "./styles/card.css";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import { firebase } from "./Components/Firebase";
 
 import Nav from "./Components/Nav";
@@ -27,12 +27,13 @@ class App extends React.Component {
       name: "",
       email: "",
       uid: "",
-      slide: ""
+      slide: "",
+      redirect: null
     }
 
     this.functions = {
       handleIdentityChange: this.handleIdentityChange.bind(this),
-
+      // setData: this.setData.bind(this),
       handleSignUp: this.handleSignUp.bind(this),
       handleSignIn: this.handleSignIn.bind(this),
       handleAuth: this.handleAuth.bind(this),
@@ -52,7 +53,7 @@ class App extends React.Component {
         slide: "slideLeft"
       })
     }
-    else if ( i === 1 ) {
+    else if ( i === 1 ) { // user
       this.setState({
         slide: "slideRight"
       })
@@ -69,33 +70,47 @@ class App extends React.Component {
     event.preventDefault();
 
     firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-    .then(()=>{
+    .then((cred)=>{
       alert("Success");
+      const db = firebase.firestore();
 
-      firebase.auth().currentUser.updateProfile({
-        displayName: data.name
+      this.setState({
+        name: data.name,
+        email: data.email,
+        uid: cred.user.uid,
+        signedin: true
       })
-      .then(()=>{
-        this.setState({
-          name: data.name,
-          email: data.email,
-          signedin: true
-        })
+
+      return db.collection("members").doc(cred.user.uid).set({
+        name: data.name,
+        email: data.email,
+        uid: cred.user.uid,
+        identity: this.state.identity
       })
+    })
+    .then(()=>{
+    //   console.log(this.state)
+    //   this.setState({
+    //     redirect: "/home"
+    //   })
+      windows.location = "/"
     })
     .catch((error)=>{
       // Handle Errors here.
       alert(error.message);
     });
   }
+
   handleSignIn(event, data) {
     event.preventDefault();
 
     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
-    .then(()=>{
+    .then((cred)=>{
       alert("Success");
       this.setState({
         signedin: true,
+        // email: data.email,
+        // name: cred.user.displayName
       })
     })
     .catch((error)=>{
@@ -105,21 +120,21 @@ class App extends React.Component {
   handleAuth() {
     firebase.auth().onAuthStateChanged((user)=>{
       if (user) {
-        console.log(user.uid + " + " + user.displayName)
-
-        this.setState({
-          signedin: true,
-          uid: user.uid,
-          email: user.email,
-          name: user.displayName
-        })
+        console.log(user)
 
         const db = firebase.firestore();
-        db.collection("organisations").doc(user.uid).set({
-          name: user.displayName,
-          email: user.email,
-          uid: user.uid
+
+        db.collection("members").doc(user.uid).get()
+        .then((doc)=>{
+          this.setState({
+            identity: doc.data().identity,
+            signedin: true,
+            name: doc.data().name,
+            email: doc.data().email,
+            uid: doc.data().uid
+          })
         })
+        
       } 
       else {
         console.log("not signed in")
@@ -132,26 +147,37 @@ class App extends React.Component {
       // Sign-out successful.
       alert("Signed out");
       this.setState({
-        signedin: false
+        signedin: false,
+        identity: 1,
+        slide: "",
+        email: "",
+        name: "",
+        uid: ""
       })
-    }).catch(function(error) {
+    })
+    .catch(function(error) {
       // An error happened.
-      alert(error.message)
+      alert(error.message);
     });
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect}></Redirect>
+    }
     return (
       <BrowserRouter>
-        <Nav statedata={this.state}></Nav>
+        <Nav statedata={this.state} functions={this.functions}></Nav>
 
 
         <Route exact path="/" component={Home}></Route>
-        <Route path="/dashboard" component={OrgDashboard}></Route>
+        <Route path="/dashboard" render={()=>(
+          <OrgDashboard statedata={this.state}></OrgDashboard>
+        )}></Route>
         <Route path="/carousel" component={Carousel}></Route>
         <Route path="/users" component={Users}></Route>
-        <Route path="/signin" render={()=>(
-          <SigninP statedata={this.state} functions={this.functions}></SigninP>
+        <Route path="/signin" render={(props)=>(
+          <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
         )}>
         </Route>
 

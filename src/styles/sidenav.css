@@ -1,0 +1,49 @@
+/* Side Nav --------- */
+
+.sidenavCont {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  height: calc(100vh - 50px);
+  background-color: var(--light-gray);
+  position: absolute;
+  left: 0;
+}
+.sidenavCont .linkCont {
+  height: 50px;
+  line-height: 50px;
+  padding-left: 20px;
+}
+.sidenavCont .linkCont:hover {
+  background-color: var(--white);
+}
+
+.sidenavCont .userCont {
+  background-color: var(--light-blue);
+  padding: 30px 20px 10px 20px;
+}
+.sidenavCont .userCont .imgCont {
+  width: 60px;
+  height: 60px;
+  background-color: var(--white);
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidenavCont .userCont .imgCont .userImg {
+  height: 35px;
+  width: 35px;
+}
+.sidenavCont .userCont .userTextCont {
+  margin-top: 20px;
+}
+.sidenavCont .userCont .userName {
+  margin-bottom: 10px;
+}
+.sidenavCont .userCont .userEmail {
+  margin-top: 0;
+  font-size: 13px;
+}

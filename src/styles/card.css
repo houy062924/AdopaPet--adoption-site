@@ -1,6 +1,6 @@
 /* Card New------- */
 
-.cardCont {
+#carouselCont .cardCont {
   width: 80vw;
   background-color: gainsboro;
   margin: 50px auto;

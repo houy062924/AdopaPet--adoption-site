@@ -11,9 +11,11 @@ class OrgDashboard extends React.Component {
   render() {
     return (
       <div>
-        <SideNav></SideNav>
+        <SideNav statedata={this.props.statedata}></SideNav>
 
-        <Route path="/dashboard/animalprofiles" component={AnimalProfiles}></Route>
+        <Route path="/dashboard/animalprofiles" render={()=>(
+          <AnimalProfiles statedata={this.props.statedata}></AnimalProfiles>
+        )}></Route>
 
       </div>
     )

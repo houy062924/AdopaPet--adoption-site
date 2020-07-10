@@ -9,32 +9,12 @@ import "../styles/signin.css";
 class SigninP extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      identity: 1, // 0: org; 1: user
-      slide: ""
-    }
 
     this.changeIdentity = this.changeIdentity.bind(this);
   }
 
   changeIdentity(identity) {
     this.props.functions.handleIdentityChange(identity);
-    // if ( identity === 0 ) { // org
-    //   this.setState({
-    //     slide: "slideLeft"
-    //   })
-    // }
-    // else if ( identity === 1 ) {
-    //   this.setState({
-    //     slide: "slideRight"
-    //   })
-    // }
-    // setTimeout(() => { 
-    //   this.setState({
-    //     identity: identity,
-    //   });
-    // }, 500);
-    
   }
 
   render() {
@@ -58,11 +38,6 @@ class SigninP extends React.Component {
             }
           </div>
         </div>
-
-
-        {/* <button><Link to="/org">Org Sign In</Link></button>
-        <button><Link to="/user">User Sign In</Link></button> */}
-
 
         <Route path="/org" 
           render={()=>(

@@ -5,7 +5,6 @@
   justify-content: space-between;
   background-color: var(--red);
   height: 50px;
-  /* padding: 0 15px; */
   align-items: center;
 }
 .navCont a {
