@@ -6,8 +6,9 @@
   --light-red: #D88373;
   --red: #A44A3F;
   --black: #433633;
-  --gray: #5C5552;
-  --light-gray: #B9B7BD;
+  --dark-gray: #5C5552;
+  --gray: #A49C99;
+  --light-gray: #CDC8C8;
 }
 
 body {
@@ -20,4 +21,12 @@ body {
 a {
   text-decoration: none;
   color: var(--black);
+}
+.overlayBody {
+  background-color: gray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

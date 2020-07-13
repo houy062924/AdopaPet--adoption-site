@@ -1,17 +1,166 @@
 /* Add profile form ------ */
 
-.addProfileCont {
-  margin-left: 250px;
+.addProfileCont, .calenderCont {
+  position: absolute;
+  left: 250px;
+  padding: 50px 60px;
 }
-
+.addProfileCont .addProfileButton {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  height: 35px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.addProfileCont .addProfileButton:hover {
+  background-color: var(--light-blue);
+  color: var(--black);
+}
+.addProfileCont .addProfileButton:focus {
+  outline: transparent;
+}
+.addProfileCont .profilesCont {
+  display: flex;
+}
 .profilesCont .cardCont {
-  width: 50%;
-  background-color: gray;
+  width: 300px;
+  background-color: white;
+  padding: 25px;
+  box-sizing: border-box;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.profilesCont .cardCont:hover {
+  box-shadow: 1px 2px 10px var(--light-gray);
 }
 .profilesCont .cardCont .profileImg {
-  width: 150px;
-  height: 150px;
+  /* padding: 25px;
+  box-sizing: border-box; */
 }
 .profilesCont .cardCont .profileImg img {
   width: 100%;
+}
+.profilesCont .cardCont .profileName {
+  margin: 10px 0;
+}
+
+
+/* Form -------- */
+
+.addProfileCont .addProfileFormCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92, 85, 82, 0.5);
+}
+.addProfileCont .addProfileForm {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-20%, -50%);
+  padding: 75px 50px 40px 50px;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 3px 5px 10px var( --dark-gray);
+}
+.addProfileCont .formTopCont {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.addProfileCont .formTopCont .closeFormButton {
+  padding: 0 15px;
+  cursor: pointer;
+}
+.addProfileForm .inputCont {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.addProfileForm .inputCont label {
+  width: 65px;
+}
+.addProfileForm .inputCont input {
+  flex: 2;
+  height: 25px;
+  box-shadow: inset 1px 1px 4px var(--light-gray);
+  border: none;
+  border-radius: 10px;
+  padding: 3px 15px;
+}
+.addProfileForm .inputCont input:focus {
+  outline: transparent;
+}
+.addProfileForm button {
+  border: none;
+  height: 35px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 100px;
+  float: right;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.addProfileForm button:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.addProfileForm .radioCont, .addProfileForm .fileCont {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.addProfileForm .radioCont .genderLabel {
+  margin-right: 10px;
+}
+.addProfileForm .radioCont .radioLabel {
+  cursor: pointer;
+}
+.addProfileForm .fileCont .fileLabel {
+  margin-right: 20px;
+}
+.addProfileForm .fileCont .fileInput {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.addProfileForm .fileCont .fileInput + label {
+  color: var(--black);
+  background-color: #EFEFEF;
+  display: inline-block;
+  cursor: pointer;
+  outline: transparent;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+.addProfileForm .fileCont .fileInput + label:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
 }

@@ -12,7 +12,10 @@ class AnimalProfiles extends React.Component {
       profiles: []
     }
     
-    this.addProfile = this.addProfile.bind(this);
+    this.functions = {
+      closeProfileForm: this.closeProfileForm.bind(this),
+    }
+    this.openProfileForm = this.openProfileForm.bind(this);
   }
 
   componentDidMount() {
@@ -35,10 +38,15 @@ class AnimalProfiles extends React.Component {
     });
   }
 
-  addProfile(event) {
+  openProfileForm(event) {
     event.preventDefault();
     this.setState({
       adding: true
+    })
+  }
+  closeProfileForm() {
+    this.setState({
+      adding: false
     })
   }
 
@@ -46,9 +54,9 @@ class AnimalProfiles extends React.Component {
     console.log(this.state.profiles)
     return (
       <div className="addProfileCont">
-        <button onClick={this.addProfile} type="button">Add profile</button>
+        <button onClick={this.openProfileForm} type="button" className="addProfileButton">Add profile</button>
         { this.state.adding 
-          ? <AddProfileForm statedata={this.props.statedata}></AddProfileForm>
+          ? <AddProfileForm statedata={this.props.statedata} functions={this.functions}></AddProfileForm>
           : null
         }
         <div className="profilesCont">
@@ -90,6 +98,7 @@ class AddProfileForm extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.setDB = this.setDB.bind(this);
+    this.closeProfileForm = this.closeProfileForm.bind(this);
   }
 
   handleInputChange(event) {
@@ -98,10 +107,22 @@ class AddProfileForm extends React.Component {
     });
   }
   handleImageChange(event) {
-    if (event.target.files[0]) {
+    if (event.target.files.length === 1) {
       const image = event.target.files[0];
-      this.setState(()=>({ image }))
+      this.setState(()=>({ image }));
+      event.target.nextElementSibling.textContent = event.target.files[0].name;
     }
+    // else if (event.target.files.length > 0) {
+    //   event.target.nextElementSibling.textContent = `${event.target.files.length} files selected`;
+
+    //   let imgarr = [];
+    //   event.target.files.map((file)=>{
+    //     imgarr.push(file.name)
+    //   })
+    //   this.setState({
+    //     image: imgarr
+    //   })
+    // }
   }
   handleFormSubmit(event) {
     event.preventDefault();
@@ -131,6 +152,9 @@ class AddProfileForm extends React.Component {
       }
     )
   }
+  closeProfileForm() {
+    this.props.functions.closeProfileForm();
+  }
   setDB() {
     const db = firebase.firestore();
     const userRef = db.collection('animals').add({
@@ -158,18 +182,33 @@ class AddProfileForm extends React.Component {
 
   render() {
     return (
-      <form className="col s12" onSubmit={this.handleFormSubmit}>
-        <div className="row">
-          <div className="input-field col s4">
+      <div className="addProfileFormCont">
+        <form onSubmit={this.handleFormSubmit} className="addProfileForm">
+          <div onClick={this.closeProfileForm} className="formTopCont">
+            <p className="closeFormButton">X</p>
+          </div>
+          <div className="inputCont">
+            <label htmlFor="name">Name</label>
             <input 
               id="name" 
               name="name" 
               type="text"
               value={this.state.name}
               onChange={this.handleInputChange}/>
-            <label htmlFor="name">Name</label>
           </div>
-          <div className="input-field col s4">
+
+          <div className="inputCont">
+            <label htmlFor="name">ID</label>
+            <input 
+              id="id" 
+              name="id" 
+              type="text"
+              value={this.state.id}
+              onChange={this.handleInputChange}/>
+          </div>
+
+          <div className="inputCont">
+            <label htmlFor="age">Age</label>
             <input 
               id="age" 
               name="age" 
@@ -177,49 +216,35 @@ class AddProfileForm extends React.Component {
               min="0" 
               // value={this.state.age}
               onChange={this.handleInputChange}/>
-            <label htmlFor="age" className="active">Age</label>
           </div>
-          <div className="col s4">
-            <p>
-              <label htmlFor="female">
-                <input type="radio" id="female" name="gender" value="female" onChange={this.handleInputChange} />
-                <span>Female</span>
-              </label>
-            </p>
-            <p>
-              <label htmlFor="male">
-                <input type="radio" id="male" name="gender" value="male" onChange={this.handleInputChange} />
-                <span>Male</span>
-              </label>
-            </p>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="input-field col s6">
+          <div className="radioCont">
+            <label className="genderLabel">Gender</label>
+            <label htmlFor="female" className="genderLabel radioLabel">
+              <input type="radio" id="female" name="gender" value="female" onChange={this.handleInputChange} />
+              <span>Female</span>
+            </label>
+            <label htmlFor="male" className="genderLabel radioLabel">
+              <input type="radio" id="male" name="gender" value="male" onChange={this.handleInputChange} />
+              <span>Male</span>
+            </label>
+          </div>
+
+          <div className="fileCont">
+            <label className="fileLabel">Image</label>
             <input 
-              id="id" 
-              name="id" 
-              type="text"
-              value={this.state.id}
-              onChange={this.handleInputChange}/>
-            <label htmlFor="name">ID</label>
+              type="file" 
+              id="image" 
+              name="image" 
+              className="fileInput"
+              ref={this.fileInput}
+              onChange={this.handleImageChange} />
+              <label htmlFor="image">Choose an image</label>
           </div>
-        </div>
 
-        <div className="row">
-          <div className="file-field input-field">
-            <div className="btn">
-              <span>Image</span>
-              <input type="file" onChange={this.handleImageChange} name="image" ref={this.fileInput} />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" onChange={this.handleImageChange} />
-            </div>
-          </div>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button>
+        </form>
+      </div>
     )
   }
 }

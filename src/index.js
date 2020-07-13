@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/shared.css";
 import "./styles/card.css";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 import { firebase } from "./Components/Firebase";
 
 import Nav from "./Components/Nav";
@@ -39,11 +39,17 @@ class App extends React.Component {
       handleAuth: this.handleAuth.bind(this),
       handleSignOut: this.handleSignOut.bind(this)
     }
-
+    this.test = this.test.bind(this);
   }
   
   componentDidMount() {
     this.handleAuth();
+  }
+
+  test() {
+    this.setState({
+      redirect: "/dashboard"
+    })
   }
   
   // Identity process
@@ -90,10 +96,10 @@ class App extends React.Component {
     })
     .then(()=>{
     //   console.log(this.state)
-    //   this.setState({
-    //     redirect: "/home"
-    //   })
-      windows.location = "/"
+      this.setState({
+        redirect: "/"
+      })
+      // windows.location = "/"
     })
     .catch((error)=>{
       // Handle Errors here.
@@ -154,6 +160,7 @@ class App extends React.Component {
         name: "",
         uid: ""
       })
+      // windows.location = "/";
     })
     .catch(function(error) {
       // An error happened.
@@ -166,22 +173,25 @@ class App extends React.Component {
       return <Redirect to={this.state.redirect}></Redirect>
     }
     return (
-      <BrowserRouter>
-        <Nav statedata={this.state} functions={this.functions}></Nav>
+      <div>
+        <BrowserRouter>
 
+          <Nav statedata={this.state} functions={this.functions}></Nav>
+          {/* <button onClick={this.test}>test</button> */}
 
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/dashboard" render={()=>(
-          <OrgDashboard statedata={this.state}></OrgDashboard>
-        )}></Route>
-        <Route path="/carousel" component={Carousel}></Route>
-        <Route path="/users" component={Users}></Route>
-        <Route path="/signin" render={(props)=>(
-          <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
-        )}>
-        </Route>
-
-      </BrowserRouter>
+          
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/dashboard" render={()=>(
+            <OrgDashboard statedata={this.state}></OrgDashboard>
+          )}></Route>
+          <Route path="/carousel" component={Carousel}></Route>
+          <Route path="/users" component={Users}></Route>
+          <Route path="/signin" render={(props)=>(
+            <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
+          )}>
+          </Route>
+        </BrowserRouter>
+      </div>
     )
   }
 }

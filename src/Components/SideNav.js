@@ -22,7 +22,7 @@ class SideNav extends React.Component {
         <Link to="/dashboard/animalprofiles">
           <li className="linkCont">Animal Profiles</li>
         </Link>
-        <Link to="/dashboard/animalprofiles">
+        <Link to="/dashboard/calender">
           <li className="linkCont">Calender</li>
         </Link>
       </ul>

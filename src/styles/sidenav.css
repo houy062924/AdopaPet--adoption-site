@@ -6,9 +6,10 @@
   padding: 0;
   width: 250px;
   height: calc(100vh - 50px);
-  background-color: var(--light-gray);
+  background-color: var(--white);
   position: absolute;
   left: 0;
+  box-shadow: 1px 4px 15px var(--light-gray);
 }
 .sidenavCont .linkCont {
   height: 50px;
@@ -16,7 +17,8 @@
   padding-left: 20px;
 }
 .sidenavCont .linkCont:hover {
-  background-color: var(--white);
+  background-color: var(--dark-blue);
+  color: var(--white);
 }
 
 .sidenavCont .userCont {

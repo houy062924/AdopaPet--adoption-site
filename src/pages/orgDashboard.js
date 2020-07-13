@@ -2,10 +2,7 @@ import React from "react";
 import SideNav from "../Components/SideNav";
 import { Route } from "react-router-dom";
 import AnimalProfiles from "../Components/AnimalProfiles";
-
-
-// import "./styles/shared.css";
-// import "../styles/orgs.css";
+import Calender from "../Components/Calender";
 
 class OrgDashboard extends React.Component {
   render() {
@@ -15,6 +12,9 @@ class OrgDashboard extends React.Component {
 
         <Route path="/dashboard/animalprofiles" render={()=>(
           <AnimalProfiles statedata={this.props.statedata}></AnimalProfiles>
+        )}></Route>
+        <Route path="/dashboard/calender" render={()=>(
+          <Calender statedata={this.props.statedata}></Calender>
         )}></Route>
 
       </div>
