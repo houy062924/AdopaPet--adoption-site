@@ -1,5 +1,5 @@
-import React from "react";
-import Likes from "../Components/Likes"
+import React from "./node_modules/react";
+import Likes from "../Components/DashboardUserP/Likes"
 
 class Users extends React.Component {
   constructor(props) {

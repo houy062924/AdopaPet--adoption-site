@@ -1,7 +1,7 @@
-import React from "react";
+import React from "./node_modules/react";
 // import Auth from "../Components/Auth";
-import { Route, Link } from "react-router-dom";
-import Auth from "../Components/SigninOrg";
+import { Route, Link } from "./node_modules/react-router-dom";
+import Auth from "../Components/SigninP/SigninOrg";
 
 
 

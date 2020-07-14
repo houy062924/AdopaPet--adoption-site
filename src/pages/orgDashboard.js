@@ -1,9 +1,9 @@
-import React from "react";
-import SideNav from "../Components/SideNav";
-import { Route } from "react-router-dom";
+import React from "./node_modules/react";
+import SideNav from "../Components/DashboardOrgP/SideNav";
+import { Route } from "./node_modules/react-router-dom";
 import AnimalProfiles from "../Components/AnimalProfiles";
-import Calender from "../Components/Calender";
-import Overview from "../Components/Overview";
+import Calender from "../Components/DashboardOrgP/Calender";
+import Overview from "../Components/DashboardOrgP/Overview";
 
 
 class OrgDashboard extends React.Component {

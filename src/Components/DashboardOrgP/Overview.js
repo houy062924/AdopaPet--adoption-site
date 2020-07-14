@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/org.css";
 
-class Calender extends React.Component {
+class Overview extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -15,4 +15,4 @@ class Calender extends React.Component {
   }
 }
 
-export default Calender;
+export default Overview;

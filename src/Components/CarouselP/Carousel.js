@@ -1,6 +1,6 @@
 import React from "react";
-import {firebase} from "../Components/Firebase";
-import {storage} from "../Components/Firebase";
+import {firebase} from "../Shared/Firebase";
+import {storage} from "../Shared/Firebase";
 
 
 class Carousel extends React.Component {

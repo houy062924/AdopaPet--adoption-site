@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import "./styles/shared.css";
 import "./styles/card.css";
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
-import { firebase } from "./Components/Firebase";
+import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
-import Carousel from "./Components/Carousel";
-import OrgDashboard from "./pages/orgDashboard";
-import Users from "./pages/users";
-import Home from "./pages/home";
-import SigninP from "./pages/signinP";
+import Carousel from "./Components/CarouselP/Carousel";
+import OrgDashboard from "./Pages/orgDashboard";
+import Users from "./Pages/users";
+import Home from "./Pages/home";
+import SigninP from "./Pages/signinP";
 
 
 // import SigninOrg from "./Components/SigninOrg";

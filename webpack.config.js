@@ -7,7 +7,7 @@ module.exports = {
     compress: true,
     port: 9000
   },
-  entry: "./src/index.js",
+  entry: "./src/App.js",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")

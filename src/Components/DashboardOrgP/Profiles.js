@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/org.css";
-import {firebase} from "../Components/Firebase";
-import {storage} from "../Components/Firebase";
+import {firebase} from "../Shared/Firebase";
+import {storage} from "../Shared/Firebase";
 
 
 class AnimalProfiles extends React.Component {
@@ -27,7 +27,6 @@ class AnimalProfiles extends React.Component {
       querySnapshot.forEach((doc) => {
         // console.log(doc.id, " => ", doc.data());
         profilesarr = [...profilesarr, doc.data()]
-        console.log(profilesarr);
         this.setState({
           profiles: profilesarr
         })
@@ -51,7 +50,6 @@ class AnimalProfiles extends React.Component {
   }
 
   render() {
-    console.log(this.state.profiles)
     return (
       <div className="addProfileCont">
         <button onClick={this.openProfileForm} type="button" className="addProfileButton">Add profile</button>
@@ -184,8 +182,8 @@ class AddProfileForm extends React.Component {
     return (
       <div className="addProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="addProfileForm">
-          <div onClick={this.closeProfileForm} className="formTopCont">
-            <p className="closeFormButton">X</p>
+          <div className="formTopCont">
+            <p className="closeFormButton" onClick={this.closeProfileForm}>X</p>
           </div>
           <div className="inputCont">
             <label htmlFor="name">Name</label>
