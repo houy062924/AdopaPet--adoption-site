@@ -23,7 +23,7 @@ class SigninP extends React.Component {
         <div className={ this.props.statedata.identity === 1 ? "bottomCont userColor" : "bottomCont orgColor" }>
           <div className="leftCont">
             <h1>Org?</h1>
-            <button type="button" onClick={()=>this.changeIdentity(0)}>Click</button>
+            <button type="button" onClick={()=>this.changeIdentity(0)}>Click here</button>
           </div>
           
           <div className="rightCont">

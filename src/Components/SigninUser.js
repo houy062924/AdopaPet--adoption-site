@@ -36,28 +36,28 @@ class SigninUser extends React.Component {
   render() {
     return (
       <div>
-        { this.props.statedata.signedin === false
-          ? <div>
-              <h1>User</h1>
-              <div className="methodCont">
-                <p 
-                  onClick={this.handleSignup} 
-                  className={ this.state.method === 0 ? "methodButtonUser  activeUser" : "methodButtonUser"}>
-                    Sign Up
-                </p>
-                <p 
-                  onClick={this.handleSignin} 
-                  className={ this.state.method === 1 ? "methodButtonUser  activeUser" : "methodButtonUser"}>
-                    Sign In
-                </p>
-              </div>
-              
-              { this.state.method === 0
-                ? <SignupForm functions={this.props.functions}></SignupForm>
-                : <SigninForm functions={this.props.functions}></SigninForm>
-              }
+        { this.props.statedata.signedin === false &&
+          <div>
+            <h1>User</h1>
+            <div className="methodCont">
+              <p 
+                onClick={this.handleSignup} 
+                className={ this.state.method === 0 ? "methodButtonUser  activeUser" : "methodButtonUser"}>
+                  Sign Up
+              </p>
+              <p 
+                onClick={this.handleSignin} 
+                className={ this.state.method === 1 ? "methodButtonUser  activeUser" : "methodButtonUser"}>
+                  Sign In
+              </p>
             </div>
-          : <button type="button" onClick={this.handleSignOut} >Sign Out</button>
+            
+            { this.state.method === 0
+              ? <SignupForm functions={this.props.functions}></SignupForm>
+              : <SigninForm functions={this.props.functions}></SigninForm>
+            }
+          </div>
+          // : <button type="button" onClick={this.handleSignOut} >Sign Out</button>
         }
       </div>
     )

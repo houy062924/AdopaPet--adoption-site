@@ -13,15 +13,16 @@
 .orgColor {
   background-color: var(--dark-blue);  
 }
-.leftCont, .rightCont {
+.bottomCont .leftCont, .bottomCont .rightCont {
   padding: 25px 35px;
   flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   -moz-flex: 1;
 }
-.leftCont h1, .rightCont h1 {
+.bottomCont .leftCont h1, .bottomCont .rightCont h1 {
   margin-top: 0;
+  color: var(--white);
 }
 .upperCont {
   background-color: white;
@@ -30,7 +31,10 @@
   position: absolute;
   right: 25px;
   top: -20px;
-  box-shadow: 2px 3px 10px var(--gray);
+  box-shadow: 2px 3px 10px var(--dark-gray);
+}
+.upperCont h1 {
+  text-align: center;
 }
 .slideLeft {
   animation-name: slideLeft;

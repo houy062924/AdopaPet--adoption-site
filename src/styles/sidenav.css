@@ -9,7 +9,7 @@
   background-color: var(--white);
   position: absolute;
   left: 0;
-  box-shadow: 1px 4px 15px var(--light-gray);
+  box-shadow: 1px 7px 15px var(--light-gray);
 }
 .sidenavCont .linkCont {
   height: 50px;

@@ -19,6 +19,9 @@ class SideNav extends React.Component {
           </div>
           
         </div>
+        <Link to="/dashboard/overview">
+          <li className="linkCont">Overview</li>
+        </Link>
         <Link to="/dashboard/animalprofiles">
           <li className="linkCont">Animal Profiles</li>
         </Link>

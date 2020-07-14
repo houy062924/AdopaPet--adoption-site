@@ -4,6 +4,7 @@
   position: absolute;
   left: 250px;
   padding: 50px 60px;
+  /* width: 500px; remove this later */
 }
 .addProfileCont .addProfileButton {
   background-color: var(--dark-blue);
@@ -27,14 +28,17 @@
 }
 .addProfileCont .profilesCont {
   display: flex;
+  flex-wrap: wrap;
 }
 .profilesCont .cardCont {
-  width: 300px;
+  max-width: 300px;
+  width: 30%;
   background-color: white;
   padding: 25px;
   box-sizing: border-box;
   margin-right: 20px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .profilesCont .cardCont:hover {
   box-shadow: 1px 2px 10px var(--light-gray);

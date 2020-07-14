@@ -174,7 +174,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <BrowserRouter>
+        {/* <BrowserRouter> */}
 
           <Nav statedata={this.state} functions={this.functions}></Nav>
           {/* <button onClick={this.test}>test</button> */}
@@ -190,13 +190,14 @@ class App extends React.Component {
             <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
           )}>
           </Route>
-        </BrowserRouter>
+        {/* </BrowserRouter> */}
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <App />, 
+  <BrowserRouter><App /></BrowserRouter>
+  , 
   document.querySelector("#root")
 );

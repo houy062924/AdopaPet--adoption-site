@@ -30,7 +30,6 @@ class SigninOrg extends React.Component {
     })
   }
   handleSignOut(e) {
-    console.log(this.props)
     this.props.functions.handleSignOut(e);
   }
   
