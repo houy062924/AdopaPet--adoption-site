@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/likes.css"
+import "../../styles/likes.css"
 
 class Likes extends React.Component {
   constructor(props) {

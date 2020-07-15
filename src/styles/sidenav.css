@@ -5,10 +5,11 @@
   margin: 0;
   padding: 0;
   width: 250px;
-  height: calc(100vh - 50px);
   background-color: var(--white);
-  position: absolute;
+  position: fixed;
   left: 0;
+  bottom: 0;
+  top: 50px;
   box-shadow: 1px 7px 15px var(--light-gray);
 }
 .sidenavCont .linkCont {

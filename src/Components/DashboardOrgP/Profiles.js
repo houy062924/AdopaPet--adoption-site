@@ -1,66 +1,57 @@
 import React from "react";
-import "../styles/org.css";
-import {firebase} from "../Shared/Firebase";
-import {storage} from "../Shared/Firebase";
+import "../../styles/org.css";
+import { firebase } from "../Shared/Firebase";
+import { storage } from "../Shared/Firebase";
 
+import EditIcon from "../../styles/images/pen.svg";
 
-class AnimalProfiles extends React.Component {
+class Profiles extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      adding: false,
-      profiles: []
-    }
-    
-    this.functions = {
-      closeProfileForm: this.closeProfileForm.bind(this),
-    }
+
     this.openProfileForm = this.openProfileForm.bind(this);
+    this.closeProfileForm = this.closeProfileForm.bind(this);
+    this.openEditForm = this.openEditForm.bind(this);
   }
 
   componentDidMount() {
-    let profilesarr = [];
-    const db = firebase.firestore();
-    db.collection("animals").where("orguid", "==", this.props.statedata.uid)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
-        profilesarr = [...profilesarr, doc.data()]
-        this.setState({
-          profiles: profilesarr
-        })
-      });
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-    });
+    this.props.functions.getData();
   }
-
-  openProfileForm(event) {
-    event.preventDefault();
-    this.setState({
-      adding: true
-    })
+  openProfileForm(e) {
+    this.props.functions.openProfileForm(e);
   }
   closeProfileForm() {
-    this.setState({
-      adding: false
-    })
+    this.props.functions.closeProfileForm(e);
+  }
+  openEditForm(i) {
+    this.props.functions.openEditForm(i);
   }
 
   render() {
     return (
-      <div className="addProfileCont">
-        <button onClick={this.openProfileForm} type="button" className="addProfileButton">Add profile</button>
-        { this.state.adding 
-          ? <AddProfileForm statedata={this.props.statedata} functions={this.functions}></AddProfileForm>
+      <div className="profilesPageCont">
+        <button 
+          onClick={this.openProfileForm} 
+          type="button" 
+          className="addProfileButton">
+            Add profile
+        </button>
+        { this.props.dashstate.addingprofile 
+          ? <AddProfileForm 
+              appstate={this.props.appstate} 
+              functions={this.props.functions}
+              dashstate={this.props.dashstate}>
+            </AddProfileForm>
           : null
         }
         <div className="profilesCont">
           { 
-            this.state.profiles.map((profile)=>(
-              <div key={profile.id} className="cardCont">
+            this.props.dashstate.profiles.map((profile, index)=>(
+              <div 
+                key={profile.id} 
+                className="cardCont" 
+                onClick={()=> {this.openEditForm(profile, index)}}
+              >
                 <div className="profileImg">
                   <img src={profile.url}></img>
                 </div>
@@ -75,6 +66,14 @@ class AnimalProfiles extends React.Component {
             ))
           }
         </div>
+
+        { this.props.dashstate.editingprofile === true &&
+          <EditProfileForm
+            appstate={this.props.appstate}
+            dashstate={this.props.dashstate}
+            functions={this.props.functions}>
+          </EditProfileForm>
+        }
       </div>
     )
   }
@@ -150,8 +149,8 @@ class AddProfileForm extends React.Component {
       }
     )
   }
-  closeProfileForm() {
-    this.props.functions.closeProfileForm();
+  closeProfileForm(r) {
+    this.props.functions.closeProfileForm(r);
   }
   setDB() {
     const db = firebase.firestore();
@@ -161,8 +160,8 @@ class AddProfileForm extends React.Component {
       age: this.state.age,
       url: this.state.url,
       id: this.state.id,
-      orgname: this.props.statedata.name,
-      orguid: this.props.statedata.uid
+      orgname: this.props.appstate.name,
+      orguid: this.props.appstate.uid
     })
     .then(()=>{
       console.log("Set")
@@ -174,6 +173,7 @@ class AddProfileForm extends React.Component {
         url: "",
         id: ""
       })
+      this.closeProfileForm(true);
     })
   }
 
@@ -183,6 +183,7 @@ class AddProfileForm extends React.Component {
       <div className="addProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="addProfileForm">
           <div className="formTopCont">
+            <p className="formTopTitle">Add Profile</p>
             <p className="closeFormButton" onClick={this.closeProfileForm}>X</p>
           </div>
           <div className="inputCont">
@@ -247,4 +248,57 @@ class AddProfileForm extends React.Component {
   }
 }
 
-export default AnimalProfiles;
+class EditProfileForm extends React.Component {
+  constructor() {
+    super();
+
+    this.closeEditForm = this.closeEditForm.bind(this);
+    this.handleEditImg = this.handleEditImg.bind(this);
+  }
+
+  closeEditForm(r) {
+    this.props.functions.closeEditForm(r);
+  }
+  handleEditImg() {
+    console.log("looooii")
+  }
+
+  render() {
+    let currentprofile = this.props.dashstate.currentprofile;
+
+    return (
+      <div className="editProfileFormCont">
+        <form onSubmit={this.handleFormSubmit} className="editProfileForm">
+          <div className="formTopCont">
+            <p className="formTopTitle">Edit Profile</p>
+            <p className="closeFormButton" onClick={this.closeEditForm}>X</p>
+          </div>
+          
+          <div className="formDataCont">
+            <div className="formImgCont" onClick={this.handleEditImg}>
+              <img src={currentprofile.url}></img>
+              <img src={EditIcon} className="editIcon"></img>
+            </div>
+            
+            <div className="formTextCont">
+              <h2 className="formName">{currentprofile.name}</h2>
+              <p className="formId">{currentprofile.id}</p>
+              <p className="formGender">{currentprofile.gender}</p>
+              <p className="formAge">{currentprofile.age}</p>
+            </div>
+          </div>
+
+          <div className="formStoryCont">
+            <p className="formStory">
+              sdfgdhdsftedfdrfwzsckwus fbrcmwhcsrjkhawjsmfbcsjf sjerhfmdgrkruwaer ajszhdfgawgexjr gserfjdfmsweu4rywrhfj
+            </p>
+          </div>
+
+          {/* <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button> */}
+        </form>
+      </div>
+    )
+  }
+}
+
+export default Profiles;

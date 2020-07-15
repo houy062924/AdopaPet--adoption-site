@@ -1,11 +1,7 @@
 import React from "react";
-import UserIcon from "../styles/images/user.svg";
-import EmailIcon from "../styles/images/email.svg";
-import PasswordIcon from "../styles/images/password.svg";
-
-// import { firebase } from "../Components/Firebase";
-// import { Link } from "react-router-dom";
-
+import UserIcon from "../../styles/images/user.svg";
+import EmailIcon from "../../styles/images/email.svg";
+import PasswordIcon from "../../styles/images/password.svg";
 
 
 class SigninOrg extends React.Component {

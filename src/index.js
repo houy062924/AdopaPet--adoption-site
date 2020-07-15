@@ -6,17 +6,12 @@ import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
-import Carousel from "./Components/CarouselP/Carousel";
-import OrgDashboard from "./Pages/orgDashboard";
-import Users from "./Pages/users";
-import Home from "./Pages/home";
-import SigninP from "./Pages/signinP";
-
-
-// import SigninOrg from "./Components/SigninOrg";
-// import SigninUser from "./Components/SigninUser";
-
-
+// import Carousel from "./Components/CarouselP/Carousel";
+// import CarouselP from "./Pages/CarouselP";
+import DashboardOrgP from "./Pages/DashboardOrgP";
+import Users from "./Pages/DashboardUserP";
+import Home from "./Pages/HomeP";
+import SigninP from "./Pages/SigninP";
 
 class App extends React.Component {
   constructor(props) {
@@ -33,7 +28,6 @@ class App extends React.Component {
 
     this.functions = {
       handleIdentityChange: this.handleIdentityChange.bind(this),
-      // setData: this.setData.bind(this),
       handleSignUp: this.handleSignUp.bind(this),
       handleSignIn: this.handleSignIn.bind(this),
       handleAuth: this.handleAuth.bind(this),
@@ -106,7 +100,6 @@ class App extends React.Component {
       alert(error.message);
     });
   }
-
   handleSignIn(event, data) {
     event.preventDefault();
 
@@ -173,31 +166,28 @@ class App extends React.Component {
       return <Redirect to={this.state.redirect}></Redirect>
     }
     return (
-      <div>
-        {/* <BrowserRouter> */}
+      <BrowserRouter>
 
-          <Nav statedata={this.state} functions={this.functions}></Nav>
-          {/* <button onClick={this.test}>test</button> */}
+        <Nav statedata={this.state} functions={this.functions}></Nav>
+        {/* <button onClick={this.test}>test</button> */}
 
-          
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/dashboard" render={()=>(
-            <OrgDashboard statedata={this.state}></OrgDashboard>
-          )}></Route>
-          <Route path="/carousel" component={Carousel}></Route>
-          <Route path="/users" component={Users}></Route>
-          <Route path="/signin" render={(props)=>(
-            <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
-          )}>
-          </Route>
-        {/* </BrowserRouter> */}
-      </div>
+        
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/dashboard" render={()=>(
+          <DashboardOrgP statedata={this.state}></DashboardOrgP>
+        )}></Route>
+        {/* <Route path="/carousel" component={Carousel}></Route> */}
+        <Route path="/users" component={Users}></Route>
+        <Route path="/signin" render={(props)=>(
+          <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
+        )}>
+        </Route>
+      </BrowserRouter>
     )
   }
 }
 
 ReactDOM.render(
-  <BrowserRouter><App /></BrowserRouter>
-  , 
+  <App />, 
   document.querySelector("#root")
 );

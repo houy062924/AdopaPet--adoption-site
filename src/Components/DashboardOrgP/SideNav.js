@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/sidenav.css";
-import UserIcon from "../styles/images/user.svg";
+import "../../styles/sidenav.css";
+import UserIcon from "../../styles/images/user.svg";
 
 
 class SideNav extends React.Component {
@@ -22,7 +22,7 @@ class SideNav extends React.Component {
         <Link to="/dashboard/overview">
           <li className="linkCont">Overview</li>
         </Link>
-        <Link to="/dashboard/animalprofiles">
+        <Link to="/dashboard/profiles">
           <li className="linkCont">Animal Profiles</li>
         </Link>
         <Link to="/dashboard/calender">

@@ -1,5 +1,5 @@
-import React from "./node_modules/react";
-import { BrowserRouter, Route, Link } from "./node_modules/react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import SigninOrg from "../Components/SigninP/SigninOrg";
 import SigninUser from "../Components/SigninP/SigninUser";
 import "../styles/signin.css";
