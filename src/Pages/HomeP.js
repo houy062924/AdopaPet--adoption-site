@@ -1,17 +1,17 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import Home from "../Components/Home";
 
 
 
-class Home extends React.Component {
+class HomeP extends React.Component {
   render() {
     return (
-      <div>
-        Home
+      <div style={{marginTop: "70px"}}>
+        <Home></Home>
 
       </div>
     )
   }
 }
 
-export default Home;
+export default HomeP;

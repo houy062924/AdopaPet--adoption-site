@@ -90,7 +90,6 @@ class SignupForm extends React.Component {
       password: this.state.password,
       name: this.state.name
     }
-    console.log(this.state)
     this.props.functions.handleSignUp(e, d);
   }
 

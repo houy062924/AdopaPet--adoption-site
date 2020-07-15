@@ -254,6 +254,8 @@ class EditProfileForm extends React.Component {
 
     this.closeEditForm = this.closeEditForm.bind(this);
     this.handleEditImg = this.handleEditImg.bind(this);
+    this.handleEditText = this.handleEditText.bind(this);
+    this.handleEditRadio = this.handleEditRadio.bind(this);
   }
 
   closeEditForm(r) {
@@ -261,6 +263,13 @@ class EditProfileForm extends React.Component {
   }
   handleEditImg() {
     console.log("looooii")
+  }
+  handleEditText(e, type) {
+    console.log(e.target.textContent)
+    console.log(type)
+  }
+  handleEditRadio(e) {
+    console.log(e.target)
   }
 
   render() {
@@ -279,12 +288,25 @@ class EditProfileForm extends React.Component {
               <img src={currentprofile.url}></img>
               <img src={EditIcon} className="editIcon"></img>
             </div>
-            
+
             <div className="formTextCont">
-              <h2 className="formName">{currentprofile.name}</h2>
-              <p className="formId">{currentprofile.id}</p>
-              <p className="formGender">{currentprofile.gender}</p>
-              <p className="formAge">{currentprofile.age}</p>
+              <h2 
+                className="formName" 
+                onClick={(e)=>this.handleEditText(e, "name")}>      
+                  {currentprofile.name}
+              </h2>
+              <p 
+                className="formId" 
+                onClick={(e)=>this.handleEditText(e, "id")}>{currentprofile.id}
+              </p>
+              <p 
+                className="formGender" 
+                onClick={()=>this.handleEditRadio(gender)}>{currentprofile.gender}
+              </p>
+              <p 
+                className="formAge" 
+                onClick={(e)=>this.handleEditText(e, "age")}>{currentprofile.age}
+              </p>
             </div>
           </div>
 

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/shared.css";
 import "./styles/card.css";
-import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect,  } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
@@ -10,7 +10,7 @@ import Nav from "./Components/Nav";
 // import CarouselP from "./Pages/CarouselP";
 import DashboardOrgP from "./Pages/DashboardOrgP";
 import Users from "./Pages/DashboardUserP";
-import Home from "./Pages/HomeP";
+import HomeP from "./Pages/HomeP";
 import SigninP from "./Pages/SigninP";
 
 class App extends React.Component {
@@ -33,17 +33,12 @@ class App extends React.Component {
       handleAuth: this.handleAuth.bind(this),
       handleSignOut: this.handleSignOut.bind(this)
     }
-    this.test = this.test.bind(this);
+    this.newUser = false;
+    this.db = firebase.firestore();
   }
   
   componentDidMount() {
     this.handleAuth();
-  }
-
-  test() {
-    this.setState({
-      redirect: "/dashboard"
-    })
   }
   
   // Identity process
@@ -68,111 +63,125 @@ class App extends React.Component {
   // Sign in / up process
   handleSignUp(event, data) {
     event.preventDefault();
+    this.newUser = true;
 
     firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
     .then((cred)=>{
-      alert("Success");
-      const db = firebase.firestore();
-
       this.setState({
-        name: data.name,
-        email: data.email,
-        uid: cred.user.uid,
-        signedin: true
+        name: data.name
       })
-
-      return db.collection("members").doc(cred.user.uid).set({
-        name: data.name,
-        email: data.email,
-        uid: cred.user.uid,
-        identity: this.state.identity
-      })
-    })
-    .then(()=>{
-    //   console.log(this.state)
-      this.setState({
-        redirect: "/"
-      })
-      // windows.location = "/"
     })
     .catch((error)=>{
-      // Handle Errors here.
       alert(error.message);
     });
   }
   handleSignIn(event, data) {
     event.preventDefault();
+    this.newUser = false;
 
     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
-    .then((cred)=>{
+    .then(()=>{
       alert("Success");
-      this.setState({
-        signedin: true,
-        // email: data.email,
-        // name: cred.user.displayName
-      })
+      
     })
     .catch((error)=>{
+      alert(error.message);
+    });
+  }
+  handleSignOut(e) {
+    firebase.auth().signOut()
+    .then(() => {
+      alert("Signed out");
+      
+    })
+    .catch(function(error) {
       alert(error.message);
     });
   }
   handleAuth() {
     firebase.auth().onAuthStateChanged((user)=>{
       if (user) {
-        console.log(user)
 
-        const db = firebase.firestore();
-
-        db.collection("members").doc(user.uid).get()
-        .then((doc)=>{
-          this.setState({
-            identity: doc.data().identity,
-            signedin: true,
-            name: doc.data().name,
-            email: doc.data().email,
-            uid: doc.data().uid
+        if ( this.newUser === true ) { // signing up
+          this.db.collection("members").doc(user.uid).set({
+            name: this.state.name,
+            email: user.email,
+            uid: user.uid,
+            identity: this.state.identity
           })
-        })
-        
-      } 
+          .then(()=>{
+            alert("Signed in");
+            this.setState({
+              signedin: true,
+              // name: user.name,
+              email: user.email,
+              uid: user.uid,
+            })
+          })
+          .then(()=>{
+            if (this.state.identity===0) {
+              this.setState({
+                redirect: "/dashboard"
+              })
+            }
+            else {
+              this.setState({
+                redirect: "/users"
+              })
+            }
+          })
+        }
+        else { // signing in or already signed in
+          this.db.collection("members").doc(user.uid).get()
+          .then((doc)=>{
+            this.setState({
+              identity: doc.data().identity,
+              signedin: true,
+              name: doc.data().name,
+              email: doc.data().email,
+              uid: doc.data().uid
+            })
+
+            if (doc.data().identity===0) {
+              this.setState({
+                redirect: "/dashboard"
+              })
+            }
+            else {
+              this.setState({
+                redirect: "/users"
+              })
+            }
+          })
+        }
+      }
       else {
-        console.log("not signed in")
+        console.log("not signed in");
+        this.setState({
+          signedin: false,
+          identity: 1,
+          slide: "",
+          email: "",
+          name: "",
+          uid: "",
+          redirect: "/"
+        })
       }
     });
   }
-  handleSignOut(e) {
-    firebase.auth().signOut()
-    .then(() => {
-      // Sign-out successful.
-      alert("Signed out");
-      this.setState({
-        signedin: false,
-        identity: 1,
-        slide: "",
-        email: "",
-        name: "",
-        uid: ""
-      })
-      // windows.location = "/";
-    })
-    .catch(function(error) {
-      // An error happened.
-      alert(error.message);
-    });
-  }
+  
 
   render() {
+    let redirect = null;
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect}></Redirect>
+      redirect = <Redirect to={this.state.redirect}></Redirect>
     }
     return (
-      <BrowserRouter>
+      <div>
 
         <Nav statedata={this.state} functions={this.functions}></Nav>
-        {/* <button onClick={this.test}>test</button> */}
-
         
-        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/" component={HomeP}></Route>
         <Route path="/dashboard" render={()=>(
           <DashboardOrgP statedata={this.state}></DashboardOrgP>
         )}></Route>
@@ -182,12 +191,14 @@ class App extends React.Component {
           <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
         )}>
         </Route>
-      </BrowserRouter>
+
+        {redirect}
+      </div>
     )
   }
 }
 
 ReactDOM.render(
-  <App />, 
+  <BrowserRouter><App /></BrowserRouter>, 
   document.querySelector("#root")
 );
