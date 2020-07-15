@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/nav.css";
+import "../Styles/nav.css";
+import UserIcon from "../Styles/images/user.svg";
+
 
 class Nav extends React.Component {
   constructor(props) {
@@ -36,27 +38,29 @@ class Nav extends React.Component {
             <ul className="linkCont">
               
               <Link to="/dashboard">
-                <li>ORG DASHBOARD</li>
+                <li>Dashboard</li>
               </Link>
               
-              <li>
-                <div>Hello {data.name}</div>
-              </li>
               <li onClick={this.handleSignOut}>Sign out</li>
-
+              
+              {/* <div className="userInfoCont">
+                <p className="userText">Hello {data.name}</p>
+                <div className="userImgCont">
+                  <img src={UserIcon} className="userImg"></img>
+                </div>
+              </div> */}
             </ul>
           }
           { data.signedin === true && data.identity === 1 &&
             <ul className="linkCont">
               
-              <Link to="/carousel">
-                <li>CAROUSEL</li>
+              <Link to="/profiles">
+                <li>Profiles</li>
               </Link>
               <Link to="/users">
-                <li>USERS</li>
+                <li>Dashboard</li>
               </Link>
               
-              <div>Hello {data.name}</div>
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
           }

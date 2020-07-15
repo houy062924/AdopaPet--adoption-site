@@ -7,7 +7,7 @@ import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
 // import Carousel from "./Components/CarouselP/Carousel";
-// import CarouselP from "./Pages/CarouselP";
+import ProfilesP from "./Pages/ProfilesP";
 import DashboardOrgP from "./Pages/DashboardOrgP";
 import Users from "./Pages/DashboardUserP";
 import HomeP from "./Pages/HomeP";
@@ -126,7 +126,7 @@ class App extends React.Component {
             }
             else {
               this.setState({
-                redirect: "/users"
+                redirect: "/profiles"
               })
             }
           })
@@ -149,7 +149,7 @@ class App extends React.Component {
             }
             else {
               this.setState({
-                redirect: "/users"
+                redirect: "/profiles"
               })
             }
           })
@@ -185,7 +185,7 @@ class App extends React.Component {
         <Route path="/dashboard" render={()=>(
           <DashboardOrgP statedata={this.state}></DashboardOrgP>
         )}></Route>
-        {/* <Route path="/carousel" component={Carousel}></Route> */}
+        <Route path="/profiles" component={ProfilesP}></Route>
         <Route path="/users" component={Users}></Route>
         <Route path="/signin" render={(props)=>(
           <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>

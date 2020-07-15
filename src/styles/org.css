@@ -4,7 +4,7 @@
   position: absolute;
   left: 250px;
   padding: 100px 60px;
-  /* width: 500px; remove this later */
+  width: calc(100vw - 370px);
 }
 .profilesPageCont .addProfileButton {
   background-color: var(--dark-blue);
@@ -60,15 +60,16 @@
   right: 0;
   bottom: 0;
   background-color: rgba(92, 85, 82, 0.5);
+  z-index: 150;
 }
 .profilesPageCont .addProfileForm {
   background-color: white;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-20%, -50%);
+  transform: translate(-40%, -50%);
   padding: 75px 50px 40px 50px;
-  width: 350px;
+  width: 500px;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --dark-gray);
 }
@@ -112,6 +113,24 @@
 }
 .addProfileForm .inputCont input:focus {
   outline: transparent;
+}
+.addProfileForm .inputCont textarea {
+  flex: 2;
+  height: 150px;
+  box-shadow: inset 1px 1px 4px var(--light-gray);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+}
+.addProfileForm .inputCont textarea:focus {
+  outline: transparent;
+}
+.addProfileForm .inputCont .ageInput {
+  width: 50%;
+}
+.addProfileForm .inputCont .ageLabel {
+  margin-left: 10px;
+  font-size: 14px;
 }
 .addProfileForm button {
   border: none;

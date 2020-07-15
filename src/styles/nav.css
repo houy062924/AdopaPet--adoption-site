@@ -28,13 +28,31 @@
 .navCont .linkCont li {
   padding: 0 15px;
   line-height: 51px;
+  color: white;
 }
 .navCont .linkCont li:hover {
   background-color: var(--gray);
   cursor: pointer;
-  /* border-top-left-radius: 10px;
-  border-top-right-radius: 10px; */
 }
 .navCont .linkCont li:hover a {
   color: var(--black);
+}
+.navCont .linkCont .userInfoCont {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+.navCont .linkCont .userInfoCont .userImg {
+  width: 20px;
+  height: 20px;
+}
+.navCont .linkCont .userImgCont {
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  cursor: pointer;
 }

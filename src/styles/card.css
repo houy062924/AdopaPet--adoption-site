@@ -2,10 +2,12 @@
 
 #carouselCont .cardCont {
   width: 80vw;
-  background-color: gainsboro;
-  margin: 50px auto;
+  background-color: white;
+  margin: 80px auto;
   display: flex;
   padding: 30px;
+  border-radius: 10px;
+  box-shadow: 1px 7px 15px var(--light-gray);
 }
 .cardCont .imgCont {
   width: 300px;

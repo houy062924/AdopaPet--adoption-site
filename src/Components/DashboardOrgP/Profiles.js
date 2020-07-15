@@ -3,7 +3,7 @@ import "../../styles/org.css";
 import { firebase } from "../Shared/Firebase";
 import { storage } from "../Shared/Firebase";
 
-import EditIcon from "../../styles/images/pen.svg";
+import EditIcon from "../../Styles/images/pen.svg";
 
 class Profiles extends React.Component {
   constructor(props) {
@@ -85,10 +85,12 @@ class AddProfileForm extends React.Component {
     this.state = {
       name: "",
       gender: "",
-      age: 0,
       image: null,
       url: "",
-      id: ""
+      id: "",
+      story: "",
+      address: "",
+      date: ""
     }
     this.fileInput = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -157,9 +159,11 @@ class AddProfileForm extends React.Component {
     const userRef = db.collection('animals').add({
       name: this.state.name,
       gender: this.state.gender,
-      age: this.state.age,
       url: this.state.url,
       id: this.state.id,
+      story: this.state.story,
+      address: this.state.address,
+      date: this.state.date,
       orgname: this.props.appstate.name,
       orguid: this.props.appstate.uid
     })
@@ -168,10 +172,14 @@ class AddProfileForm extends React.Component {
       this.setState({
         name: "",
         gender: "",
-        age: 0,
+        year: null,
+        month: null,
         image: "",
         url: "",
-        id: ""
+        id: "",
+        story: "",
+        address: "",
+        date: ""
       })
       this.closeProfileForm(true);
     })
@@ -197,7 +205,7 @@ class AddProfileForm extends React.Component {
           </div>
 
           <div className="inputCont">
-            <label htmlFor="name">ID</label>
+            <label htmlFor="id">ID</label>
             <input 
               id="id" 
               name="id" 
@@ -206,15 +214,31 @@ class AddProfileForm extends React.Component {
               onChange={this.handleInputChange}/>
           </div>
 
-          <div className="inputCont">
-            <label htmlFor="age">Age</label>
-            <input 
-              id="age" 
-              name="age" 
+          <div>
+            <div className="inputCont">
+              <label>Age</label>
+              <input 
+                id="year" 
+                name="year" 
+                type="number" 
+                min="0" 
+                className="ageInput"
+                // value={this.state.age}
+                onChange={this.handleInputChange}
+              />
+              <label htmlFor="year" className="ageLabel">Years</label>
+              <input 
+              id="month" 
+              name="month" 
               type="number" 
-              min="0" 
+              min="0"
+              max="12" 
+              className="ageInput"
               // value={this.state.age}
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange}
+              />
+              <label htmlFor="month" className="ageLabel">Months</label>
+            </div>
           </div>
 
           <div className="radioCont">
@@ -229,6 +253,26 @@ class AddProfileForm extends React.Component {
             </label>
           </div>
 
+          <div className="inputCont">
+            <label htmlFor="address">Address</label>
+            <input 
+              id="address" 
+              name="address" 
+              type="text"
+              value={this.state.address}
+              onChange={this.handleInputChange}/>
+          </div>
+
+          <div className="inputCont">
+            <label htmlFor="date">Date</label>
+            <input 
+              id="date" 
+              name="date" 
+              type="date"
+              value={this.state.date}
+              onChange={this.handleInputChange}/>
+          </div>
+
           <div className="fileCont">
             <label className="fileLabel">Image</label>
             <input 
@@ -239,6 +283,18 @@ class AddProfileForm extends React.Component {
               ref={this.fileInput}
               onChange={this.handleImageChange} />
               <label htmlFor="image">Choose an image</label>
+          </div>
+
+          <div className="inputCont">
+            <label htmlFor="story">Story</label>
+            <textarea 
+              id="story"
+              name="story" 
+              // rows="10" 
+              // cols="70"
+              value={this.state.story}
+              onChange={this.handleInputChange}>
+            </textarea>
           </div>
 
           <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button>
@@ -312,7 +368,7 @@ class EditProfileForm extends React.Component {
 
           <div className="formStoryCont">
             <p className="formStory">
-              sdfgdhdsftedfdrfwzsckwus fbrcmwhcsrjkhawjsmfbcsjf sjerhfmdgrkruwaer ajszhdfgawgexjr gserfjdfmsweu4rywrhfj
+              {currentprofile.story}
             </p>
           </div>
 
