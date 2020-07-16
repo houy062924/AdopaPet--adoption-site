@@ -4,7 +4,7 @@ import { firebase } from "../Components/Shared/Firebase";
 import { storage } from "../Components/Shared/Firebase";
 
 import SideNav from "../Components/DashboardOrgP/SideNav";
-import Profiles from "../Components/DashboardOrgP/Profiles";
+import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
 import Calender from "../Components/DashboardOrgP/Calender";
 import Overview from "../Components/DashboardOrgP/Overview";
 
@@ -89,11 +89,11 @@ class DashboardOrgP extends React.Component {
         <Route 
           path="/dashboard/profiles" 
           render={()=>(
-            <Profiles 
+            <ProfilesOrg 
               appstate={this.props.statedata} 
               functions={this.functions} 
               dashstate={this.state}>
-            </Profiles>
+            </ProfilesOrg>
           )}>
         </Route>
         <Route path="/dashboard/calender" render={()=>(

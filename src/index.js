@@ -107,7 +107,8 @@ class App extends React.Component {
             name: this.state.name,
             email: user.email,
             uid: user.uid,
-            identity: this.state.identity
+            identity: this.state.identity,
+            likes: []
           })
           .then(()=>{
             alert("Signed in");
@@ -185,7 +186,9 @@ class App extends React.Component {
         <Route path="/dashboard" render={()=>(
           <DashboardOrgP statedata={this.state}></DashboardOrgP>
         )}></Route>
-        <Route path="/profiles" component={ProfilesP}></Route>
+        <Route path="/profiles" render={()=>(
+          <ProfilesP statedata={this.state}></ProfilesP>
+        )}></Route>
         <Route path="/users" component={Users}></Route>
         <Route path="/signin" render={(props)=>(
           <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>

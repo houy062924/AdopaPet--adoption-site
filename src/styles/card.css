@@ -1,27 +1,36 @@
-/* Card New------- */
+/* Card ------- */
 
-#carouselCont .cardCont {
+.cardStackCont .cardCont {
   width: 80vw;
+  height: calc(80vh - 100px);
   background-color: white;
   margin: 80px auto;
   display: flex;
-  padding: 30px;
+  padding: 35px;
   border-radius: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.cardStackCont .bottomCardCont {
   box-shadow: 1px 7px 15px var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cardCont .imgCont {
-  width: 300px;
-  height: 400px;
-  margin: 20px 30px;
-  flex-shrink: 0;
+  margin-right: 30px;
+  flex: 1;
 }
 .cardCont .profileImg {
-  width: 100%;
-  /* height: 100%; */
+  width: auto;
+  max-width: 100%;
+  max-height: calc(80vh - 100px);
 }
 .cardCont .textCont {
-  width: 60%;
-  margin: 20px 30px;
+  flex: 1;
 }
 .cardCont .profileName {
   margin-top: 0px;
@@ -39,6 +48,8 @@
 }
 .cardCont .profileStory {
   text-align: justify;
+  overflow-y: scroll;
+  height: 100px;
 }
 /* .cardCont button {
   background-color: gray;
@@ -53,97 +64,19 @@
   opacity: 0.6;
 }
 
-/* Card Original-------
 
-#carouselCont {
-  overflow: visable;
-}
-.cardCont {
-  width: 250px;
-  background-color: var(--yellow);
-  border-radius: 5px;
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transform-style: preserve-3d;
-}
-.imgCont {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.imgProfile {
-  height: 200px;
-  width: 200px;
-  background-color: gray;
-  margin: 0 auto;
-}
-.heartCont {
-  padding: 20px;
-}
-.heart {
-  background-color: white;
-  height: 20px;
-  transform: rotate(-45deg);
-  width: 20px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.heart:before, .heart:after {
-  content: "";
-  background-color: white;
-  border-radius: 50%;
-  height: 20px;
-  position: absolute;
-  width: 20px;
-}
-.heart:before {
-  top: -12px;
-  left: 0;
-}
-.heart:after {
-  top: 0;
-  left: 12px;
-}
-.heart:hover, .heart:hover:before, .heart:hover:after {
-  background-color: red;
-}
+/* Draggable --------- */
 
-.cardFormCont {
-  width: 90%;
-  margin: 0 auto;
-  background-color: gainsboro;
-  cursor: pointer;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  position: absolute;
-  left: 13px;
-  transform: translateZ(-1em);
+.cardStackCont .currentCard {
+  touch-action: none;
+  user-select: none;
+  z-index: 50;
+  box-shadow: 1px 7px 15px var(--light-gray);
 }
-.expandText {
-  margin: 5px;
-  text-align: center;
-  color: gray;
+.cardStackCont .cardSnap {
+  transition: transform 0.8s cubic-bezier(.26,1.42,.64,1);
 }
-.cardDetailCont {
-  width: 100%;
-  margin: 0 auto;
-  background-color: gainsboro;
-  cursor: pointer;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  outline: 2px dashed gray;
-  outline-offset: -15px;
-  position: absolute;
-  top: -15px;
-  z-index: -10;
-  padding: 20px;
-  box-sizing: border-box;
+.cardStackCont .nextCard {
+  box-shadow: 1px 7px 15px var(--light-gray);
+  z-index: 49;
 }
-
-.cardRightCont {
-  transform: perspective(500px) translate3d(-50%, -50%, -200px);
-} */

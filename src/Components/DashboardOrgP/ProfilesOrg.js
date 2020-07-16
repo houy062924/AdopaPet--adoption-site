@@ -5,7 +5,7 @@ import { storage } from "../Shared/Firebase";
 
 import EditIcon from "../../Styles/images/pen.svg";
 
-class Profiles extends React.Component {
+class ProfilesOrg extends React.Component {
   constructor(props) {
     super(props);
 
@@ -127,8 +127,7 @@ class AddProfileForm extends React.Component {
     event.preventDefault();
 
     const {image} = this.state;
-    console.log(this.state)
-
+    
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on('state_changed', 
       (snapShot) => {
@@ -379,4 +378,4 @@ class EditProfileForm extends React.Component {
   }
 }
 
-export default Profiles;
+export default ProfilesOrg;
