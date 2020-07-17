@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Link, Redirect,  } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
-// import Carousel from "./Components/CarouselP/Carousel";
 import ProfilesP from "./Pages/ProfilesP";
 import DashboardOrgP from "./Pages/DashboardOrgP";
 import DashboardUserP from "./Pages/DashboardUserP";

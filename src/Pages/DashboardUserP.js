@@ -1,7 +1,7 @@
 import React from "react";
 import Likes from "../Components/DashboardUserP/Likes";
 import { firebase } from "../Components/Shared/Firebase";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import SideNavUser from "../Components/DashboardUserP/SideNavUser";
 
 
@@ -32,9 +32,18 @@ class DashboardUserP extends React.Component {
         <SideNavUser
           userstate={this.props.statedata}>
         </SideNavUser>
-        <Likes 
+        {/* <Likes 
           likestate={this.state.likes}>
-        </Likes>
+        </Likes> */}
+
+        <Route
+          path="/dashboard/profiles"
+          render={()=>(
+            <Likes
+              likestate={this.state.likes}>
+            </Likes>
+          )}>
+        </Route>
 
       </BrowserRouter>
     )

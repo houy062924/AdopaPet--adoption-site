@@ -1,7 +1,4 @@
 import React from "react";
-import UserIcon from "../../styles/images/user.svg";
-import EmailIcon from "../../styles/images/email.svg";
-import PasswordIcon from "../../styles/images/password.svg";
 
 // import { firebase } from "../Components/Firebase";
 // import { Link } from "react-router-dom";
@@ -97,7 +94,7 @@ class SignupForm extends React.Component {
     return (
       <form onSubmit={this.handleSignUp} className="formCont">
         <div className="inputCont">
-          <img src={UserIcon} className="inputIcon"></img>
+          <img src="/src/images/user.svg" className="inputIcon"></img>
           <input 
             type="text" 
             id="name" 
@@ -108,7 +105,7 @@ class SignupForm extends React.Component {
             onChange={this.handleChange}></input>
         </div>
         <div className="inputCont">
-          <img src={EmailIcon} className="inputIcon"></img>
+          <img src="/src/images/email.svg" className="inputIcon"></img>
           <input 
             type="text" 
             id="email" 
@@ -119,7 +116,7 @@ class SignupForm extends React.Component {
             onChange={this.handleChange}></input>
         </div>
         <div className="inputCont">
-          <img src={PasswordIcon} className="inputIcon"></img>
+          <img src="/src/images/password.svg" className="inputIcon"></img>
           <input 
             type="password" 
             id="password" 
@@ -167,7 +164,7 @@ class SigninForm extends React.Component {
     return (
       <form onSubmit={this.handleSignIn} className="formCont">
         <div className="inputCont">
-          <img src={EmailIcon} className="inputIcon"></img>
+          <img src="/src/images/email.svg" className="inputIcon"></img>
           <input 
             type="text" 
             id="email" 
@@ -178,7 +175,7 @@ class SigninForm extends React.Component {
             onChange={this.handleChange}></input>
         </div>
         <div className="inputCont">
-          <img src={PasswordIcon} className="inputIcon"></img>
+          <img src="/src/images/password.svg" className="inputIcon"></img>
           <input 
             type="password" 
             id="password" 

@@ -3,7 +3,6 @@ import "../../styles/org.css";
 import { firebase } from "../Shared/Firebase";
 import { storage } from "../Shared/Firebase";
 
-import EditIcon from "../../Styles/images/pen.svg";
 
 class ProfilesOrg extends React.Component {
   constructor(props) {
@@ -53,7 +52,7 @@ class ProfilesOrg extends React.Component {
                 onClick={()=> {this.openEditForm(profile, index)}}
               >
                 <div className="profileImg">
-                  <img src={profile.url}></img>
+                  <img src="/src/images/pen.svg"></img>
                 </div>
                 <p className="profileName">
                   {profile.name}

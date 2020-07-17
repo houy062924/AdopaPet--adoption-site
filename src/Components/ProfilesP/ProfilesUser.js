@@ -1,8 +1,6 @@
 import React from "react";
-import {firebase} from "../Shared/Firebase";
-import {storage} from "../Shared/Firebase";
+import { firebase } from "../Shared/Firebase";
 import interact from "interactjs";
-
 
 class ProfilesUser extends React.Component {
   constructor() {
@@ -149,37 +147,7 @@ class ProfilesUser extends React.Component {
     interact(".currentCard").unset();
   }
 
-  // handleLike(eTarget, propProfile, propLikes) {
-  //   let liked =  false;
-  //   this.state.likeList.forEach((likeItem)=>{
-  //     if (likeItem.id === propProfile.id) {
-  //       liked = true;
-  //     }
-  //   })
-
-  //   if (liked === false) {
-  //     let newlikes = [...this.state.likeList, propProfile];
-  //     this.setState({
-  //       likeList: newlikes
-  //     })
-  //     localStorage.setItem("likes", JSON.stringify(newlikes));
-
-  //     eTarget.classList.add("addedButton");
-  //     eTarget.textContent = "已加入";
-  //   }
-  //   else {
-  //     let filteredArr = this.state.likeList.filter(item => item.id !== propProfile.id)
-  //     this.setState({
-  //       likeList: filteredArr
-  //     });
-  //     localStorage.setItem("likes", JSON.stringify(filteredArr));
-
-  //     eTarget.classList.remove("addedButton");
-  //     eTarget.textContent = "Like";
-  //   }
-  // }
-
-  
+ 
   render() {
     return (
       <div className="cardStackCont">
@@ -214,13 +182,6 @@ class Card extends React.Component {
   }
 
   render() {
-    // let liked = false;
-    // this.props.profilestate.likes.forEach((like)=>{
-    //   if ( like.id === this.props.profile.id ) {
-    //     liked = true;
-    //   } 
-    // })
-
     let positionStyle;
     let classes = "cardCont";
 
@@ -260,11 +221,27 @@ class Card extends React.Component {
           <p className="profileStory">
             { this.props.profile.story }
           </p>
+        </div>
+        
+        <div className="actionCont">
+          <div class="pawCont">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
 
-          {/* { liked
-            ? <button type="button" className="addedButton" onClick={this.handleLike}>已加入</button>
-            : <button type="button" onClick={this.handleLike}>Like</button>
-          } */}
+            <div class="p1"></div>
+            <div class="p2"></div>
+            <div class="p3"></div>
+            <div class="p4"></div>
+            
+            <div class="heartCont">
+              <svg class="heart" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+              </svg> 
+            </div>
+          </div>
         </div>
       </div>
     )

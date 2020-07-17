@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/sidenav.css";
-import UserIcon from "../../styles/images/user.svg";
 
 
 class SideNav extends React.Component {
@@ -10,7 +9,7 @@ class SideNav extends React.Component {
       <ul className="sidenavCont">
         <div className="userCont">
           <div className="imgCont">
-            <img src={UserIcon} className="userImg"></img>
+            <img src="/src/images/user.svg" className="userImg"></img>
           </div>
           <div className="userTextCont">
             
