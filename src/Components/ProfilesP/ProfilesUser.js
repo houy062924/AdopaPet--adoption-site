@@ -165,6 +165,11 @@ class ProfilesUser extends React.Component {
         <div className="cardCont bottomCardCont">
           No more profiles
         </div>
+        <CardActions
+          rotateDeg={this.state.rotateDeg}
+          positionX={this.state.positionX}
+          positionY={this.state.positionY}>
+        </CardActions>
       </div>
     )
   }
@@ -197,9 +202,7 @@ class Card extends React.Component {
 
     return (
       <div 
-        className={`
-          ${classes} 
-        `} 
+        className={`${classes}`} 
         style={positionStyle}>
         <div className="imgCont">
           <img src={this.props.profile.url} className="profileImg"></img>
@@ -223,24 +226,48 @@ class Card extends React.Component {
           </p>
         </div>
         
-        <div className="actionCont">
-          <div class="pawCont">
-            <div class="c1"></div>
-            <div class="c2"></div>
-            <div class="c3"></div>
-            <div class="c4"></div>
+      </div>
+    )
+  }
+}
 
-            <div class="p1"></div>
-            <div class="p2"></div>
-            <div class="p3"></div>
-            <div class="p4"></div>
-            
-            <div class="heartCont">
-              <svg class="heart" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
-                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-              </svg> 
-            </div>
+class CardActions extends React.Component {
+  render() {
+    return (
+      <div className="actionCont">
+        <div className="pawCont leftPaw">
+          <div>
+            <div className="c1"></div>
+            <div className="c2"></div>
+            <div className="c3"></div>
+            <div className="c4"></div>
+
+            <div className="p1"></div>
+            <div className="p2"></div>
+            <div className="p3"></div>
+            <div className="p4"></div>
+          </div>
+          
+          <div className="crossCont">
+            <img src="/src/images/close.svg" className="cross"></img>
+          </div>
+        </div>
+
+        <div className="pawCont rightPaw">
+          <div>
+            <div className="c1"></div>
+            <div className="c2"></div>
+            <div className="c3"></div>
+            <div className="c4"></div>
+
+            <div className="p1"></div>
+            <div className="p2"></div>
+            <div className="p3"></div>
+            <div className="p4"></div>
+          </div>
+
+          <div className="heartCont">
+            <img src="/src/images/heart.svg" className="heart rightHeart"></img>
           </div>
         </div>
       </div>

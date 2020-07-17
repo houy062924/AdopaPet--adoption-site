@@ -86,27 +86,48 @@
 
 /* Paw ------ */
 .cardStackCont .actionCont {
-  flex: 100%;
+  /* position: fixed;
+  z-index: 100;
+  bottom: -43px;
+  right: -21px; */
 }
 .cardStackCont .pawCont {
-  position: relative;
-  height: 150px;
+  height: 200px;
   width: 110px;
   border-top-left-radius: 200px;
   border-top-right-radius: 200px;
-  background-color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* box-shadow: 1px 1px 10px gray; */
-  align-self: flex-end;
-  transform: scale(0.7);
+  transform-origin: bottom right;
+  cursor: pointer;
 }
-.cardStackCont .pawCont .c1 {
-  background-color: #A44A3F;
+.cardStackCont .leftPaw {
+  position: fixed;
+  z-index: 100;
+  bottom: -40px;
+  left: -65px;
+  transform: scale(0.7) rotate(30deg);
+  background-color: var(--black);
+}
+.cardStackCont .rightPaw {
+  position: fixed;
+  z-index: 100;
+  bottom: -4px;
+  right: -18px;
+  transform: scale(0.7) rotate(-25deg);
+  background-color: var(--light-gray);
+}
+.cardStackCont .leftPaw .c1, .cardStackCont .leftPaw .c2, .cardStackCont .leftPaw .c3, .cardStackCont .leftPaw .c4 {
+  background-color: var(--white);
   width: 17px;
   height: 22px;
   border-radius: 50%;
+}
+.cardStackCont .rightPaw .c1, .cardStackCont .rightPaw .c2, .cardStackCont .rightPaw .c3, .cardStackCont .rightPaw .c4 {
+  background-color: var(--red);
+  width: 17px;
+  height: 22px;
+  border-radius: 50%;
+}
+.cardStackCont .pawCont .c1 {
   position: absolute;
   top: 27px;
   left: 15px;
@@ -114,10 +135,6 @@
   z-index: 5;
 }
 .cardStackCont .pawCont .c2 {
-  background-color: #A44A3F;
-  width: 17px;
-  height: 22px;
-  border-radius: 50%;
   position: absolute;
   top: 15px;
   left: 35px;
@@ -125,10 +142,6 @@
   z-index: 5;
 }
 .cardStackCont .pawCont .c3 {
-  background-color: #A44A3F;
-  width: 17px;
-  height: 22px;
-  border-radius: 50%;
   position: absolute;
   top: 15px;
   left: 58px;
@@ -136,69 +149,77 @@
   z-index: 5;
 }
 .cardStackCont .pawCont .c4 {
-  background-color: #A44A3F;
-  width: 17px;
-  height: 22px;
-  border-radius: 50%;
   position: absolute;
   top: 27px;
   left: 78px;
   transform: rotate(20deg);
   z-index: 5;
 }
-.cardStackCont .pawCont .p1 {
-  background-color: var(--white);
+.cardStackCont .leftPaw .p1, .cardStackCont .leftPaw .p2, .cardStackCont .leftPaw .p3, .cardStackCont .leftPaw .p4 {
+  background-color: var(--black);
   width: 45px;
   height: 45px;
   border-radius: 50%;
+}
+.cardStackCont .rightPaw .p1, .cardStackCont .rightPaw .p2, .cardStackCont .rightPaw .p3, .cardStackCont .rightPaw .p4 {
+  background-color: var(--light-gray);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.cardStackCont .pawCont .p1 {
   position: absolute;
   top: 14px;
   left: -2px;
   z-index: 1;
 }
 .cardStackCont .pawCont .p2 {
-  background-color: var(--white);  
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
   position: absolute;
   top: -2px;
-  left: 18px;
+  left: 20px;
   z-index: 1;
 }
 .cardStackCont .pawCont .p3 {
-  background-color: var(--white);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
   position: absolute;
   top: -2px;
   left: 47px;
   z-index: 1;
 }
 .cardStackCont .pawCont .p4 {
-  background-color: var(--white);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
   position: absolute;
   top: 15px;
   left: 68px;
   z-index: 1;
 }
+.cardStackCont .pawCont .crossCont {
+  z-index: 1;
+  position: absolute;
+  top: 50px;
+  left: 25px;
+}
+.cardStackCont .pawCont .cross {
+  height: 60px;
+}
 .cardStackCont .pawCont .heartCont {
   z-index: 1;
+  position: absolute;
+  top: 49px;
+  left: 26px;
 }
 .cardStackCont .pawCont .heart {
-  width: 50px;
-  height: 50px;
-  fill: #A44A3F;
+  height: 60px;
 }
-.cardStackCont .pawCont .heart:hover {
+.cardStackCont .pawCont:hover .heart, .cardStackCont .pawCont:hover .cross {
   animation: pulse 1s ease infinite;
 }
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
+}
+.cardStackCont .leftHeart {
+  fill: var(--white);
+}
+.cardStackCont .rightHeart {
+  fill: var(--red);
 }
