@@ -1,25 +1,44 @@
 import React from "react";
-import Likes from "../Components/DashboardUserP/Likes"
+import Likes from "../Components/DashboardUserP/Likes";
+import { firebase } from "../Components/Shared/Firebase";
+import { BrowserRouter } from "react-router-dom";
+import SideNavUser from "../Components/DashboardUserP/SideNavUser";
 
-class Users extends React.Component {
+
+
+class DashboardUserP extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       likes: []
     }
+
+    this.db = firebase.firestore();
   }
 
   componentDidMount() {
-    this.setState({
-      likes: JSON.parse(localStorage.getItem("likes"))
+    this.db.collection("members").doc(this.props.statedata.uid).get()
+    .then((doc)=>{
+      this.setState({
+        likes: doc.data().likes
+      })
     })
   }
 
   render() {
+    console.log(this.props.statedata)
     return (
-      <Likes></Likes>
+      <BrowserRouter basename="/user">
+        <SideNavUser
+          userstate={this.props.statedata}>
+        </SideNavUser>
+        <Likes 
+          likestate={this.state.likes}>
+        </Likes>
+
+      </BrowserRouter>
     )
   }
 }
 
-export default Users;
+export default DashboardUserP;

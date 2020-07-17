@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/nav.css";
-import UserIcon from "../Styles/images/user.svg";
 
 
 class Nav extends React.Component {
@@ -37,7 +36,7 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 0 &&
             <ul className="linkCont">
               
-              <Link to="/dashboard">
+              <Link to="/org/dashboard">
                 <li>Dashboard</li>
               </Link>
               
@@ -54,10 +53,10 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 1 &&
             <ul className="linkCont">
               
-              <Link to="/profiles">
+              <Link to="/user/profiles">
                 <li>Profiles</li>
               </Link>
-              <Link to="/users">
+              <Link to="/user/dashboard">
                 <li>Dashboard</li>
               </Link>
               

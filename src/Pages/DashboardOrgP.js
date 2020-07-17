@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
 import { storage } from "../Components/Shared/Firebase";
 
@@ -80,7 +80,7 @@ class DashboardOrgP extends React.Component {
 
   render() {
     return (
-      <div>
+      <BrowserRouter basename="/org">
         <SideNav statedata={this.props.statedata}></SideNav>
 
         <Route path="/dashboard/overview" render={()=>(
@@ -100,7 +100,7 @@ class DashboardOrgP extends React.Component {
           <Calender appstate={this.props.statedata}functions={this.functions}></Calender>
         )}></Route>
 
-      </div>
+      </BrowserRouter>
     )
   }
 }

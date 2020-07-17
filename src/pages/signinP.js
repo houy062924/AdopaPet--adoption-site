@@ -41,10 +41,13 @@ class SigninP extends React.Component {
 
         <Route path="/org" 
           render={()=>(
-            <SigninOrg statedata={this.props.statedata} functions={this.props.functions}></SigninOrg>
+            <SigninOrg 
+              statedata={this.props.statedata} 
+              functions={this.props.functions}>
+            </SigninOrg>
           )}>
         </Route>
-        <Route path="/signin/user" component={SigninUser}></Route> 
+        <Route path="/user" component={SigninUser}></Route> 
       </BrowserRouter>
     )
   }

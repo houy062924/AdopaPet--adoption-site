@@ -9,7 +9,7 @@ class ProfilesUser extends React.Component {
     super();
     this.state = {
       profiles: [],
-      likeList: [],
+      likes: [],
       positionX: 0,
       positionY: 0,
       rotateDeg: 0,
@@ -18,6 +18,7 @@ class ProfilesUser extends React.Component {
       nextCard: 1,
     }
 
+    this.handleProfileFiltering = this.handleProfileFiltering.bind(this);
     this.resetCardPosition = this.resetCardPosition.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.db = firebase.firestore();
@@ -25,27 +26,7 @@ class ProfilesUser extends React.Component {
 
   componentDidMount() {
     // get data from database
-    const profiles = []
-    const db = firebase.firestore();
-    const data = db.collection("animals").get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach(function(doc) {
-        profiles.push(doc.data());
-      });
-
-      this.setState({
-        profiles: profiles
-      })
-    });
-
-    // // get data from local storage
-    // if ( localStorage.getItem("likes") !== null ) {
-    //   this.setState({
-    //     likeList: JSON.parse(localStorage.getItem("likes"))
-    //   })
-    // }
-
-
+    this.handleProfileFiltering();
 
     // Draggable
     interact(".currentCard").draggable({
@@ -85,6 +66,36 @@ class ProfilesUser extends React.Component {
       }
     });
   }
+  handleProfileFiltering() {
+    let profiles = [];
+    let likes = [];
+    let difference = [];
+
+    this.db.collection("animals").get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        profiles.push(doc.data());
+      });
+    })
+    .then(()=>{
+      return this.db.collection("members").doc(this.props.userdata.uid).get()
+
+    })
+    .then((doc)=>{
+      likes = doc.data().likes;
+      this.setState({
+        likes: likes
+      })
+
+    })
+    .then(()=>{
+      difference = profiles.filter(p => !likes.some(l => p.id === l.id));
+      this.setState({
+        profiles: difference
+      })
+
+    })
+  }
   handleCardChoice(interaction) {
     this.setState((prevState) => ({
       currentCard: prevState.currentCard + 1,
@@ -99,13 +110,13 @@ class ProfilesUser extends React.Component {
         this.resetCardPosition();
         this.handleLike();
         break;
+
       case "reject":
         console.log("rejected")
         this.setState({
           positionX: -1000
         })
         this.resetCardPosition();
-
         break;
     }
   }
@@ -117,28 +128,27 @@ class ProfilesUser extends React.Component {
       isAnimating: true
     })
   }
-  componentWillUnmount() {
-    interact(".currentCard").unset();
-  }
-
   handleLike() {
     let currentProfile = this.state.profiles[this.state.currentCard-1];
     let likeArr;
 
     this.db.collection("members").doc(this.props.userdata.uid).get()
     .then((doc)=>{
-      // console.log(doc.data().name)
       likeArr = [...doc.data().likes, currentProfile];
-      console.log(likeArr)
     })
     .then(()=>{
+      this.setState({
+        likes: likeArr
+      })
       this.db.collection("members").doc(this.props.userdata.uid).update({
         likes: likeArr
       })
     })
-
-    
   }
+  componentWillUnmount() {
+    interact(".currentCard").unset();
+  }
+
   // handleLike(eTarget, propProfile, propLikes) {
   //   let liked =  false;
   //   this.state.likeList.forEach((likeItem)=>{
@@ -200,16 +210,16 @@ class Card extends React.Component {
   }
 
   handleLike(e) {
-    this.props.handleLike(e.target, this.props.profile, this.props.profilestate.likeList);
+    this.props.handleLike(e.target, this.props.profile, this.props.profilestate.likes);
   }
 
   render() {
-    let liked = false;
-    this.props.profilestate.likeList.forEach((like)=>{
-      if ( like.id === this.props.profile.id ) {
-        liked = true;
-      } 
-    })
+    // let liked = false;
+    // this.props.profilestate.likes.forEach((like)=>{
+    //   if ( like.id === this.props.profile.id ) {
+    //     liked = true;
+    //   } 
+    // })
 
     let positionStyle;
     let classes = "cardCont";
@@ -251,10 +261,10 @@ class Card extends React.Component {
             { this.props.profile.story }
           </p>
 
-          { liked
+          {/* { liked
             ? <button type="button" className="addedButton" onClick={this.handleLike}>已加入</button>
             : <button type="button" onClick={this.handleLike}>Like</button>
-          }
+          } */}
         </div>
       </div>
     )

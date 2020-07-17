@@ -9,7 +9,7 @@ import Nav from "./Components/Nav";
 // import Carousel from "./Components/CarouselP/Carousel";
 import ProfilesP from "./Pages/ProfilesP";
 import DashboardOrgP from "./Pages/DashboardOrgP";
-import Users from "./Pages/DashboardUserP";
+import DashboardUserP from "./Pages/DashboardUserP";
 import HomeP from "./Pages/HomeP";
 import SigninP from "./Pages/SigninP";
 
@@ -122,12 +122,12 @@ class App extends React.Component {
           .then(()=>{
             if (this.state.identity===0) {
               this.setState({
-                redirect: "/dashboard"
+                redirect: "/org/dashboard"
               })
             }
             else {
               this.setState({
-                redirect: "/profiles"
+                redirect: "/user/profiles"
               })
             }
           })
@@ -145,12 +145,12 @@ class App extends React.Component {
 
             if (doc.data().identity===0) {
               this.setState({
-                redirect: "/dashboard"
+                redirect: "/org/dashboard"
               })
             }
             else {
               this.setState({
-                redirect: "/profiles"
+                redirect: "/user/profiles"
               })
             }
           })
@@ -182,17 +182,43 @@ class App extends React.Component {
 
         <Nav statedata={this.state} functions={this.functions}></Nav>
         
-        <Route exact path="/" component={HomeP}></Route>
-        <Route path="/dashboard" render={()=>(
-          <DashboardOrgP statedata={this.state}></DashboardOrgP>
-        )}></Route>
-        <Route path="/profiles" render={()=>(
-          <ProfilesP statedata={this.state}></ProfilesP>
-        )}></Route>
-        <Route path="/users" component={Users}></Route>
-        <Route path="/signin" render={(props)=>(
-          <SigninP {...props} statedata={this.state} functions={this.functions}></SigninP>
-        )}>
+        <Route 
+          exact path="/" 
+          component={HomeP}>
+        </Route>
+        <Route 
+          path="/org/dashboard" 
+          render={()=>(
+            <DashboardOrgP 
+              statedata={this.state}>
+            </DashboardOrgP>
+          )}>
+        </Route>
+        <Route 
+          path="/user/profiles" 
+          render={()=>(
+            <ProfilesP 
+              statedata={this.state}>
+            </ProfilesP>
+          )}>
+        </Route>
+        <Route 
+          path="/user/dashboard" 
+          render={()=>(
+            <DashboardUserP
+              statedata={this.state}>
+            </DashboardUserP>
+          )}>
+        </Route>
+        <Route 
+          path="/signin" 
+          render={(props)=>(
+            <SigninP 
+              {...props} 
+              statedata={this.state} 
+              functions={this.functions}>
+            </SigninP>
+          )}>
         </Route>
 
         {redirect}
