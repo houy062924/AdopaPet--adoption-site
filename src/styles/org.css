@@ -1,10 +1,7 @@
 /* Add profile form ------ */
 
-.profilesPageCont, .calenderCont {
-  position: absolute;
-  left: 250px;
-  padding: 100px 60px;
-  width: calc(100vw - 370px);
+.profilesPageCont {
+  margin: 100px 40px 50px 100px;
 }
 .profilesPageCont .addProfileButton {
   background-color: var(--dark-blue);
@@ -27,18 +24,16 @@
   outline: transparent;
 }
 .profilesPageCont .profilesCont {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
 }
 .profilesPageCont .profilesCont .cardCont {
-  max-width: 300px;
-  width: 30%;
   background-color: white;
   padding: 25px;
   box-sizing: border-box;
-  margin-right: 20px;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 .profilesPageCont .profilesCont .cardCont:hover {
   box-shadow: 1px 2px 10px var(--light-gray);
@@ -53,7 +48,7 @@
 
 /* Add Profile Form -------- */
 
-.profilesPageCont .addProfileFormCont {
+/* .profilesPageCont .addProfileFormCont {
   position: fixed;
   top: 0;
   left: 0;
@@ -61,26 +56,37 @@
   bottom: 0;
   background-color: rgba(92, 85, 82, 0.5);
   z-index: 150;
-}
+} */
 .profilesPageCont .addProfileForm {
   background-color: white;
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-40%, -50%);
-  padding: 75px 50px 40px 50px;
+  transform: translate(-40%, -50%); */
+  padding: 40px 50px 80px 50px;
   width: 500px;
   border-radius: 15px;
-  box-shadow: 3px 5px 10px var( --dark-gray);
+  box-shadow: 3px 5px 10px var( --light-gray);
+  position: relative;
+}
+.profilesPageCont .addProfileForm .upperTri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 25px 25px;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  top: -25px;
+  box-shadow: 3px 5px 10px var( --light-gray);
 }
 .profilesPageCont .formTopCont {
   background-color: var(--dark-blue);
   color: var(--white);
   height: 40px;
   width: 100%;
-  position: absolute;
+  /* position: absolute;
   right: 0;
-  top: 0;
+  top: 0; */
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   display: flex;

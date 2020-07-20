@@ -12,19 +12,83 @@
   top: 50px;
   box-shadow: 1px 7px 15px var(--light-gray);
 }
+.sidenavUserCont .settingLink {
+  position: fixed;
+  bottom: 0;
+  width: 230px;
+}
 .sidenavUserCont .linkCont {
   height: 50px;
   line-height: 50px;
   padding-left: 20px;
+  display: flex;
+  align-items: center;
 }
 .sidenavUserCont .linkCont:hover {
   background-color: var(--red);
   color: var(--white);
 }
+.sidenavUserCont .linkCont .linkIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+  background-color: var(--white);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.sidenavUserCont .linkCont .dashboardIcon {
+  background-image: url("/src/images/dashboard.svg");
+}
+.sidenavUserCont .linkCont .favouriteIcon {
+  background-image: url("/src/images/favourite.svg");
+}
+.sidenavUserCont .linkCont .calendarIcon {
+  background-image: url("/src/images/calendar.svg");
+}
+.sidenavUserCont .linkCont .settingIcon {
+  background-image: url("/src/images/gear.svg");
+}
+/* Hover effects */
+.sidenavUserCont .linkCont:hover .dashboardIcon {
+  background-image: url("/src/images/dashboard-h.svg");
+  background-color: transparent;
+}
+.sidenavUserCont .linkCont:hover .favouriteIcon {
+  background-image: url("/src/images/favourite-h.svg");
+  background-color: transparent;
+  margin-left: 2px;
+}
+.sidenavUserCont .linkCont:hover .calendarIcon {
+  background-image: url("/src/images/calendar-h.svg");
+  background-color: transparent;
+}
+.sidenavUserCont .linkCont:hover .settingIcon {
+  background-image: url("/src/images/gear-h.svg");
+  background-color: transparent;
+}
+
+
+/* User Info ------ */
 
 .sidenavUserCont .userCont {
   background-color: var(--light-red);
   padding: 30px 20px 10px 20px;
+}
+.sidenavUserCont .userCont .linkIcon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  background-color: var(--red);
+  padding: 5px 25px 5px 7px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  opacity: 0.7;
+}
+.sidenavUserCont .userCont .linkIcon:hover {
+  opacity: 1;
 }
 .sidenavUserCont .userCont .imgCont {
   width: 60px;
@@ -49,4 +113,36 @@
 .sidenavUserCont .userCont .userEmail {
   margin-top: 0;
   font-size: 13px;
+}
+
+/* Toggle nav --------- */
+
+.openNav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 50px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);  
+}
+.closeNav {
+  left: -200px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.userCont .openedNavIcon {
+  transform: rotate(0deg);
+  right: 0;
+  transition: transform 1s;
+}
+.userCont .closedNavIcon {
+  transform: rotate(-180deg);
+  right: 17px;
+  transition: transform 1s;
+}
+.linkCont .openedNavIcon {
+  left: 0;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.linkCont .closedNavIcon {
+  left: 195px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
 }

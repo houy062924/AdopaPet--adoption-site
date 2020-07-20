@@ -2,11 +2,11 @@
 
 .cardStackCont .cardCont {
   width: 80vw;
-  height: calc(80vh - 100px);
+  height: calc(80vh - 85px);
   background-color: white;
   margin: 80px auto;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   padding: 35px;
   border-radius: 10px;
   position: absolute;
@@ -21,6 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.cardStackCont .profileCont {
+  max-width: 750px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .cardStackCont .cardCont .imgCont {
   margin-right: 30px;
@@ -51,7 +56,7 @@
 .cardStackCont .cardCont .profileStory {
   text-align: justify;
   overflow-y: scroll;
-  height: 100px;
+  height: 150px;
 }
 /* .cardCont button {
   background-color: gray;

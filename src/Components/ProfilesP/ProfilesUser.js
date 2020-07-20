@@ -204,26 +204,28 @@ class Card extends React.Component {
       <div 
         className={`${classes}`} 
         style={positionStyle}>
-        <div className="imgCont">
-          <img src={this.props.profile.url} className="profileImg"></img>
-        </div>
+        <div class="profileCont">
+          <div className="imgCont">
+            <img src={this.props.profile.url} className="profileImg"></img>
+          </div>
 
-        <div className="textCont">
-          <h1 className="profileName">
-            { this.props.profile.name }
-          </h1>
-          <p className="profileId">
-            { this.props.profile.id }
-          </p>
-          <p className="profileDays">
-            {this.props.profile.date}
-          </p>
-          <p className="profileLocation">
-            { this.props.profile.address }
-          </p>
-          <p className="profileStory">
-            { this.props.profile.story }
-          </p>
+          <div className="textCont">
+            <h1 className="profileName">
+              { this.props.profile.name }
+            </h1>
+            <p className="profileId">
+              { this.props.profile.id }
+            </p>
+            <p className="profileDays">
+              {this.props.profile.date}
+            </p>
+            <p className="profileLocation">
+              { this.props.profile.address }
+            </p>
+            <p className="profileStory">
+              { this.props.profile.story }
+            </p>
+          </div>
         </div>
         
       </div>

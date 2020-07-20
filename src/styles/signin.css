@@ -2,10 +2,14 @@
 
 .bottomCont {
   position: relative;
-  height: 300px;
-  width: 650px;
-  margin: 130px auto;
+  height: 310px;
+  width: 670px;
   display: flex;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, 0%);
+  border-radius: 10px;
 }
 .userColor {
   background-color: var(--red);
@@ -14,7 +18,7 @@
   background-color: var(--dark-blue);  
 }
 .bottomCont .leftCont, .bottomCont .rightCont {
-  padding: 25px 35px;
+  padding: 25px 50px;
   flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -32,6 +36,7 @@
   right: 25px;
   top: -20px;
   box-shadow: 2px 3px 10px var(--dark-gray);
+  border-radius: 10px;
 }
 .upperCont h1 {
   text-align: center;

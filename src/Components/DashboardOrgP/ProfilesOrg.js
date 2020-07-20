@@ -52,7 +52,7 @@ class ProfilesOrg extends React.Component {
                 onClick={()=> {this.openEditForm(profile, index)}}
               >
                 <div className="profileImg">
-                  <img src="/src/images/pen.svg"></img>
+                  <img src={profile.url}></img>
                 </div>
                 <p className="profileName">
                   {profile.name}
@@ -186,12 +186,13 @@ class AddProfileForm extends React.Component {
 
   render() {
     return (
-      <div className="addProfileFormCont">
+      // <div className="addProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="addProfileForm">
-          <div className="formTopCont">
+          <div className="upperTri"></div>
+          {/* <div className="formTopCont">
             <p className="formTopTitle">Add Profile</p>
             <p className="closeFormButton" onClick={this.closeProfileForm}>X</p>
-          </div>
+          </div> */}
           <div className="inputCont">
             <label htmlFor="name">Name</label>
             <input 
@@ -297,7 +298,7 @@ class AddProfileForm extends React.Component {
 
           <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button>
         </form>
-      </div>
+      // </div>
     )
   }
 }
@@ -330,17 +331,19 @@ class EditProfileForm extends React.Component {
     let currentprofile = this.props.dashstate.currentprofile;
 
     return (
-      <div className="editProfileFormCont">
+      // <div className="editProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="editProfileForm">
-          <div className="formTopCont">
+          {/* <div className="upperTri"></div> */}
+          {/* <div className="editProfileFormCont"></div> */}
+          {/* <div className="formTopCont">
             <p className="formTopTitle">Edit Profile</p>
             <p className="closeFormButton" onClick={this.closeEditForm}>X</p>
-          </div>
+          </div> */}
           
           <div className="formDataCont">
             <div className="formImgCont" onClick={this.handleEditImg}>
               <img src={currentprofile.url}></img>
-              <img src={EditIcon} className="editIcon"></img>
+              <img src="/src/images/pen.svg" className="editIcon"></img>
             </div>
 
             <div className="formTextCont">
@@ -372,7 +375,7 @@ class EditProfileForm extends React.Component {
 
           {/* <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button> */}
         </form>
-      </div>
+      // </div>
     )
   }
 }

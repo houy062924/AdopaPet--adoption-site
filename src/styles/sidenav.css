@@ -12,19 +12,81 @@
   top: 50px;
   box-shadow: 1px 7px 15px var(--light-gray);
 }
+.sidenavCont .settingLink {
+  position: fixed;
+  bottom: 0;
+  width: 230px;
+}
 .sidenavCont .linkCont {
   height: 50px;
   line-height: 50px;
   padding-left: 20px;
+  display: flex;
+  align-items: center;
 }
 .sidenavCont .linkCont:hover {
   background-color: var(--dark-blue);
   color: var(--white);
 }
+.sidenavCont .linkCont .linkIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+  background-color: var(--white);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.sidenavCont .linkCont .dashboardIcon {
+  background-image: url("/src/images/dashboard.svg");
+}
+.sidenavCont .linkCont .favouriteIcon {
+  background-image: url("/src/images/favourite.svg");
+}
+.sidenavCont .linkCont .calendarIcon {
+  background-image: url("/src/images/calendar.svg");
+}
+.sidenavCont .linkCont .settingIcon {
+  background-image: url("/src/images/gear.svg");
+}
+/* Hover effects */
+.sidenavCont .linkCont:hover .dashboardIcon {
+  background-image: url("/src/images/dashboard-h.svg");
+  background-color: transparent;
+}
+.sidenavCont .linkCont:hover .favouriteIcon {
+  background-image: url("/src/images/favourite-h.svg");
+  background-color: transparent;
+  margin-left: 2px;
+}
+.sidenavCont .linkCont:hover .calendarIcon {
+  background-image: url("/src/images/calendar-h.svg");
+  background-color: transparent;
+}
+.sidenavCont .linkCont:hover .settingIcon {
+  background-image: url("/src/images/gear-h.svg");
+  background-color: transparent;
+}
 
+/* User Profile ------ */
 .sidenavCont .userCont {
   background-color: var(--light-blue);
   padding: 30px 20px 10px 20px;
+}
+.sidenavCont .userCont .linkIcon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  background-color: var(--dark-blue);
+  padding: 5px 25px 5px 7px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  opacity: 0.7;
+}
+.sidenavCont .userCont .linkIcon:hover {
+  opacity: 1;
 }
 .sidenavCont .userCont .imgCont {
   width: 60px;
@@ -49,4 +111,36 @@
 .sidenavCont .userCont .userEmail {
   margin-top: 0;
   font-size: 13px;
+}
+
+/* Toggle nav --------- */
+
+.openNav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 50px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);  
+}
+.closeNav {
+  left: -200px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.userCont .openedNavIcon {
+  transform: rotate(0deg);
+  right: 0;
+  transition: transform 1s;
+}
+.userCont .closedNavIcon {
+  transform: rotate(-180deg);
+  right: 17px;
+  transition: transform 1s;
+}
+.linkCont .openedNavIcon {
+  left: 0;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.linkCont .closedNavIcon {
+  left: 195px;
+  transition: left 1s cubic-bezier(0.33, 1, 0.68, 1);
 }
