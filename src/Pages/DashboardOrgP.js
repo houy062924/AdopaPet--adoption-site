@@ -21,7 +21,7 @@ class DashboardOrgP extends React.Component {
     }
     this.functions = {
       getData: this.getData.bind(this),
-      openProfileForm: this.openProfileForm.bind(this),
+      toggleProfileForm: this.toggleProfileForm.bind(this),
       closeProfileForm: this.closeProfileForm.bind(this),
       openEditForm: this.openEditForm.bind(this),
       closeEditForm: this.closeEditForm.bind(this),
@@ -51,11 +51,14 @@ class DashboardOrgP extends React.Component {
     });
   }
 
-  openProfileForm(event) {
-    event.preventDefault();
-    this.setState({
-      addingprofile: true
-    })
+  toggleProfileForm(reset) {
+    // event.preventDefault();
+    this.setState((prevState)=>({
+      addingprofile: !prevState.addingprofile
+    }))
+    if (reset===true) {
+      this.getData();
+    }
   }
   closeProfileForm(reset) {
     this.setState({
@@ -66,7 +69,6 @@ class DashboardOrgP extends React.Component {
     }
   }
   openEditForm(p, i) {
-    console.log(p)
     this.setState({
       editingprofile: true,
       currentprofile: p
@@ -83,9 +85,15 @@ class DashboardOrgP extends React.Component {
       <BrowserRouter basename="/org">
         <SideNav statedata={this.props.statedata}></SideNav>
 
-        <Route path="/dashboard/overview" render={()=>(
-          <Overview appstate={this.props.statedata} functions={this.functions}></Overview>
-        )}></Route>
+        <Route 
+          path="/dashboard/overview" 
+          render={()=>(
+            <Overview 
+              appstate={this.props.statedata} 
+              functions={this.functions}>
+            </Overview>
+          )}>
+        </Route>
         <Route 
           path="/dashboard/profiles" 
           render={()=>(
@@ -96,9 +104,15 @@ class DashboardOrgP extends React.Component {
             </ProfilesOrg>
           )}>
         </Route>
-        <Route path="/dashboard/calender" render={()=>(
-          <Calender appstate={this.props.statedata}functions={this.functions}></Calender>
-        )}></Route>
+        <Route 
+          path="/dashboard/calender" 
+          render={()=>(
+            <Calender 
+              appstate={this.props.statedata} 
+              functions={this.functions}>
+            </Calender>
+          )}>
+        </Route>
 
       </BrowserRouter>
     )

@@ -2,19 +2,19 @@
 
 .cardStackCont .cardCont {
   width: 80vw;
-  height: calc(80vh - 85px);
+  height: calc(80vh - 30px);
   background-color: white;
-  margin: 80px auto;
+  margin: auto;
   display: flex;
   justify-content: center;
-  padding: 35px;
+  padding: 35px 50px;
   border-radius: 10px;
   position: absolute;
-  top: 0;
+  top: 25px;
   right: 0;
   left: 0;
   bottom: 0;
-  padding-bottom: 0px;
+  box-sizing: border-box;
 }
 .cardStackCont .bottomCardCont {
   box-shadow: 1px 7px 15px var(--light-gray);
@@ -30,6 +30,9 @@
 .cardStackCont .cardCont .imgCont {
   margin-right: 30px;
   flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 .cardStackCont .cardCont .profileImg {
   width: auto;
@@ -55,9 +58,35 @@
 }
 .cardStackCont .cardCont .profileStory {
   text-align: justify;
-  overflow-y: scroll;
-  height: 150px;
+  overflow-y: auto;
+  height: 130px;
+  font-size: 14px;
+  padding-right: 10px;
 }
+
+/* Scroll bar --- */
+/* width */
+.cardStackCont .cardCont  ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.cardStackCont .cardCont  ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+ 
+/* Handle */
+.cardStackCont .cardCont  ::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+/* .cardStackCont .cardCont  ::-webkit-scrollbar-thumb:hover {
+  background: var(--dar-gray); 
+} */
+
+
 /* .cardCont button {
   background-color: gray;
   color: white;

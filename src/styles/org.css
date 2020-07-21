@@ -34,6 +34,7 @@
   padding: 25px;
   box-sizing: border-box;
   cursor: pointer;
+  border-radius: 10px;
 }
 .profilesPageCont .profilesCont .cardCont:hover {
   box-shadow: 1px 2px 10px var(--light-gray);
@@ -48,45 +49,40 @@
 
 /* Add Profile Form -------- */
 
-/* .profilesPageCont .addProfileFormCont {
+.profilesPageCont .addProfileFormCont {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(92, 85, 82, 0.5);
-  z-index: 150;
-} */
+  overflow-y: initial;  
+  z-index: 999;
+}
 .profilesPageCont .addProfileForm {
   background-color: white;
-  /* position: absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-40%, -50%); */
-  padding: 40px 50px 80px 50px;
-  width: 500px;
+  transform: translate(-50%, -45%);
+  padding: 60px 50px 40px 50px;
+  width: 60vw;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --light-gray);
-  position: relative;
-}
-.profilesPageCont .addProfileForm .upperTri {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 25px 25px 25px;
-  border-color: transparent transparent white transparent;
-  position: absolute;
-  top: -25px;
-  box-shadow: 3px 5px 10px var( --light-gray);
+  /* position: relative;
+  margin-top: 10px; */
+  /* transition: height 3s; */
+  /* animation-name: slidein;
+  animation-duration: 2s; */
 }
 .profilesPageCont .formTopCont {
   background-color: var(--dark-blue);
   color: var(--white);
   height: 40px;
   width: 100%;
-  /* position: absolute;
+  position: absolute;
   right: 0;
-  top: 0; */
+  top: 0;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   display: flex;
@@ -100,12 +96,15 @@
   padding: 0 15px;
   cursor: pointer;
 }
+.profilesPageCont .formBottomCont {
+  overflow-y: auto;
+  height: 50vh;
+}
 .addProfileForm .inputCont {
   margin: 10px 0;
   display: flex;
   align-items: center;
 }
-
 .addProfileForm .inputCont label {
   width: 65px;
 }
@@ -127,6 +126,7 @@
   border: none;
   border-radius: 10px;
   padding: 15px;
+  white-space: pre-wrap;
 }
 .addProfileForm .inputCont textarea:focus {
   outline: transparent;
@@ -192,6 +192,10 @@
   background-color: var(--dark-blue);
   color: var(--white);
 }
+.addProfileFormCont ::-webkit-scrollbar {
+  width: 0px;
+}
+
 
 
 /* Edit Profile Form ------- */
@@ -203,17 +207,20 @@
   right: 0;
   bottom: 0;
   background-color: rgba(92, 85, 82, 0.5);
+  overflow-y: initial;
+  z-index: 999;
 }
 .editProfileFormCont .editProfileForm {
   background-color: white;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
   padding: 75px 50px 40px 50px;
-  /* width: 350px; */
+  width: 60vw;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --dark-gray);
+  
 }
 .editProfileFormCont .formTopCont {
   background-color: var(--dark-blue);
@@ -236,35 +243,48 @@
   padding: 0 15px;
   cursor: pointer;
 }
-
+.editProfileFormCont .formBottomCont {
+  overflow-y: auto;
+  height: 50vh;
+}
 .editProfileFormCont .formDataCont {
   display: flex;
 }
 .editProfileFormCont .formDataCont .formImgCont {
   margin-right: 40px;
   flex: 1;
+  position: relative;
 }
 .editProfileFormCont .formDataCont .formImgCont img {
   width: 100%;
 }
 .editProfileFormCont .formDataCont .formImgCont:hover {
-  opacity: 0.4;
   cursor: pointer;
 }
-.editProfileFormCont .formDataCont .formImgCont:hover {
-  opacity: 0.4;
-  cursor: pointer;
-}
-.editProfileFormCont .formDataCont .formImgCont:hover .editIcon {
-  display: block;
+.editProfileFormCont .formDataCont .formImgCont:hover .formImg {
+  opacity: 0.4
 }
 .editProfileFormCont .formDataCont .editIcon {
   display: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+.editProfileFormCont .formDataCont .formImgCont:hover .editIcon {
+  display: block;
+  opacity: 1;
+}
+/* Text Cont */
 .editProfileFormCont .formDataCont .formTextCont {
   flex: 1;
 }
 .editProfileFormCont .formDataCont .formName {
   margin-top: 0;
   margin-bottom: 10px;
+}
+.editProfileFormCont ::-webkit-scrollbar {
+  width: 0px;
 }

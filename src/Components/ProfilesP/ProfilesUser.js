@@ -18,6 +18,7 @@ class ProfilesUser extends React.Component {
 
     this.handleProfileFiltering = this.handleProfileFiltering.bind(this);
     this.resetCardPosition = this.resetCardPosition.bind(this);
+    this.handleCardChoice = this.handleCardChoice.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.db = firebase.firestore();
   }
@@ -99,6 +100,7 @@ class ProfilesUser extends React.Component {
       currentCard: prevState.currentCard + 1,
       nextCard: prevState.nextCard + 1
     }))
+
     switch (interaction) {
       case "accept":
         console.log("accepted")
@@ -129,6 +131,7 @@ class ProfilesUser extends React.Component {
   handleLike() {
     let currentProfile = this.state.profiles[this.state.currentCard-1];
     let likeArr;
+    console.log(currentProfile)
 
     this.db.collection("members").doc(this.props.userdata.uid).get()
     .then((doc)=>{
@@ -141,6 +144,7 @@ class ProfilesUser extends React.Component {
       this.db.collection("members").doc(this.props.userdata.uid).update({
         likes: likeArr
       })
+      console.log("Set")
     })
   }
   componentWillUnmount() {
@@ -168,7 +172,8 @@ class ProfilesUser extends React.Component {
         <CardActions
           rotateDeg={this.state.rotateDeg}
           positionX={this.state.positionX}
-          positionY={this.state.positionY}>
+          positionY={this.state.positionY}
+          handleCardChoice={this.handleCardChoice}>
         </CardActions>
       </div>
     )
@@ -204,7 +209,7 @@ class Card extends React.Component {
       <div 
         className={`${classes}`} 
         style={positionStyle}>
-        <div class="profileCont">
+        <div className="profileCont">
           <div className="imgCont">
             <img src={this.props.profile.url} className="profileImg"></img>
           </div>
@@ -234,10 +239,20 @@ class Card extends React.Component {
 }
 
 class CardActions extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleCardChoice = this.handleCardChoice.bind(this);
+  }
+
+  handleCardChoice(interaction) {
+    this.props.handleCardChoice(interaction);
+  }
+
   render() {
     return (
       <div className="actionCont">
-        <div className="pawCont leftPaw">
+        <div className="pawCont leftPaw" onClick={()=> this.handleCardChoice("reject")}>
           <div>
             <div className="c1"></div>
             <div className="c2"></div>
@@ -255,7 +270,7 @@ class CardActions extends React.Component {
           </div>
         </div>
 
-        <div className="pawCont rightPaw">
+        <div className="pawCont rightPaw" onClick={()=>this.handleCardChoice("accept")}>
           <div>
             <div className="c1"></div>
             <div className="c2"></div>

@@ -8,20 +8,21 @@ class ProfilesOrg extends React.Component {
   constructor(props) {
     super(props);
 
-    this.openProfileForm = this.openProfileForm.bind(this);
-    this.closeProfileForm = this.closeProfileForm.bind(this);
+    this.toggleProfileForm = this.toggleProfileForm.bind(this);
+    // this.closeProfileForm = this.closeProfileForm.bind(this);
     this.openEditForm = this.openEditForm.bind(this);
   }
 
   componentDidMount() {
     this.props.functions.getData();
   }
-  openProfileForm(e) {
-    this.props.functions.openProfileForm(e);
+  toggleProfileForm(e) {
+    e.preventDefault();
+    this.props.functions.toggleProfileForm();
   }
-  closeProfileForm() {
-    this.props.functions.closeProfileForm(e);
-  }
+  // closeProfileForm() {
+  //   this.props.functions.closeProfileForm(e);
+  // }
   openEditForm(i) {
     this.props.functions.openEditForm(i);
   }
@@ -30,7 +31,7 @@ class ProfilesOrg extends React.Component {
     return (
       <div className="profilesPageCont">
         <button 
-          onClick={this.openProfileForm} 
+          onClick={this.toggleProfileForm} 
           type="button" 
           className="addProfileButton">
             Add profile
@@ -96,7 +97,7 @@ class AddProfileForm extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.setDB = this.setDB.bind(this);
-    this.closeProfileForm = this.closeProfileForm.bind(this);
+    this.toggleProfileForm = this.toggleProfileForm.bind(this);
   }
 
   handleInputChange(event) {
@@ -149,8 +150,9 @@ class AddProfileForm extends React.Component {
       }
     )
   }
-  closeProfileForm(r) {
-    this.props.functions.closeProfileForm(r);
+  toggleProfileForm(r) {
+    // e.preventDefault();
+    this.props.functions.toggleProfileForm(r);
   }
   setDB() {
     const db = firebase.firestore();
@@ -179,126 +181,129 @@ class AddProfileForm extends React.Component {
         address: "",
         date: ""
       })
-      this.closeProfileForm(true);
+      this.toggleProfileForm(true);
     })
   }
 
 
   render() {
     return (
-      // <div className="addProfileFormCont">
+      <div className="addProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="addProfileForm">
-          <div className="upperTri"></div>
-          {/* <div className="formTopCont">
+          {/* <div className="upperTri"></div> */}
+          <div className="formTopCont">
             <p className="formTopTitle">Add Profile</p>
-            <p className="closeFormButton" onClick={this.closeProfileForm}>X</p>
-          </div> */}
-          <div className="inputCont">
-            <label htmlFor="name">Name</label>
-            <input 
-              id="name" 
-              name="name" 
-              type="text"
-              value={this.state.name}
-              onChange={this.handleInputChange}/>
+            <p className="closeFormButton" onClick={this.toggleProfileForm}>X</p>
           </div>
 
-          <div className="inputCont">
-            <label htmlFor="id">ID</label>
-            <input 
-              id="id" 
-              name="id" 
-              type="text"
-              value={this.state.id}
-              onChange={this.handleInputChange}/>
-          </div>
-
-          <div>
+          <div className="formBottomCont">
             <div className="inputCont">
-              <label>Age</label>
+              <label htmlFor="name">Name</label>
               <input 
-                id="year" 
-                name="year" 
+                id="name" 
+                name="name" 
+                type="text"
+                value={this.state.name}
+                onChange={this.handleInputChange}/>
+            </div>
+
+            <div className="inputCont">
+              <label htmlFor="id">ID</label>
+              <input 
+                id="id" 
+                name="id" 
+                type="text"
+                value={this.state.id}
+                onChange={this.handleInputChange}/>
+            </div>
+
+            <div>
+              <div className="inputCont">
+                <label>Age</label>
+                <input 
+                  id="year" 
+                  name="year" 
+                  type="number" 
+                  min="0" 
+                  className="ageInput"
+                  // value={this.state.age}
+                  onChange={this.handleInputChange}
+                />
+                <label htmlFor="year" className="ageLabel">Years</label>
+                <input 
+                id="month" 
+                name="month" 
                 type="number" 
-                min="0" 
+                min="0"
+                max="12" 
                 className="ageInput"
                 // value={this.state.age}
                 onChange={this.handleInputChange}
-              />
-              <label htmlFor="year" className="ageLabel">Years</label>
-              <input 
-              id="month" 
-              name="month" 
-              type="number" 
-              min="0"
-              max="12" 
-              className="ageInput"
-              // value={this.state.age}
-              onChange={this.handleInputChange}
-              />
-              <label htmlFor="month" className="ageLabel">Months</label>
+                />
+                <label htmlFor="month" className="ageLabel">Months</label>
+              </div>
             </div>
-          </div>
 
-          <div className="radioCont">
-            <label className="genderLabel">Gender</label>
-            <label htmlFor="female" className="genderLabel radioLabel">
-              <input type="radio" id="female" name="gender" value="female" onChange={this.handleInputChange} />
-              <span>Female</span>
-            </label>
-            <label htmlFor="male" className="genderLabel radioLabel">
-              <input type="radio" id="male" name="gender" value="male" onChange={this.handleInputChange} />
-              <span>Male</span>
-            </label>
-          </div>
+            <div className="radioCont">
+              <label className="genderLabel">Gender</label>
+              <label htmlFor="female" className="genderLabel radioLabel">
+                <input type="radio" id="female" name="gender" value="female" onChange={this.handleInputChange} />
+                <span>Female</span>
+              </label>
+              <label htmlFor="male" className="genderLabel radioLabel">
+                <input type="radio" id="male" name="gender" value="male" onChange={this.handleInputChange} />
+                <span>Male</span>
+              </label>
+            </div>
 
-          <div className="inputCont">
-            <label htmlFor="address">Address</label>
-            <input 
-              id="address" 
-              name="address" 
-              type="text"
-              value={this.state.address}
-              onChange={this.handleInputChange}/>
-          </div>
+            <div className="inputCont">
+              <label htmlFor="address">Address</label>
+              <input 
+                id="address" 
+                name="address" 
+                type="text"
+                value={this.state.address}
+                onChange={this.handleInputChange}/>
+            </div>
 
-          <div className="inputCont">
-            <label htmlFor="date">Date</label>
-            <input 
-              id="date" 
-              name="date" 
-              type="date"
-              value={this.state.date}
-              onChange={this.handleInputChange}/>
-          </div>
+            <div className="inputCont">
+              <label htmlFor="date">Date</label>
+              <input 
+                id="date" 
+                name="date" 
+                type="date"
+                value={this.state.date}
+                onChange={this.handleInputChange}/>
+            </div>
 
-          <div className="fileCont">
-            <label className="fileLabel">Image</label>
-            <input 
-              type="file" 
-              id="image" 
-              name="image" 
-              className="fileInput"
-              ref={this.fileInput}
-              onChange={this.handleImageChange} />
-              <label htmlFor="image">Choose an image</label>
-          </div>
+            <div className="fileCont">
+              <label className="fileLabel">Image</label>
+              <input 
+                type="file" 
+                id="image" 
+                name="image" 
+                className="fileInput"
+                ref={this.fileInput}
+                onChange={this.handleImageChange} />
+                <label htmlFor="image">Choose an image</label>
+            </div>
 
-          <div className="inputCont">
-            <label htmlFor="story">Story</label>
-            <textarea 
-              id="story"
-              name="story" 
-              // rows="10" 
-              // cols="70"
-              value={this.state.story}
-              onChange={this.handleInputChange}>
-            </textarea>
-          </div>
+            <div className="inputCont">
+              <label htmlFor="story">Story</label>
+              <textarea 
+                id="story"
+                name="story" 
+                // rows="10" 
+                // cols="70"
+                value={this.state.story}
+                onChange={this.handleInputChange}>
+              </textarea>
+            </div>
 
-          <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button>
+            <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button>
+          </div>
         </form>
-      // </div>
+      </div>
     )
   }
 }
@@ -331,51 +336,52 @@ class EditProfileForm extends React.Component {
     let currentprofile = this.props.dashstate.currentprofile;
 
     return (
-      // <div className="editProfileFormCont">
+      <div className="editProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="editProfileForm">
           {/* <div className="upperTri"></div> */}
           {/* <div className="editProfileFormCont"></div> */}
-          {/* <div className="formTopCont">
+          <div className="formTopCont">
             <p className="formTopTitle">Edit Profile</p>
             <p className="closeFormButton" onClick={this.closeEditForm}>X</p>
-          </div> */}
+          </div>
           
-          <div className="formDataCont">
-            <div className="formImgCont" onClick={this.handleEditImg}>
-              <img src={currentprofile.url}></img>
-              <img src="/src/images/pen.svg" className="editIcon"></img>
+          <div className="formBottomCont">
+            <div className="formDataCont">
+              <div className="formImgCont" onClick={this.handleEditImg}>
+                <img src={currentprofile.url} className="formImg"></img>
+                <img src="/src/images/pen.svg" className="editIcon"></img>
+              </div>
+
+              <div className="formTextCont">
+                <h2 
+                  className="formName" 
+                  onClick={(e)=>this.handleEditText(e, "name")}>      
+                    {currentprofile.name}
+                </h2>
+                <p 
+                  className="formId" 
+                  onClick={(e)=>this.handleEditText(e, "id")}>{currentprofile.id}
+                </p>
+                <p 
+                  className="formGender" 
+                  onClick={()=>this.handleEditRadio(gender)}>{currentprofile.gender}
+                </p>
+                <p 
+                  className="formAge" 
+                  onClick={(e)=>this.handleEditText(e, "age")}>{currentprofile.age}
+                </p>
+              </div>
             </div>
 
-            <div className="formTextCont">
-              <h2 
-                className="formName" 
-                onClick={(e)=>this.handleEditText(e, "name")}>      
-                  {currentprofile.name}
-              </h2>
-              <p 
-                className="formId" 
-                onClick={(e)=>this.handleEditText(e, "id")}>{currentprofile.id}
-              </p>
-              <p 
-                className="formGender" 
-                onClick={()=>this.handleEditRadio(gender)}>{currentprofile.gender}
-              </p>
-              <p 
-                className="formAge" 
-                onClick={(e)=>this.handleEditText(e, "age")}>{currentprofile.age}
+            <div className="formStoryCont">
+              <p className="formStory">
+                {currentprofile.story}
               </p>
             </div>
           </div>
-
-          <div className="formStoryCont">
-            <p className="formStory">
-              {currentprofile.story}
-            </p>
-          </div>
-
           {/* <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button> */}
         </form>
-      // </div>
+      </div>
     )
   }
 }

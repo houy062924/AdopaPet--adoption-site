@@ -57,7 +57,7 @@ class SideNav extends React.Component {
         <Link to="/dashboard/profiles">
           <li className="linkCont" onClick={()=>this.toggleNav(true)}>
             <div 
-              className={this.state.navOpened ? "linkIcon favouriteIcon openedNavIcon" : "linkIcon favouriteIcon closedNavIcon"}>
+              className={this.state.navOpened ? "linkIcon profileIcon openedNavIcon" : "linkIcon profileIcon closedNavIcon"}>
             </div>
             Animal Profiles
           </li>
