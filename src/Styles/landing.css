@@ -9,7 +9,8 @@
   z-index: -50;
 }
 .foregroundCont .lamppost {
-  height: 50vh;
-  margin-left: 5vw;
-  margin-top: 5vh;
+  height: 30vw;
+  position: absolute;
+  top: 82px;
+  left: 90px;
 }

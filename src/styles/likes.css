@@ -29,12 +29,11 @@
 
 } */
 
-/* .likeCont .imgCont {
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-} */
+.likeCont .imgCont {
+  height: 150px;
+}
 .likeCont .profileImg {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
