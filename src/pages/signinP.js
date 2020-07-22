@@ -24,11 +24,13 @@ class SigninP extends React.Component {
           <div className="leftCont">
             <h1>Org?</h1>
             <button type="button" onClick={()=>this.changeIdentity(0)}>Click here</button>
+            <img src="/src/images/org.svg"></img>
           </div>
           
           <div className="rightCont">
             <h1>User?</h1>
             <button type="button" onClick={()=>this.changeIdentity(1)}>Click</button>
+            <img src="/src/images/adopt.svg"></img>
           </div>
 
           <div className={`upperCont ${this.props.statedata.slide}`}>

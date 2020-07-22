@@ -1,13 +1,13 @@
 import React from "react";
-import Home from "../Components/Home";
+import Landing from "../Components/HomeP/Landing";
 
 
 
 class HomeP extends React.Component {
   render() {
     return (
-      <div style={{marginTop: "70px"}}>
-        <Home></Home>
+      <div>
+        <Landing></Landing>
 
       </div>
     )

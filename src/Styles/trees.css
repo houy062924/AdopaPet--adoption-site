@@ -1,0 +1,70 @@
+/* Trees ------- */
+.landingCont .treesCont {
+  display: flex;
+  align-items: baseline;
+}
+.landingCont .treeCont {
+  position: relative;
+}
+.leftTree .treeTop {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: green;
+}
+/* .leftTree .treeTop::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 5%;
+  background-color: lightgreen;
+  border-radius: 100%;
+} */
+.leftTree .treeTrunk {
+  width: 30px;
+  height: 150px;
+  background-color: burlywood;
+  position: relative;
+  top: -80px;
+  left: 55px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.leftTree .treeTrunk .treeTrunkSide {
+  width: 15px;
+  height: 50px;
+  background-color: burlywood;
+  position: absolute;
+  transform: rotate(40deg);
+  left: 33px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.rightTree .treeTop {
+  width: 70px;
+  height: 80px;
+  border-radius: 20%;
+  background-color: lightgrey;
+}
+.rightTree .treeTrunk {
+  width: 15px;
+  height: 85px;
+  background-color: burlywood;
+  position: relative;
+  top: -50px;
+  left: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.rightTree .treeTrunk .treeTrunkSide {
+  width: 10px;
+  height: 35px;
+  background-color: burlywood;
+  position: absolute;
+  transform: rotate(-40deg);
+  left: -12px;
+  top: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}

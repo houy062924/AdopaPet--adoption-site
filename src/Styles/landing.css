@@ -1,0 +1,15 @@
+/* Landing Cont -------- */
+.landingCont {
+  margin-top: 50px;
+}
+.landingCont .backgroundImg {
+  width: 100vw;
+  position: absolute;
+  top: 80px;
+  z-index: -50;
+}
+.foregroundCont .lamppost {
+  height: 50vh;
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
