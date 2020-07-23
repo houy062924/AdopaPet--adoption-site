@@ -65,16 +65,17 @@ class ProfilesUser extends React.Component {
       }
     });
   }
-  handleProfileFiltering() {
-    let profiles = [];
-    let likes = [];
-    let difference = [];
+  handleProfileFiltering() { // show profiles that user hasn't liked yet
+    let profiles = []; // all animal profiles in "animals" collection
+    let likes = []; // user likes in user collection --> will contain profiles that have been since deleted from "animals" collection
+    let difference = []; // filtering profiles to only showed profiles not liked
 
     this.db.collection("animals").get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         profiles.push(doc.data());
       });
+
     })
     .then(()=>{
       return this.db.collection("members").doc(this.props.userdata.uid).get()
@@ -92,7 +93,6 @@ class ProfilesUser extends React.Component {
       this.setState({
         profiles: difference
       })
-
     })
   }
   handleCardChoice(interaction) {

@@ -17,7 +17,9 @@ class DashboardOrgP extends React.Component {
       addingprofile: false,
       editingprofile: false,
       profiles: [],
-      currentprofile: null
+      currentprofile: null,
+      currentprofiledoc: null,
+      confirmDelete: false,
     }
     this.functions = {
       getData: this.getData.bind(this),
@@ -25,7 +27,11 @@ class DashboardOrgP extends React.Component {
       closeProfileForm: this.closeProfileForm.bind(this),
       openEditForm: this.openEditForm.bind(this),
       closeEditForm: this.closeEditForm.bind(this),
+      confirmDeleteProfile: this.confirmDeleteProfile.bind(this),
+      handleDeleteProfile: this.handleDeleteProfile.bind(this),
+      cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
+    this.db = firebase.firestore();
   }
 
   componentDidMount() {
@@ -34,8 +40,7 @@ class DashboardOrgP extends React.Component {
 
   getData() {
     let profilesarr = [];
-    const db = firebase.firestore();
-    db.collection("animals").where("orguid", "==", this.props.statedata.uid)
+    this.db.collection("animals").where("orguid", "==", this.props.statedata.uid)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -76,7 +81,56 @@ class DashboardOrgP extends React.Component {
   }
   closeEditForm() {
     this.setState({
-      editingprofile: false
+      editingprofile: false,
+      currentprofile: null,
+      confirmDelete: false
+    })
+  }
+  confirmDeleteProfile() {
+    if (this.state.confirmDelete === false) {
+      this.setState({
+        confirmDelete: true
+      })
+    }
+    else {
+      this.handleDeleteProfile();
+    }
+  }
+  handleDeleteProfile() {
+
+    // 1. remove from this.props.dashstate.profiles
+    let newarr = this.state.profiles.filter((profile)=>{
+      return profile.id !== this.state.currentprofile.id
+    })
+    this.setState({
+      profiles: newarr
+    })
+
+    // 2. remove from database
+    this.db.collection("animals").where("id", "==", this.state.currentprofile.id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        this.setState({
+          currentprofiledoc: doc.id
+        })
+      });
+    })
+    .then(()=>{
+      this.db.collection("animals").doc(this.state.currentprofiledoc).delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        this.closeEditForm();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+    })   
+  }
+  cancelDeleteProfile() {
+    this.setState({
+      confirmDelete: false
     })
   }
 

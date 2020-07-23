@@ -39,8 +39,14 @@
 .profilesPageCont .profilesCont .cardCont:hover {
   box-shadow: 1px 2px 10px var(--light-gray);
 }
+.profilesPageCont .profilesCont .cardCont .profileImg {
+  height: 180px;
+}
 .profilesPageCont .profilesCont .cardCont .profileImg img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 0;
 }
 .profilesPageCont .profilesCont .cardCont .profileName {
   margin: 10px 0;
@@ -99,6 +105,7 @@
 .profilesPageCont .formBottomCont {
   overflow-y: auto;
   height: 50vh;
+  padding-right: 20px;
 }
 .addProfileForm .inputCont {
   margin: 10px 0;
@@ -192,8 +199,16 @@
   background-color: var(--dark-blue);
   color: var(--white);
 }
+/* Scroll bar ---- */
 .addProfileFormCont ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
+}
+.addProfileFormCont ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+.addProfileFormCont ::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  border-radius: 10px;
 }
 
 
@@ -249,6 +264,7 @@
 }
 .editProfileFormCont .formDataCont {
   display: flex;
+  padding-right: 15px;
 }
 .editProfileFormCont .formDataCont .formImgCont {
   margin-right: 40px;
@@ -285,6 +301,49 @@
   margin-top: 0;
   margin-bottom: 10px;
 }
+.editProfileFormCont .formStoryCont {
+  padding-right: 15px;
+}
+.editProfileFormCont .warningText {
+  color: var(--red);
+  font-size: 14px;
+}
+.editProfileFormCont .deleteButton {
+  border: none;
+  height: 35px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 150px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.editProfileFormCont .deleteButton:hover {
+  background-color: var(--gray);
+  color: var(--white);
+}
+.editProfileFormCont .cancelButton {
+  border: none;
+  height: 35px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 150px;
+  margin: 5px 0 5px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--red);
+  color: var(--white);
+}
+
+
+/* Scroll bar ------ */
 .editProfileFormCont ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
+}
+.editProfileFormCont ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+.editProfileFormCont ::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  border-radius: 10px;
 }

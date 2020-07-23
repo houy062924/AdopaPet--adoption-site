@@ -111,17 +111,6 @@ class AddProfileForm extends React.Component {
       this.setState(()=>({ image }));
       event.target.nextElementSibling.textContent = event.target.files[0].name;
     }
-    // else if (event.target.files.length > 0) {
-    //   event.target.nextElementSibling.textContent = `${event.target.files.length} files selected`;
-
-    //   let imgarr = [];
-    //   event.target.files.map((file)=>{
-    //     imgarr.push(file.name)
-    //   })
-    //   this.setState({
-    //     image: imgarr
-    //   })
-    // }
   }
   handleFormSubmit(event) {
     event.preventDefault();
@@ -166,6 +155,7 @@ class AddProfileForm extends React.Component {
       date: this.state.date,
       orgname: this.props.appstate.name,
       orguid: this.props.appstate.uid
+      
     })
     .then(()=>{
       console.log("Set")
@@ -309,13 +299,15 @@ class AddProfileForm extends React.Component {
 }
 
 class EditProfileForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.closeEditForm = this.closeEditForm.bind(this);
     this.handleEditImg = this.handleEditImg.bind(this);
     this.handleEditText = this.handleEditText.bind(this);
     this.handleEditRadio = this.handleEditRadio.bind(this);
+    this.confirmDeleteProfile = this.confirmDeleteProfile.bind(this);
+    this.cancelDeleteProfile = this.cancelDeleteProfile.bind(this);
   }
 
   closeEditForm(r) {
@@ -331,6 +323,12 @@ class EditProfileForm extends React.Component {
   handleEditRadio(e) {
     console.log(e.target)
   }
+  confirmDeleteProfile() {
+    this.props.functions.confirmDeleteProfile();
+  }
+  cancelDeleteProfile() {
+    this.props.functions.cancelDeleteProfile();
+  }
 
   render() {
     let currentprofile = this.props.dashstate.currentprofile;
@@ -338,8 +336,6 @@ class EditProfileForm extends React.Component {
     return (
       <div className="editProfileFormCont">
         <form onSubmit={this.handleFormSubmit} className="editProfileForm">
-          {/* <div className="upperTri"></div> */}
-          {/* <div className="editProfileFormCont"></div> */}
           <div className="formTopCont">
             <p className="formTopTitle">Edit Profile</p>
             <p className="closeFormButton" onClick={this.closeEditForm}>X</p>
@@ -370,6 +366,10 @@ class EditProfileForm extends React.Component {
                   className="formAge" 
                   onClick={(e)=>this.handleEditText(e, "age")}>{currentprofile.age}
                 </p>
+                <p 
+                  className="formLocation" 
+                  onClick={(e)=>this.handleEditText(e, "address")}>{currentprofile.address}
+                </p>
               </div>
             </div>
 
@@ -378,6 +378,35 @@ class EditProfileForm extends React.Component {
                 {currentprofile.story}
               </p>
             </div>
+            { this.props.dashstate.confirmDelete 
+              ? <div className="warningCont">
+                  <p className="warningText">
+                    This action is irreversable.<br></br> Are you sure you want to delete this profile?
+                  </p>
+                  <button 
+                    type="button" 
+                    onClick={this.confirmDeleteProfile}
+                    className="deleteButton">
+                      Delete Profile
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={this.cancelDeleteProfile}
+                    className="cancelButton">
+                      Cancel
+                  </button>
+                </div>
+              : <div className="warningCont">
+                  <button 
+                    type="button" 
+                    onClick={this.confirmDeleteProfile}
+                    className="deleteButton">
+                      Delete Profile
+                  </button>
+                </div>
+            
+            }
+
           </div>
           {/* <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button> */}
         </form>

@@ -41,6 +41,9 @@
 }
 .cardStackCont .cardCont .textCont {
   flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .cardStackCont .cardCont .profileName {
   margin-top: 0px;
@@ -62,6 +65,7 @@
   height: 130px;
   font-size: 14px;
   padding-right: 10px;
+  flex: auto;
 }
 
 /* Scroll bar --- */
@@ -119,12 +123,6 @@
 }
 
 /* Paw ------ */
-.cardStackCont .actionCont {
-  /* position: fixed;
-  z-index: 100;
-  bottom: -43px;
-  right: -21px; */
-}
 .cardStackCont .pawCont {
   height: 200px;
   width: 110px;
