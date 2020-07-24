@@ -18,6 +18,10 @@
 .navCont .logoCont {
   font-size: 25px;
   margin: 0 15px;
+  display: flex;
+}
+.navCont .logoCont img {
+  height: 35px;
 }
 .navCont .linkCont {
   margin: 0;

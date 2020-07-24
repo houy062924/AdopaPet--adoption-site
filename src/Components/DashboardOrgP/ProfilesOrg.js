@@ -55,12 +55,20 @@ class ProfilesOrg extends React.Component {
                 <div className="profileImg">
                   <img src={profile.url}></img>
                 </div>
-                <p className="profileName">
-                  {profile.name}
-                </p>
-                <p className="profileId">
-                  {profile.id}
-                </p>
+                
+                <div className="textCont">
+                  <h1 className="profileName">
+                    { profile.name }
+                  </h1>
+                  <p className="profileId">
+                    <span className="labelText">ID: </span>
+                    { profile.id }
+                  </p>
+                  <p className="profileDays">
+                    <span className="labelText">Date: </span>
+                    { profile.date }
+                  </p>
+                </div>
               
               </div>
             ))
@@ -90,7 +98,9 @@ class AddProfileForm extends React.Component {
       id: "",
       story: "",
       address: "",
-      date: ""
+      date: "",
+      year: 0,
+      month: 0,
     }
     this.fileInput = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -153,9 +163,10 @@ class AddProfileForm extends React.Component {
       story: this.state.story,
       address: this.state.address,
       date: this.state.date,
+      year: this.state.year,
+      month: this.state.month,
       orgname: this.props.appstate.name,
       orguid: this.props.appstate.uid
-      
     })
     .then(()=>{
       console.log("Set")
@@ -169,7 +180,9 @@ class AddProfileForm extends React.Component {
         id: "",
         story: "",
         address: "",
-        date: ""
+        date: "",
+        year: 0,
+        month: 0,
       })
       this.toggleProfileForm(true);
     })
@@ -220,6 +233,7 @@ class AddProfileForm extends React.Component {
                   onChange={this.handleInputChange}
                 />
                 <label htmlFor="year" className="ageLabel">Years</label>
+
                 <input 
                 id="month" 
                 name="month" 
@@ -356,52 +370,64 @@ class EditProfileForm extends React.Component {
                 </h2>
                 <p 
                   className="formId" 
-                  onClick={(e)=>this.handleEditText(e, "id")}>{currentprofile.id}
+                  onClick={(e)=>this.handleEditText(e, "id")}>
+                  <span className="labelText">ID: </span>
+                  {currentprofile.id}
                 </p>
                 <p 
                   className="formGender" 
-                  onClick={()=>this.handleEditRadio(gender)}>{currentprofile.gender}
+                  onClick={()=>this.handleEditRadio(gender)}>
+                  <span className="labelText">Gender: </span>
+                  {currentprofile.gender}
                 </p>
                 <p 
                   className="formAge" 
-                  onClick={(e)=>this.handleEditText(e, "age")}>{currentprofile.age}
+                  onClick={(e)=>this.handleEditText(e, "age")}>
+                  <span className="labelText">Age: </span>
+                  {currentprofile.year} yrs {currentprofile.month} months
                 </p>
                 <p 
                   className="formLocation" 
-                  onClick={(e)=>this.handleEditText(e, "address")}>{currentprofile.address}
+                  onClick={(e)=>this.handleEditText(e, "address")}>
+                  <span className="labelText">Location: </span>
+                  {currentprofile.address}
                 </p>
               </div>
             </div>
 
             <div className="formStoryCont">
               <p className="formStory">
+                <span className="labelText storyLabel">Story: </span>
+                <br></br>
                 {currentprofile.story}
               </p>
             </div>
             { this.props.dashstate.confirmDelete 
               ? <div className="warningCont">
                   <p className="warningText">
-                    This action is irreversable.<br></br> Are you sure you want to delete this profile?
+                    Congratulations!<br></br> Would you like to delete this profile?
                   </p>
-                  <button 
-                    type="button" 
-                    onClick={this.confirmDeleteProfile}
-                    className="deleteButton">
-                      Delete Profile
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={this.cancelDeleteProfile}
-                    className="cancelButton">
-                      Cancel
-                  </button>
+                  <div>
+                    <button 
+                      type="button" 
+                      onClick={this.confirmDeleteProfile}
+                      className="deleteButton">
+                        Delete Profile
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={this.cancelDeleteProfile}
+                      className="cancelButton">
+                        Cancel
+                    </button>
+                  </div>
                 </div>
               : <div className="warningCont">
                   <button 
                     type="button" 
                     onClick={this.confirmDeleteProfile}
                     className="deleteButton">
-                      Delete Profile
+                      Adopted
                   </button>
                 </div>
             

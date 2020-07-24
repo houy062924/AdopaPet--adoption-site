@@ -12,30 +12,193 @@
   box-sizing: border-box;
   cursor: pointer;
   border-radius: 10px;
+  position: relative;
 }
 .likePageCont .likeCont:hover {
   box-shadow: 1px 2px 10px var(--light-gray);
 }
-.likeCont .removeCont {
-  width: 30px;
-  height: 30px;
+.likeCont .heartCont {
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   margin: 0 auto;
   background-image: url("/src/images/heart.svg");
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* .likeCont .removeCont:hover {
-
-} */
-
+.likeCont .heartCont:hover {
+  background-image: url("/src/images/heart-h.svg");
+}
+.likeCont .removeCont {
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+  background-image: url("/src/images/close-darkgray.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.likeCont .removeCont:hover {
+  background-image: url("/src/images/close-red.svg");
+}
 .likeCont .imgCont {
   width: 100%;
-  height: 150px;
+  height: 160px;
 }
 .likeCont .profileImg {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: 50% 0;
+}
+.likeCont .adoptedCont {
+  background-color: var(--light-gray);
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: context-menu;
+  padding: 15px;
+  border-radius: 10px;
+}
+.likeCont .adoptedCont img {
+  height: 70%;
+  width: 100%;
+}
+.likeCont .textCont {
+  margin: 20px 0;
+}
+.likeCont .textCont .profileName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--red);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.likeCont .textCont .labelText {
+  color: var(--red);
+  font-size: 14px;
+}
+.likeCont .textCont .profileId, .likeCont .textCont .profileDays, 
+.likeCont .textCont .profileLocation {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+
+/* Full Profile Form ------ */
+.fullProfileCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92, 85, 82, 0.5);
+  overflow-y: initial;  
+  z-index: 999;
+}
+.fullProfileCont .fullProfileForm {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%);
+  padding: 75px 50px 40px 50px;
+  width: 60vw;
+  border-radius: 15px;
+  box-shadow: 3px 5px 10px var( --dark-gray);
+}
+.fullProfileCont .formTopCont {
+  background-color: var(--red);
+  color: var(--white);
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fullProfileCont .formTopCont .formTopTitle {
+  padding: 0 15px;
+}
+.fullProfileCont .formTopCont .closeFormButton {
+  padding: 0 15px;
+  cursor: pointer;
+}
+.fullProfileCont .formBottomCont {
+  overflow-y: auto;
+  height: 50vh;
+}
+.fullProfileCont .formDataCont {
+  display: flex;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.fullProfileCont .formDataCont .formImgCont {
+  margin-right: 40px;
+  flex: 1;
+  position: relative;
+}
+.fullProfileCont .formDataCont .formImgCont img {
+  width: 100%;
+}
+.fullProfileCont .formDataCont .formTextCont {
+  flex: 1;
+}
+.fullProfileCont .formStoryCont {
+  padding-right: 15px;
+}
+.fullProfileCont .formTextCont .formName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--red);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.fullProfileCont .formBottomCont .labelText {
+  color: var(--red);
+  font-size: 14px;
+}
+.fullProfileCont .formBottomCont .storyLabel {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.fullProfileCont .formTextCont .formId, 
+.fullProfileCont .formTextCont .formDays,
+.fullProfileCont .formTextCont .formAge, 
+.fullProfileCont .formTextCont .formGender,
+.fullProfileCont .formTextCont .formLocation,
+.fullProfileCont .formStoryCont .formStory {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.fullProfileCont ::-webkit-scrollbar {
+  width: 5px;
+}
+.fullProfileCont ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+.fullProfileCont ::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 10px;
 }

@@ -1,5 +1,4 @@
-/* Add profile form ------ */
-
+/* Profiles ------- */
 .profilesPageCont {
   margin: 100px 40px 50px 100px;
 }
@@ -49,7 +48,32 @@
   object-position: 50% 0;
 }
 .profilesPageCont .profilesCont .cardCont .profileName {
-  margin: 10px 0;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.profilesPageCont .textCont {
+  margin: 20px 0;
+}
+.profilesPageCont .labelText {
+  color: var(--dark-blue);
+  font-size: 14px;
+}
+.profilesPageCont .storyLabel {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.profilesPageCont .textCont .profileId, .profilesPageCont .textCont .profileDays,
+.profilesPageCont .textCont .profileAge, 
+.profilesPageCont .textCont .profileLocation {
+  margin: 5px 0;
+  font-size: 14px;
 }
 
 
@@ -265,6 +289,7 @@
 .editProfileFormCont .formDataCont {
   display: flex;
   padding-right: 15px;
+  padding-bottom: 15px;
 }
 .editProfileFormCont .formDataCont .formImgCont {
   margin-right: 40px;
@@ -274,6 +299,7 @@
 .editProfileFormCont .formDataCont .formImgCont img {
   width: 100%;
 }
+/* edit image */
 .editProfileFormCont .formDataCont .formImgCont:hover {
   cursor: pointer;
 }
@@ -293,46 +319,74 @@
   display: block;
   opacity: 1;
 }
-/* Text Cont */
-.editProfileFormCont .formDataCont .formTextCont {
+/* ------ */
+.editProfileFormCont .formTextCont {
   flex: 1;
 }
-.editProfileFormCont .formDataCont .formName {
-  margin-top: 0;
-  margin-bottom: 10px;
+.editProfileFormCont .formTextCont .formName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.editProfileFormCont .formTextCont .labelText {
+  color: var(--dark-blue);
+  font-size: 14px;
+}
+.editProfileFormCont .formTextCont .formId, 
+.editProfileFormCont .formTextCont .formDays,
+.editProfileFormCont .formTextCont .formAge, 
+.editProfileFormCont .formTextCont .formGender,
+.editProfileFormCont .formTextCont .formLocation,
+.editProfileFormCont .formStoryCont .formStory {
+  margin: 5px 0;
+  font-size: 14px;
 }
 .editProfileFormCont .formStoryCont {
   padding-right: 15px;
 }
+.editProfileFormCont .warningCont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .editProfileFormCont .warningText {
-  color: var(--red);
-  font-size: 14px;
+  color: var(--dark-blue);
+  font-size: 13px;
+  font-weight: bold;
+  text-align: right;
 }
 .editProfileFormCont .deleteButton {
   border: none;
-  height: 35px;
+  height: 30px;
   letter-spacing: 1px;
   font-weight: bold;
   width: 150px;
   margin: 5px 0;
   cursor: pointer;
   border-radius: 10px;
+  font-size: 12px;
 }
 .editProfileFormCont .deleteButton:hover {
-  background-color: var(--gray);
+  background-color: var(--dark-blue);
   color: var(--white);
 }
 .editProfileFormCont .cancelButton {
   border: none;
-  height: 35px;
+  height: 30px;
   letter-spacing: 1px;
   font-weight: bold;
   width: 150px;
   margin: 5px 0 5px 15px;
   cursor: pointer;
   border-radius: 10px;
-  background-color: var(--red);
-  color: var(--white);
+  background-color: var(--light-blue);
+  color: var(--black);
 }
 
 

@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/shared.css";
-import "./styles/card.css";
-import { BrowserRouter, Route, Link, Redirect,  } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
 import Nav from "./Components/Nav";
@@ -11,6 +9,7 @@ import DashboardOrgP from "./Pages/DashboardOrgP";
 import DashboardUserP from "./Pages/DashboardUserP";
 import HomeP from "./Pages/HomeP";
 import SigninP from "./Pages/SigninP";
+import Loading from "./Components/Shared/Loading";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +21,8 @@ class App extends React.Component {
       email: "",
       uid: "",
       slide: "",
-      redirect: null
+      redirect: null,
+      loading: true
     }
 
     this.functions = {
@@ -30,14 +30,24 @@ class App extends React.Component {
       handleSignUp: this.handleSignUp.bind(this),
       handleSignIn: this.handleSignIn.bind(this),
       handleAuth: this.handleAuth.bind(this),
-      handleSignOut: this.handleSignOut.bind(this)
+      handleSignOut: this.handleSignOut.bind(this),
     }
     this.newUser = false;
     this.db = firebase.firestore();
+    this.timer;
   }
   
   componentDidMount() {
+    setTimeout(()=>{
+      this.setState({
+        loading: false
+      })
+      
+    }, 4000)
     this.handleAuth();
+  }
+  componentWillUnmount() {
+    clearTimeout();
   }
   
   // Identity process
@@ -63,11 +73,15 @@ class App extends React.Component {
   handleSignUp(event, data) {
     event.preventDefault();
     this.newUser = true;
+    this.setState({
+      loading: true
+    })
 
     firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
     .then((cred)=>{
       this.setState({
-        name: data.name
+        name: data.name,
+        loading: false
       })
     })
     .catch((error)=>{
@@ -77,21 +91,45 @@ class App extends React.Component {
   handleSignIn(event, data) {
     event.preventDefault();
     this.newUser = false;
+    this.setState({
+      loading: true
+    })
 
     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
-    .then(()=>{
-      alert("Success");
+    .then(() => {
+      setTimeout(()=>{
+        this.setState({
+          loading: false
+        })
+        
+      }, 3000)
       
+    })
+    .then(()=>{
+      clearTimeout(this.timer);
+
     })
     .catch((error)=>{
       alert(error.message);
     });
   }
   handleSignOut(e) {
+    this.setState({
+      loading: true
+    })
+
     firebase.auth().signOut()
     .then(() => {
-      alert("Signed out");
+      setTimeout(()=>{
+        this.setState({
+          loading: false
+        })
+      }, 2000)
       
+    })
+    .then(()=>{
+      clearTimeout(this.timer);
+
     })
     .catch(function(error) {
       alert(error.message);
@@ -110,7 +148,6 @@ class App extends React.Component {
             likes: []
           })
           .then(()=>{
-            alert("Signed in");
             this.setState({
               signedin: true,
               // name: user.name,
@@ -169,7 +206,6 @@ class App extends React.Component {
       }
     });
   }
-  
 
   render() {
     let redirect = null;
@@ -180,6 +216,10 @@ class App extends React.Component {
       <div>
 
         <Nav statedata={this.state} functions={this.functions}></Nav>
+        {/* <Loading></Loading> */}
+        { this.state.loading &&
+          <Loading></Loading>
+        }
         
         <Route 
           exact path="/" 

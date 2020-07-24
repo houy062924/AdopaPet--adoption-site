@@ -11,6 +11,7 @@
   bottom: 0;
   top: 50px;
   box-shadow: 1px 7px 15px var(--light-gray);
+  z-index: 99;
 }
 .sidenavUserCont .settingLink {
   position: fixed;

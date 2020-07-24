@@ -31,5 +31,41 @@ a {
   right: 0;
   bottom: 0;
 }
+.loadingCont {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--light-red);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingCont .animationCont {
+  width: 420px;
+  height: 435px;
+}
+.animationCont .animation {
+  background-image: url("/src/images/cat-animation/1.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  animation: cat-animation 2s infinite forwards;
+}
+@keyframes cat-animation {
+  0% { background-image: url("/src/images/cat-animation/1.svg"); }
+  25% { background-image: url("/src/images/cat-animation/2.svg"); }
+  50% { background-image: url("/src/images/cat-animation/3.svg"); }
+  75% { background-image: url("/src/images/cat-animation/4.svg"); }
+  100% { background-image: url("/src/images/cat-animation/1.svg");}
+}
+.loadingCont .loading {
+  width: 400px;
+  height: 400px;
+}
+
 
 /* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */

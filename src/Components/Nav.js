@@ -20,7 +20,10 @@ class Nav extends React.Component {
       <nav>
         <div className={ this.props.statedata.identity === 1 ? "navCont userColor" : "navCont orgColor" }>
           <div className="logoCont">
-            <Link to="/">LOGO</Link>
+            <Link to="/">
+              <img src="/src/images/logo-v8.svg"></img>
+              Name
+            </Link>
           </div>
           { data.signedin === false &&
             <ul className="linkCont">

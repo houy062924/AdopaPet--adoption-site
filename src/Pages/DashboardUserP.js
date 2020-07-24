@@ -10,7 +10,8 @@ class DashboardUserP extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      likes: []
+      likes: [],
+      adopted: []
     }
 
     this.db = firebase.firestore();
@@ -30,42 +31,28 @@ class DashboardUserP extends React.Component {
     })
   }
   checkProfileStatus() {
-    // determine which profiles have been adopted
-    let profiles = []
+    // determine which profiles have been adopted 
+    // --> determine which profiles in like cannot be found in animals collection
+    let profiles = [];
     let adopted = [];
 
     this.db.collection("animals").get()
     .then((querySnapshot) => {
-      
       querySnapshot.forEach((doc) => {
         profiles.push(doc.data());
       });
       
-      // removed = querySnapshot.filter(doc => !this.state.likes.some(like => doc.data().id === like.id ))
-      // console.log(removed)
-
-      // difference = profiles.filter(p => !likes.some(l => p.id === l.id));
-      // this.setState({
-      //   profiles: difference
-      // })
     })
     .then(()=>{
-      // find "this.state.likes" not in "profile"
-      console.log(this.state.likes);
-      console.log(profiles);
-
-
+      // find "this.state.likes" not in "profiles" --> find profiles that were liked but has since been deleted
       adopted = this.state.likes.filter(like =>    
-        profiles.some(profile => 
+        !profiles.some(profile => 
           like.id === profile.id
         )
       ) 
-      // this filters out the profiles in "animals" collection that are not liked by user, not the profiles not existing in collection
-
-
-
-      
-      // adopted = profiles.filter(p => this.state.likes.some(l => p.id === l.id));
+      this.setState({
+        adopted: adopted
+      })
       console.log(adopted)
     });
   }
@@ -96,6 +83,7 @@ class DashboardUserP extends React.Component {
           render={()=>(
             <Likes
               likestate={this.state.likes}
+              adoptedstate={this.state.adopted}
               removeLike={this.removeLike}>
             </Likes>
           )}>

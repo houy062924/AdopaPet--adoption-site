@@ -1,6 +1,7 @@
 import React from "react";
 import { firebase } from "../Shared/Firebase";
 import interact from "interactjs";
+import "../../Styles/card.css";
 
 class ProfilesUser extends React.Component {
   constructor() {
@@ -65,10 +66,11 @@ class ProfilesUser extends React.Component {
       }
     });
   }
-  handleProfileFiltering() { // show profiles that user hasn't liked yet
-    let profiles = []; // all animal profiles in "animals" collection
-    let likes = []; // user likes in user collection --> will contain profiles that have been since deleted from "animals" collection
-    let difference = []; // filtering profiles to only showed profiles not liked
+  handleProfileFiltering() { 
+    // show profiles that user hasn't liked yet
+    let profiles = [];
+    let likes = [];
+    let difference = [];
 
     this.db.collection("animals").get()
     .then((querySnapshot) => {
@@ -167,7 +169,8 @@ class ProfilesUser extends React.Component {
           ))
         }
         <div className="cardCont bottomCardCont">
-          No more profiles
+          <p>No more profiles</p>
+          <img src="/src/images/high-five.svg"></img>
         </div>
         <CardActions
           rotateDeg={this.state.rotateDeg}
@@ -218,13 +221,20 @@ class Card extends React.Component {
             <h1 className="profileName">
               { this.props.profile.name }
             </h1>
-            <p className="profileId">
-              { this.props.profile.id }
-            </p>
             <p className="profileDays">
+              <span className="labelText">Date: </span>
               {this.props.profile.date}
             </p>
+            <p className="profileAge">
+              <span className="labelText">Age: </span>
+              {this.props.profile.year} yrs {this.props.profile.month} months
+            </p>
+            <p className="profileId">
+              <span className="labelText">ID: </span>
+              { this.props.profile.id }
+            </p>
             <p className="profileLocation">
+              <span className="labelText">Location: </span>
               { this.props.profile.address }
             </p>
             <p className="profileStory">
@@ -291,47 +301,5 @@ class CardActions extends React.Component {
     )
   }
 }
-
-// class CardClosed extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       showForm: false
-//     }
-
-//     this.expandForm = this.expandForm.bind(this);
-//   }
-//   expandForm() {
-//     this.setState((state)=>({
-//       showForm: !state.showForm
-//     }))
-//   }
-//   render() {
-//     console.log(this.props)
-//     return (
-//       <div className="cardFormCont" onClick={this.expandForm}>
-//         { this.state.showForm ?
-//           <CardForm></CardForm>          
-//           : <p className="expandText">展開</p>
-//         }
-//       </div>
-//     )
-//   }
-// }
-
-// class CardForm extends React.Component {
-
-//   render() {
-//     console.log(this.state)
-
-//     return (
-//       <div className="cardDetailCont">
-       
-//         <h2>Content</h2>
-//       </div>
-//     )
-//   }
-// }
-
 
 export default ProfilesUser;
