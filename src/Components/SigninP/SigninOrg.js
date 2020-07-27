@@ -28,10 +28,10 @@ class SigninOrg extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="signinFormCont">
         { this.props.statedata.signedin === false &&
           <div>
-            <h1>Org</h1>
+            <h1>Organisations</h1>
             <div className="methodCont">
               <p 
                 onClick={this.handleSignup} 
@@ -44,13 +44,12 @@ class SigninOrg extends React.Component {
                   Sign In
               </p>
             </div>
-            
+          
             { this.state.method === 0
               ? <SignupForm functions={this.props.functions}></SignupForm>
               : <SigninForm functions={this.props.functions}></SigninForm>
             }
           </div>
-          // : <button type="button" onClick={this.handleSignOut} >Sign Out</button>
         }
       </div>
     )

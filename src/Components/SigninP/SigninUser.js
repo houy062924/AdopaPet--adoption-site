@@ -32,10 +32,10 @@ class SigninUser extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="signinFormCont">
         { this.props.statedata.signedin === false &&
           <div>
-            <h1>User</h1>
+            <h1>Users</h1>
             <div className="methodCont">
               <p 
                 onClick={this.handleSignup} 
@@ -54,7 +54,6 @@ class SigninUser extends React.Component {
               : <SigninForm functions={this.props.functions}></SigninForm>
             }
           </div>
-          // : <button type="button" onClick={this.handleSignOut} >Sign Out</button>
         }
       </div>
     )

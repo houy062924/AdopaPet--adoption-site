@@ -14,7 +14,8 @@ class Likes extends React.Component {
       closeFullProfile: this.closeFullProfile.bind(this),
     }
   }
-  openFullProfile(p) {
+  openFullProfile(p, e) {
+    e.stopPropagation();
     this.setState({
       fullprofile: true,
       currentprofile: p
@@ -41,7 +42,7 @@ class Likes extends React.Component {
             <div 
               className="likeCont" 
               key={like.id}
-              onClick={()=>this.openFullProfile(like)}>
+              onClick={()=>this.openFullProfile(like, event)}>
                 
               <div className="imgCont">
                 <img src={like.url} className="profileImg"></img>
@@ -110,7 +111,7 @@ class FullProfile extends React.Component {
       <div className="fullProfileCont">
         <form className="fullProfileForm">
           <div className="formTopCont">
-            <p className="formTopTitle">Edit Profile</p>
+            <p className="formTopTitle">Profile</p>
             <p className="closeFormButton" onClick={this.closeFullProfile}>X</p>
           </div>
           

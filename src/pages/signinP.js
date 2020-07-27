@@ -18,18 +18,27 @@ class SigninP extends React.Component {
   }
 
   render() {
+    console.log(this.props.statedata.identity)
     return (
       <BrowserRouter basename="/signin">
         <div className={ this.props.statedata.identity === 1 ? "bottomCont userColor" : "bottomCont orgColor" }>
           <div className="leftCont">
-            <h1>Org?</h1>
-            <button type="button" onClick={()=>this.changeIdentity(0)}>Click here</button>
+            <h2 className="signinTitle">Looking to rehome animals?</h2>
+            <div
+              className="signinOrg"
+              onClick={()=>this.changeIdentity(0)}>
+              Sign in here
+            </div>
             <img src="/src/images/org.svg"></img>
           </div>
           
           <div className="rightCont">
-            <h1>User?</h1>
-            <button type="button" onClick={()=>this.changeIdentity(1)}>Click</button>
+            <h2 className="signinTitle">Looking for a furry friend?</h2>
+            <div
+              onClick={()=>this.changeIdentity(1)} 
+              className="signinUser">
+              Sign in here
+            </div>
             <img src="/src/images/adopt.svg"></img>
           </div>
 

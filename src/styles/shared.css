@@ -12,6 +12,10 @@
   --light-gray: #CDC8C8;
 }
 
+html {
+  /* cursor: none; */
+  overflow-x: hidden;
+}
 body {
   background-color: var(--white);
   color: var(--black);
@@ -31,6 +35,19 @@ a {
   right: 0;
   bottom: 0;
 }
+
+/* Cursor -------- */
+.cursorCont {
+  width: 10px;
+  height: 10px;
+  background-color: var(--light-gray);
+  position: absolute;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Loading animation ------- */
 .loadingCont {
   position: fixed;
   top: 0;

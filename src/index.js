@@ -10,6 +10,7 @@ import DashboardUserP from "./Pages/DashboardUserP";
 import HomeP from "./Pages/HomeP";
 import SigninP from "./Pages/SigninP";
 import Loading from "./Components/Shared/Loading";
+import Cursor from "./Components/Shared/Cursor";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class App extends React.Component {
     }
 
     this.functions = {
+      handleRedirect: this.handleRedirect.bind(this),
       handleIdentityChange: this.handleIdentityChange.bind(this),
       handleSignUp: this.handleSignUp.bind(this),
       handleSignIn: this.handleSignIn.bind(this),
@@ -44,10 +46,38 @@ class App extends React.Component {
       })
       
     }, 4000)
+
     this.handleAuth();
   }
   componentWillUnmount() {
     clearTimeout();
+  }
+
+  // Redirects
+  handleRedirect(type) {
+    console.log(type)
+    if (type === "org") {
+      this.setState({
+        identity: 0,
+        redirect: "/signin",
+        slide: "slideLeft"
+      })
+      // this.handleIdentityChange("1");
+    }
+    else if (type === "user") {
+      this.setState({
+        identity: 1,
+        redirect: "/signin",
+        slide: "slideRight"
+      })
+      // this.handleIdentityChange("0");
+    }
+    else if (type === "home") {
+      this.setState({
+        identity: 1,
+        redirect: null
+      })
+    }
   }
   
   // Identity process
@@ -214,16 +244,23 @@ class App extends React.Component {
     }
     return (
       <div>
-
-        <Nav statedata={this.state} functions={this.functions}></Nav>
-        {/* <Loading></Loading> */}
+        {/* <Cursor></Cursor> */}
+        <Nav 
+          statedata={this.state} 
+          functions={this.functions}>
+        </Nav>
         { this.state.loading &&
           <Loading></Loading>
         }
         
+        
         <Route 
           exact path="/" 
-          component={HomeP}>
+          render={()=>(
+            <HomeP
+              functions={this.functions}>
+            </HomeP>
+          )}>
         </Route>
         <Route 
           path="/org/dashboard" 

@@ -7,19 +7,24 @@ class Nav extends React.Component {
   constructor(props) {
     super(props)
 
+    this.handleRedirect = this.handleRedirect.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
 
+  handleRedirect(t) {
+    this.props.functions.handleRedirect(t);
+  }
   handleSignOut() {
     this.props.functions.handleSignOut();
   }
 
   render() {
     let data = this.props.statedata;
+    console.log(this.props.statedata.identity=== 1)
     return (
       <nav>
         <div className={ this.props.statedata.identity === 1 ? "navCont userColor" : "navCont orgColor" }>
-          <div className="logoCont">
+          <div className="logoCont" onClick={()=>this.handleRedirect("home")}>
             <Link to="/">
               <img src="/src/images/logo-v8.svg"></img>
               Name
@@ -27,13 +32,9 @@ class Nav extends React.Component {
           </div>
           { data.signedin === false &&
             <ul className="linkCont">
-              <Link to="signin">
+              <Link to="signin" onClick={()=>this.handleRedirect("user")}>
                 <li>Sign In</li>
               </Link>
-              
-              {/* <li>
-                <Link to="signin/user">User Sign In</Link>
-              </li> */}
             </ul>
           }
           { data.signedin === true && data.identity === 0 &&
@@ -44,13 +45,6 @@ class Nav extends React.Component {
               </Link>
               
               <li onClick={this.handleSignOut}>Sign out</li>
-              
-              {/* <div className="userInfoCont">
-                <p className="userText">Hello {data.name}</p>
-                <div className="userImgCont">
-                  <img src={UserIcon} className="userImg"></img>
-                </div>
-              </div> */}
             </ul>
           }
           { data.signedin === true && data.identity === 1 &&
