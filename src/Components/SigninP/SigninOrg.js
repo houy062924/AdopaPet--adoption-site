@@ -122,7 +122,7 @@ class SignupForm extends React.Component {
             onChange={this.handleChange}></input>
         </div>
         
-        <button type="submit" onSubmit={this.handleSignUp} className="submitButtonOrg">Sign Up</button>
+        <button className="signinFormCont"tton type="submit" onSubmit={this.handleSignUp} className="submitButtonOrg">Sign Up</button>
       </form>
     )
   }
