@@ -7,7 +7,7 @@ class Landing extends React.Component {
       <div className="landingCont">
         <Header></Header>
         <div>
-          <img src="/src/images/dog-animation/family-pana.svg" className="headerImg"></img>
+          <img src="/src/images/HomeP/family.svg" className="headerImg"></img>
         </div>
       </div>
     )

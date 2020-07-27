@@ -54,7 +54,7 @@ class Nav extends React.Component {
                 <li>Profiles</li>
               </Link>
               <Link to="/user/dashboard">
-                <li>Dashboard</li>
+                <li>My Likes</li>
               </Link>
               
               <li onClick={this.handleSignOut}>Sign out</li>

@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
-import { storage } from "../Components/Shared/Firebase";
 
-import SideNav from "../Components/DashboardOrgP/SideNav";
+// import SideNav from "../Components/DashboardOrgP/SideNav";
 import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
-import Calender from "../Components/DashboardOrgP/Calender";
-import Overview from "../Components/DashboardOrgP/Overview";
+// import Calender from "../Components/DashboardOrgP/Calender";
+// import Overview from "../Components/DashboardOrgP/Overview";
 
 
 class DashboardOrgP extends React.Component {
@@ -137,7 +136,12 @@ class DashboardOrgP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/org">
-        <SideNav statedata={this.props.statedata}></SideNav>
+        <ProfilesOrg
+          appstate={this.props.statedata} 
+          functions={this.functions} 
+          dashstate={this.state}>
+        </ProfilesOrg>
+        {/* <SideNav statedata={this.props.statedata}></SideNav>
 
         <Route 
           path="/dashboard/overview" 
@@ -166,7 +170,7 @@ class DashboardOrgP extends React.Component {
               functions={this.functions}>
             </Calender>
           )}>
-        </Route>
+        </Route> */}
 
       </BrowserRouter>
     )

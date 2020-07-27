@@ -53,15 +53,15 @@ class Likes extends React.Component {
                   {like.name}
                 </p>
                 <p className="profileDays">
-                  <span className="labelText">Date: </span>
+                  <span className="labelText">Date<br></br></span>
                   {like.date}
                 </p>
                 <p className="profileId">
-                  <span className="labelText">ID: </span>
+                  <span className="labelText">ID<br></br></span>
                   { like.id }
                 </p>
                 <p className="profileLocation">
-                  <span className="labelText">Location: </span>
+                  <span className="labelText">Location<br></br></span>
                   { like.address }
                 </p>
               </div>
@@ -126,23 +126,23 @@ class FullProfile extends React.Component {
                   {currentprofile.name}
                 </h2>
                 <p className="formDays">
-                  <span className="labelText">Date: </span>
+                  <span className="labelText">Date<br></br></span>
                   {currentprofile.date}
                 </p>
                 <p className="formId">
-                  <span className="labelText">ID: </span>
+                  <span className="labelText">ID<br></br></span>
                   {currentprofile.id}
                 </p>
                 <p className="formGender">
-                  <span className="labelText">Gender: </span>
+                  <span className="labelText">Gender<br></br></span>
                   {currentprofile.gender}
                 </p>
                 <p className="formAge">
-                  <span className="labelText">Age: </span>
+                  <span className="labelText">Age<br></br></span>
                   {currentprofile.year} yrs {currentprofile.month} months
                 </p>
                 <p className="formLocation">
-                  <span className="labelText">Location: </span>
+                  <span className="labelText">Location<br></br></span>
                   {currentprofile.address}
                 </p>
               </div>
@@ -150,7 +150,7 @@ class FullProfile extends React.Component {
 
             <div className="formStoryCont">
               <p className="formStory">
-                <span className="labelText storyLabel">Story: </span>
+                <span className="labelText storyLabel">Story</span>
                 <br></br>
                 {currentprofile.story}
               </p>

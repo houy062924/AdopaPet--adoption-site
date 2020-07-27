@@ -221,25 +221,35 @@ class Card extends React.Component {
             <h1 className="profileName">
               { this.props.profile.name }
             </h1>
-            <p className="profileDays">
-              <span className="labelText">Date: </span>
-              {this.props.profile.date}
-            </p>
-            <p className="profileAge">
-              <span className="labelText">Age: </span>
-              {this.props.profile.year} yrs {this.props.profile.month} months
-            </p>
-            <p className="profileId">
-              <span className="labelText">ID: </span>
-              { this.props.profile.id }
-            </p>
-            <p className="profileLocation">
-              <span className="labelText">Location: </span>
-              { this.props.profile.address }
-            </p>
-            <p className="profileStory">
-              { this.props.profile.story }
-            </p>
+            <div className="profileColCont">
+              <div className="profileCol">
+                <p className="profileId">
+                  <span className="labelText">ID<br></br></span>
+                  { this.props.profile.id }
+                </p>
+                <p className="profileLocation">
+                  <span className="labelText">Location<br></br></span>
+                  { this.props.profile.address }
+                </p>
+              </div>
+              <div className="profileCol">
+                <p className="profileDays">
+                  <span className="labelText">Date<br></br></span>
+                  {this.props.profile.date}
+                </p>
+                <p className="profileAge">
+                  <span className="labelText">Age<br></br></span>
+                  {this.props.profile.year} yrs {this.props.profile.month} months
+                </p>
+              </div>
+            </div>
+            <div>
+              <span className="labelText storyLabel">Story<br></br></span>
+              <p className="profileStory">
+                
+                { this.props.profile.story }
+              </p>
+            </div>
           </div>
         </div>
         

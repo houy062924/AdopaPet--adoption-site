@@ -116,6 +116,9 @@ class App extends React.Component {
     })
     .catch((error)=>{
       alert(error.message);
+      this.setState({
+        loading: false
+      })
     });
   }
   handleSignIn(event, data) {
@@ -141,6 +144,9 @@ class App extends React.Component {
     })
     .catch((error)=>{
       alert(error.message);
+      this.setState({
+        loading: false
+      })
     });
   }
   handleSignOut(e) {
@@ -163,6 +169,9 @@ class App extends React.Component {
     })
     .catch(function(error) {
       alert(error.message);
+      this.setState({
+        loading: false
+      })
     });
   }
   handleAuth() {

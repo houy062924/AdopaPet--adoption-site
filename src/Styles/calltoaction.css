@@ -50,14 +50,15 @@
 }
 .signinUser, .signinOrg {
   border: none;
-  height: 30px;
+  height: 35px;
   letter-spacing: 1px;
   font-weight: bold;
   width: 85%;
+  max-width: 280px;
   margin: 5px 0;
   cursor: pointer;
   border-radius: 10px;
-  line-height: 30px;
+  line-height: 35px;
   display: inline-block;
   text-align: center;
   margin: 0 auto 10px auto;
@@ -72,5 +73,4 @@
 }
 .signinUser:hover .signinUserImg {
   background-image: url("/src/images/process/user/2.svg");
-
 }

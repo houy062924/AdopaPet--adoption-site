@@ -1,6 +1,6 @@
 /* Profiles ------- */
 .profilesPageCont {
-  margin: 100px 40px 50px 100px;
+  margin: 110px 60px 50px 60px;
 }
 .profilesPageCont .addProfileButton {
   background-color: var(--dark-blue);
@@ -21,6 +21,9 @@
 }
 .profilesPageCont .addProfileButton:focus {
   outline: transparent;
+}
+.profilesPageCont .profilesCont .welcomeText {
+  line-height: 25px;
 }
 .profilesPageCont .profilesCont {
   display: grid;
@@ -50,7 +53,7 @@
 .profilesPageCont .profilesCont .cardCont .profileName {
   margin-top: 0px;
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--white);
   background-color: var(--dark-blue);
   border-radius: 10px;
@@ -69,11 +72,12 @@
   display: inline-block;
   margin-bottom: 5px;
 }
-.profilesPageCont .textCont .profileId, .profilesPageCont .textCont .profileDays,
+.profilesPageCont .textCont .profileId, 
+.profilesPageCont .textCont .profileDays,
 .profilesPageCont .textCont .profileAge, 
 .profilesPageCont .textCont .profileLocation {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
 }
 
 
@@ -93,17 +97,13 @@
   background-color: white;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 45%;
   transform: translate(-50%, -45%);
   padding: 60px 50px 40px 50px;
   width: 60vw;
+  height: 70vh;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --light-gray);
-  /* position: relative;
-  margin-top: 10px; */
-  /* transition: height 3s; */
-  /* animation-name: slidein;
-  animation-duration: 2s; */
 }
 .profilesPageCont .formTopCont {
   background-color: var(--dark-blue);
@@ -128,8 +128,8 @@
 }
 .profilesPageCont .formBottomCont {
   overflow-y: auto;
-  height: 50vh;
-  padding-right: 20px;
+  height: 100%;
+  padding-right: 25px;
 }
 .addProfileForm .inputCont {
   margin: 10px 0;
@@ -137,7 +137,7 @@
   align-items: center;
 }
 .addProfileForm .inputCont label {
-  width: 65px;
+  width: 90px;
 }
 .addProfileForm .inputCont input {
   flex: 2;
@@ -191,13 +191,16 @@
   margin: 10px 0;
 }
 .addProfileForm .radioCont .genderLabel {
-  margin-right: 10px;
+  width: 90px;
 }
 .addProfileForm .radioCont .radioLabel {
   cursor: pointer;
 }
+.addProfileForm .radioCont .radioLabel input {
+  margin-right: 10px;
+}
 .addProfileForm .fileCont .fileLabel {
-  margin-right: 20px;
+  width: 90px;
 }
 .addProfileForm .fileCont .fileInput {
   width: 0.1px;
@@ -253,13 +256,13 @@
   background-color: white;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 45%;
   transform: translate(-50%, -45%);
   padding: 75px 50px 40px 50px;
   width: 60vw;
+  height: 70vh;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --dark-gray);
-  
 }
 .editProfileFormCont .formTopCont {
   background-color: var(--dark-blue);
@@ -284,7 +287,7 @@
 }
 .editProfileFormCont .formBottomCont {
   overflow-y: auto;
-  height: 50vh;
+  height: 100%;
 }
 .editProfileFormCont .formDataCont {
   display: flex;
@@ -326,7 +329,7 @@
 .editProfileFormCont .formTextCont .formName {
   margin-top: 0px;
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 20px;
   color: var(--white);
   background-color: var(--dark-blue);
   border-radius: 10px;
@@ -344,12 +347,15 @@
 .editProfileFormCont .formTextCont .formGender,
 .editProfileFormCont .formTextCont .formLocation,
 .editProfileFormCont .formStoryCont .formStory {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
 }
 .editProfileFormCont .formStoryCont {
   padding-right: 15px;
   padding-bottom: 15px;
+}
+.editProfileFormCont .formStoryCont .formStory {
+  line-height: 25px;
 }
 .editProfileFormCont .warningCont {
   display: flex;
@@ -371,7 +377,7 @@
   margin: 5px 0;
   cursor: pointer;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .editProfileFormCont .deleteButton:hover {
   background-color: var(--dark-blue);
@@ -388,6 +394,7 @@
   border-radius: 10px;
   background-color: var(--light-blue);
   color: var(--black);
+  font-size: 14px;
 }
 
 

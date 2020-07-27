@@ -2,8 +2,7 @@ import React from "react";
 import Likes from "../Components/DashboardUserP/Likes";
 import { firebase } from "../Components/Shared/Firebase";
 import { BrowserRouter, Route } from "react-router-dom";
-import SideNavUser from "../Components/DashboardUserP/SideNavUser";
-
+// import SideNavUser from "../Components/DashboardUserP/SideNavUser";
 
 
 class DashboardUserP extends React.Component {
@@ -74,7 +73,12 @@ class DashboardUserP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/user">
-        <SideNavUser
+        <Likes
+          likestate={this.state.likes}
+          adoptedstate={this.state.adopted}
+          removeLike={this.removeLike}>
+        </Likes>
+        {/* <SideNavUser
           userstate={this.props.statedata}>
         </SideNavUser>
 
@@ -87,7 +91,7 @@ class DashboardUserP extends React.Component {
               removeLike={this.removeLike}>
             </Likes>
           )}>
-        </Route>
+        </Route> */}
 
       </BrowserRouter>
     )

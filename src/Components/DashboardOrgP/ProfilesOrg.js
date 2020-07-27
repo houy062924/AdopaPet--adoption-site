@@ -28,6 +28,7 @@ class ProfilesOrg extends React.Component {
   }
 
   render() {
+    console.log(this.props.appstate)
     return (
       <div className="profilesPageCont">
         <button 
@@ -45,33 +46,38 @@ class ProfilesOrg extends React.Component {
           : null
         }
         <div className="profilesCont">
-          { 
-            this.props.dashstate.profiles.map((profile, index)=>(
-              <div 
-                key={profile.id} 
-                className="cardCont" 
-                onClick={()=> {this.openEditForm(profile, index)}}
-              >
-                <div className="profileImg">
-                  <img src={profile.url}></img>
-                </div>
-                
-                <div className="textCont">
-                  <h1 className="profileName">
-                    { profile.name }
-                  </h1>
-                  <p className="profileId">
-                    <span className="labelText">ID: </span>
-                    { profile.id }
-                  </p>
-                  <p className="profileDays">
-                    <span className="labelText">Date: </span>
-                    { profile.date }
-                  </p>
-                </div>
-              
+          { this.props.dashstate.profiles.length === 0
+            ? <div>
+                <h2>Welcome, {this.props.appstate.name}!</h2>
+                <p className="welcomeText">Ready to get started? <br></br> Click the above button to add a profile.</p>
+                <img src="/src/images/point.svg"></img>
               </div>
-            ))
+            : this.props.dashstate.profiles.map((profile, index)=>(
+                <div 
+                  key={profile.id} 
+                  className="cardCont" 
+                  onClick={()=> {this.openEditForm(profile, index)}}
+                >
+                  <div className="profileImg">
+                    <img src={profile.url}></img>
+                  </div>
+                  
+                  <div className="textCont">
+                    <h1 className="profileName">
+                      { profile.name }
+                    </h1>
+                    <p className="profileId">
+                      <span className="labelText">ID<br></br></span>
+                      { profile.id }
+                    </p>
+                    <p className="profileDays">
+                      <span className="labelText">Date<br></br></span>
+                      { profile.date }
+                    </p>
+                  </div>
+                
+                </div>
+              ))
           }
         </div>
 
@@ -371,25 +377,25 @@ class EditProfileForm extends React.Component {
                 <p 
                   className="formId" 
                   onClick={(e)=>this.handleEditText(e, "id")}>
-                  <span className="labelText">ID: </span>
+                  <span className="labelText">ID<br></br></span>
                   {currentprofile.id}
                 </p>
                 <p 
                   className="formGender" 
                   onClick={()=>this.handleEditRadio(gender)}>
-                  <span className="labelText">Gender: </span>
+                  <span className="labelText">Gender<br></br></span>
                   {currentprofile.gender}
                 </p>
                 <p 
                   className="formAge" 
                   onClick={(e)=>this.handleEditText(e, "age")}>
-                  <span className="labelText">Age: </span>
+                  <span className="labelText">Age<br></br></span>
                   {currentprofile.year} yrs {currentprofile.month} months
                 </p>
                 <p 
                   className="formLocation" 
                   onClick={(e)=>this.handleEditText(e, "address")}>
-                  <span className="labelText">Location: </span>
+                  <span className="labelText">Location<br></br></span>
                   {currentprofile.address}
                 </p>
               </div>
@@ -397,7 +403,7 @@ class EditProfileForm extends React.Component {
 
             <div className="formStoryCont">
               <p className="formStory">
-                <span className="labelText storyLabel">Story: </span>
+                <span className="labelText storyLabel">Story<br></br></span>
                 <br></br>
                 {currentprofile.story}
               </p>

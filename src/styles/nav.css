@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--red);
-  height: 50px;
+  height: 60px;
   align-items: center;
   position: fixed;
   left: 0;
@@ -31,7 +31,7 @@
 }
 .navCont .linkCont li {
   padding: 0 15px;
-  line-height: 51px;
+  line-height: 60px;
   color: white;
 }
 .navCont .linkCont li:hover {

@@ -37,7 +37,7 @@ class StepSearch extends React.Component {
   render() {
     return (
       <div className="stepsCont">
-        <div className="textCont">
+        <div className="textCont searchCont">
           <h3>Find your furry match</h3>
           <p>Shelter animals in search of a forever home.<br></br>Are you the one they’re waiting for?</p>
           <p>

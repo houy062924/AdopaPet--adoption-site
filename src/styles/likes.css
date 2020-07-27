@@ -1,7 +1,7 @@
 /* Likes ---------- */
 
 .likePageCont {
-  margin: 100px 40px 50px 100px;
+  margin: 110px 60px 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
@@ -79,7 +79,7 @@
 .likeCont .textCont .profileName {
   margin-top: 0px;
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--white);
   background-color: var(--red);
   border-radius: 10px;
@@ -91,10 +91,12 @@
   color: var(--red);
   font-size: 14px;
 }
-.likeCont .textCont .profileId, .likeCont .textCont .profileDays, 
+.likeCont .textCont .profileId, 
+.likeCont .textCont .profileDays, 
 .likeCont .textCont .profileLocation {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 5px 0 12px 10px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 
@@ -113,10 +115,11 @@
   background-color: white;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 45%;
   transform: translate(-50%, -45%);
   padding: 75px 50px 40px 50px;
   width: 60vw;
+  height: 70vh;
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --dark-gray);
 }
@@ -143,7 +146,7 @@
 }
 .fullProfileCont .formBottomCont {
   overflow-y: auto;
-  height: 50vh;
+  height: 100%;
 }
 .fullProfileCont .formDataCont {
   display: flex;
@@ -167,7 +170,7 @@
 .fullProfileCont .formTextCont .formName {
   margin-top: 0px;
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 20px;
   color: var(--white);
   background-color: var(--red);
   border-radius: 10px;
@@ -189,8 +192,11 @@
 .fullProfileCont .formTextCont .formGender,
 .fullProfileCont .formTextCont .formLocation,
 .fullProfileCont .formStoryCont .formStory {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
+}
+.fullProfileCont .formStoryCont .formStory {
+  line-height: 25px;
 }
 .fullProfileCont ::-webkit-scrollbar {
   width: 5px;

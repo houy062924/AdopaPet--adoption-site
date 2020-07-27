@@ -60,25 +60,41 @@
   padding: 5px 0;
   text-align: center;
 }
+.cardStackCont .profileColCont {
+  display: flex;
+  margin-left: 10px;
+}
+.cardStackCont .profileColCont .profileCol {
+  flex: 1;
+}
 .cardStackCont .cardCont .textCont .labelText {
   color: var(--red);
   font-size: 14px;
 }
 .cardStackCont .cardCont .profileId,
-.cardCont .profileAge,
-.cardCont .profileDays, 
-.cardCont .profileLocation {
+.cardStackCont .cardCont .profileAge,
+.cardStackCont .cardCont .profileDays, 
+.cardStackCont .cardCont .profileLocation {
   margin: 5px 0;
   font-size: 14px;
+  line-height: 20px;
+}
+.cardStackCont .cardCont .storyLabel {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: inline-block;
 }
 .cardStackCont .cardCont .profileStory {
   text-align: justify;
   overflow-y: auto;
-  height: 130px;
+  height: 190px;
   font-size: 14px;
   padding-right: 10px;
   flex: auto;
   margin-bottom: 0;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-top: 0;
 }
 
 /* Scroll bar --- */

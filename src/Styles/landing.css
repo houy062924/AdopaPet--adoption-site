@@ -5,7 +5,7 @@
   background-color: var(--red);
 }
 .landingCont .headerImg {
-  width: 450px;
+  width: 50%;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -31,12 +31,12 @@
 .headerCont .contentCont-lower {
   overflow: hidden;
   height: 40px;
-  padding: 0 40px;
+  padding: 0px 75px;
 }
 .headerCont .titleText {
   display: inline;
   margin: 0;
-  padding: 0 40px;
+  padding: 0px 75px;
 }
 /* Upper */
 .headerCont .contentCont-upper .titleListCont {
@@ -84,7 +84,7 @@
 .headerCont .questionMark {
   position: absolute;
   top: 86px;
-  left: 320px;
+  left: 355px;
   font-size: 55px;
 }
 @keyframes opacity {
