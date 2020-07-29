@@ -85,17 +85,20 @@ class ProfilesUser extends React.Component {
 
     })
     .then((doc)=>{
-      likes = doc.data().likes;
-      this.setState({
-        likes: likes
-      })
-
+      if (doc.data().likes) {
+        likes = doc.data().likes;
+        this.setState({
+          likes: likes
+        })
+      }
     })
     .then(()=>{
-      difference = profiles.filter(p => !likes.some(l => p.id === l.id));
-      this.setState({
-        profiles: difference
-      })
+      // if (this.state.likes.length>0) {
+        difference = profiles.filter(p => !likes.some(l => p.id === l.id));
+        this.setState({
+          profiles: difference
+        })
+      // }
     })
   }
   handleCardChoice(interaction) {

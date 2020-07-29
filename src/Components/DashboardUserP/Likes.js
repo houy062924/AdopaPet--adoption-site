@@ -56,10 +56,14 @@ class Likes extends React.Component {
               <div className="removeCont" onClick={(event)=>this.removeLike(like, event)}></div>
 
               {/* <div className="heartCont" onClick={(event)=>this.removeLike(like, event)}></div> */}
-              { like.adoptionstatus === 0 &&
-                <div>
-                  testetst
-                </div>
+
+              { like.adoptionstatus === 0 
+                ? <div className="adoptButton">
+                    Apply to adopt
+                  </div>
+                : <div className="pendingButton">
+                    Pending
+                  </div>
               }
               { 
                 adopted = this.props.adoptedstate.map((adopted)=>{
@@ -92,9 +96,14 @@ class Likes extends React.Component {
 class FullProfile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      confirmcancel: false
+    }
 
     this.closeFullProfile = this.closeFullProfile.bind(this);
+    this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
     this.handleAdopt = this.handleAdopt.bind(this);
+    this.cancelAdopt = this.cancelAdopt.bind(this);
   }
 
   handleAdopt() {
@@ -102,6 +111,14 @@ class FullProfile extends React.Component {
   }
   closeFullProfile() {
     this.props.functions.closeFullProfile();
+  }
+  toggleConfirmCancel() {
+    this.setState((prevState)=>({
+      confirmcancel: !prevState.confirmcancel
+    }))
+  }
+  cancelAdopt() {
+    this.props.functions.cancelAdopt();
   }
 
   render() {
@@ -156,7 +173,30 @@ class FullProfile extends React.Component {
               </p>
             </div>
 
-            <div className="adoptButton" onClick={this.handleAdopt}>Start the adoption process</div>
+            { currentprofile.adoptionstatus === 0
+              ? <div 
+                  className="adoptButton" 
+                  onClick={this.handleAdopt}>
+                    Start the adoption application
+                </div>
+              : <div className="pendingTextCont">
+                  <div 
+                    className="pendingButton">
+                      Pending application
+                  </div>
+                  <p onClick={this.toggleConfirmCancel}>Cancel application?</p>
+                  { this.state.confirmcancel &&
+                    <div className="cancelTextCont">
+                      <p>This action will delete your application.<br></br>Would you like to proceed?</p>
+                      <div className="cancelButtonCont">
+                        <div className="cancelButton yes" onClick={this.cancelAdopt}>Yes</div>
+                        <div className="cancelButton no" onClick={this.toggleConfirmCancel}>No</div>
+                      </div>
+                    </div>
+                  }
+                </div>
+            }
+            
           </div>
 
         </form>

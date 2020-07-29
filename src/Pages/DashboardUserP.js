@@ -18,15 +18,19 @@ class DashboardUserP extends React.Component {
       openFullProfile: this.openFullProfile.bind(this),
       closeFullProfile: this.closeFullProfile.bind(this),
       handleAdopt: this.handleAdopt.bind(this),
+      cancelAdopt: this.cancelAdopt.bind(this),
       removeLike: this.removeLike.bind(this),
     }
 
     this.db = firebase.firestore();
+    this.getDatabaseData = this.getDatabaseData.bind(this);
     this.checkProfileStatus = this.checkProfileStatus.bind(this);
-    this.checkAdoptionStatus = this.checkAdoptionStatus.bind(this);
   }
 
   componentDidMount() {
+    this.getDatabaseData();
+  }
+  getDatabaseData() {
     this.db.collection("members").doc(this.props.statedata.uid).get()
     .then((doc)=>{
       this.setState({
@@ -60,30 +64,6 @@ class DashboardUserP extends React.Component {
       this.setState({
         adopted: adopted
       })
-
-      this.checkAdoptionStatus();
-    });
-  }
-  checkAdoptionStatus() {
-    let animals = [];
-    let orgs = [];
-
-    this.db.collection("adoptions")
-    .where("useruid", "==", this.props.statedata.uid )
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.db.collection("animals").doc(doc.data().animaluid).get()
-        .then((doc)=>{
-          animals.push(doc.data())
-        })
-      });
-      // this.setState({
-
-      // })
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
     });
   }
   removeLike(profile) {
@@ -119,24 +99,39 @@ class DashboardUserP extends React.Component {
     })
   }
   handleAdopt() {
+    // 1. save info to "adoptions" collection
     this.db.collection("adoptions").add({
-      useruid: this.props.statedata.uid,
       orguid: this.state.currentprofile.orguid,
+      useruid: this.props.statedata.uid,
+      username: this.props.statedata.name,
+      useremail: this.props.statedata.email,
       animaluid: this.state.currentprofile.id,
+      animalname: this.state.currentprofile.name,
       status: 0,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-    .then((doc)=>{
-      let newarr = [...this.state.likes];
-      newarr[this.state.currentprofileindex].adoptionstatus = 1;
-      
-      this.setState({
-        likes: newarr
-      })
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
     });
+
+    // 2. save application status to user like-list in "members"
+    let newarr = [...this.state.likes];
+    newarr[this.state.currentprofileindex].adoptionstatus = 1;
+    console.log(newarr)
+
+    this.db.collection("members").doc(this.props.statedata.uid).update({
+      "likes": newarr
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+
+    // 3. close form and update data
+    this.closeFullProfile();
+    this.getDatabaseData();
+  }
+  cancelAdopt() {
+    console.log("cancel")
   }
 
   render() {
