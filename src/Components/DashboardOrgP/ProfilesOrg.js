@@ -28,7 +28,6 @@ class ProfilesOrg extends React.Component {
   }
 
   render() {
-    console.log(this.props.appstate)
     return (
       <div className="profilesPageCont">
         <button 
@@ -114,6 +113,7 @@ class AddProfileForm extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.setDB = this.setDB.bind(this);
     this.toggleProfileForm = this.toggleProfileForm.bind(this);
+    this.db = firebase.firestore();
   }
 
   handleInputChange(event) {
@@ -149,7 +149,6 @@ class AddProfileForm extends React.Component {
           })
         })
         .then(()=>{
-          console.log(this.state.url)
           this.setDB();
         })
       }
@@ -160,19 +159,28 @@ class AddProfileForm extends React.Component {
     this.props.functions.toggleProfileForm(r);
   }
   setDB() {
-    const db = firebase.firestore();
-    const userRef = db.collection('animals').add({
+    this.db.collection('animals').add({
       name: this.state.name,
       gender: this.state.gender,
       url: this.state.url,
-      id: this.state.id,
+      // id: this.state.id,
       story: this.state.story,
       address: this.state.address,
       date: this.state.date,
       year: this.state.year,
       month: this.state.month,
       orgname: this.props.appstate.name,
-      orguid: this.props.appstate.uid
+      orguid: this.props.appstate.uid,
+      adoptionstatus: 0,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then((docRef)=>{
+      this.setState({
+        id: docRef.id
+      })
+      this.db.collection('animals').doc(docRef.id).update({
+        id: docRef.id
+      })
     })
     .then(()=>{
       console.log("Set")
@@ -207,29 +215,33 @@ class AddProfileForm extends React.Component {
 
           <div className="formBottomCont">
             <div className="inputCont">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Name*</label>
               <input 
+                required
                 id="name" 
                 name="name" 
                 type="text"
+                maxLength="25"
                 value={this.state.name}
                 onChange={this.handleInputChange}/>
             </div>
 
-            <div className="inputCont">
-              <label htmlFor="id">ID</label>
+            {/* <div className="inputCont">
+              <label htmlFor="id">ID*</label>
               <input 
+                required
                 id="id" 
                 name="id" 
                 type="text"
                 value={this.state.id}
                 onChange={this.handleInputChange}/>
-            </div>
+            </div> */}
 
             <div>
               <div className="inputCont">
-                <label>Age</label>
+                <label>Age*</label>
                 <input 
+                  required
                   id="year" 
                   name="year" 
                   type="number" 
@@ -241,34 +253,36 @@ class AddProfileForm extends React.Component {
                 <label htmlFor="year" className="ageLabel">Years</label>
 
                 <input 
-                id="month" 
-                name="month" 
-                type="number" 
-                min="0"
-                max="12" 
-                className="ageInput"
-                // value={this.state.age}
-                onChange={this.handleInputChange}
-                />
+                  required
+                  id="month" 
+                  name="month" 
+                  type="number" 
+                  min="0"
+                  max="12" 
+                  className="ageInput"
+                  // value={this.state.age}
+                  onChange={this.handleInputChange}
+                  />
                 <label htmlFor="month" className="ageLabel">Months</label>
               </div>
             </div>
 
             <div className="radioCont">
-              <label className="genderLabel">Gender</label>
+              <label className="genderLabel">Gender*</label>
               <label htmlFor="female" className="genderLabel radioLabel">
-                <input type="radio" id="female" name="gender" value="female" onChange={this.handleInputChange} />
+                <input type="radio" id="female" name="gender" value="Female" onChange={this.handleInputChange} />
                 <span>Female</span>
               </label>
               <label htmlFor="male" className="genderLabel radioLabel">
-                <input type="radio" id="male" name="gender" value="male" onChange={this.handleInputChange} />
+                <input type="radio" id="male" name="gender" value="Male" onChange={this.handleInputChange} />
                 <span>Male</span>
               </label>
             </div>
 
             <div className="inputCont">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Address*</label>
               <input 
+                required
                 id="address" 
                 name="address" 
                 type="text"
@@ -277,8 +291,9 @@ class AddProfileForm extends React.Component {
             </div>
 
             <div className="inputCont">
-              <label htmlFor="date">Date</label>
+              <label htmlFor="date">Date*</label>
               <input 
+                required
                 id="date" 
                 name="date" 
                 type="date"
@@ -287,8 +302,9 @@ class AddProfileForm extends React.Component {
             </div>
 
             <div className="fileCont">
-              <label className="fileLabel">Image</label>
+              <label className="fileLabel">Image*</label>
               <input 
+                required
                 type="file" 
                 id="image" 
                 name="image" 
@@ -299,8 +315,9 @@ class AddProfileForm extends React.Component {
             </div>
 
             <div className="inputCont">
-              <label htmlFor="story">Story</label>
+              <label htmlFor="story">Story*</label>
               <textarea 
+                required
                 id="story"
                 name="story" 
                 // rows="10" 

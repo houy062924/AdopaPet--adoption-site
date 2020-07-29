@@ -18,8 +18,8 @@
   box-shadow: 1px 2px 10px var(--light-gray);
 }
 .likeCont .heartCont {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   margin: 0 auto;
   background-image: url("/src/images/heart.svg");
@@ -30,23 +30,25 @@
   background-image: url("/src/images/heart-h.svg");
 }
 .likeCont .removeCont {
-  width: 27px;
-  height: 27px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
-  background-image: url("/src/images/close-darkgray.svg");
+  background-image: url("/src/images/close-red-fill.svg"); 
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
   margin-left: auto;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -10px;
+  right: -10px;
+  /* background-color: var(--red);
+  border-radius: 50%; */
 }
-.likeCont .removeCont:hover {
+/* .likeCont .removeCont:hover {
   background-image: url("/src/images/close-red.svg");
-}
+} */
 .likeCont .imgCont {
   width: 100%;
-  height: 160px;
+  height: 220px;
 }
 .likeCont .profileImg {
   width: 100%;
@@ -55,12 +57,12 @@
   object-position: 50% 0;
 }
 .likeCont .adoptedCont {
-  background-color: var(--light-gray);
+  background-color: rgba(220,220,220, 0.8);
   position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,6 +70,17 @@
   cursor: context-menu;
   padding: 15px;
   border-radius: 10px;
+}
+.likeCont .adoptedCont p {
+  font-weight: 900;
+  font-size: 45px;
+  color: var(--red);
+  transform: rotate(-15deg);
+  background-color: white;
+  border-radius: 10px;
+  padding: 0 15px;
+  text-align: center;
+  line-height: 65px;
 }
 .likeCont .adoptedCont img {
   height: 70%;
@@ -197,6 +210,21 @@
 }
 .fullProfileCont .formStoryCont .formStory {
   line-height: 25px;
+}
+.fullProfileCont .adoptButton {
+  height: 35px;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  float: right;
+  margin: 5px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .fullProfileCont ::-webkit-scrollbar {
   width: 5px;

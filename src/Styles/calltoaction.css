@@ -8,16 +8,19 @@
 .callToActionCont .callToActionTitle {
   text-align: center;
   font-size: 25px;
+  margin-bottom: 15px;
 }
 .callToActionCont .callToActionTextCont {
   padding: 0 50px 50px 50px;
   display: flex;
+  flex-wrap: wrap;
 }
 .callToActionCont .columnCont {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 0 25px;
+  margin-top: 15px;
 }
 .callToActionCont .columnCont p {
   text-align: center;
@@ -33,7 +36,6 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 250px;
-  width: 30vw;
 }
 .callToActionCont .signinUserImg:hover {
   background-image: url("/src/images/process/user/2.svg");
@@ -73,4 +75,8 @@
 }
 .signinUser:hover .signinUserImg {
   background-image: url("/src/images/process/user/2.svg");
+}
+
+@media screen and (max-width: 992px) {
+
 }

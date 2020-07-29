@@ -61,7 +61,7 @@ class SideNavUser extends React.Component {
             Animal Profiles
           </li>
         </Link>
-        <Link to="/dashboard/calender">
+        {/* <Link to="/dashboard/calender">
           <li className="linkCont" onClick={()=>this.toggleNav(true)}>
             <div 
               className={this.state.navOpened ? "linkIcon calendarIcon openedNavIcon" : "linkIcon calendarIcon closedNavIcon"}>
@@ -76,7 +76,7 @@ class SideNavUser extends React.Component {
             </div>
             Settings
           </li>
-        </Link>
+        </Link> */}
       </ul>
     )
   }

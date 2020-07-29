@@ -25,7 +25,12 @@
   padding-bottom: 0;
 }
 .cardStackCont .bottomCardCont p {
-  margin-bottom: 0;
+  margin-bottom: 5%;
+  font-size: 20px;
+  font-weight: bold;
+}
+.cardStackCont .bottomCardCont img {
+  width: 300px;
 }
 .cardStackCont .profileCont {
   max-width: 750px;

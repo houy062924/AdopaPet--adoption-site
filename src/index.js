@@ -62,7 +62,6 @@ class App extends React.Component {
         redirect: "/signin",
         slide: "slideLeft"
       })
-      // this.handleIdentityChange("1");
     }
     else if (type === "user") {
       this.setState({
@@ -70,11 +69,25 @@ class App extends React.Component {
         redirect: "/signin",
         slide: "slideRight"
       })
-      // this.handleIdentityChange("0");
     }
     else if (type === "home") {
+      console.log(this.state)
+      if (this.state.identity === 0) {
+        this.setState({
+          identity: 2,
+          redirect: null
+        })
+      }
+      else if (this.state.identity === 1) {
+        this.setState({
+          identity: 1,
+          redirect: null
+        })
+      }     
+    }
+    else if (type === "dashboard") {
       this.setState({
-        identity: 1,
+        identity: 0,
         redirect: null
       })
     }
@@ -197,7 +210,7 @@ class App extends React.Component {
           .then(()=>{
             if (this.state.identity===0) {
               this.setState({
-                redirect: "/org/dashboard"
+                redirect: "/org/dashboard/overview"
               })
             }
             else {
@@ -220,7 +233,7 @@ class App extends React.Component {
 
             if (doc.data().identity===0) {
               this.setState({
-                redirect: "/org/dashboard"
+                redirect: "/org/dashboard/overview"
               })
             }
             else {

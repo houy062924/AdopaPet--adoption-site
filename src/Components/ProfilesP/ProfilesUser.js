@@ -72,7 +72,8 @@ class ProfilesUser extends React.Component {
     let likes = [];
     let difference = [];
 
-    this.db.collection("animals").get()
+    this.db.collection("animals")
+    .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         profiles.push(doc.data());
@@ -135,15 +136,11 @@ class ProfilesUser extends React.Component {
     let likeArr;
     console.log(currentProfile)
 
-    this.db.collection("members").doc(this.props.userdata.uid).get()
-    .then((doc)=>{
-      likeArr = [...doc.data().likes, currentProfile];
+    this.db.collection("members").doc(this.props.userdata.uid).update({
+      "likes": firebase.firestore.FieldValue.arrayUnion(currentProfile) 
     })
     .then(()=>{
       this.setState({
-        likes: likeArr
-      })
-      this.db.collection("members").doc(this.props.userdata.uid).update({
         likes: likeArr
       })
       console.log("Set")
@@ -169,7 +166,7 @@ class ProfilesUser extends React.Component {
           ))
         }
         <div className="cardCont bottomCardCont">
-          <p>No more profiles</p>
+          <p>You've met them all!</p>
           <img src="/src/images/high-five.svg"></img>
         </div>
         <CardActions

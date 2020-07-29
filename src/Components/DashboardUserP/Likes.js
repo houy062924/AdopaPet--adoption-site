@@ -1,48 +1,36 @@
 import React from "react";
-import "../../styles/likes.css"
+import "../../styles/likes.css";
+
 
 class Likes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fullprofile: false,
-      currentprofile: null
-    }
-    this.functions = {
-      removeLike: this.removeLike.bind(this),
-      openFullProfile: this.openFullProfile.bind(this),
-      closeFullProfile: this.closeFullProfile.bind(this),
-    }
   }
-  openFullProfile(p, e) {
+  openFullProfile(p, e, i) {
     e.stopPropagation();
-    this.setState({
-      fullprofile: true,
-      currentprofile: p
-    })
+    this.props.functions.openFullProfile(p, e, i);
   }
   closeFullProfile() {
-    this.setState({
-      fullprofile: false,
-      currentprofile: null
-    })
+    this.props.functions.closeFullProfile();
   }
   removeLike(p, e) {
     e.stopPropagation();
-    this.props.removeLike(p);
+    this.props.functions.removeLike(p);
+  }
+  handleAdopt() {
+    this.props.functions.handleAdopt();
   }
 
   render() {
     let adopted = null;
-
     return (
       <div className="likePageCont"> 
         { this.props.likestate !== undefined &&
-          this.props.likestate.map((like)=>(
+          this.props.likestate.map((like, index)=>(
             <div 
               className="likeCont" 
               key={like.id}
-              onClick={()=>this.openFullProfile(like, event)}>
+              onClick={()=>this.openFullProfile(like, event, index)}>
                 
               <div className="imgCont">
                 <img src={like.url} className="profileImg"></img>
@@ -65,16 +53,23 @@ class Likes extends React.Component {
                   { like.address }
                 </p>
               </div>
-              <div className="heartCont" onClick={(event)=>this.removeLike(like, event)}></div>
+              <div className="removeCont" onClick={(event)=>this.removeLike(like, event)}></div>
+
+              {/* <div className="heartCont" onClick={(event)=>this.removeLike(like, event)}></div> */}
+              { like.adoptionstatus === 0 &&
+                <div>
+                  testetst
+                </div>
+              }
               { 
                 adopted = this.props.adoptedstate.map((adopted)=>{
                   if (adopted.id === like.id) {
                     return <div 
                       className="adoptedCont"
                       key="like.id">
-                        <div className="removeCont" onClick={()=>this.removeLike(like)}></div>
-                        <p>I am home</p>
-                        <img src="/src/images/dog-home.svg"></img>
+                        <div className="removeCont" onClick={(event)=>this.removeLike(like, event)}></div>
+                        <p>Adopted</p>
+                        {/* <img src="/src/images/dog-home.svg"></img> */}
                       </div>
                   }
                 })
@@ -82,10 +77,11 @@ class Likes extends React.Component {
             </div>
           ))
         }
-        { this.state.fullprofile === true &&
+        { this.props.dashstate.fullprofile === true &&
           <FullProfile
-            likestate={this.state}
-            functions={this.functions}>
+            statedata={this.props.statedata}
+            dashstate={this.props.dashstate}
+            functions={this.props.functions}>
           </FullProfile>
         }
       </div>
@@ -98,14 +94,18 @@ class FullProfile extends React.Component {
     super(props);
 
     this.closeFullProfile = this.closeFullProfile.bind(this);
+    this.handleAdopt = this.handleAdopt.bind(this);
   }
 
+  handleAdopt() {
+    this.props.functions.handleAdopt();
+  }
   closeFullProfile() {
     this.props.functions.closeFullProfile();
   }
 
   render() {
-    let currentprofile = this.props.likestate.currentprofile;
+    let currentprofile = this.props.dashstate.currentprofile;
 
     return (
       <div className="fullProfileCont">
@@ -155,6 +155,8 @@ class FullProfile extends React.Component {
                 {currentprofile.story}
               </p>
             </div>
+
+            <div className="adoptButton" onClick={this.handleAdopt}>Start the adoption process</div>
           </div>
 
         </form>

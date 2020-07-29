@@ -20,10 +20,20 @@ class Nav extends React.Component {
 
   render() {
     let data = this.props.statedata;
-    console.log(this.props.statedata.identity=== 1)
+    let styles;
+    if (this.props.statedata.identity === 0) {
+      styles = "navCont orgColor";
+    }
+    else if (this.props.statedata.identity === 1) {
+      styles = "navCont userColor";
+    }
+    else if (this.props.statedata.identity === 2) {
+      styles = "navCont userColor";
+    }
+
     return (
       <nav>
-        <div className={ this.props.statedata.identity === 1 ? "navCont userColor" : "navCont orgColor" }>
+        <div className={ styles }>
           <div className="logoCont" onClick={()=>this.handleRedirect("home")}>
             <Link to="/">
               <img src="/src/images/logo-v8.svg"></img>
@@ -41,6 +51,16 @@ class Nav extends React.Component {
             <ul className="linkCont">
               
               <Link to="/org/dashboard">
+                <li>Dashboard</li>
+              </Link>
+              
+              <li onClick={this.handleSignOut}>Sign out</li>
+            </ul>
+          }
+          { data.signedin === true && data.identity === 2 &&
+            <ul className="linkCont">
+              
+              <Link to="/org/dashboard" onClick={()=>this.handleRedirect("dashboard")}>
                 <li>Dashboard</li>
               </Link>
               

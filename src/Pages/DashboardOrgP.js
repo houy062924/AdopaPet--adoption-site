@@ -2,10 +2,11 @@ import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
 
-// import SideNav from "../Components/DashboardOrgP/SideNav";
+import SideNav from "../Components/DashboardOrgP/SideNav";
 import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
+import Overview from "../Components/DashboardOrgP/Overview";
+
 // import Calender from "../Components/DashboardOrgP/Calender";
-// import Overview from "../Components/DashboardOrgP/Overview";
 
 
 class DashboardOrgP extends React.Component {
@@ -17,7 +18,6 @@ class DashboardOrgP extends React.Component {
       editingprofile: false,
       profiles: [],
       currentprofile: null,
-      currentprofiledoc: null,
       confirmDelete: false,
     }
     this.functions = {
@@ -40,6 +40,7 @@ class DashboardOrgP extends React.Component {
   getData() {
     let profilesarr = [];
     this.db.collection("animals").where("orguid", "==", this.props.statedata.uid)
+    .orderBy("timestamp", "desc")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -106,26 +107,25 @@ class DashboardOrgP extends React.Component {
     })
 
     // 2. remove from database
-    this.db.collection("animals").where("id", "==", this.state.currentprofile.id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        this.setState({
-          currentprofiledoc: doc.id
-        })
-      });
+    this.db.collection("animals").doc(this.state.currentprofile.id)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+      this.closeEditForm();
     })
-    .then(()=>{
-      this.db.collection("animals").doc(this.state.currentprofiledoc).delete()
-      .then(() => {
-        console.log("Document successfully deleted!");
-        this.closeEditForm();
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
-    })   
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+    // .then(()=>{
+    //   this.db.collection("animals").doc(this.state.currentprofiledoc).delete()
+    //   .then(() => {
+    //     console.log("Document successfully deleted!");
+    //     this.closeEditForm();
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error removing document: ", error);
+    //   });
+    // })   
   }
   cancelDeleteProfile() {
     this.setState({
@@ -136,12 +136,12 @@ class DashboardOrgP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/org">
-        <ProfilesOrg
+        {/* <ProfilesOrg
           appstate={this.props.statedata} 
           functions={this.functions} 
           dashstate={this.state}>
-        </ProfilesOrg>
-        {/* <SideNav statedata={this.props.statedata}></SideNav>
+        </ProfilesOrg> */}
+        <SideNav statedata={this.props.statedata}></SideNav>
 
         <Route 
           path="/dashboard/overview" 
@@ -162,7 +162,7 @@ class DashboardOrgP extends React.Component {
             </ProfilesOrg>
           )}>
         </Route>
-        <Route 
+        {/* <Route 
           path="/dashboard/calender" 
           render={()=>(
             <Calender 

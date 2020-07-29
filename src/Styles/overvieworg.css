@@ -1,0 +1,46 @@
+/* Overview ------- */
+
+.overviewCont {
+  margin: 110px 60px 50px 100px;
+}
+.overviewCont .overviewTopCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
+}
+.overviewCont .overviewBox  {
+  width: 100%;
+  height: 125px;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.overviewCont .pendingAppCont {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.overviewCont .overviewBox:hover {
+  box-shadow: 1px 2px 10px var(--light-gray);
+}
+.overviewCont .overviewBox .overviewTitle {
+  margin: 0;
+}
+.overviewCont .overviewBox .overviewNumber {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Pending ----- */
+
+.overviewCont .overviewBottomCont {
+  margin: 50px 0;
+}
