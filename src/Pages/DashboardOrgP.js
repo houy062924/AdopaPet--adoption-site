@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
 
-import SideNav from "../Components/DashboardOrgP/SideNav";
+// import SideNav from "../Components/DashboardOrgP/SideNav";
 import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
 import Overview from "../Components/DashboardOrgP/Overview";
 
@@ -40,19 +40,12 @@ class DashboardOrgP extends React.Component {
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
     this.db = firebase.firestore();
-    this.test = this.test.bind(this);
   }
 
   componentDidMount() {
     this.getPendingApplications();
     this.getActiveProfiles();
     this.getAdoptedProfiles();
-    this.test();
-  }
-
-  test() {
-    // change the adoptionstatus in "member" like list
-    
   }
 
   // Handle pending applications
@@ -62,6 +55,7 @@ class DashboardOrgP extends React.Component {
     .where("status", "==", 0)
     // .orderBy("timestamp", "desc")
     .onSnapshot((querySnapshot)=>{
+      // console.log(querySnapshot.getMetadata())
       let pendingarr = [];
       querySnapshot.forEach((doc) => {
         pendingarr.push(doc.data());
@@ -114,17 +108,6 @@ class DashboardOrgP extends React.Component {
         }
       })
     })
-    // let adopted = {
-    //   animaluid: profile.animaluid,
-    //   animalname: profile.animalname,
-    //   animalimg: profile.animalimg,
-    //   orguid: profile.orguid,
-    //   docuid: profile.docuid,
-    //   date: new Date(),
-    // }
-    // this.db.collection("members").doc(profile.useruid).update({
-    //   adoptedprofile: firebase.firestore.FieldValue.arrayUnion(adopted)
-    // })
   }
   handleRejectApp(profile) {
     console.log("reject")
@@ -241,7 +224,7 @@ class DashboardOrgP extends React.Component {
           functions={this.functions} 
           dashstate={this.state}>
         </ProfilesOrg> */}
-        <SideNav appstate={this.props.appstate}></SideNav>
+        {/* <SideNav appstate={this.props.appstate}></SideNav> */}
 
         <Route 
           path="/dashboard/overview" 

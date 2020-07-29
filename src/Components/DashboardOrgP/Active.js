@@ -9,7 +9,6 @@ class Active extends React.Component {
   }
 
   render() {
-    console.log(this.props.activeprofiles)
     return (
       <div className="overviewBottomCont"> 
         <ActiveProfiles

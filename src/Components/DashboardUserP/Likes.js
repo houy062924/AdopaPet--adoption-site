@@ -29,27 +29,27 @@ class Likes extends React.Component {
   renderAdoptionStatusButton(i) {
     let adoptionstatus = this.props.likestate[i].adoptionstatus
 
-    switch (adoptionstatus) {
-      case 0:
-        return <div
-                className="adoptButton"
-                onClick={this.handleAdopt}>
-                  Start adoption process
-               </div>
+    // switch (adoptionstatus) {
+    //   case 0:
+    //     return <div
+    //             className="adoptButton"
+    //             onClick={this.handleAdopt}>
+    //               Start adoption process
+    //            </div>
 
-      case 1:
-        return <div
-                className="pendingButton">
-                  Pending
-               </div>
+    //   case 1:
+    //     return <div
+    //             className="pendingButton">
+    //               Pending
+    //            </div>
 
-      case 2:
-        return <div
-                className="adoptButton"
-                onClick={this.handleAccept()}>
-                  Application accepted
-               </div>
-    }
+    //   case 2:
+    //     return <div
+    //             className="adoptButton"
+    //             onClick={this.handleAccept()}>
+    //               Application accepted
+    //            </div>
+    // }
   }
 
   render() {
@@ -131,6 +131,7 @@ class FullProfile extends React.Component {
     this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
     this.handleAdopt = this.handleAdopt.bind(this);
     this.cancelAdopt = this.cancelAdopt.bind(this);
+    this.renderFormStatusButton = this.renderFormStatusButton.bind(this);
   }
 
   handleAdopt() {
@@ -146,6 +147,58 @@ class FullProfile extends React.Component {
   }
   cancelAdopt() {
     this.props.functions.cancelAdopt();
+  }
+  renderFormStatusButton(p) {
+    let adoptionstatus = p.adoptionstatus;
+    console.log(p)
+
+    switch (adoptionstatus) {
+      case 0:
+        return <Pending
+                pendingprofiles={this.props.dashstate.pendingprofiles}
+                appstate={this.props.appstate}
+                functions={this.props.functions}>
+               </Pending>
+
+      case 1:
+        return <Active
+                // activeprofiles={this.props.dashstate.activeprofiles}
+                appstate={this.props.appstate}
+                dashstate={this.props.dashstate}
+                functions={this.props.functions}>
+               </Active>
+
+      case 2:
+        return <Adopted
+                // adoptedprofiles={this.props.dashstate.adoptedprofiles}
+                appstate={this.props.appstate}
+                dashstate={this.props.dashstate}
+                functions={this.props.functions}>
+               </Adopted>
+    }
+
+    // currentprofile.adoptionstatus === 0
+    //           ? <div 
+    //               className="adoptButton" 
+    //               onClick={this.handleAdopt}>
+    //                 Start the adoption application
+    //             </div>
+    //           : <div className="pendingTextCont">
+    //               <div 
+    //                 className="pendingButton">
+    //                   Pending application
+    //               </div>
+    //               <p onClick={this.toggleConfirmCancel}>Cancel application?</p>
+    //               { this.state.confirmcancel &&
+    //                 <div className="cancelTextCont">
+    //                   <p>This action will delete your application.<br></br>Would you like to proceed?</p>
+    //                   <div className="cancelButtonCont">
+    //                     <div className="cancelButton yes" onClick={this.cancelAdopt}>Yes</div>
+    //                     <div className="cancelButton no" onClick={this.toggleConfirmCancel}>No</div>
+    //                   </div>
+    //                 </div>
+    //               }
+    //             </div>
   }
 
   render() {
@@ -200,28 +253,8 @@ class FullProfile extends React.Component {
               </p>
             </div>
 
-            { currentprofile.adoptionstatus === 0
-              ? <div 
-                  className="adoptButton" 
-                  onClick={this.handleAdopt}>
-                    Start the adoption application
-                </div>
-              : <div className="pendingTextCont">
-                  <div 
-                    className="pendingButton">
-                      Pending application
-                  </div>
-                  <p onClick={this.toggleConfirmCancel}>Cancel application?</p>
-                  { this.state.confirmcancel &&
-                    <div className="cancelTextCont">
-                      <p>This action will delete your application.<br></br>Would you like to proceed?</p>
-                      <div className="cancelButtonCont">
-                        <div className="cancelButton yes" onClick={this.cancelAdopt}>Yes</div>
-                        <div className="cancelButton no" onClick={this.toggleConfirmCancel}>No</div>
-                      </div>
-                    </div>
-                  }
-                </div>
+            { 
+              this.renderFormStatusButton(currentprofile)
             }
             
           </div>

@@ -9,7 +9,6 @@ class Adopted extends React.Component {
   }
 
   render() {
-    console.log(this.props.adoptedprofiles)
     return (
       <div className="overviewBottomCont"> 
         <AdoptedProfiles

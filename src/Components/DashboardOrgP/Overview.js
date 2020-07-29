@@ -23,7 +23,6 @@ class Overview extends React.Component {
     let tabstatus = this.state.tabStatus;
     switch (tabstatus) {
       case 0:
-        console.log("pending")
         return <Pending
                 pendingprofiles={this.props.dashstate.pendingprofiles}
                 appstate={this.props.appstate}
@@ -31,7 +30,6 @@ class Overview extends React.Component {
                </Pending>
 
       case 1:
-        console.log("active")
         return <Active
                 // activeprofiles={this.props.dashstate.activeprofiles}
                 appstate={this.props.appstate}
@@ -40,7 +38,6 @@ class Overview extends React.Component {
                </Active>
 
       case 2:
-        console.log("adopted")
         return <Adopted
                 // adoptedprofiles={this.props.dashstate.adoptedprofiles}
                 appstate={this.props.appstate}
