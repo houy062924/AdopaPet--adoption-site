@@ -1,7 +1,7 @@
 /* Profiles ------- */
 .profilesPageCont {
   /* margin: 110px 60px 50px 60px;  without sidenav */  
-  margin: 110px 60px 50px 100px;
+  /* margin: 110px 60px 50px 100px; */
 }
 .profilesPageCont .addProfileButton {
   background-color: var(--dark-blue);
@@ -31,6 +31,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 .profilesPageCont .profilesCont .cardCont {
   background-color: white;

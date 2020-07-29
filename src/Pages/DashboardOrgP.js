@@ -16,12 +16,21 @@ class DashboardOrgP extends React.Component {
     this.state = {
       addingprofile: false,
       editingprofile: false,
-      profiles: [],
       currentprofile: null,
       confirmDelete: false,
+      profiles: [],
+      pendingprofiles: [],
+      activeprofiles: [],
+      adoptedprofiles: [],
     }
     this.functions = {
-      getData: this.getData.bind(this),
+      getPendingApplications: this.getPendingApplications.bind(this),
+      handleAcceptApp: this.handleAcceptApp.bind(this),
+      handleRejectApp: this.handleRejectApp.bind(this),
+
+      getActiveProfiles: this.getActiveProfiles.bind(this),
+      getAdoptedProfiles: this.getAdoptedProfiles.bind(this),
+
       toggleProfileForm: this.toggleProfileForm.bind(this),
       closeProfileForm: this.closeProfileForm.bind(this),
       openEditForm: this.openEditForm.bind(this),
@@ -31,47 +40,148 @@ class DashboardOrgP extends React.Component {
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
     this.db = firebase.firestore();
+    this.test = this.test.bind(this);
   }
 
   componentDidMount() {
-    this.getData();
+    this.getPendingApplications();
+    this.getActiveProfiles();
+    this.getAdoptedProfiles();
+    this.test();
   }
 
-  getData() {
-    let profilesarr = [];
-    this.db.collection("animals").where("orguid", "==", this.props.statedata.uid)
-    .orderBy("timestamp", "desc")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
-        profilesarr = [...profilesarr, doc.data()]
-        this.setState({
-          profiles: profilesarr
-        })
-      });
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-    });
+  test() {
+    // change the adoptionstatus in "member" like list
+    
   }
+
+  // Handle pending applications
+  getPendingApplications() {
+    this.db.collection("adoptions")
+    .where("orguid", "==", this.props.appstate.uid)
+    .where("status", "==", 0)
+    // .orderBy("timestamp", "desc")
+    .onSnapshot((querySnapshot)=>{
+      let pendingarr = [];
+      querySnapshot.forEach((doc) => {
+        pendingarr.push(doc.data());
+        this.setState({
+          pendingprofiles: pendingarr
+        })
+      })
+    })
+  }
+  handleAcceptApp(profile) {
+    // 1. change "animal" status to 1 (adopted)
+    this.db.collection("animals").doc(profile.animaluid).update({
+      adoptionstatus: 1,
+    })
+
+    // 2. change current profile's "adoptions" status to 1 (accept)
+    this.db.collection("adoptions").doc(profile.docuid).update({
+      status: 1
+    })
+
+    // 3. change other profiles of this animal in "adoptions" to 2 (reject)
+    this.db.collection("adoptions")
+    .where("animaluid", "==", profile.animaluid)
+    .get()
+    .then((querySnapshot)=>{
+      querySnapshot.forEach((doc)=>{
+        // if not current profile
+        if (doc.data().docuid !== profile.docuid) {
+          this.db.collection("adoptions").doc(doc.id).update({
+            status: 2
+          })
+        }
+      })
+    })
+
+    // 4. change user's "members" like-list status
+    this.db.collection("members").doc(profile.useruid)
+    .get()
+    .then((doc)=>{
+      let likesarr = doc.data().likes;
+      likesarr.forEach((like, index)=>{
+        // find the index of likes that match the current profile
+        if (like.id === profile.animaluid) {
+          likesarr[index].adoptionstatus = 2;
+
+          this.db.collection("members").doc(profile.useruid)
+          .update({
+            "likes": likesarr
+          })
+        }
+      })
+    })
+    // let adopted = {
+    //   animaluid: profile.animaluid,
+    //   animalname: profile.animalname,
+    //   animalimg: profile.animalimg,
+    //   orguid: profile.orguid,
+    //   docuid: profile.docuid,
+    //   date: new Date(),
+    // }
+    // this.db.collection("members").doc(profile.useruid).update({
+    //   adoptedprofile: firebase.firestore.FieldValue.arrayUnion(adopted)
+    // })
+  }
+  handleRejectApp(profile) {
+    console.log("reject")
+    console.log(profile)
+  }
+
+  // Handle active profiles
+  getActiveProfiles() {
+    this.db.collection("animals")
+    .where("orguid", "==", this.props.appstate.uid)
+    .where("adoptionstatus", "==", 0)
+    .onSnapshot((querySnapshot)=>{
+      let activearr = [];
+      querySnapshot.forEach((doc) => {
+        activearr.push(doc.data());
+        this.setState({
+          activeprofiles: activearr
+        })
+      })
+    })
+  }
+
+  // Handle adopted profiles
+  getAdoptedProfiles() {
+    this.db.collection("animals")
+    .where("orguid", "==", this.props.appstate.uid)
+    .where("adoptionstatus", "==", 1)
+    .onSnapshot((querySnapshot)=>{
+      let adoptedarr = [];
+      querySnapshot.forEach((doc) => {
+        adoptedarr.push(doc.data());
+        this.setState({
+          adoptedprofiles: adoptedarr
+        })
+      })
+    })
+  }
+
+
+  //
 
   toggleProfileForm(reset) {
     // event.preventDefault();
     this.setState((prevState)=>({
       addingprofile: !prevState.addingprofile
     }))
-    if (reset===true) {
-      this.getData();
-    }
+    // if (reset===true) {
+    //   this.getData();
+    // }
   }
   closeProfileForm(reset) {
     this.setState({
       addingprofile: false
     })
-    if (reset===true) {
-      this.getData();
-    }
+    // if (reset===true) {
+    //   this.getData();
+    // }
   }
   openEditForm(p, i) {
     this.setState({
@@ -116,16 +226,6 @@ class DashboardOrgP extends React.Component {
     .catch((error) => {
       console.error("Error removing document: ", error);
     });
-    // .then(()=>{
-    //   this.db.collection("animals").doc(this.state.currentprofiledoc).delete()
-    //   .then(() => {
-    //     console.log("Document successfully deleted!");
-    //     this.closeEditForm();
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error removing document: ", error);
-    //   });
-    // })   
   }
   cancelDeleteProfile() {
     this.setState({
@@ -137,17 +237,18 @@ class DashboardOrgP extends React.Component {
     return (
       <BrowserRouter basename="/org">
         {/* <ProfilesOrg
-          appstate={this.props.statedata} 
+          appstate={this.props.appstate} 
           functions={this.functions} 
           dashstate={this.state}>
         </ProfilesOrg> */}
-        <SideNav statedata={this.props.statedata}></SideNav>
+        <SideNav appstate={this.props.appstate}></SideNav>
 
         <Route 
           path="/dashboard/overview" 
           render={()=>(
             <Overview 
-              appstate={this.props.statedata} 
+              appstate={this.props.appstate}
+              dashstate={this.state} 
               functions={this.functions}>
             </Overview>
           )}>
@@ -156,7 +257,7 @@ class DashboardOrgP extends React.Component {
           path="/dashboard/profiles" 
           render={()=>(
             <ProfilesOrg 
-              appstate={this.props.statedata} 
+              appstate={this.props.appstate} 
               functions={this.functions} 
               dashstate={this.state}>
             </ProfilesOrg>
@@ -166,7 +267,7 @@ class DashboardOrgP extends React.Component {
           path="/dashboard/calender" 
           render={()=>(
             <Calender 
-              appstate={this.props.statedata} 
+              appstate={this.props.appstate} 
               functions={this.functions}>
             </Calender>
           )}>

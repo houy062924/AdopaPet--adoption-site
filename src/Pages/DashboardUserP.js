@@ -13,6 +13,7 @@ class DashboardUserP extends React.Component {
       adopted: [],
       fullprofile: false,
       currentprofile: null,
+      adoptedprofile: null,
     }
     this.functions = {
       openFullProfile: this.openFullProfile.bind(this),
@@ -31,14 +32,15 @@ class DashboardUserP extends React.Component {
     this.getDatabaseData();
   }
   getDatabaseData() {
-    this.db.collection("members").doc(this.props.statedata.uid).get()
-    .then((doc)=>{
+    this.db.collection("members")
+    .doc(this.props.statedata.uid)
+    .onSnapshot((snapshot) => {
       this.setState({
-        likes: doc.data().likes
+        likes: snapshot.data().likes
       })
-    })
-    .then(()=>{
-      this.checkProfileStatus();
+    }, 
+    function(error) {
+      console.log(error)
     })
   }
   checkProfileStatus() {
@@ -107,8 +109,14 @@ class DashboardUserP extends React.Component {
       useremail: this.props.statedata.email,
       animaluid: this.state.currentprofile.id,
       animalname: this.state.currentprofile.name,
+      animalimg: this.state.currentprofile.url,
       status: 0,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+    .then((doc)=>{
+      this.db.collection("adoptions").doc(doc.id).update({
+        docuid: doc.id
+      })
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
@@ -117,7 +125,6 @@ class DashboardUserP extends React.Component {
     // 2. save application status to user like-list in "members"
     let newarr = [...this.state.likes];
     newarr[this.state.currentprofileindex].adoptionstatus = 1;
-    console.log(newarr)
 
     this.db.collection("members").doc(this.props.statedata.uid).update({
       "likes": newarr

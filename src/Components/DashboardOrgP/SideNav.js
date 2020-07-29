@@ -41,8 +41,8 @@ class SideNav extends React.Component {
           </div>
           <div className="userTextCont">
             
-            <p className="userName">Welcome, {this.props.statedata.name}</p>
-            <p className="userEmail">{this.props.statedata.email}</p>
+            <p className="userName">Welcome, {this.props.appstate.name}</p>
+            <p className="userEmail">{this.props.appstate.email}</p>
           </div>
         </div>
 
@@ -62,14 +62,14 @@ class SideNav extends React.Component {
             Animal Profiles
           </li>
         </Link>
-        <Link to="/dashboard/calender">
+        {/* <Link to="/dashboard/calender">
           <li className="linkCont" onClick={()=>this.toggleNav(true)}>
             <div 
               className={this.state.navOpened ? "linkIcon calendarIcon openedNavIcon" : "linkIcon calendarIcon closedNavIcon"}>
             </div>
             Calender
           </li>
-        </Link>
+        </Link> */}
         <Link to="/dashboard/calender">
           <li className="linkCont settingLink" onClick={()=>this.toggleNav(true)}>
             <div 

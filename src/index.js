@@ -288,7 +288,7 @@ class App extends React.Component {
           path="/org/dashboard" 
           render={()=>(
             <DashboardOrgP 
-              statedata={this.state}>
+              appstate={this.state}>
             </DashboardOrgP>
           )}>
         </Route>

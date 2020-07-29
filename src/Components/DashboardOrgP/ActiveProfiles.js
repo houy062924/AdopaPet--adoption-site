@@ -4,25 +4,18 @@ import { firebase } from "../Shared/Firebase";
 import { storage } from "../Shared/Firebase";
 
 
-class ProfilesOrg extends React.Component {
+class ActiveProfiles extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggleProfileForm = this.toggleProfileForm.bind(this);
-    // this.closeProfileForm = this.closeProfileForm.bind(this);
     this.openEditForm = this.openEditForm.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.functions.getData();
-  // }
   toggleProfileForm(e) {
     e.preventDefault();
     this.props.functions.toggleProfileForm();
   }
-  // closeProfileForm() {
-  //   this.props.functions.closeProfileForm(e);
-  // }
   openEditForm(i) {
     this.props.functions.openEditForm(i);
   }
@@ -45,13 +38,13 @@ class ProfilesOrg extends React.Component {
           : null
         }
         <div className="profilesCont">
-          { this.props.profiles.length === 0
+          { this.props.dashstate.activeprofiles.length === 0
             ? <div>
                 <h2>Welcome, {this.props.appstate.name}!</h2>
                 <p className="welcomeText">Ready to get started? <br></br> Click the above button to add a profile.</p>
                 <img src="/src/images/point.svg"></img>
               </div>
-            : this.props.profiles.map((profile, index)=>(
+            : this.props.dashstate.activeprofiles.map((profile, index)=>(
                 <div 
                   key={profile.id} 
                   className="cardCont" 
@@ -225,18 +218,6 @@ class AddProfileForm extends React.Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}/>
             </div>
-
-            {/* <div className="inputCont">
-              <label htmlFor="id">ID*</label>
-              <input 
-                required
-                id="id" 
-                name="id" 
-                type="text"
-                value={this.state.id}
-                onChange={this.handleInputChange}/>
-            </div> */}
-
             <div>
               <div className="inputCont">
                 <label>Age*</label>
@@ -343,8 +324,8 @@ class EditProfileForm extends React.Component {
     this.handleEditImg = this.handleEditImg.bind(this);
     this.handleEditText = this.handleEditText.bind(this);
     this.handleEditRadio = this.handleEditRadio.bind(this);
-    this.confirmDeleteProfile = this.confirmDeleteProfile.bind(this);
-    this.cancelDeleteProfile = this.cancelDeleteProfile.bind(this);
+    // this.confirmDeleteProfile = this.confirmDeleteProfile.bind(this);
+    // this.cancelDeleteProfile = this.cancelDeleteProfile.bind(this);
   }
 
   closeEditForm(r) {
@@ -425,43 +406,11 @@ class EditProfileForm extends React.Component {
                 {currentprofile.story}
               </p>
             </div>
-            {/* { this.props.dashstate.confirmDelete 
-              ? <div className="warningCont">
-                  <p className="warningText">
-                    Congratulations!<br></br> Would you like to delete this profile?
-                  </p>
-                  <div>
-                    <button 
-                      type="button" 
-                      onClick={this.confirmDeleteProfile}
-                      className="deleteButton">
-                        Delete Profile
-                    </button>
-                    <button 
-                      type="button" 
-                      onClick={this.cancelDeleteProfile}
-                      className="cancelButton">
-                        Cancel
-                    </button>
-                  </div>
-                </div>
-              : <div className="warningCont">
-                  <button 
-                    type="button" 
-                    onClick={this.confirmDeleteProfile}
-                    className="deleteButton">
-                      Adopted
-                  </button>
-                </div>
-            
-            } */}
-
           </div>
-          {/* <button type="submit" onSubmit={this.handleFormSubmit}>Submit</button> */}
         </form>
       </div>
     )
   }
 }
 
-export default ProfilesOrg;
+export default ActiveProfiles;

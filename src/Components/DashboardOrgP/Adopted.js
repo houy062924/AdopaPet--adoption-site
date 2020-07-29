@@ -1,5 +1,7 @@
 import React from "react";
+// import ProfilesOrg from "./ProfilesOrg";
 import "../../styles/overvieworg.css";
+import AdoptedProfiles from "./AdoptedProfiles";
 
 class Adopted extends React.Component {
   constructor(props) {
@@ -7,9 +9,15 @@ class Adopted extends React.Component {
   }
 
   render() {
+    console.log(this.props.adoptedprofiles)
     return (
       <div className="overviewBottomCont"> 
-        adopted
+        <AdoptedProfiles
+          // profiles={this.props.adoptedprofiles}
+          appstate={this.props.appstate}
+          dashstate={this.props.dashstate}
+          functions={this.props.functions}>
+        </AdoptedProfiles>
       </div>
     )
   }

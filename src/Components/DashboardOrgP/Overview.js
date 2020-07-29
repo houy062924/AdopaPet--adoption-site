@@ -23,16 +23,30 @@ class Overview extends React.Component {
     let tabstatus = this.state.tabStatus;
     switch (tabstatus) {
       case 0:
-        console.log("pedning")
-        return <Pending></Pending>
+        console.log("pending")
+        return <Pending
+                pendingprofiles={this.props.dashstate.pendingprofiles}
+                appstate={this.props.appstate}
+                functions={this.props.functions}>
+               </Pending>
 
       case 1:
         console.log("active")
-        return <Active></Active>
+        return <Active
+                // activeprofiles={this.props.dashstate.activeprofiles}
+                appstate={this.props.appstate}
+                dashstate={this.props.dashstate}
+                functions={this.props.functions}>
+               </Active>
 
       case 2:
         console.log("adopted")
-        return <Adopted></Adopted>
+        return <Adopted
+                // adoptedprofiles={this.props.dashstate.adoptedprofiles}
+                appstate={this.props.appstate}
+                dashstate={this.props.dashstate}
+                functions={this.props.functions}>
+               </Adopted>
     }
   }
 
@@ -42,15 +56,21 @@ class Overview extends React.Component {
         <div className="overviewTopCont">
           <div className="overviewBox pendingAppCont" onClick={()=>this.handleTabChange(0)}>
             <p className="overviewTitle">Pending Applications</p>
-            <p className="overviewNumber">10</p>
+            <p className="overviewNumber">
+              {this.props.dashstate.pendingprofiles.length}
+            </p>
           </div>
           <div className="overviewBox" onClick={()=>this.handleTabChange(1)}>
             <p className="overviewTitle">Active Profiles</p>
-            <p className="overviewNumber">8</p>
+            <p className="overviewNumber">
+              {this.props.dashstate.activeprofiles.length}
+            </p>
           </div>
           <div className="overviewBox" onClick={()=>this.handleTabChange(2)}>
             <p className="overviewTitle">Adopted Profiles</p>
-            <p className="overviewNumber">5</p>
+            <p className="overviewNumber">
+              {this.props.dashstate.adoptedprofiles.length}
+            </p>
           </div>
         </div>
         {

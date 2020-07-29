@@ -5,6 +5,9 @@ import "../../styles/likes.css";
 class Likes extends React.Component {
   constructor(props) {
     super(props);
+
+    this.renderAdoptionStatusButton = this.renderAdoptionStatusButton.bind(this);
+    this.handleAccept = this.handleAccept.bind(this);
   }
   openFullProfile(p, e, i) {
     e.stopPropagation();
@@ -20,12 +23,41 @@ class Likes extends React.Component {
   handleAdopt() {
     this.props.functions.handleAdopt();
   }
+  handleAccept() {
+    console.log("accept")
+  }
+  renderAdoptionStatusButton(i) {
+    let adoptionstatus = this.props.likestate[i].adoptionstatus
+
+    switch (adoptionstatus) {
+      case 0:
+        return <div
+                className="adoptButton"
+                onClick={this.handleAdopt}>
+                  Start adoption process
+               </div>
+
+      case 1:
+        return <div
+                className="pendingButton">
+                  Pending
+               </div>
+
+      case 2:
+        return <div
+                className="adoptButton"
+                onClick={this.handleAccept()}>
+                  Application accepted
+               </div>
+    }
+  }
 
   render() {
     let adopted = null;
+
     return (
       <div className="likePageCont"> 
-        { this.props.likestate !== undefined &&
+        { this.props.likestate.length !== 0 &&
           this.props.likestate.map((like, index)=>(
             <div 
               className="likeCont" 
@@ -57,13 +89,8 @@ class Likes extends React.Component {
 
               {/* <div className="heartCont" onClick={(event)=>this.removeLike(like, event)}></div> */}
 
-              { like.adoptionstatus === 0 
-                ? <div className="adoptButton">
-                    Apply to adopt
-                  </div>
-                : <div className="pendingButton">
-                    Pending
-                  </div>
+              { 
+                this.renderAdoptionStatusButton(index)
               }
               { 
                 adopted = this.props.adoptedstate.map((adopted)=>{
@@ -205,4 +232,24 @@ class FullProfile extends React.Component {
   }
 }
 
+// class AdoptedProfile extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+
+//   }
+
+//   componentDidMount() {
+
+//   }
+
+//   render() {
+//     console.log(this.props.adoptedprofile);
+//     return (
+//       <div>
+//         testtt
+//       </div>
+//     )
+//   }
+// }
 export default Likes;

@@ -73,6 +73,7 @@ class ProfilesUser extends React.Component {
     let difference = [];
 
     this.db.collection("animals")
+    .where("adoptionstatus", "==", 0)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
