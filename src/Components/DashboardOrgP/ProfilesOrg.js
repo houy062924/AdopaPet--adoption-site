@@ -225,18 +225,6 @@ class AddProfileForm extends React.Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}/>
             </div>
-
-            {/* <div className="inputCont">
-              <label htmlFor="id">ID*</label>
-              <input 
-                required
-                id="id" 
-                name="id" 
-                type="text"
-                value={this.state.id}
-                onChange={this.handleInputChange}/>
-            </div> */}
-
             <div>
               <div className="inputCont">
                 <label>Age*</label>

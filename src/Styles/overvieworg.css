@@ -23,7 +23,7 @@
   padding: 15px;
   box-sizing: border-box;
 }
-.overviewCont .pendingAppCont {
+.overviewCont .activeTab {
   background-color: var(--dark-blue);
   color: var(--white);
 }

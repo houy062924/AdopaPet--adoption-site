@@ -1,11 +1,17 @@
 import React from "react";
+import AdoptionForm from "./AdoptionForm";
 
 class AllLikes extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      adoptform: false
+    }
 
     // this.renderAdoptionStatusButton = this.renderAdoptionStatusButton.bind(this);
     // this.handleAccept = this.handleAccept.bind(this);
+    this.toggleAdoptForm = this.toggleAdoptForm.bind(this);
+    this.handleAdopt = this.handleAdopt.bind(this);
   }
   openFullProfile(p, e, i) {
     e.stopPropagation();
@@ -13,6 +19,9 @@ class AllLikes extends React.Component {
   }
   closeFullProfile() {
     this.props.functions.closeFullProfile();
+  }
+  toggleAdoptForm() {
+    this.props.functions.toggleAdoptForm();
   }
   handleAdopt() {
     this.props.functions.handleAdopt();
@@ -28,7 +37,7 @@ class AllLikes extends React.Component {
       case 0:
         return <div
                 className="adoptButton"
-                onClick={this.handleAdopt}>
+                onClick={this.toggleAdoptForm}>
                   Start adoption process
                </div>
 
@@ -105,18 +114,19 @@ class AllLikes extends React.Component {
 class FullProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      confirmcancel: false
-    }
 
     this.closeFullProfile = this.closeFullProfile.bind(this);
-    this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
+    // this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
+    this.toggleAdoptForm = this.toggleAdoptForm.bind(this);
     this.handleAdopt = this.handleAdopt.bind(this);
     this.handleAccept = this.handleAccept.bind(this);
     this.cancelAdopt = this.cancelAdopt.bind(this);
     this.renderFormStatusButton = this.renderFormStatusButton.bind(this);
   }
 
+  toggleAdoptForm() {
+    this.props.functions.toggleAdoptForm();
+  }
   handleAdopt() {
     this.props.functions.handleAdopt();
   }
@@ -126,22 +136,23 @@ class FullProfile extends React.Component {
   closeFullProfile() {
     this.props.functions.closeFullProfile();
   }
-  toggleConfirmCancel() {
-    this.setState((prevState)=>({
-      confirmcancel: !prevState.confirmcancel
-    }))
-  }
+  // toggleConfirmCancel() {
+  //   this.setState((prevState)=>({
+  //     confirmcancel: !prevState.confirmcancel
+  //   }))
+  // }
   cancelAdopt() {
     this.props.functions.cancelAdopt();
   }
   renderFormStatusButton(p) {
     let adoptionstatus = p.adoptionstatus;
-    if (this.props.dashstate.acceptedorg !== null) {
+    
+    if (adoptionstatus !== 2 || this.props.dashstate.acceptedorg !== null) {
       switch (adoptionstatus) {
         case 0:
           return <div
                   className="adoptButton"
-                  onClick={this.handleAdopt}>
+                  onClick={this.toggleAdoptForm}>
                     Start adoption process
                  </div>
   
@@ -153,7 +164,7 @@ class FullProfile extends React.Component {
   
         case 2:
           return <div className="contactInfoCont">
-                  <p className="contactTitle">Please contact the following organisation and provide the id given below</p>
+                  <p className="contactTitle">Please contact the following organisation and provide the ID given below</p>
                   <p className="contactText">
                     <span className="contactTextTitle">Name</span>
                     <br></br>
@@ -165,7 +176,7 @@ class FullProfile extends React.Component {
                     {this.props.dashstate.acceptedorg.email}
                   </p>
                   <p className="contactText">
-                    <span className="contactTextTitle">Id</span>
+                    <span className="contactTextTitle">ID</span>
                     <br></br>
                     {this.props.statedata.uid}
                     </p>
@@ -179,7 +190,7 @@ class FullProfile extends React.Component {
 
     return (
       <div className="fullProfileCont">
-        <form className="fullProfileForm">
+        <div className="fullProfileForm">
           <div className="formTopCont">
             <p className="formTopTitle">Profile</p>
             <p className="closeFormButton" onClick={this.closeFullProfile}>X</p>
@@ -226,16 +237,22 @@ class FullProfile extends React.Component {
               </p>
             </div>
 
-            { 
-              this.renderFormStatusButton(currentprofile)
+            { this.props.dashstate.adoptform === false
+              ? this.renderFormStatusButton(currentprofile)
+              : <AdoptionForm
+                  dashstate={this.props.dashstate}
+                  functions={this.props.functions}>
+                </AdoptionForm>
             }
             
           </div>
 
-        </form>
+        </div>
       </div>
     )
   }
 }
+
+
 
 export default AllLikes;

@@ -17,10 +17,12 @@ class DashboardUserP extends React.Component {
       currentprofile: null,
       adoptedprofile: null,
       acceptedorg: null,
+      adoptform: false,
     }
     this.functions = {
       openFullProfile: this.openFullProfile.bind(this),
       closeFullProfile: this.closeFullProfile.bind(this),
+      toggleAdoptForm: this.toggleAdoptForm.bind(this),
       handleAdopt: this.handleAdopt.bind(this),
       cancelAdopt: this.cancelAdopt.bind(this),
       removeLike: this.removeLike.bind(this),
@@ -106,7 +108,8 @@ class DashboardUserP extends React.Component {
       this.setState({
         fullprofile: true,
         currentprofile: profile,
-        currentprofileindex: index
+        currentprofileindex: index,
+        // adoptform: false,
       })
     }
     if (profile.adoptionstatus === 2) {
@@ -116,10 +119,16 @@ class DashboardUserP extends React.Component {
   closeFullProfile() {
     this.setState({
       fullprofile: false,
-      currentprofile: null
+      currentprofile: null,
+      adoptform: false
     })
   }
-  handleAdopt() {
+  toggleAdoptForm() {
+    this.setState(prevState => ({
+      adoptform: !prevState.adoptform
+    }))
+  }
+  handleAdopt(application) {
     // 1. save info to "adoptions" collection
     this.db.collection("adoptions").add({
       orguid: this.state.currentprofile.orguid,
@@ -130,6 +139,7 @@ class DashboardUserP extends React.Component {
       animalname: this.state.currentprofile.name,
       animalimg: this.state.currentprofile.url,
       status: 0,
+      application: application,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
     .then((doc)=>{

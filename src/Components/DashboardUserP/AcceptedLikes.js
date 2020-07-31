@@ -209,7 +209,7 @@ class FullProfile extends React.Component {
 
             { this.props.dashstate.acceptedorg !== null &&
               <div className="contactInfoCont">
-                <p>Please contact the following organisation and provide the id given below:</p>
+                <p>Please contact the following organisation and provide the id given below</p>
                 <p>Name: {this.props.dashstate.acceptedorg.name}</p>
                 <p>Email: {this.props.dashstate.acceptedorg.email}</p>
                 <p>Id: {this.props.statedata.uid}</p>

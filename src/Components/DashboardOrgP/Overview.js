@@ -51,19 +51,25 @@ class Overview extends React.Component {
     return (
       <div className="overviewCont"> 
         <div className="overviewTopCont">
-          <div className="overviewBox pendingAppCont" onClick={()=>this.handleTabChange(0)}>
+          <div 
+          className={this.state.tabStatus === 0 ? "overviewBox  activeTab" : "overviewBox"}
+          onClick={()=>this.handleTabChange(0)}>
             <p className="overviewTitle">Pending Applications</p>
             <p className="overviewNumber">
               {this.props.dashstate.pendingprofiles.length}
             </p>
           </div>
-          <div className="overviewBox" onClick={()=>this.handleTabChange(1)}>
+          <div 
+          className={this.state.tabStatus === 1 ? "overviewBox  activeTab" : "overviewBox"}
+          onClick={()=>this.handleTabChange(1)}>
             <p className="overviewTitle">Active Profiles</p>
             <p className="overviewNumber">
               {this.props.dashstate.activeprofiles.length}
             </p>
           </div>
-          <div className="overviewBox" onClick={()=>this.handleTabChange(2)}>
+          <div 
+          className={this.state.tabStatus === 2 ? "overviewBox  activeTab" : "overviewBox"}
+          onClick={()=>this.handleTabChange(2)}>
             <p className="overviewTitle">Adopted Profiles</p>
             <p className="overviewNumber">
               {this.props.dashstate.adoptedprofiles.length}
