@@ -210,7 +210,7 @@ class App extends React.Component {
           .then(()=>{
             if (this.state.identity===0) {
               this.setState({
-                redirect: "/org/dashboard/overview"
+                redirect: "/org/dashboard"
               })
             }
             else {
@@ -233,7 +233,7 @@ class App extends React.Component {
 
             if (doc.data().identity===0) {
               this.setState({
-                redirect: "/org/dashboard/overview"
+                redirect: "/org/dashboard"
               })
             }
             else {

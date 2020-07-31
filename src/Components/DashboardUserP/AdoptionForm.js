@@ -12,7 +12,7 @@ class AdoptionForm extends React.Component {
       phone: "",
       email: "",
       pets: "",
-      housetype: "house-with-yard",
+      housetype: "House-with-yard",
       other: ""
     }
 
@@ -30,7 +30,6 @@ class AdoptionForm extends React.Component {
     this.props.functions.toggleAdoptForm();
   }
   handleAdoptFormDb() {
-    console.log("Test")
     let adoptionform = {
       name: this.state.name,
       birthdate: this.state.birthdate,
@@ -89,11 +88,11 @@ class AdoptionForm extends React.Component {
           <div className="inputCont selectCont">
             <label htmlFor="housetype">House Type*</label>
             <select id="housetype" name="housetype" onChange={this.handleInputChange}>
-              <option value="house-with-yard">House with yard</option>
-              <option value="townhouse">Townhouse</option>
-              <option value="apartment">Apartment</option>
-              <option value="rentalroom">Rental Room</option>
-              <option value="dorm">Dorm</option>
+              <option value="House-with-yard">House with yard</option>
+              <option value="Townhouse">Townhouse</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Rentalroom">Rental Room</option>
+              <option value="Dorm">Dorm</option>
             </select>
           </div>
           <div className="inputCont">
@@ -123,7 +122,7 @@ class AdoptionForm extends React.Component {
                 type="radio" 
                 id="pet-no" 
                 name="pets" 
-                value="no"
+                value="No"
                 onChange={this.handleInputChange} 
               />
               <span>No, I do not have other pets.</span>
@@ -136,7 +135,7 @@ class AdoptionForm extends React.Component {
                 type="radio" 
                 id="pet-yes" 
                 name="pets" 
-                value="yes" 
+                value="Yes" 
                 onChange={this.handleInputChange} 
               />
               <span>Yes, I currently have pets.</span>

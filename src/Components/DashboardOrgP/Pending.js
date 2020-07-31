@@ -1,13 +1,17 @@
 import React from "react";
-import "../../styles/overvieworg.css";
+import ApplicationFormOrg from "./ApplicationFormOrg";
 
 class Pending extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentapplication: null,
+    }
 
     this.handleAcceptApp = this.handleAcceptApp.bind(this);
     this.handleRejectApp = this.handleRejectApp.bind(this);
     this.renderAdoptionStatus = this.renderAdoptionStatus.bind(this);
+    this.toggleApplicationForm = this.toggleApplicationForm.bind(this);
   }
 
   handleAcceptApp(p) {
@@ -17,20 +21,16 @@ class Pending extends React.Component {
     this.props.functions.handleRejectApp(p);
   }
   renderAdoptionStatus(p, i) {
-    let status = this.props.pendingprofiles[i].status;
-    console.log(status)
+    let status = this.props.dashstate.pendingprofiles[i].status;
     switch (status) {
       case 0:
         // console.log("0")
-        return  <div className="rowActionsCont">
-                  <div 
-                    className="actionButton"
-                    onClick={()=>this.handleAcceptApp(p)}>Accept</div>
-                  <div 
-                    className="actionButton"
-                    onClick={()=>this.handleRejectApp(p)}
-                    >Reject</div>
+        return  <div 
+                  className="actionButton"
+                  onClick={()=>this.handleAcceptApp(p)}>
+                    Accept
                 </div>
+            
 
       case 1:
           // console.log("1")
@@ -41,26 +41,29 @@ class Pending extends React.Component {
         return <p className="rowText">Rejected</p>
     }
   }
+  toggleApplicationForm(i) {
+    this.setState({
+      currentapplication: this.props.dashstate.pendingprofiles[i]
+    })
+    this.props.functions.toggleApplicationForm();
+  }
 
   render() {
     return (
       <div className="overviewBottomCont"> 
         <div className="pendingTableCont">
           <div className="pendingTableTitleCont">
-            <p>Animal Name</p>
-            <p>Animal ID</p>
+            <p className="firstGrid">Animal Name</p>
+            {/* <p>Animal ID</p> */}
             <p>User Name</p>
-            <p>User Email</p>
             <p>Application</p>
             <p>Applied Date</p>
-            {/* <p>Status</p> */}
             <p>Actions</p>
           </div>
-          { this.props.pendingprofiles !== undefined &&
-            this.props.pendingprofiles.map((pending, index)=>(
+          { this.props.dashstate.pendingprofiles !== undefined &&
+            this.props.dashstate.pendingprofiles.map((pending, index)=>(
               <div key={pending.docuid} className="rowCont">
-                <p>{pending.docuid}</p>
-                <div className="rowNameCont">
+                <div className="rowNameCont firstGrid">
                   <img 
                     src={pending.animalimg} 
                     className="rowAnImg">
@@ -69,28 +72,31 @@ class Pending extends React.Component {
                     {pending.animalname}
                   </p>
                 </div>
-                <p className="rowText" style={{fontSize: "14px"}}>
+                {/* <p className="rowText" style={{fontSize: "14px"}}>
                   {pending.animaluid}
-                </p>
+                </p> */}
                 <p className="rowText">
                   {pending.username}
                 </p>
                 <p className="rowText">
-                  {pending.useremail}
-                </p>
-                <p className="rowText">
                   date
                 </p>
-                <p>Application Form</p>
-                {/* <div> */}
-                  {
-                    this.renderAdoptionStatus(pending, index)
-                  }
-                {/* </div> */}
-                
+                <img 
+                  src="/src/images/form.svg"
+                  className="rowText applicationForm" 
+                  onClick={()=>this.toggleApplicationForm(index)}>
+                </img>
+                {
+                  this.renderAdoptionStatus(pending, index)
+                }               
               </div>
-
             ))
+          }
+          { this.props.dashstate.applicationform === true &&
+            <ApplicationFormOrg
+              form={this.state.currentapplication}
+              functions={this.props.functions}>
+            </ApplicationFormOrg>
           }
         </div>
       </div>

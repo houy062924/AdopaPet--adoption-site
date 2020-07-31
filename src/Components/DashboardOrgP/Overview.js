@@ -24,8 +24,9 @@ class Overview extends React.Component {
     switch (tabstatus) {
       case 0:
         return <Pending
-                pendingprofiles={this.props.dashstate.pendingprofiles}
+                // pendingprofiles={this.props.dashstate.pendingprofiles}
                 appstate={this.props.appstate}
+                dashstate={this.props.dashstate}
                 functions={this.props.functions}>
                </Pending>
 

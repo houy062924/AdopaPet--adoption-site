@@ -52,31 +52,42 @@
 }
 .pendingTableCont .pendingTableTitleCont {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 1rem;
   padding: 0 20px;
+  justify-items: center;
+  align-items: center;
+}
+.pendingTableCont .firstGrid {
+  justify-self: flex-start;
 }
 .pendingTableCont .rowCont {
   padding: 20px;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
 }
 .pendingTableCont .rowCont:hover {
-  background-color: var(--light-gray);
-  box-shadow: 1px 2px 10px var(--light-gray);
+  background-color: var(--white);
 }
 .pendingTableCont .rowCont .rowAnImg {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 20px;
 }
-.pendingTableCont .rowNameCont, .pendingTableCont .rowActionsCont {
+.pendingTableCont .rowCont .applicationForm {
+  cursor: pointer;
+  width: 30px;
+}
+.pendingTableCont .rowNameCont {
   display: flex;
 }
-.pendingTableCont .rowActionsCont .actionButton {
+.pendingTableCont .actionButton {
   border: none;
   height: 35px;
   padding: 0 10px;
@@ -87,7 +98,106 @@
   text-align: center;
   background-color: var(--white);
 }
-.pendingTableCont .rowActionsCont .actionButton:hover {
+.pendingTableCont .actionButton:hover {
   background-color: var(--dark-blue);
   color: var(--white);
+}
+
+/* Adoption Form ----- */
+.applicationFormCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92, 85, 82, 0.5);
+  overflow-y: initial;  
+  z-index: 999;
+}
+.applicationFormCont .fullProfileForm {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -45%);
+  padding: 75px 50px 40px 50px;
+  width: 60vw;
+  height: 70vh;
+  border-radius: 15px;
+  box-shadow: 3px 5px 10px var( --dark-gray);
+}
+.applicationFormCont .formTopCont {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.applicationFormCont .formTopCont .formTopTitle {
+  padding: 0 15px;
+}
+.applicationFormCont .formTopCont .closeFormButton {
+  padding: 0 15px;
+  cursor: pointer;
+}
+.applicationFormCont .formBottomCont {
+  overflow-y: auto;
+  height: 100%;
+}
+.applicationFormCont .formDataCont {
+  display: flex;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.applicationFormCont .formDataCont .formImgCont {
+  margin-right: 40px;
+  flex: 1;
+  position: relative;
+}
+.applicationFormCont .formDataCont .formImgCont img {
+  width: 100%;
+}
+.applicationFormCont .formDataCont .formTextCont {
+  flex: 1;
+}
+.applicationFormCont .formStoryCont {
+  padding-right: 15px;
+}
+.applicationFormCont .formTextCont .formName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.applicationFormCont .formBottomCont .labelText {
+  color: var(--dark-blue);
+  font-size: 14px;
+}
+.applicationFormCont .formBottomCont .storyLabel {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.applicationFormCont .formTextCont .formId, 
+.applicationFormCont .formTextCont .formDays,
+.applicationFormCont .formTextCont .formAge, 
+.applicationFormCont .formTextCont .formGender,
+.applicationFormCont .formTextCont .formLocation,
+.applicationFormCont .formStoryCont .formStory {
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
+}
+.applicationFormCont .formStoryCont .formStory {
+  line-height: 25px;
 }

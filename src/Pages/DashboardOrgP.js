@@ -18,6 +18,7 @@ class DashboardOrgP extends React.Component {
       editingprofile: false,
       currentprofile: null,
       confirmDelete: false,
+      applicationform: false,
       profiles: [],
       pendingprofiles: [],
       activeprofiles: [],
@@ -35,6 +36,7 @@ class DashboardOrgP extends React.Component {
       closeProfileForm: this.closeProfileForm.bind(this),
       openEditForm: this.openEditForm.bind(this),
       closeEditForm: this.closeEditForm.bind(this),
+      toggleApplicationForm: this.toggleApplicationForm.bind(this),
       confirmDeleteProfile: this.confirmDeleteProfile.bind(this),
       handleDeleteProfile: this.handleDeleteProfile.bind(this),
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
@@ -157,8 +159,12 @@ class DashboardOrgP extends React.Component {
 
   //
 
+  toggleApplicationForm() {
+    this.setState((prevState)=>({
+      applicationform: !prevState.applicationform
+    }))
+  }
   toggleProfileForm(reset) {
-    // event.preventDefault();
     this.setState((prevState)=>({
       addingprofile: !prevState.addingprofile
     }))
@@ -229,7 +235,7 @@ class DashboardOrgP extends React.Component {
         {/* <SideNav appstate={this.props.appstate}></SideNav> */}
 
         <Route 
-          path="/dashboard/overview" 
+          path="/dashboard" 
           render={()=>(
             <Overview 
               appstate={this.props.appstate}
@@ -238,7 +244,7 @@ class DashboardOrgP extends React.Component {
             </Overview>
           )}>
         </Route>
-        <Route 
+        {/* <Route 
           path="/dashboard/profiles" 
           render={()=>(
             <ProfilesOrg 
@@ -247,7 +253,7 @@ class DashboardOrgP extends React.Component {
               dashstate={this.state}>
             </ProfilesOrg>
           )}>
-        </Route>
+        </Route> */}
         {/* <Route 
           path="/dashboard/calender" 
           render={()=>(
