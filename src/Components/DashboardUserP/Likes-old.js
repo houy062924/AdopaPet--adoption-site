@@ -1,62 +1,31 @@
 import React from "react";
-import "../../styles/likesV2.css";
-import AllLikes from "./AllLikes";
-import PendingLikes from "./PendingLikes";
-import AcceptedLikes from "./AcceptedLikes";
-
+import "../../styles/likes.css";
 import { firebase } from "../Shared/Firebase";
 
 
 class Likes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tabStatus: 0, // 0: not applied; 1: applied, not accepted; 2: accepted
-    }
 
     this.renderAdoptionStatusButton = this.renderAdoptionStatusButton.bind(this);
     this.handleAccept = this.handleAccept.bind(this);
-
-    this.handleTabChange = this.handleTabChange.bind(this);
-    this.renderComponent = this.renderComponent.bind(this);
   }
-
-  handleTabChange(status) {
-    this.setState({
-      tabStatus: status
-    })
+  openFullProfile(p, e, i) {
+    e.stopPropagation();
+    this.props.functions.openFullProfile(p, e, i);
   }
-  renderComponent() {
-    let tabstatus = this.state.tabStatus;
-    let profiles = this.props.likestate.filter((like)=>{
-      return like.adoptionstatus === this.state.tabStatus
-    })
-
-    switch (tabstatus) {
-      case 0:
-        return <AllLikes
-                 profiles={this.props.likestate}
-                 statedata={this.props.statedata}
-                 dashstate={this.props.dashstate}
-                 functions={this.props.functions}>
-               </AllLikes>
-
-      case 1:
-        return <PendingLikes
-                profiles={profiles}
-                statedata={this.props.statedata}
-                dashstate={this.props.dashstate}
-                functions={this.props.functions}>
-               </PendingLikes>
-
-      case 2:
-        return <AcceptedLikes
-                profiles={profiles}
-                statedata={this.props.statedata}                
-                dashstate={this.props.dashstate}
-                functions={this.props.functions}>
-               </AcceptedLikes>
-    }
+  closeFullProfile() {
+    this.props.functions.closeFullProfile();
+  }
+  removeLike(p, e) {
+    e.stopPropagation();
+    this.props.functions.removeLike(p);
+  }
+  handleAdopt() {
+    this.props.functions.handleAdopt();
+  }
+  handleAccept() {
+    console.log("accept")
   }
   renderAdoptionStatusButton(i) {
     let adoptionstatus = this.props.likestate[i].adoptionstatus
@@ -84,60 +53,73 @@ class Likes extends React.Component {
     }
   }
 
-
-  //
-
-  openFullProfile(p, e, i) {
-    e.stopPropagation();
-    this.props.functions.openFullProfile(p, e, i);
-  }
-  closeFullProfile() {
-    this.props.functions.closeFullProfile();
-  }
-  removeLike(p, e) {
-    e.stopPropagation();
-    this.props.functions.removeLike(p);
-  }
-  handleAdopt() {
-    this.props.functions.handleAdopt();
-  }
-  handleAccept() {
-    console.log("accept")
-  }
-  
-
   render() {
     let adopted = null;
 
     return (
       <div className="likePageCont"> 
-        <div className="overviewTopCont">
-          <div 
-            className="overviewBox" 
-            onClick={()=>this.handleTabChange(0)}>
-            <p className="overviewTitle">All Likes</p>
-          </div>
+        { this.props.likestate !== undefined &&
+          this.props.likestate.map((like, index)=>(
+            <div 
+              className="likeCont" 
+              key={like.id}
+              onClick={()=>this.openFullProfile(like, event, index)}>
+                
+              <div className="imgCont">
+                <img src={like.url} className="profileImg"></img>
+              </div>
 
-          <div 
-            className="overviewBox" 
-            onClick={()=>this.handleTabChange(1)}>
-            <p className="overviewTitle">Pending Applications</p>
-          </div>
+              <div className="textCont">
+                <p className="profileName">
+                  {like.name}
+                </p>
+                <p className="profileDays">
+                  <span className="labelText">Date<br></br></span>
+                  {like.date}
+                </p>
+                <p className="profileId">
+                  <span className="labelText">ID<br></br></span>
+                  { like.id }
+                </p>
+                <p className="profileLocation">
+                  <span className="labelText">Location<br></br></span>
+                  { like.address }
+                </p>
+              </div>
+              <div className="removeCont" onClick={(event)=>this.removeLike(like, event)}></div>
 
-          <div 
-            className="overviewBox" 
-            onClick={()=>this.handleTabChange(2)}>
-            <p className="overviewTitle">Accepted Applications</p>
-          </div>
-        </div>
-        {
-          this.renderComponent()
+              {/* <div className="heartCont" onClick={(event)=>this.removeLike(like, event)}></div> */}
+
+              { 
+                this.renderAdoptionStatusButton(index)
+              }
+              { 
+                adopted = this.props.adoptedstate.map((adopted)=>{
+                  if (adopted.id === like.id) {
+                    return <div 
+                      className="adoptedCont"
+                      key="like.id">
+                        <div className="removeCont" onClick={(event)=>this.removeLike(like, event)}></div>
+                        <p>Adopted</p>
+                        {/* <img src="/src/images/dog-home.svg"></img> */}
+                      </div>
+                  }
+                })
+              }
+            </div>
+          ))
+        }
+        { this.props.dashstate.fullprofile === true &&
+          <FullProfile
+            statedata={this.props.statedata}
+            dashstate={this.props.dashstate}
+            functions={this.props.functions}>
+          </FullProfile>
         }
       </div>
     )
   }
 }
-
 
 class FullProfile extends React.Component {
   constructor(props) {

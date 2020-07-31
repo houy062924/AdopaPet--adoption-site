@@ -1,5 +1,7 @@
 import React from "react";
+// import Likes from "../Components/DashboardUserP/Likes";
 import Likes from "../Components/DashboardUserP/Likes";
+
 import { firebase } from "../Components/Shared/Firebase";
 import { BrowserRouter, Route } from "react-router-dom";
 // import SideNavUser from "../Components/DashboardUserP/SideNavUser";
@@ -14,6 +16,7 @@ class DashboardUserP extends React.Component {
       fullprofile: false,
       currentprofile: null,
       adoptedprofile: null,
+      acceptedorg: null,
     }
     this.functions = {
       openFullProfile: this.openFullProfile.bind(this),
@@ -21,26 +24,39 @@ class DashboardUserP extends React.Component {
       handleAdopt: this.handleAdopt.bind(this),
       cancelAdopt: this.cancelAdopt.bind(this),
       removeLike: this.removeLike.bind(this),
+      handleAccept: this.handleAccept.bind(this),
     }
 
     this.db = firebase.firestore();
+    this.likesdb;
     this.getDatabaseData = this.getDatabaseData.bind(this);
+    this.filterDatabaseData = this.filterDatabaseData.bind(this);
     this.checkProfileStatus = this.checkProfileStatus.bind(this);
   }
 
   componentDidMount() {
     this.getDatabaseData();
   }
+  componentWillUnmount() {
+    this.likesdb();
+  }
   getDatabaseData() {
-    this.db.collection("members")
+    this.likesdb = this.db.collection("members")
     .doc(this.props.statedata.uid)
     .onSnapshot((snapshot) => {
-      this.setState({
-        likes: snapshot.data().likes
-      })
+      this.filterDatabaseData(snapshot.data().likes)
+      // this.setState({
+      //   likes: snapshot.data().likes
+      // })
     }, 
     function(error) {
       console.log(error)
+    })
+  }
+  filterDatabaseData(likes) {
+    let sorted = likes.sort((a, b) => (a.adoptionstatus < b.adoptionstatus) ? 1 : -1);
+    this.setState({
+      likes: sorted
     })
   }
   checkProfileStatus() {
@@ -93,6 +109,9 @@ class DashboardUserP extends React.Component {
         currentprofileindex: index
       })
     }
+    if (profile.adoptionstatus === 2) {
+      this.handleAccept(profile.orguid);
+    }
   }
   closeFullProfile() {
     this.setState({
@@ -139,6 +158,15 @@ class DashboardUserP extends React.Component {
   }
   cancelAdopt() {
     console.log("cancel")
+  }
+  handleAccept(orguid) {
+    this.db.collection("members").doc(orguid)
+    .get()
+    .then((doc)=>{
+      this.setState({
+        acceptedorg: doc.data()
+      })
+    })
   }
 
   render() {

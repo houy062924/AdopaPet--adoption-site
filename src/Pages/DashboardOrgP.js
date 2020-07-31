@@ -40,6 +40,9 @@ class DashboardOrgP extends React.Component {
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
     this.db = firebase.firestore();
+    this.pendingdb;
+    this.activedb;
+    this.adopteddb;
   }
 
   componentDidMount() {
@@ -47,10 +50,15 @@ class DashboardOrgP extends React.Component {
     this.getActiveProfiles();
     this.getAdoptedProfiles();
   }
+  componentWillUnmount() {
+    this.pendingdb();
+    this.activedb();
+    this.adopteddb();
+  }
 
   // Handle pending applications
   getPendingApplications() {
-    this.db.collection("adoptions")
+    this.pendingdb = this.db.collection("adoptions")
     .where("orguid", "==", this.props.appstate.uid)
     .where("status", "==", 0)
     // .orderBy("timestamp", "desc")
@@ -59,9 +67,9 @@ class DashboardOrgP extends React.Component {
       let pendingarr = [];
       querySnapshot.forEach((doc) => {
         pendingarr.push(doc.data());
-        this.setState({
-          pendingprofiles: pendingarr
-        })
+      })
+      this.setState({
+        pendingprofiles: pendingarr
       })
     })
   }
@@ -116,32 +124,32 @@ class DashboardOrgP extends React.Component {
 
   // Handle active profiles
   getActiveProfiles() {
-    this.db.collection("animals")
+    this.activedb = this.db.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 0)
     .onSnapshot((querySnapshot)=>{
       let activearr = [];
       querySnapshot.forEach((doc) => {
         activearr.push(doc.data());
-        this.setState({
-          activeprofiles: activearr
-        })
+      })
+      this.setState({
+        activeprofiles: activearr
       })
     })
   }
 
   // Handle adopted profiles
   getAdoptedProfiles() {
-    this.db.collection("animals")
+    this.adopteddb = this.db.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 1)
     .onSnapshot((querySnapshot)=>{
       let adoptedarr = [];
       querySnapshot.forEach((doc) => {
         adoptedarr.push(doc.data());
-        this.setState({
-          adoptedprofiles: adoptedarr
-        })
+      })
+      this.setState({
+        adoptedprofiles: adoptedarr
       })
     })
   }
@@ -154,17 +162,11 @@ class DashboardOrgP extends React.Component {
     this.setState((prevState)=>({
       addingprofile: !prevState.addingprofile
     }))
-    // if (reset===true) {
-    //   this.getData();
-    // }
   }
   closeProfileForm(reset) {
     this.setState({
       addingprofile: false
     })
-    // if (reset===true) {
-    //   this.getData();
-    // }
   }
   openEditForm(p, i) {
     this.setState({

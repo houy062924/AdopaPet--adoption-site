@@ -1,10 +1,44 @@
-/* Likes ---------- */
+/* New ---------- */
 
-.likePageCont {
-  margin: 110px 60px 50px 60px;
+.likePageCont .overviewTopCont {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
+  width: 100%;
+}
+.likePageCont .overviewBox  {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  /* padding: 15px; */
+  box-sizing: border-box;
+  border-bottom: 2px solid var(--red);
+}
+.likePageCont .overviewBox:hover {
+  box-shadow: 1px 2px 10px var(--light-gray);
+  background-color: var(--red);
+  color: var(--white);
+}
+
+
+
+
+/* Origial ----- */
+.likePageCont {
+  margin: 110px 60px 50px 60px;
+}
+.likeProfilesCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  margin: 40px 0;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 .likePageCont .likeCont {
   background-color: white;
@@ -90,15 +124,18 @@
   margin: 20px 0;
 }
 .likeCont .textCont .profileName {
-  margin-top: 0px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  color: var(--white);
-  background-color: var(--red);
-  border-radius: 10px;
-  padding: 5px 0;
-  text-align: center;
+  height: 40px;
+  padding: 0 20px;
+  letter-spacing: 1px;
   font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .likeCont .textCont .labelText {
   color: var(--red);
@@ -213,12 +250,43 @@
   line-height: 25px;
 }
 .fullProfileCont .adoptButton, .likeCont .adoptButton {
-  height: 35px;
+  height: 30px;
   padding: 0 20px;
   letter-spacing: 1px;
   font-weight: bold;
   float: right;
-  margin: 5px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.fullProfileCont .pendingButton, .likeCont .pendingButton {
+  height: 30px;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--gray);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.fullProfileCont .acceptedButton, .likeCont .acceptedButton {
+  height: 30px;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  float: right;
   cursor: pointer;
   border-radius: 10px;
   background-color: var(--red);
@@ -226,21 +294,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.fullProfileCont .pendingButton, .likeCont .pendingButton {
-  height: 35px;
-  padding: 0 20px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  float: right;
-  margin: 5px 20px;
-  /* cursor: pointer; */
-  border-radius: 10px;
-  background-color: var(--gray);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 .fullProfileCont .pendingTextCont {
   display: flex;
@@ -277,11 +332,24 @@
   color: var(--white);
 }
 .fullProfileCont .contactInfoCont {
-  background-color: var(--red);
-  color: var(--white);
-  padding: 15px 20px;
-  border-radius: 10px;
   margin-right: 15px;
+  margin-left: 10px;
+}
+.fullProfileCont .contactTitle {
+  font-size: 18px;
+  color: var(--white);
+  background-color: var(--red);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.fullProfileCont .contactText {
+  margin: 15px 10px;
+}
+.fullProfileCont .contactTextTitle {
+  font-size: 14px;
+  color: var(--red);
 }
 .fullProfileCont ::-webkit-scrollbar {
   width: 5px;

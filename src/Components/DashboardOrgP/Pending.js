@@ -21,7 +21,7 @@ class Pending extends React.Component {
     console.log(status)
     switch (status) {
       case 0:
-        console.log("0")
+        // console.log("0")
         return  <div className="rowActionsCont">
                   <div 
                     className="actionButton"
@@ -33,11 +33,11 @@ class Pending extends React.Component {
                 </div>
 
       case 1:
-          console.log("1")
+          // console.log("1")
         return <p className="rowText">Accepted</p>
 
       case 2:
-          console.log("2")
+          // console.log("2")
         return <p className="rowText">Rejected</p>
     }
   }
@@ -59,6 +59,7 @@ class Pending extends React.Component {
           { this.props.pendingprofiles !== undefined &&
             this.props.pendingprofiles.map((pending, index)=>(
               <div key={pending.docuid} className="rowCont">
+                <p>{pending.docuid}</p>
                 <div className="rowNameCont">
                   <img 
                     src={pending.animalimg} 
