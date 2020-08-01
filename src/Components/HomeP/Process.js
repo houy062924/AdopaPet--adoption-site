@@ -18,6 +18,7 @@ class StepQuestion extends React.Component {
       <div className="stepsCont">
         <div className="questionImg"></div>
         <div className="textCont">
+          <span className="processNum">1</span>
           <h3>Thinking about getting a pet?</h3>
           <p>Check out our profiles of homeless animals!<br></br>This could be the start of something new.</p>
         </div>
@@ -36,8 +37,11 @@ class StepSearch extends React.Component {
   }
   render() {
     return (
-      <div className="stepsCont">
-        <div className="textCont searchCont">
+      <div className="stepsCont searchCont">
+        <div className="searchImg"></div>
+
+        <div className="textCont searchText">
+          <span className="processNum">2</span>
           <h3>Find your furry match</h3>
           <p>Shelter animals in search of a forever home.<br></br>Are you the one they’re waiting for?</p>
           <p>
@@ -49,7 +53,6 @@ class StepSearch extends React.Component {
             </span>
           </p>
         </div>
-        <div className="searchImg"></div>
       </div>
     )
   }
@@ -60,6 +63,7 @@ class StepMeet extends React.Component {
       <div className="stepsCont">
         <div className="meetImg"></div>
         <div className="textCont">
+          <span className="processNum">3</span>
           <h3>Found your perfect pet?</h3>
           <p>Get to know them face-to-face.<br></br>They could soon become your new best friend!</p>
         </div>

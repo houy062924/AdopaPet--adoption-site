@@ -5,8 +5,8 @@
   height: calc(80vh - 30px);
   background-color: white;
   margin: auto;
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   padding: 35px 50px;
   border-radius: 10px;
   position: absolute;
@@ -28,9 +28,11 @@
   margin-bottom: 5%;
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
 }
 .cardStackCont .bottomCardCont img {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
 }
 .cardStackCont .profileCont {
   max-width: 750px;
@@ -101,6 +103,9 @@
   margin-left: 10px;
   margin-top: 0;
 }
+.cardStackCont .storyMobile {
+  display: none;
+}
 
 /* Scroll bar --- */
 /* width */
@@ -119,17 +124,6 @@
   border-radius: 10px;
 }
 
-/* Handle on hover */
-/* .cardStackCont .cardCont  ::-webkit-scrollbar-thumb:hover {
-  background: var(--dar-gray); 
-} */
-
-
-/* .cardCont button {
-  background-color: gray;
-  color: white;
-  border: 1px solid;
-} */
 .cardStackCont .cardCont button:focus {
   background-color: gainsboro;
   border: 1px solid;
@@ -288,4 +282,48 @@
 }
 .cardStackCont .rightHeart {
   fill: var(--red);
+}
+
+/* Read More ------ */
+.storyMobile .readMoreButton {
+  height: 30px;
+  width: 50%;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border: none;
+  margin: 10px auto 10px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .cardStackCont .storyDesktop {
+    display: none;
+  }
+  .cardStackCont .storyMobile {
+    display: block;
+  }
+  .cardStackCont .profileCont {
+    flex-direction: column;
+  }
+  .cardStackCont .cardCont .imgCont {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .cardStackCont .cardCont .profileImg {
+    max-height: 230px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .cardStackCont .cardCont {
+    width: 80vw;
+  }
 }

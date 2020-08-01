@@ -26,6 +26,9 @@
   background-color: var(--red);
   color: var(--white);
 }
+.likePageCont .overviewBox .overviewTitle {
+  text-align: center;
+}
 .likePageCont .notificationCont {
   background-color: var(--red);
   color: var(--white);
@@ -39,6 +42,7 @@
   padding-top: 1px;
   box-sizing: border-box;
   padding-right: 1px;
+  flex-shrink: 0;
 }
 .likePageCont .overviewBox:hover .notificationCont, .likePageCont .activeTab .notificationCont {
   background-color: var(--white);

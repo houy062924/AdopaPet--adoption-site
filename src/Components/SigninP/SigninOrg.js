@@ -31,7 +31,7 @@ class SigninOrg extends React.Component {
       <div className="signinFormCont">
         { this.props.statedata.signedin === false &&
           <div>
-            <h1>Organisations</h1>
+            <h1>Organisation</h1>
             <div className="methodCont">
               <p 
                 onClick={this.handleSignup} 

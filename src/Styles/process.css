@@ -8,9 +8,16 @@
   width: 45vw;
   padding: 0 25px;
   box-sizing: border-box;
+  position: relative;
 }
-.stepsCont .searchCont {
-  padding-left: 150px;
+.stepsCont .textCont h3, .stepsCont .textCont p {
+  padding-left: 35px;
+}
+.searchCont {
+  flex-direction: row-reverse;
+}
+.searchText {
+  padding-left: 7%;
 }
 .stepsCont .signinUser {
   border: none;
@@ -70,4 +77,33 @@
 }
 .adoptImg:hover {
   background-image: url("/src/images/process/adopted/2.svg");
+}
+.processNum {
+  font-size: 90px;
+  font-weight: bold;
+  color: var(--light-gray);
+  position: absolute;
+  top: -30px;
+  opacity: 0.5;
+  z-index: -10;
+}
+
+@media screen and (max-width: 768px) {
+  .stepsCont, .searchCont {
+    flex-direction: column;
+  }
+  .questionImg, .searchImg, .meetImg {
+    width: 60vw;
+  }
+  .searchImg, .meetImg {
+    height: 200px;
+  }
+  .stepsCont .textCont {
+    width: auto;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .processNum {
+    display: none;
+  }
 }

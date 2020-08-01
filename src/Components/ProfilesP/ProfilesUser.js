@@ -2,6 +2,7 @@ import React from "react";
 import { firebase } from "../Shared/Firebase";
 import interact from "interactjs";
 import "../../Styles/card.css";
+// import autoScrollPlugin from "@interactjs/auto-scroll/plugin";
 
 class ProfilesUser extends React.Component {
   constructor() {
@@ -15,12 +16,14 @@ class ProfilesUser extends React.Component {
       isAnimating: true,
       currentCard: 0,
       nextCard: 1,
+      expandstory: false,
     }
 
     this.handleProfileFiltering = this.handleProfileFiltering.bind(this);
     this.resetCardPosition = this.resetCardPosition.bind(this);
     this.handleCardChoice = this.handleCardChoice.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.toggleStory = this.toggleStory.bind(this);
     this.db = firebase.firestore();
   }
 
@@ -105,7 +108,8 @@ class ProfilesUser extends React.Component {
   handleCardChoice(interaction) {
     this.setState((prevState) => ({
       currentCard: prevState.currentCard + 1,
-      nextCard: prevState.nextCard + 1
+      nextCard: prevState.nextCard + 1,
+      expandstory: false,
     }))
 
     switch (interaction) {
@@ -138,17 +142,22 @@ class ProfilesUser extends React.Component {
   handleLike() {
     let currentProfile = this.state.profiles[this.state.currentCard-1];
     let likeArr;
-    console.log(currentProfile)
 
     this.db.collection("members").doc(this.props.userdata.uid).update({
       "likes": firebase.firestore.FieldValue.arrayUnion(currentProfile) 
     })
     .then(()=>{
       this.setState({
-        likes: likeArr
+        likes: likeArr,
+        expandstory: false
       })
       console.log("Set")
     })
+  }
+  toggleStory() {
+    this.setState((prevState)=>({
+      expandstory: !prevState.expandstory
+    }))
   }
   componentWillUnmount() {
     interact(".currentCard").unset();
@@ -165,7 +174,9 @@ class ProfilesUser extends React.Component {
               index={index}
               profilestate={this.state}
               key={profile.id} 
-              handleLike={this.handleLike} 
+              handleLike={this.handleLike}
+              toggleStory={this.toggleStory}
+              toggleState={this.state.expandstory} 
             />
           ))
         }
@@ -187,12 +198,19 @@ class ProfilesUser extends React.Component {
 class Card extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      expandstory: false,
+    }
     
     this.handleLike = this.handleLike.bind(this);
+    this.toggleStory = this.toggleStory.bind(this);
   }
 
   handleLike(e) {
     this.props.handleLike(e.target, this.props.profile, this.props.profilestate.likes);
+  }
+  toggleStory() {
+    this.props.toggleStory();
   }
 
   render() {
@@ -201,13 +219,24 @@ class Card extends React.Component {
 
     if ( this.props.index === this.props.profilestate.currentCard ) {
       classes += ` currentCard ${this.props.profilestate.isAnimating ? "cardSnap" : ""}`;
-      positionStyle = {
-        transform: `translate3D(${this.props.profilestate.positionX}px, ${this.props.profilestate.positionY}px, 0) rotate(${this.props.profilestate.rotateDeg}deg)`,
+      
+      if ( this.props.toggleState === true ) {
+        positionStyle = {
+          height: "max-content",
+          minHeight: "calc(80vh - 30px)",
+          transform: `translate3D(${this.props.profilestate.positionX}px, ${this.props.profilestate.positionY}px, 0) rotate(${this.props.profilestate.rotateDeg}deg)`,
+        }
+      }
+      else {
+        positionStyle = {
+          transform: `translate3D(${this.props.profilestate.positionX}px, ${this.props.profilestate.positionY}px, 0) rotate(${this.props.profilestate.rotateDeg}deg)`,
+        }
       }
     }
     if ( this.props.index === this.props.profilestate.nextCard ) {
       classes += " nextCard";
     }
+    
 
     return (
       <div 
@@ -224,9 +253,9 @@ class Card extends React.Component {
             </h1>
             <div className="profileColCont">
               <div className="profileCol">
-                <p className="profileId">
-                  <span className="labelText">ID<br></br></span>
-                  { this.props.profile.id }
+                <p className="profileDays">
+                  <span className="labelText">Date<br></br></span>
+                  {this.props.profile.date}
                 </p>
                 <p className="profileLocation">
                   <span className="labelText">Location<br></br></span>
@@ -234,9 +263,9 @@ class Card extends React.Component {
                 </p>
               </div>
               <div className="profileCol">
-                <p className="profileDays">
-                  <span className="labelText">Date<br></br></span>
-                  {this.props.profile.date}
+                <p className="profileId">
+                  <span className="labelText">Gender<br></br></span>
+                  { this.props.profile.gender }
                 </p>
                 <p className="profileAge">
                   <span className="labelText">Age<br></br></span>
@@ -244,12 +273,27 @@ class Card extends React.Component {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="storyDesktop">
               <span className="labelText storyLabel">Story<br></br></span>
               <p className="profileStory">
                 
                 { this.props.profile.story }
               </p>
+            </div>
+            <div className="storyMobile">
+              { this.props.toggleState === true && this.props.index === this.props.profilestate.currentCard
+                ? <div>
+                    <div>
+                      <span className="labelText storyLabel">Story<br></br></span>
+                      <p className="profileStory">
+                        
+                        { this.props.profile.story }
+                      </p>
+                    </div>
+                    <div className="readMoreButton" onClick={this.toggleStory}>Close</div>
+                  </div>
+                : <div className="readMoreButton" onClick={this.toggleStory}>Read More</div>
+              }
             </div>
           </div>
         </div>

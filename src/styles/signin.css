@@ -106,7 +106,7 @@
   animation-timing-function: ease-in-out;
 }
 @keyframes slideRight {
-  0% { right: 300px; }
+  0% { right: 370px; }
   99% { right: 23px; }
   100% { right: 25px; }
 }

@@ -24,6 +24,7 @@
 }
 .callToActionCont .columnCont p {
   text-align: center;
+  height: 40px;
 }
 .callToActionCont .signinUserImg, 
 .callToActionCont .signinOrgImg {
@@ -52,7 +53,7 @@
 }
 .signinUser, .signinOrg {
   border: none;
-  height: 35px;
+  /* height: 35px; */
   letter-spacing: 1px;
   font-weight: bold;
   width: 85%;
@@ -77,6 +78,23 @@
   background-image: url("/src/images/process/user/2.svg");
 }
 
-@media screen and (max-width: 992px) {
-
+@media screen and (max-width: 768px) {
+  .signinOrg, .signinUser {
+    padding: 5px 0;
+    line-height: 25px;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 700px) {
+  .signinUser {
+    height: 50px;
+    line-height: 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .callToActionCont .callToActionTitle {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin: 25px 20px 15px;
+  }
 }

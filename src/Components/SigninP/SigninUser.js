@@ -35,7 +35,7 @@ class SigninUser extends React.Component {
       <div className="signinFormCont">
         { this.props.statedata.signedin === false &&
           <div>
-            <h1>Users</h1>
+            <h1>User</h1>
             <div className="methodCont">
               <p 
                 onClick={this.handleSignup} 
