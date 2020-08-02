@@ -49,15 +49,19 @@ class Pending extends React.Component {
   }
 
   render() {
+    if (this.props.dashstate.pendingprofiles.length > 0) {
+      console.log(this.props.dashstate.pendingprofiles)
+    }
+
     return (
       <div className="overviewBottomCont"> 
         <div className="pendingTableCont">
           <div className="pendingTableTitleCont">
             <p className="firstGrid">Animal Name</p>
             {/* <p>Animal ID</p> */}
-            <p>User Name</p>
+            <p>Applicant Name</p>
+            <p>Applicant Email</p>
             <p>Application</p>
-            <p>Applied Date</p>
             <p>Actions</p>
           </div>
           { this.props.dashstate.pendingprofiles !== undefined &&
@@ -69,6 +73,7 @@ class Pending extends React.Component {
                     className="rowAnImg">
                   </img>
                   <p className="rowText">
+                    <span className="rowTitle-mobile">Name</span>
                     {pending.animalname}
                   </p>
                 </div>
@@ -76,16 +81,26 @@ class Pending extends React.Component {
                   {pending.animaluid}
                 </p> */}
                 <p className="rowText">
+                  <span className="rowTitle-mobile">Applicant</span>
                   {pending.username}
                 </p>
                 <p className="rowText">
-                  date
+                  <span className="rowTitle-mobile">Applicant Email</span>
+                  {pending.useremail}
                 </p>
-                <img 
-                  src="/src/images/form.svg"
-                  className="rowText applicationForm" 
-                  onClick={()=>this.toggleApplicationForm(index)}>
-                </img>
+                {/* <p className="rowText">
+                  <span className="rowTitle-mobile">Date</span>
+                  ate
+                </p> */}
+                <span>
+                  <span className="rowTitle-mobile">Application</span>
+                  <img 
+                    src="/src/images/form.svg"
+                    className="rowText applicationForm" 
+                    onClick={()=>this.toggleApplicationForm(index)}>
+                  </img>
+                </span>
+                
                 {
                   this.renderAdoptionStatus(pending, index)
                 }               

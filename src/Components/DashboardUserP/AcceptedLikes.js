@@ -39,8 +39,8 @@ class AcceptedLikes extends React.Component {
                   {profile.date}
                 </p>
                 <p className="profileId">
-                  <span className="labelText">ID<br></br></span>
-                  { profile.id }
+                  <span className="labelText">Gender<br></br></span>
+                  { profile.gender }
                 </p>
                 <p className="profileLocation">
                   <span className="labelText">Location<br></br></span>

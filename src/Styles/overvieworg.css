@@ -32,6 +32,7 @@
 }
 .overviewCont .overviewBox .overviewTitle {
   margin: 0;
+  text-align: center;
 }
 .overviewCont .overviewBox .overviewNumber {
   font-size: 40px;
@@ -46,7 +47,7 @@
 }
 .overviewBottomCont .pendingTableCont {
   background-color: white;
-  padding: 50px;
+  padding: 30px;
   box-sizing: border-box;
   border-radius: 10px;
 }
@@ -57,6 +58,7 @@
   padding: 0 20px;
   justify-items: center;
   align-items: center;
+  text-align: center;
 }
 .pendingTableCont .firstGrid {
   justify-self: flex-start;
@@ -69,6 +71,9 @@
   grid-gap: 1rem;
   justify-items: center;
   align-items: center;
+}
+.pendingTableCont .rowTitle-mobile {
+  display: none;
 }
 .pendingTableCont .rowCont:hover {
   background-color: var(--white);
@@ -97,6 +102,7 @@
   line-height: 35px;
   text-align: center;
   background-color: var(--white);
+  font-weight: bold;
 }
 .pendingTableCont .actionButton:hover {
   background-color: var(--dark-blue);
@@ -200,4 +206,82 @@
 }
 .applicationFormCont .formStoryCont .formStory {
   line-height: 25px;
+}
+
+.applicationFormCont ::-webkit-scrollbar, .profilesPageCont ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.applicationFormCont ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+.applicationFormCont ::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 950px) {
+  .pendingTableCont .rowNameCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pendingTableCont .rowCont .rowAnImg {
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .pendingTableCont .pendingTableTitleCont {
+    display: none;
+  }
+  .pendingTableCont .rowCont {
+    display: block;
+    text-align: center;
+    padding: 30px;
+  }
+  .pendingTableCont .rowCont:hover .actionButton {
+    background-color: var(--dark-blue);
+    color: var(--white);
+  }
+  .pendingTableCont .actionButton {
+    margin-top: 20px;
+  }
+  .pendingTableCont .rowTitle-mobile {
+    display: block;
+    color: var(--dark-blue);
+    font-size: 14px;
+    padding-bottom: 10px;
+  }
+  .pendingTableCont .rowText {
+    padding-bottom: 15px;
+  }
+  .profilesPageCont .editProfileFormCont .formDataCont {
+    flex-direction: column;
+  }
+  .profilesPageCont .editProfileFormCont .formImgCont {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .overviewCont .overviewTopCont {
+    grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+  }
+  .overviewCont .overviewBox {
+    height: 85px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .overviewCont {
+    margin: 110px 30px 50px 30px;
+  }
+  .editProfileFormCont .editProfileForm {
+    padding: 75px 30px 40px 30px;
+  }
+  .profilesPageCont .profilesCont {
+    grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+  }
+  
 }

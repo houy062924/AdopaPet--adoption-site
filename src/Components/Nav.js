@@ -43,7 +43,7 @@ class Nav extends React.Component {
           { data.signedin === false &&
             <ul className="linkCont">
               <Link to="signin" onClick={()=>this.handleRedirect("user")}>
-                <li>Sign In</li>
+                <li className="signinIcon">Sign In</li>
               </Link>
             </ul>
           }
@@ -51,7 +51,7 @@ class Nav extends React.Component {
             <ul className="linkCont">
               
               <Link to="/org/dashboard">
-                <li>Dashboard</li>
+                <li className="dashIcon">Dashboard</li>
               </Link>
               
               <li onClick={this.handleSignOut}>Sign out</li>
@@ -61,7 +61,7 @@ class Nav extends React.Component {
             <ul className="linkCont">
               
               <Link to="/org/dashboard" onClick={()=>this.handleRedirect("dashboard")}>
-                <li>Dashboard</li>
+                <li className="dashIcon">Dashboard</li>
               </Link>
               
               <li onClick={this.handleSignOut}>Sign out</li>
@@ -71,13 +71,13 @@ class Nav extends React.Component {
             <ul className="linkCont">
               
               <Link to="/user/profiles">
-                <li>Profiles</li>
+                <li className="profilesIcon">Profiles</li>
               </Link>
               <Link to="/user/dashboard">
-                <li>My Likes</li>
+                <li className="likesIcon">My Likes</li>
               </Link>
               
-              <li onClick={this.handleSignOut}>Sign out</li>
+              <li onClick={this.handleSignOut} className="signinIcon">Sign Out</li>
             </ul>
           }
         </div>

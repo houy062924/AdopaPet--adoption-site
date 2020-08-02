@@ -4,9 +4,7 @@
   width: 60vw;
   height: calc(80vh - 30px);
   background-color: white;
-  margin: auto;
-  /* display: flex;
-  justify-content: center; */
+  margin: 70px auto;
   padding: 35px 50px;
   border-radius: 10px;
   position: absolute;
@@ -15,6 +13,7 @@
   left: 0;
   bottom: 0;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 .cardStackCont .bottomCardCont {
   box-shadow: 1px 7px 15px var(--light-gray);
@@ -109,17 +108,17 @@
 
 /* Scroll bar --- */
 /* width */
-.cardStackCont .cardCont  ::-webkit-scrollbar {
+.cardStackCont ::-webkit-scrollbar {
   width: 5px;
 }
 
 /* Track */
-.cardStackCont .cardCont  ::-webkit-scrollbar-track {
+.cardStackCont ::-webkit-scrollbar-track {
   background: var(--light-gray); 
 }
  
 /* Handle */
-.cardStackCont .cardCont  ::-webkit-scrollbar-thumb {
+.cardStackCont ::-webkit-scrollbar-thumb {
   background: var(--red);
   border-radius: 10px;
 }
@@ -286,9 +285,8 @@
 
 /* Read More ------ */
 .storyMobile .readMoreButton {
-  height: 30px;
   width: 50%;
-  padding: 0 20px;
+  padding: 5px 20px;
   letter-spacing: 1px;
   font-weight: bold;
   cursor: pointer;
@@ -301,8 +299,10 @@
   font-size: 16px;
   margin-bottom: 10px;
   border: none;
-  margin: 10px auto 10px auto;
+  margin: 30px auto 10px auto;
+  text-align: center;
 }
+
 
 @media screen and (max-width: 768px) {
   .cardStackCont .storyDesktop {
@@ -325,5 +325,10 @@
 @media screen and (max-width: 650px) {
   .cardStackCont .cardCont {
     width: 80vw;
+  }
+}
+@media screen and (max-width: 380px) {
+  .cardStackCont .cardCont {
+    padding: 25px 15px;
   }
 }

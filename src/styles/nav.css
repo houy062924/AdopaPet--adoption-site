@@ -60,3 +60,15 @@
   margin-right: 15px;
   cursor: pointer;
 }
+.navCont .signinIcon {
+  /* text-content: "" */
+  /* background-image: url("/src/images/user.svg");
+  background-repeat: no-repeat; */
+}
+
+@media screen and (max-width: 400px) {
+  .navCont .linkCont li {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+}

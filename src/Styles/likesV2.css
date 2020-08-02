@@ -376,8 +376,8 @@
   line-height: 25px;
 }
 .fullProfileCont .adoptButton, .likeCont .adoptButton {
-  height: 30px;
-  padding: 0 20px;
+  /* height: 30px; */
+  padding: 5px 20px;
   letter-spacing: 1px;
   font-weight: bold;
   float: right;
@@ -390,6 +390,10 @@
   justify-content: center;
   font-size: 16px;
   margin-bottom: 10px;
+  text-align: center;
+}
+.fullProfileCont .adoptButton {
+  margin-right: 10px;
 }
 .fullProfileCont .pendingButton, .likeCont .pendingButton {
   height: 30px;
@@ -479,6 +483,7 @@
 }
 .fullProfileCont ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 .fullProfileCont ::-webkit-scrollbar-track {
   background: var(--light-gray); 
@@ -486,4 +491,39 @@
 .fullProfileCont ::-webkit-scrollbar-thumb {
   background: var(--red);
   border-radius: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .fullProfileCont .formDataCont {
+    flex-direction: column;
+  }
+  .fullProfileCont .formDataCont .formImgCont {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .likePageCont .overviewTopCont {
+    grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+  }
+  .likePageCont .overviewBox {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 450px) {
+  .likePageCont {
+    margin: 110px 30px 50px 30px;
+  }
+  .likeProfilesCont {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .likeCont .imgCont {
+    width: 100%;
+    height: 150px;
+  }
+  .fullProfileCont .fullProfileForm {
+    padding: 75px 30px 40px 30px;
+  }
+  
 }
