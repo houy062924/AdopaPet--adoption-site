@@ -93,7 +93,7 @@
 .cardStackCont .cardCont .profileStory {
   text-align: justify;
   overflow-y: auto;
-  height: 190px;
+  height: 180px;
   font-size: 14px;
   padding-right: 10px;
   flex: auto;
