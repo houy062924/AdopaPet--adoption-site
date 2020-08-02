@@ -71,7 +71,7 @@ class Overview extends React.Component {
           <div 
           className={this.state.tabStatus === 2 ? "overviewBox  activeTab" : "overviewBox"}
           onClick={()=>this.handleTabChange(2)}>
-            <p className="overviewTitle">Adopted Profiles</p>
+            <p className="overviewTitle">Accepted Applications</p>
             <p className="overviewNumber">
               {this.props.dashstate.adoptedprofiles.length}
             </p>

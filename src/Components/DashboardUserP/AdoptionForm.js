@@ -13,6 +13,7 @@ class AdoptionForm extends React.Component {
       email: "",
       pets: "",
       housetype: "House-with-yard",
+      visitdate: "",
       other: ""
     }
 
@@ -38,10 +39,10 @@ class AdoptionForm extends React.Component {
       email: this.state.email,
       pets: this.state.pets,
       housetype: this.state.housetype,
+      visitdate: this.state.visitdate,
       other: this.state.other,
     }
 
-    console.log(this.props.functions.handleAdopt)
     this.props.functions.handleAdopt(adoptionform);
   }
 
@@ -140,6 +141,16 @@ class AdoptionForm extends React.Component {
               />
               <span>Yes, I currently have pets.</span>
             </label>
+          </div>
+          <div className="inputCont">
+            <label htmlFor="visitdate">Visit Date*</label>
+            <input 
+              required
+              id="visitdate" 
+              name="visitdate" 
+              type="date"
+              value={this.state.date}
+              onChange={this.handleInputChange}/>
           </div>
           <div className="inputCont">
             <label htmlFor="other">Other*</label>

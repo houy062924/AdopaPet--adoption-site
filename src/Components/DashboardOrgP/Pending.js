@@ -60,7 +60,7 @@ class Pending extends React.Component {
             <p className="firstGrid">Animal Name</p>
             {/* <p>Animal ID</p> */}
             <p>Applicant Name</p>
-            <p>Applicant Email</p>
+            <p>Visit Date</p>
             <p>Application</p>
             <p>Actions</p>
           </div>
@@ -85,8 +85,8 @@ class Pending extends React.Component {
                   {pending.username}
                 </p>
                 <p className="rowText">
-                  <span className="rowTitle-mobile">Applicant Email</span>
-                  {pending.useremail}
+                  <span className="rowTitle-mobile">Visit Date</span>
+                  {pending.application.visitdate}
                 </p>
                 {/* <p className="rowText">
                   <span className="rowTitle-mobile">Date</span>
