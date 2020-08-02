@@ -35,9 +35,9 @@ class Nav extends React.Component {
       <nav>
         <div className={ styles }>
           <div className="logoCont" onClick={()=>this.handleRedirect("home")}>
-            <Link to="/">
+            <Link to="/" className="logoACont">
               <img src="/src/images/logo-v8.svg"></img>
-              Name
+              <span className="logo">AdopApet</span>
             </Link>
           </div>
           { data.signedin === false &&

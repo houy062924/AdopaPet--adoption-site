@@ -464,6 +464,10 @@
 .fullProfileCont .contactInfoCont {
   margin-right: 15px;
   margin-left: 10px;
+  /* background-color: var(--red);
+  color: var(--white);
+  padding: 15px 20px;
+  border-radius: 10px; */
 }
 .fullProfileCont .contactTitle {
   font-size: 16px;

@@ -16,12 +16,19 @@
   color: var(--white);
 }
 .navCont .logoCont {
-  font-size: 25px;
+  font-size: 20px;
   margin: 0 15px;
   display: flex;
 }
 .navCont .logoCont img {
   height: 35px;
+}
+.navCont .logoACont {
+  display: flex;
+  align-items: flex-end;
+}
+.navCont .logo {
+  margin-left: 5px;
 }
 .navCont .linkCont {
   margin: 0;
@@ -59,11 +66,6 @@
   justify-content: center;
   margin-right: 15px;
   cursor: pointer;
-}
-.navCont .signinIcon {
-  /* text-content: "" */
-  /* background-image: url("/src/images/user.svg");
-  background-repeat: no-repeat; */
 }
 
 @media screen and (max-width: 400px) {

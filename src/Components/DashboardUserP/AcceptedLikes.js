@@ -57,7 +57,7 @@ class AcceptedLikes extends React.Component {
         }
         { this.props.dashstate.fullprofile === true &&
           <FullProfile
-            // statedata={this.props.statedata}
+            statedata={this.props.statedata}
             profiles={this.props.profiles}
             dashstate={this.props.dashstate}
             functions={this.props.functions}>
@@ -202,17 +202,29 @@ class FullProfile extends React.Component {
               </p>
             </div>
 
-            <div
+            {/* <div
               className="acceptedButton">
                 Application accepted
-            </div>
+            </div> */}
 
             { this.props.dashstate.acceptedorg !== null &&
               <div className="contactInfoCont">
-                <p>Please contact the following organisation and provide the id given below</p>
-                <p>Name: {this.props.dashstate.acceptedorg.name}</p>
-                <p>Email: {this.props.dashstate.acceptedorg.email}</p>
-                <p>Id: {this.props.statedata.uid}</p>
+                <p className="contactTitle">Please contact the following organisation and provide the id given below</p>
+                <p className="contactText">
+                  <span className="contactTextTitle">Name</span>
+                  <br></br>
+                  {this.props.dashstate.acceptedorg.name}
+                </p>
+                <p className="contactText">
+                  <span className="contactTextTitle">Email</span>
+                  <br></br>
+                  {this.props.dashstate.acceptedorg.email}
+                </p>
+                <p className="contactText">
+                  <span className="contactTextTitle">Id</span>
+                  <br></br>
+                  {this.props.statedata.uid}
+                </p>
               </div>
             }
             
