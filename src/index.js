@@ -10,7 +10,7 @@ import DashboardUserP from "./Pages/DashboardUserP";
 import HomeP from "./Pages/HomeP";
 import SigninP from "./Pages/SigninP";
 import Loading from "./Components/Shared/Loading";
-import Cursor from "./Components/Shared/Cursor";
+// import Cursor from "./Components/Shared/Cursor";
 
 class App extends React.Component {
   constructor(props) {
@@ -54,24 +54,22 @@ class App extends React.Component {
   }
 
   // Redirects
-  handleRedirect(type) {
-    console.log(type)
-    if (type === "org") {
+  handleRedirect(identity) {
+    if (identity === "org") {
       this.setState({
         identity: 0,
         redirect: "/signin",
         slide: "slideLeft"
       })
     }
-    else if (type === "user") {
+    else if (identity === "user") {
       this.setState({
         identity: 1,
         redirect: "/signin",
         slide: "slideRight"
       })
     }
-    else if (type === "home") {
-      console.log(this.state)
+    else if (identity === "home") {
       if (this.state.identity === 0) {
         this.setState({
           identity: 2,
