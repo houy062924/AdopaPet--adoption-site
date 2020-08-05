@@ -19,17 +19,6 @@ firebase.analytics();
 const storage = firebase.storage();
 const db = firebase.firestore();
 
-/* Revert when building authentication system */
-
-// rules_version = '2';
-// service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read, write: if request.auth != null;
-//     }
-//   }
-// }
-
 export {
   storage, firebase, db as default
 }

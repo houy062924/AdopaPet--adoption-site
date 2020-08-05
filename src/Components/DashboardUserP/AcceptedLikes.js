@@ -100,58 +100,9 @@ class FullProfile extends React.Component {
   cancelAdopt() {
     this.props.functions.cancelAdopt();
   }
-  // renderFormStatusButton(p) {
-  //   let adoptionstatus = p.adoptionstatus;
-
-  //   switch (adoptionstatus) {
-  //     case 0:
-  //       return <div
-  //               className="adoptButton"
-  //               onClick={this.handleAdopt}>
-  //                 Start adoption process
-  //              </div>
-
-  //     case 1:
-  //       return <div
-  //               className="pendingButton">
-  //                 Pending
-  //              </div>
-
-  //     case 2:
-  //       return <div
-  //               className="adoptButton"
-  //               onClick={this.handleAccept}>
-  //                 Application accepted
-  //              </div>
-  //   }
-
-    // currentprofile.adoptionstatus === 0
-    //           ? <div 
-    //               className="adoptButton" 
-    //               onClick={this.handleAdopt}>
-    //                 Start the adoption application
-    //             </div>
-    //           : <div className="pendingTextCont">
-    //               <div 
-    //                 className="pendingButton">
-    //                   Pending application
-    //               </div>
-    //               <p onClick={this.toggleConfirmCancel}>Cancel application?</p>
-    //               { this.state.confirmcancel &&
-    //                 <div className="cancelTextCont">
-    //                   <p>This action will delete your application.<br></br>Would you like to proceed?</p>
-    //                   <div className="cancelButtonCont">
-    //                     <div className="cancelButton yes" onClick={this.cancelAdopt}>Yes</div>
-    //                     <div className="cancelButton no" onClick={this.toggleConfirmCancel}>No</div>
-    //                   </div>
-    //                 </div>
-    //               }
-    //             </div>
-  // }
 
   render() {
     let currentprofile = this.props.dashstate.currentprofile;
-    console.log(this.props.dashstate.acceptedorg)
 
     return (
       <div className="fullProfileCont">
@@ -201,11 +152,6 @@ class FullProfile extends React.Component {
                 {currentprofile.story}
               </p>
             </div>
-
-            {/* <div
-              className="acceptedButton">
-                Application accepted
-            </div> */}
 
             { this.props.dashstate.acceptedorg !== null &&
               <div className="contactInfoCont">

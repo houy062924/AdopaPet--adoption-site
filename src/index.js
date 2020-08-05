@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
+import db from "./Components/Shared/Firebase";
 import Nav from "./Components/Nav";
 import ProfilesP from "./Pages/ProfilesP";
 import DashboardOrgP from "./Pages/DashboardOrgP";
@@ -35,12 +36,11 @@ class App extends React.Component {
       handleSignOut: this.handleSignOut.bind(this),
     }
     this.newUser = false;
-    this.db = firebase.firestore();
     this.timer;
   }
   
   componentDidMount() {
-    setTimeout(()=>{
+    this.timeoutID = setTimeout(()=>{
       this.setState({
         loading: false
       })
@@ -50,7 +50,7 @@ class App extends React.Component {
     this.handleAuth();
   }
   componentWillUnmount() {
-    clearTimeout();
+    clearTimeout(this.timeoutID);
   }
 
   // Redirects
@@ -190,7 +190,7 @@ class App extends React.Component {
       if (user) {
 
         if ( this.newUser === true ) { // signing up
-          this.db.collection("members").doc(user.uid).set({
+          db.collection("members").doc(user.uid).set({
             name: this.state.name,
             email: user.email,
             uid: user.uid,
@@ -219,7 +219,7 @@ class App extends React.Component {
           })
         }
         else { // signing in or already signed in
-          this.db.collection("members").doc(user.uid).get()
+          db.collection("members").doc(user.uid).get()
           .then((doc)=>{
             this.setState({
               identity: doc.data().identity,

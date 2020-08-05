@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
-import { firebase } from "../Components/Shared/Firebase";
 
-// import SideNav from "../Components/DashboardOrgP/SideNav";
-import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
+import db from "../Components/Shared/Firebase";
 import Overview from "../Components/DashboardOrgP/Overview";
 
+// import SideNav from "../Components/DashboardOrgP/SideNav";
+// import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
 // import Calender from "../Components/DashboardOrgP/Calender";
 
 
@@ -41,7 +41,7 @@ class DashboardOrgP extends React.Component {
       handleDeleteProfile: this.handleDeleteProfile.bind(this),
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
-    this.db = firebase.firestore();
+
     this.pendingdb;
     this.activedb;
     this.adopteddb;
@@ -60,7 +60,7 @@ class DashboardOrgP extends React.Component {
 
   // Handle pending applications
   getPendingApplications() {
-    this.pendingdb = this.db.collection("adoptions")
+    this.pendingdb = DB.collection("adoptions")
     .where("orguid", "==", this.props.appstate.uid)
     .where("status", "==", 0)
     // .orderBy("timestamp", "desc")
@@ -77,24 +77,24 @@ class DashboardOrgP extends React.Component {
   }
   handleAcceptApp(profile) {
     // 1. change "animal" status to 1 (adopted)
-    this.db.collection("animals").doc(profile.animaluid).update({
+    db.collection("animals").doc(profile.animaluid).update({
       adoptionstatus: 1,
     })
 
     // 2. change current profile's "adoptions" status to 1 (accept)
-    this.db.collection("adoptions").doc(profile.docuid).update({
+    db.collection("adoptions").doc(profile.docuid).update({
       status: 1
     })
 
     // 3. change other profiles of this animal in "adoptions" to 2 (reject)
-    this.db.collection("adoptions")
+    db.collection("adoptions")
     .where("animaluid", "==", profile.animaluid)
     .get()
     .then((querySnapshot)=>{
       querySnapshot.forEach((doc)=>{
         // if not current profile
         if (doc.data().docuid !== profile.docuid) {
-          this.db.collection("adoptions").doc(doc.id).update({
+          db.collection("adoptions").doc(doc.id).update({
             status: 2
           })
         }
@@ -102,7 +102,7 @@ class DashboardOrgP extends React.Component {
     })
 
     // 4. change user's "members" like-list status
-    this.db.collection("members").doc(profile.useruid)
+    db.collection("members").doc(profile.useruid)
     .get()
     .then((doc)=>{
       let likesarr = doc.data().likes;
@@ -111,7 +111,7 @@ class DashboardOrgP extends React.Component {
         if (like.id === profile.animaluid) {
           likesarr[index].adoptionstatus = 2;
 
-          this.db.collection("members").doc(profile.useruid)
+          db.collection("members").doc(profile.useruid)
           .update({
             "likes": likesarr
           })
@@ -126,7 +126,7 @@ class DashboardOrgP extends React.Component {
 
   // Handle active profiles
   getActiveProfiles() {
-    this.activedb = this.db.collection("animals")
+    this.activedb = DB.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 0)
     .onSnapshot((querySnapshot)=>{
@@ -142,7 +142,7 @@ class DashboardOrgP extends React.Component {
 
   // Handle adopted profiles
   getAdoptedProfiles() {
-    this.adopteddb = this.db.collection("animals")
+    this.adopteddb = db.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 1)
     .onSnapshot((querySnapshot)=>{
@@ -208,7 +208,7 @@ class DashboardOrgP extends React.Component {
     })
 
     // 2. remove from database
-    this.db.collection("animals").doc(this.state.currentprofile.id)
+    db.collection("animals").doc(this.state.currentprofile.id)
     .delete()
     .then(() => {
       console.log("Document successfully deleted!");

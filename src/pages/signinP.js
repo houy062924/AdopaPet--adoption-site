@@ -18,7 +18,6 @@ class SigninP extends React.Component {
   }
 
   render() {
-    console.log(this.props.statedata.identity)
     return (
       <BrowserRouter basename="/signin">
         <div className={ this.props.statedata.identity === 1 ? "bottomCont userColor" : "bottomCont orgColor" }>

@@ -2,8 +2,9 @@ import React from "react";
 // import Likes from "../Components/DashboardUserP/Likes";
 import Likes from "../Components/DashboardUserP/Likes";
 
+import db from "../Components/Shared/Firebase";
+import { BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
-import { BrowserRouter, Route } from "react-router-dom";
 // import SideNavUser from "../Components/DashboardUserP/SideNavUser";
 
 
@@ -29,7 +30,6 @@ class DashboardUserP extends React.Component {
       handleAccept: this.handleAccept.bind(this),
     }
 
-    this.db = firebase.firestore();
     this.likesdb;
     this.getDatabaseData = this.getDatabaseData.bind(this);
     this.filterDatabaseData = this.filterDatabaseData.bind(this);
@@ -43,7 +43,7 @@ class DashboardUserP extends React.Component {
     this.likesdb();
   }
   getDatabaseData() {
-    this.likesdb = this.db.collection("members")
+    this.likesdb = db.collection("members")
     .doc(this.props.statedata.uid)
     .onSnapshot((snapshot) => {
       this.filterDatabaseData(snapshot.data().likes)
@@ -67,7 +67,7 @@ class DashboardUserP extends React.Component {
     let profiles = [];
     let adopted = [];
 
-    this.db.collection("animals").get()
+    db.collection("animals").get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         profiles.push(doc.data());
@@ -91,7 +91,7 @@ class DashboardUserP extends React.Component {
       return like.id !== profile.id
     })
 
-    this.db.collection("members").doc(this.props.statedata.uid).update({
+    db.collection("members").doc(this.props.statedata.uid).update({
       likes: newarr
     })
     .then(()=>{
@@ -130,7 +130,7 @@ class DashboardUserP extends React.Component {
   }
   handleAdopt(application) {
     // 1. save info to "adoptions" collection
-    this.db.collection("adoptions").add({
+    db.collection("adoptions").add({
       orguid: this.state.currentprofile.orguid,
       useruid: this.props.statedata.uid,
       username: this.props.statedata.name,
@@ -143,7 +143,7 @@ class DashboardUserP extends React.Component {
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
     .then((doc)=>{
-      this.db.collection("adoptions").doc(doc.id).update({
+      db.collection("adoptions").doc(doc.id).update({
         docuid: doc.id
       })
     })
@@ -155,7 +155,7 @@ class DashboardUserP extends React.Component {
     let newarr = [...this.state.likes];
     newarr[this.state.currentprofileindex].adoptionstatus = 1;
 
-    this.db.collection("members").doc(this.props.statedata.uid).update({
+    db.collection("members").doc(this.props.statedata.uid).update({
       "likes": newarr
     })
     .catch((error) => {
@@ -170,7 +170,7 @@ class DashboardUserP extends React.Component {
     console.log("cancel")
   }
   handleAccept(orguid) {
-    this.db.collection("members").doc(orguid)
+    db.collection("members").doc(orguid)
     .get()
     .then((doc)=>{
       this.setState({
