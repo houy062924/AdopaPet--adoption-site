@@ -9,15 +9,11 @@ class DashBottomPending extends React.Component {
     }
 
     this.handleAcceptApp = this.handleAcceptApp.bind(this);
-    this.handleRejectApp = this.handleRejectApp.bind(this);
     this.toggleApplicationForm = this.toggleApplicationForm.bind(this);
   }
 
   handleAcceptApp(p) {
     this.props.functions.handleAcceptApp(p);
-  }
-  handleRejectApp (p) {
-    this.props.functions.handleRejectApp(p);
   }
   toggleApplicationForm(i) {
     this.setState({

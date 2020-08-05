@@ -1,4 +1,5 @@
 import React from "react";
+import FormDeleteButtons from "./FormDeleteButtons";
 
 class FullProfile extends React.Component {
   constructor(props) {
@@ -62,6 +63,11 @@ class FullProfile extends React.Component {
                 {currentprofile.story}
               </p>
             </div>
+
+            <FormDeleteButtons
+              dashstate={this.props.dashstate}
+              functions={this.props.functions}>
+            </FormDeleteButtons>
           </div>
         </div>
       </div>

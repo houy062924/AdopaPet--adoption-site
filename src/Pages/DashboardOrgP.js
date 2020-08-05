@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
-
 import db from "../Components/Shared/Firebase";
 import DashTopNav from "../Components/DashboardOrgP/DashTopNav";
 
@@ -25,17 +24,8 @@ class DashboardOrgP extends React.Component {
       acceptedprofiles: [],
     }
     this.functions = {
-      getPendingApplications: this.getPendingApplications.bind(this),
       handleAcceptApp: this.handleAcceptApp.bind(this),
-      handleRejectApp: this.handleRejectApp.bind(this),
-
-      getActiveProfiles: this.getActiveProfiles.bind(this),
-      getAcceptedProfiles: this.getAcceptedProfiles.bind(this),
-
       toggleAddProfileForm: this.toggleAddProfileForm.bind(this),
-      // closeProfileForm: this.closeProfileForm.bind(this),
-      // openEditForm: this.openEditForm.bind(this),
-      // closeEditForm: this.closeEditForm.bind(this),
       openFullProfile: this.openFullProfile.bind(this),
       closeFullProfile: this.closeFullProfile.bind(this),
 
@@ -44,6 +34,12 @@ class DashboardOrgP extends React.Component {
       handleDeleteProfile: this.handleDeleteProfile.bind(this),
       cancelDeleteProfile: this.cancelDeleteProfile.bind(this),
     }
+
+
+    // Functions that don't need passing down
+    this.getPendingApplications = this.getPendingApplications.bind(this);
+    this.getActiveProfiles = this.getActiveProfiles.bind(this);
+    this.getAcceptedProfiles = this.getAcceptedProfiles.bind(this);
 
     this.pendingdb;
     this.activedb;
@@ -61,7 +57,7 @@ class DashboardOrgP extends React.Component {
     this.accepteddb();
   }
 
-  // Handle pending applications
+  // Functions running on component mount
   getPendingApplications() {
     this.pendingdb = db.collection("adoptions")
     .where("orguid", "==", this.props.appstate.uid)
@@ -78,6 +74,61 @@ class DashboardOrgP extends React.Component {
       })
     })
   }
+  getActiveProfiles() {
+    this.activedb = db.collection("animals")
+    .where("orguid", "==", this.props.appstate.uid)
+    .where("adoptionstatus", "==", 0)
+    .onSnapshot((querySnapshot)=>{
+      let activearr = [];
+      querySnapshot.forEach((doc) => {
+        activearr.push(doc.data());
+      })
+      this.setState({
+        activeprofiles: activearr
+      })
+    })
+  }
+  getAcceptedProfiles() {
+    this.accepteddb = db.collection("animals")
+    .where("orguid", "==", this.props.appstate.uid)
+    .where("adoptionstatus", "==", 1)
+    .onSnapshot((querySnapshot)=>{
+      let acceptedarr = [];
+      querySnapshot.forEach((doc) => {
+        acceptedarr.push(doc.data());
+      })
+      this.setState({
+        acceptedprofiles: acceptedarr
+      })
+    })
+  }
+
+  // Handle form popups (application, add profile form, full profile)
+  toggleApplicationForm() {
+    this.setState((prevState)=>({
+      applicationform: !prevState.applicationform
+    }))
+  }
+  toggleAddProfileForm() {
+    this.setState((prevState)=>({
+      addingprofile: !prevState.addingprofile
+    }))
+  }
+  openFullProfile(p, i) {
+    this.setState({
+      editingprofile: true,
+      currentprofile: p
+    })
+  }
+  closeFullProfile() {
+    this.setState({
+      editingprofile: false,
+      currentprofile: null,
+      confirmDelete: false
+    })
+  }
+
+  // Handle actions (accept application, delete profile)
   handleAcceptApp(profile) {
     // 1. change "animal" status to 1 (accepted)
     db.collection("animals").doc(profile.animaluid).update({
@@ -122,80 +173,6 @@ class DashboardOrgP extends React.Component {
       })
     })
   }
-  handleRejectApp(profile) {
-    console.log("reject")
-    console.log(profile)
-  }
-
-  // Handle active profiles
-  getActiveProfiles() {
-    this.activedb = db.collection("animals")
-    .where("orguid", "==", this.props.appstate.uid)
-    .where("adoptionstatus", "==", 0)
-    .onSnapshot((querySnapshot)=>{
-      let activearr = [];
-      querySnapshot.forEach((doc) => {
-        activearr.push(doc.data());
-      })
-      this.setState({
-        activeprofiles: activearr
-      })
-    })
-  }
-
-  // Handle accepted profiles
-  getAcceptedProfiles() {
-    this.accepteddb = db.collection("animals")
-    .where("orguid", "==", this.props.appstate.uid)
-    .where("adoptionstatus", "==", 1)
-    .onSnapshot((querySnapshot)=>{
-      let acceptedarr = [];
-      querySnapshot.forEach((doc) => {
-        acceptedarr.push(doc.data());
-      })
-      this.setState({
-        acceptedprofiles: acceptedarr
-      })
-    })
-  }
-
-
-  //
-
-  toggleApplicationForm() {
-    this.setState((prevState)=>({
-      applicationform: !prevState.applicationform
-    }))
-  }
-  toggleAddProfileForm() {
-    this.setState((prevState)=>({
-      addingprofile: !prevState.addingprofile
-    }))
-  }
-  // closeProfileForm(reset) {
-  //   this.setState({
-  //     addingprofile: false
-  //   })
-  // }
-
-  //
-
-  openFullProfile(p, i) {
-    this.setState({
-      editingprofile: true,
-      currentprofile: p
-    })
-  }
-  closeFullProfile() {
-    this.setState({
-      editingprofile: false,
-      currentprofile: null,
-      confirmDelete: false
-    })
-  }
-
-
-
   confirmDeleteProfile() {
     if (this.state.confirmDelete === false) {
       this.setState({
@@ -221,7 +198,7 @@ class DashboardOrgP extends React.Component {
     .delete()
     .then(() => {
       console.log("Document successfully deleted!");
-      this.closeEditForm();
+      this.closeFullProfile();
     })
     .catch((error) => {
       console.error("Error removing document: ", error);
