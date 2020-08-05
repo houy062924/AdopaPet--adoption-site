@@ -1,11 +1,8 @@
 import React from "react";
-import "../../styles/likesV2.css";
-import AllLikes from "./AllLikes";
-import PendingLikes from "./PendingLikes";
-import AcceptedLikes from "./AcceptedLikes";
+import "../../styles/likes.css";
+import LikesBottomComp from "./LikesBottomComp";
 
-
-class LikesNav extends React.Component {
+class LikesTopNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,28 +26,28 @@ class LikesNav extends React.Component {
 
     switch (tabstatus) {
       case 0:
-        return <AllLikes
+        return <LikesBottomComp
                  profiles={this.props.dashstate.likes}
                  statedata={this.props.statedata}
                  dashstate={this.props.dashstate}
                  functions={this.props.functions}>
-               </AllLikes>
+               </LikesBottomComp>
 
       case 1:
-        return <PendingLikes
+        return <LikesBottomComp
                 profiles={profiles}
                 statedata={this.props.statedata}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
-               </PendingLikes>
+               </LikesBottomComp>
 
       case 2:
-        return <AcceptedLikes
+        return <LikesBottomComp
                 profiles={profiles}
-                statedata={this.props.statedata}                
+                statedata={this.props.statedata}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
-               </AcceptedLikes>
+               </LikesBottomComp>
     }
   }
   renderNotification() {
@@ -60,28 +57,7 @@ class LikesNav extends React.Component {
     return accepted.length;
   }
 
-
-  //
-
-  openFullProfile(p, e, i) {
-    e.stopPropagation();
-    this.props.functions.openFullProfile(p, e, i);
-  }
-  closeFullProfile() {
-    this.props.functions.closeFullProfile();
-  }
-  removeLike(p, e) {
-    e.stopPropagation();
-    this.props.functions.removeLike(p);
-  }
-  handleAdopt() {
-    this.props.functions.handleAdopt();
-  }
-  
-
   render() {
-    let adopted = null;
-
     return (
       <div className="likePageCont"> 
         <div className="overviewTopCont">
@@ -112,4 +88,4 @@ class LikesNav extends React.Component {
   }
 }
 
-export default LikesNav;
+export default LikesTopNav;

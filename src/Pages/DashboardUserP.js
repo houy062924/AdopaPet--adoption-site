@@ -1,6 +1,6 @@
 import React from "react";
 // import Likes from "../Components/DashboardUserP/Likes";
-import LikesNav from "../Components/DashboardUserP/LikesNav";
+import LikesTopNav from "../Components/DashboardUserP/LikesTopNav";
 
 import db from "../Components/Shared/Firebase";
 import { BrowserRouter } from "react-router-dom";
@@ -179,13 +179,13 @@ class DashboardUserP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/user">
-        <LikesNav
+        <LikesTopNav
           statedata={this.props.statedata}
           // likestate={this.state.likes}
           // adoptedstate={this.state.adopted}
           dashstate={this.state}
           functions={this.functions}>
-        </LikesNav>
+        </LikesTopNav>
        </BrowserRouter>
     )
   }

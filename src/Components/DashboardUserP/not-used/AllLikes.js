@@ -1,85 +1,24 @@
 import React from "react";
-import FullProfile from "./FullProfile";
+import LikedProfilesCard from "../LikedProfilesCard";
+import FullProfile from "../FullProfile";
 
-class PendingLikes extends React.Component {
+class AllLikes extends React.Component {
   constructor(props) {
     super(props);
-
   }
-  openFullProfile(p, e, i) {
-    e.stopPropagation();
-    this.props.functions.openFullProfile(p, e, i);
-  }
-  closeFullProfile() {
-    this.props.functions.closeFullProfile();
-  }
-  handleAdopt() {
-    this.props.functions.handleAdopt();
-  }
-  renderAdoptionStatusButton(i) {
-    // let adoptionstatus = this.props.likestate[i].adoptionstatus
-
-    // switch (adoptionstatus) {
-    //   case 0:
-    //     return <div
-    //             className="adoptButton"
-    //             onClick={this.handleAdopt}>
-    //               Start adoption process
-    //            </div>
-
-    //   case 1:
-    //     return <div
-    //             className="pendingButton">
-    //               Pending
-    //            </div>
-
-    //   case 2:
-    //     return <div
-    //             className="adoptButton"
-    //             onClick={this.handleAccept()}>
-    //               Application accepted
-    //            </div>
-    // }
-  }
-
 
   render() {
     return (
       <div className="likeProfilesCont">
         { this.props.profiles !== undefined &&
           this.props.profiles.map((profile, index)=>(
-            <div 
-              className="likeCont" 
+            <LikedProfilesCard
               key={profile.id}
-              onClick={()=>this.openFullProfile(profile, event, index)}>
-                
-              <div className="imgCont">
-                <img src={profile.url} className="profileImg"></img>
-              </div>
-
-              <div className="textCont">
-                <p className="profileName">
-                  {profile.name}
-                </p>
-                <p className="profileDays">
-                  <span className="labelText">Date<br></br></span>
-                  {profile.date}
-                </p>
-                <p className="profileId">
-                  <span className="labelText">Gender<br></br></span>
-                  { profile.gender }
-                </p>
-                <p className="profileLocation">
-                  <span className="labelText">Location<br></br></span>
-                  { profile.address }
-                </p>
-              </div>
-
-              <div
-                className="pendingButton">
-                  Pending
-              </div>
-            </div>
+              profile={profile}
+              index={index}
+              dashstate={this.props.dashstate}
+              functions={this.props.functions}>
+            </LikedProfilesCard>
           ))
         }
         { this.props.dashstate.fullprofile === true &&
@@ -98,18 +37,19 @@ class PendingLikes extends React.Component {
 // class FullProfile extends React.Component {
 //   constructor(props) {
 //     super(props);
-//     this.state = {
-//       confirmcancel: false
-//     }
 
 //     this.closeFullProfile = this.closeFullProfile.bind(this);
-//     this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
+//     // this.toggleConfirmCancel = this.toggleConfirmCancel.bind(this);
+//     this.toggleAdoptForm = this.toggleAdoptForm.bind(this);
 //     this.handleAdopt = this.handleAdopt.bind(this);
 //     this.handleAccept = this.handleAccept.bind(this);
 //     this.cancelAdopt = this.cancelAdopt.bind(this);
-//     // this.renderFormStatusButton = this.renderFormStatusButton.bind(this);
+//     this.renderFormStatusButton = this.renderFormStatusButton.bind(this);
 //   }
 
+//   toggleAdoptForm() {
+//     this.props.functions.toggleAdoptForm();
+//   }
 //   handleAdopt() {
 //     this.props.functions.handleAdopt();
 //   }
@@ -119,22 +59,61 @@ class PendingLikes extends React.Component {
 //   closeFullProfile() {
 //     this.props.functions.closeFullProfile();
 //   }
-//   toggleConfirmCancel() {
-//     this.setState((prevState)=>({
-//       confirmcancel: !prevState.confirmcancel
-//     }))
-//   }
+//   // toggleConfirmCancel() {
+//   //   this.setState((prevState)=>({
+//   //     confirmcancel: !prevState.confirmcancel
+//   //   }))
+//   // }
 //   cancelAdopt() {
 //     this.props.functions.cancelAdopt();
 //   }
-
+//   renderFormStatusButton(p) {
+//     let adoptionstatus = p.adoptionstatus;
+    
+//     if (adoptionstatus !== 2 || this.props.dashstate.acceptedorg !== null) {
+//       switch (adoptionstatus) {
+//         case 0:
+//           return <div
+//                   className="adoptButton"
+//                   onClick={this.toggleAdoptForm}>
+//                     Start adoption process
+//                  </div>
+  
+//         case 1:
+//           return <div
+//                   className="pendingButton">
+//                     Pending
+//                  </div>
+  
+//         case 2:
+//           return <div className="contactInfoCont">
+//                   <p className="contactTitle">Please contact the following organisation and provide the ID given below</p>
+//                   <p className="contactText">
+//                     <span className="contactTextTitle">Name</span>
+//                     <br></br>
+//                     {this.props.dashstate.acceptedorg.name}
+//                   </p>
+//                   <p className="contactText">
+//                     <span className="contactTextTitle">Email</span>
+//                     <br></br>
+//                     {this.props.dashstate.acceptedorg.email}
+//                   </p>
+//                   <p className="contactText">
+//                     <span className="contactTextTitle">ID</span>
+//                     <br></br>
+//                     {this.props.statedata.uid}
+//                     </p>
+//                  </div>
+//       }
+//     }
+//   }
 
 //   render() {
 //     let currentprofile = this.props.dashstate.currentprofile;
 
 //     return (
 //       <div className="fullProfileCont">
-//         <form className="fullProfileForm">
+//         <div className="fullProfileForm">
 //           <div className="formTopCont">
 //             <p className="formTopTitle">Profile</p>
 //             <p className="closeFormButton" onClick={this.closeFullProfile}>X</p>
@@ -181,26 +160,22 @@ class PendingLikes extends React.Component {
 //               </p>
 //             </div>
 
-//             <div
-//               className="pendingButton">
-//                 Pending
-//             </div>
-
-//             { this.props.dashstate.acceptedorg !== null &&
-//               <div className="contactInfoCont">
-//                 <p>Please contact the following organisation and provide the id given below:</p>
-//                 <p>Name: {this.props.dashstate.acceptedorg.name}</p>
-//                 <p>Email: {this.props.dashstate.acceptedorg.email}</p>
-//                 <p>Id: {this.props.statedata.uid}</p>
-//               </div>
+//             { this.props.dashstate.adoptform === false
+//               ? this.renderFormStatusButton(currentprofile)
+//               : <AdoptionForm
+//                   dashstate={this.props.dashstate}
+//                   functions={this.props.functions}>
+//                 </AdoptionForm>
 //             }
             
 //           </div>
 
-//         </form>
+//         </div>
 //       </div>
 //     )
 //   }
 // }
 
-export default PendingLikes;
+
+
+export default AllLikes;

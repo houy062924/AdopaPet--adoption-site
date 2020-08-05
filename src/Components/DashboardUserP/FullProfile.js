@@ -8,33 +8,11 @@ class FullProfile extends React.Component {
     super(props);
 
     this.closeFullProfile = this.closeFullProfile.bind(this);
-    // this.toggleAdoptForm = this.toggleAdoptForm.bind(this);
-    this.handleAdopt = this.handleAdopt.bind(this);
-    // this.handleAccept = this.handleAccept.bind(this);
-    // this.cancelAdopt = this.cancelAdopt.bind(this);
-    // this.renderFormStatusButton = this.renderFormStatusButton.bind(this);
   }
 
-  // toggleAdoptForm() {
-  //   this.props.functions.toggleAdoptForm();
-  // }
-  handleAdopt() {
-    this.props.functions.handleAdopt();
-  }
-  // handleAccept() {
-  //   this.props.functions.handleAccept();
-  // }
   closeFullProfile() {
     this.props.functions.closeFullProfile();
   }
-  // toggleConfirmCancel() {
-  //   this.setState((prevState)=>({
-  //     confirmcancel: !prevState.confirmcancel
-  //   }))
-  // }
-  // cancelAdopt() {
-  //   this.props.functions.cancelAdopt();
-  // }
 
   render() {
     let currentprofile = this.props.dashstate.currentprofile;
