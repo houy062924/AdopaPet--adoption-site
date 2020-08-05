@@ -1,14 +1,15 @@
 import React from "react";
-import Pending from "./Pending";
-import Active from "./Active";
-import Adopted from "./Adopted";
 import "../../styles/overvieworg.css";
 
-class Overview extends React.Component {
+import DashBottomComp from "./DashBottomComp";
+import DashBottomPending from "./DashBottomPending";
+
+
+class DashTopNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabStatus: 0, // 0: pending; 1: active; 2: adopted
+      tabstatus: 0, // 0: pending; 1: active; 2: accepted
     }
 
     this.handleTabChange = this.handleTabChange.bind(this);
@@ -16,35 +17,36 @@ class Overview extends React.Component {
 
   handleTabChange(status) {
     this.setState({
-      tabStatus: status
+      tabstatus: status
     })
   }
   renderComponent() {
-    let tabstatus = this.state.tabStatus;
+    let tabstatus = this.state.tabstatus;
     switch (tabstatus) {
       case 0:
-        return <Pending
-                // pendingprofiles={this.props.dashstate.pendingprofiles}
+        return <DashBottomPending
                 appstate={this.props.appstate}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
-               </Pending>
+               </DashBottomPending>
 
       case 1:
-        return <Active
-                // activeprofiles={this.props.dashstate.activeprofiles}
+        return <DashBottomComp
+                tabstatus={tabstatus}
+                profiles={this.props.dashstate.activeprofiles}
                 appstate={this.props.appstate}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
-               </Active>
+               </DashBottomComp>
 
       case 2:
-        return <Adopted
-                // adoptedprofiles={this.props.dashstate.adoptedprofiles}
+        return <DashBottomComp
+                tabstatus={tabstatus}
+                profiles={this.props.dashstate.acceptedprofiles}
                 appstate={this.props.appstate}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
-               </Adopted>
+               </DashBottomComp>
     }
   }
 
@@ -53,7 +55,7 @@ class Overview extends React.Component {
       <div className="overviewCont"> 
         <div className="overviewTopCont">
           <div 
-          className={this.state.tabStatus === 0 ? "overviewBox  activeTab" : "overviewBox"}
+          className={this.state.tabstatus === 0 ? "overviewBox  activeTab" : "overviewBox"}
           onClick={()=>this.handleTabChange(0)}>
             <p className="overviewTitle">Pending Applications</p>
             <p className="overviewNumber">
@@ -61,7 +63,7 @@ class Overview extends React.Component {
             </p>
           </div>
           <div 
-          className={this.state.tabStatus === 1 ? "overviewBox  activeTab" : "overviewBox"}
+          className={this.state.tabstatus === 1 ? "overviewBox  activeTab" : "overviewBox"}
           onClick={()=>this.handleTabChange(1)}>
             <p className="overviewTitle">Active Profiles</p>
             <p className="overviewNumber">
@@ -69,11 +71,11 @@ class Overview extends React.Component {
             </p>
           </div>
           <div 
-          className={this.state.tabStatus === 2 ? "overviewBox  activeTab" : "overviewBox"}
+          className={this.state.tabstatus === 2 ? "overviewBox  activeTab" : "overviewBox"}
           onClick={()=>this.handleTabChange(2)}>
             <p className="overviewTitle">Accepted Applications</p>
             <p className="overviewNumber">
-              {this.props.dashstate.adoptedprofiles.length}
+              {this.props.dashstate.acceptedprofiles.length}
             </p>
           </div>
         </div>
@@ -85,4 +87,4 @@ class Overview extends React.Component {
   }
 }
 
-export default Overview;
+export default DashTopNav;

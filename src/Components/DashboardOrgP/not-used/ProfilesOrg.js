@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/org.css";
-import { firebase } from "../Shared/Firebase";
-import { storage } from "../Shared/Firebase";
+import { firebase } from "../../Shared/Firebase";
+import { storage } from "../../Shared/Firebase";
 
 
 class ProfilesOrg extends React.Component {

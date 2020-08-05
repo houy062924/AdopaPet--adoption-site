@@ -1,7 +1,7 @@
 import React from "react";
 // import ProfilesOrg from "./ProfilesOrg";
 import "../../styles/overvieworg.css";
-import ActiveProfiles from "./ActiveProfiles";
+import ActiveProfiles from "../ActiveProfiles";
 
 class Active extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 
 import db from "../Components/Shared/Firebase";
-import Overview from "../Components/DashboardOrgP/Overview";
+import DashTopNav from "../Components/DashboardOrgP/DashTopNav";
 
 // import SideNav from "../Components/DashboardOrgP/SideNav";
 // import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
@@ -22,7 +22,7 @@ class DashboardOrgP extends React.Component {
       profiles: [],
       pendingprofiles: [],
       activeprofiles: [],
-      adoptedprofiles: [],
+      acceptedprofiles: [],
     }
     this.functions = {
       getPendingApplications: this.getPendingApplications.bind(this),
@@ -30,12 +30,15 @@ class DashboardOrgP extends React.Component {
       handleRejectApp: this.handleRejectApp.bind(this),
 
       getActiveProfiles: this.getActiveProfiles.bind(this),
-      getAdoptedProfiles: this.getAdoptedProfiles.bind(this),
+      getAcceptedProfiles: this.getAcceptedProfiles.bind(this),
 
-      toggleProfileForm: this.toggleProfileForm.bind(this),
-      closeProfileForm: this.closeProfileForm.bind(this),
-      openEditForm: this.openEditForm.bind(this),
-      closeEditForm: this.closeEditForm.bind(this),
+      toggleAddProfileForm: this.toggleAddProfileForm.bind(this),
+      // closeProfileForm: this.closeProfileForm.bind(this),
+      // openEditForm: this.openEditForm.bind(this),
+      // closeEditForm: this.closeEditForm.bind(this),
+      openFullProfile: this.openFullProfile.bind(this),
+      closeFullProfile: this.closeFullProfile.bind(this),
+
       toggleApplicationForm: this.toggleApplicationForm.bind(this),
       confirmDeleteProfile: this.confirmDeleteProfile.bind(this),
       handleDeleteProfile: this.handleDeleteProfile.bind(this),
@@ -44,23 +47,23 @@ class DashboardOrgP extends React.Component {
 
     this.pendingdb;
     this.activedb;
-    this.adopteddb;
+    this.accepteddb;
   }
 
   componentDidMount() {
     this.getPendingApplications();
     this.getActiveProfiles();
-    this.getAdoptedProfiles();
+    this.getAcceptedProfiles();
   }
   componentWillUnmount() {
     this.pendingdb();
     this.activedb();
-    this.adopteddb();
+    this.accepteddb();
   }
 
   // Handle pending applications
   getPendingApplications() {
-    this.pendingdb = DB.collection("adoptions")
+    this.pendingdb = db.collection("adoptions")
     .where("orguid", "==", this.props.appstate.uid)
     .where("status", "==", 0)
     // .orderBy("timestamp", "desc")
@@ -76,7 +79,7 @@ class DashboardOrgP extends React.Component {
     })
   }
   handleAcceptApp(profile) {
-    // 1. change "animal" status to 1 (adopted)
+    // 1. change "animal" status to 1 (accepted)
     db.collection("animals").doc(profile.animaluid).update({
       adoptionstatus: 1,
     })
@@ -126,7 +129,7 @@ class DashboardOrgP extends React.Component {
 
   // Handle active profiles
   getActiveProfiles() {
-    this.activedb = DB.collection("animals")
+    this.activedb = db.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 0)
     .onSnapshot((querySnapshot)=>{
@@ -140,18 +143,18 @@ class DashboardOrgP extends React.Component {
     })
   }
 
-  // Handle adopted profiles
-  getAdoptedProfiles() {
-    this.adopteddb = db.collection("animals")
+  // Handle accepted profiles
+  getAcceptedProfiles() {
+    this.accepteddb = db.collection("animals")
     .where("orguid", "==", this.props.appstate.uid)
     .where("adoptionstatus", "==", 1)
     .onSnapshot((querySnapshot)=>{
-      let adoptedarr = [];
+      let acceptedarr = [];
       querySnapshot.forEach((doc) => {
-        adoptedarr.push(doc.data());
+        acceptedarr.push(doc.data());
       })
       this.setState({
-        adoptedprofiles: adoptedarr
+        acceptedprofiles: acceptedarr
       })
     })
   }
@@ -164,29 +167,35 @@ class DashboardOrgP extends React.Component {
       applicationform: !prevState.applicationform
     }))
   }
-  toggleProfileForm(reset) {
+  toggleAddProfileForm() {
     this.setState((prevState)=>({
       addingprofile: !prevState.addingprofile
     }))
   }
-  closeProfileForm(reset) {
-    this.setState({
-      addingprofile: false
-    })
-  }
-  openEditForm(p, i) {
+  // closeProfileForm(reset) {
+  //   this.setState({
+  //     addingprofile: false
+  //   })
+  // }
+
+  //
+
+  openFullProfile(p, i) {
     this.setState({
       editingprofile: true,
       currentprofile: p
     })
   }
-  closeEditForm() {
+  closeFullProfile() {
     this.setState({
       editingprofile: false,
       currentprofile: null,
       confirmDelete: false
     })
   }
+
+
+
   confirmDeleteProfile() {
     if (this.state.confirmDelete === false) {
       this.setState({
@@ -237,11 +246,11 @@ class DashboardOrgP extends React.Component {
         <Route 
           path="/dashboard" 
           render={()=>(
-            <Overview 
+            <DashTopNav 
               appstate={this.props.appstate}
               dashstate={this.state} 
               functions={this.functions}>
-            </Overview>
+            </DashTopNav>
           )}>
         </Route>
         {/* <Route 
