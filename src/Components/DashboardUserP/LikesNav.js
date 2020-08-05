@@ -5,7 +5,7 @@ import PendingLikes from "./PendingLikes";
 import AcceptedLikes from "./AcceptedLikes";
 
 
-class Likes extends React.Component {
+class LikesNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,14 +23,14 @@ class Likes extends React.Component {
   }
   renderComponent() {
     let tabstatus = this.state.tabStatus;
-    let profiles = this.props.likestate.filter((like)=>{
+    let profiles = this.props.dashstate.likes.filter((like)=>{
       return like.adoptionstatus === this.state.tabStatus
     })
 
     switch (tabstatus) {
       case 0:
         return <AllLikes
-                 profiles={this.props.likestate}
+                 profiles={this.props.dashstate.likes}
                  statedata={this.props.statedata}
                  dashstate={this.props.dashstate}
                  functions={this.props.functions}>
@@ -54,7 +54,7 @@ class Likes extends React.Component {
     }
   }
   renderNotification() {
-    let accepted = this.props.likestate.filter((like)=>{
+    let accepted = this.props.dashstate.likes.filter((like)=>{
       return like.adoptionstatus === 2
     })
     return accepted.length;
@@ -112,4 +112,4 @@ class Likes extends React.Component {
   }
 }
 
-export default Likes;
+export default LikesNav;

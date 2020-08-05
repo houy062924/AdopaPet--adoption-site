@@ -1,6 +1,6 @@
 import React from "react";
 // import Likes from "../Components/DashboardUserP/Likes";
-import Likes from "../Components/DashboardUserP/Likes";
+import LikesNav from "../Components/DashboardUserP/LikesNav";
 
 import db from "../Components/Shared/Firebase";
 import { BrowserRouter } from "react-router-dom";
@@ -25,9 +25,9 @@ class DashboardUserP extends React.Component {
       closeFullProfile: this.closeFullProfile.bind(this),
       toggleAdoptForm: this.toggleAdoptForm.bind(this),
       handleAdopt: this.handleAdopt.bind(this),
-      cancelAdopt: this.cancelAdopt.bind(this),
+      // cancelAdopt: this.cancelAdopt.bind(this),
       removeLike: this.removeLike.bind(this),
-      handleAccept: this.handleAccept.bind(this),
+      getAcceptedOrg: this.getAcceptedOrg.bind(this),
     }
 
     this.likesdb;
@@ -113,7 +113,7 @@ class DashboardUserP extends React.Component {
       })
     }
     if (profile.adoptionstatus === 2) {
-      this.handleAccept(profile.orguid);
+      this.getAcceptedOrg(profile.orguid);
     }
   }
   closeFullProfile() {
@@ -166,10 +166,7 @@ class DashboardUserP extends React.Component {
     this.closeFullProfile();
     this.getDatabaseData();
   }
-  cancelAdopt() {
-    console.log("cancel")
-  }
-  handleAccept(orguid) {
+  getAcceptedOrg(orguid) {
     db.collection("members").doc(orguid)
     .get()
     .then((doc)=>{
@@ -182,29 +179,14 @@ class DashboardUserP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/user">
-        <Likes
+        <LikesNav
           statedata={this.props.statedata}
-          likestate={this.state.likes}
-          adoptedstate={this.state.adopted}
+          // likestate={this.state.likes}
+          // adoptedstate={this.state.adopted}
           dashstate={this.state}
           functions={this.functions}>
-        </Likes>
-        {/* <SideNavUser
-          userstate={this.props.statedata}>
-        </SideNavUser>
-
-        <Route
-          path="/dashboard/profiles"
-          render={()=>(
-            <Likes
-              likestate={this.state.likes}
-              adoptedstate={this.state.adopted}
-              removeLike={this.removeLike}>
-            </Likes>
-          )}>
-        </Route> */}
-
-      </BrowserRouter>
+        </LikesNav>
+       </BrowserRouter>
     )
   }
 }
