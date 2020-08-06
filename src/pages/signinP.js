@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import SigninOrg from "../Components/SigninP/SigninOrg";
-import SigninUser from "../Components/SigninP/SigninUser";
 import "../styles/signin.css";
 
+import SigninBase from "../Components/SigninP/SigininBase";
 
 
 class SigninP extends React.Component {
@@ -42,22 +41,22 @@ class SigninP extends React.Component {
           </div>
 
           <div className={`upperCont ${this.props.statedata.slide}`}>
-            { this.props.statedata.identity === 0 
-              ? <SigninOrg statedata={this.props.statedata} functions={this.props.functions}></SigninOrg>
-              : <SigninUser statedata={this.props.statedata} functions={this.props.functions}></SigninUser>
-            }
+            <SigninBase 
+              statedata={this.props.statedata} 
+              functions={this.props.functions}>
+            </SigninBase>
           </div>
         </div>
 
-        <Route path="/org" 
+        {/* <Route path="/org" 
           render={()=>(
             <SigninOrg 
               statedata={this.props.statedata} 
               functions={this.props.functions}>
             </SigninOrg>
           )}>
-        </Route>
-        <Route path="/user" component={SigninUser}></Route> 
+        </Route> */}
+        {/* <Route path="/user" component={SigninUser}></Route>  */}
       </BrowserRouter>
     )
   }
