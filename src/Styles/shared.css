@@ -1,0 +1,89 @@
+/* Root ------- */
+:root {
+  --dark-blue: #4E598C;
+  --light-blue: #95B8D1;
+  --white: #FBF6F3;
+  /* --light-red: #D88373; */
+  --light-red: #E6988A;
+  --red: #A44A3F;
+  --black: #433633;
+  --dark-gray: #5C5552;
+  --gray: #A49C99;
+  --light-gray: #CDC8C8;
+}
+
+html {
+  /* cursor: none; */
+  overflow-x: hidden;
+}
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: Roboto, Helvetica, Arial,sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+  color: var(--black);
+}
+.overlayBody {
+  background-color: gray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Cursor -------- */
+.cursorCont {
+  width: 10px;
+  height: 10px;
+  background-color: var(--light-gray);
+  position: absolute;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Loading animation ------- */
+.loadingCont {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--light-red);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingCont .animationCont {
+  width: 420px;
+  height: 435px;
+}
+.animationCont .animation {
+  background-image: url("/src/images/cat-animation/1.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  animation: cat-animation 2s infinite forwards;
+}
+@keyframes cat-animation {
+  0% { background-image: url("/src/images/cat-animation/1.svg"); }
+  25% { background-image: url("/src/images/cat-animation/2.svg"); }
+  50% { background-image: url("/src/images/cat-animation/3.svg"); }
+  75% { background-image: url("/src/images/cat-animation/4.svg"); }
+  100% { background-image: url("/src/images/cat-animation/1.svg");}
+}
+.loadingCont .loading {
+  width: 400px;
+  height: 400px;
+}
+
+
+/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */

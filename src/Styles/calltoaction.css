@@ -1,0 +1,102 @@
+/* Call to action ----- */
+
+.callToActionCont {
+  height: auto;
+  width: 100vw;
+  padding-top: 1px;
+}
+.callToActionCont .callToActionTitle {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.callToActionCont .callToActionTextCont {
+  padding: 0 50px 50px 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.callToActionCont .columnCont {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 25px;
+  margin-top: 15px;
+}
+.callToActionCont .columnCont p {
+  text-align: center;
+  height: 40px;
+}
+.callToActionCont .signinUserImg, 
+.callToActionCont .signinOrgImg {
+  width: 250px;
+  margin: 0 auto;
+}
+.callToActionCont .signinUserImg {
+  background-image: url("/src/images/process/user/1.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+}
+.callToActionCont .signinUserImg:hover {
+  background-image: url("/src/images/process/user/2.svg");
+}
+.callToActionCont .signinOrgImg {
+  background-image: url("/src/images/process/org/1.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+}
+.callToActionCont .signinOrgImg:hover {
+  background-image: url("/src/images/process/org/2.svg");
+}
+.signinUser, .signinOrg {
+  border: none;
+  /* height: 35px; */
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 85%;
+  max-width: 280px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 35px;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+}
+.signinUser {
+  background-color: var(--red);
+  color: var(--white);
+}
+.signinOrg {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.signinUser:hover .signinUserImg {
+  background-image: url("/src/images/process/user/2.svg");
+}
+
+@media screen and (max-width: 768px) {
+  .signinOrg, .signinUser {
+    padding: 5px 0;
+    line-height: 25px;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 700px) {
+  .signinUser {
+    height: 50px;
+    line-height: 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .callToActionCont .callToActionTitle {
+    text-align: center;
+    font-size: 25px;
+    margin: 80px 20px 15px;
+  }
+  .callToActionCont .callToActionTextCont {
+    padding: 0;
+  }
+}

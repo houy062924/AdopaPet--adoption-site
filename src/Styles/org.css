@@ -1,0 +1,291 @@
+/* Profiles ------- */
+.profilesPageCont {
+  margin: 50px 0;
+}
+.profilesPageCont .addProfileButton {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  height: 35px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.profilesPageCont .addProfileButton:hover {
+  background-color: var(--light-blue);
+  color: var(--black);
+}
+.profilesPageCont .addProfileButton:focus {
+  outline: transparent;
+}
+.profilesPageCont .profilesCont .welcomeText {
+  line-height: 25px;
+}
+.profilesPageCont .profilesCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.profilesPageCont .profilesCont .cardCont {
+  background-color: white;
+  padding: 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.profilesPageCont .profilesCont .cardCont:hover {
+  box-shadow: 1px 2px 10px var(--light-gray);
+}
+.profilesPageCont .profilesCont .cardCont .profileImg {
+  height: 180px;
+}
+.profilesPageCont .profilesCont .cardCont .profileImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 0;
+}
+.profilesPageCont .profilesCont .cardCont .profileName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.profilesPageCont .textCont {
+  margin: 20px 0;
+}
+.profilesPageCont .labelText {
+  color: var(--dark-blue);
+  font-size: 14px;
+}
+.profilesPageCont .storyLabel {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.profilesPageCont .textCont .profileId, 
+.profilesPageCont .textCont .profileDays,
+.profilesPageCont .textCont .profileAge, 
+.profilesPageCont .textCont .profileLocation {
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
+}
+
+
+/* Add Profile Form -------- */
+
+.profilesPageCont .addProfileFormCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92, 85, 82, 0.5);
+  overflow-y: initial;  
+  z-index: 999;
+}
+.profilesPageCont .addProfileForm {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -45%);
+  padding: 60px 50px 40px 50px;
+  width: 60vw;
+  height: 70vh;
+  border-radius: 15px;
+  box-shadow: 3px 5px 10px var( --light-gray);
+}
+.profilesPageCont .formTopCont {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profilesPageCont .formTopCont .formTopTitle {
+  padding: 0 15px;
+}
+.profilesPageCont .formTopCont .closeFormButton {
+  padding: 0 15px;
+  cursor: pointer;
+}
+.profilesPageCont .formBottomCont {
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 25px;
+}
+.addProfileForm .inputCont {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+.addProfileForm .inputCont label {
+  width: 90px;
+}
+.addProfileForm .inputCont input {
+  flex: 2;
+  height: 25px;
+  box-shadow: inset 1px 1px 4px var(--light-gray);
+  border: none;
+  border-radius: 10px;
+  padding: 3px 15px;
+}
+.addProfileForm .inputCont input:focus {
+  outline: transparent;
+}
+.addProfileForm .inputCont textarea {
+  flex: 2;
+  height: 150px;
+  box-shadow: inset 1px 1px 4px var(--light-gray);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  white-space: pre-wrap;
+}
+.addProfileForm .inputCont textarea:focus {
+  outline: transparent;
+}
+.addProfileForm .inputCont .ageInput {
+  width: 50%;
+}
+.addProfileForm .inputCont .ageLabel {
+  margin-left: 10px;
+  font-size: 14px;
+}
+.addProfileForm button {
+  border: none;
+  height: 35px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 100px;
+  float: right;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.addProfileForm button:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.addProfileForm .radioCont, .addProfileForm .fileCont {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.addProfileForm .radioCont .genderLabel {
+  width: 90px;
+}
+.addProfileForm .radioCont .radioLabel {
+  cursor: pointer;
+}
+.addProfileForm .radioCont .radioLabel input {
+  margin-right: 10px;
+}
+.addProfileForm .fileCont .fileLabel {
+  width: 90px;
+}
+.addProfileForm .fileCont .fileInput {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.addProfileForm .fileCont .fileInput + label {
+  color: var(--black);
+  background-color: #EFEFEF;
+  display: inline-block;
+  cursor: pointer;
+  outline: transparent;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+.addProfileForm .fileCont .fileInput + label:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+/* Scroll bar ---- */
+.addProfileFormCont ::-webkit-scrollbar {
+  width: 5px;
+}
+.addProfileFormCont ::-webkit-scrollbar-track {
+  background: var(--light-gray); 
+}
+.addProfileFormCont ::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  border-radius: 10px;
+}
+
+
+/* Full Profile ------ */
+.fullProfileCont .warningCont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.fullProfileCont .warningText {
+  color: var(--dark-blue);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
+}
+.fullProfileCont .buttonsCont {
+  display: flex;
+  justify-content: flex-end;
+}
+.fullProfileCont .deleteButton {
+  border: none;
+  height: 30px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 150px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  background-color: var(--light-gray);
+}
+.fullProfileCont .deleteButton:hover, .fullProfileCont .cancelButton:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.fullProfileCont .cancelButton {
+  border: none;
+  height: 30px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 150px;
+  margin: 5px 0 5px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: var(--light-blue);
+  color: var(--black);
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+}
