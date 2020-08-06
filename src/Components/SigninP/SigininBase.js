@@ -71,8 +71,14 @@ class SigninBase extends React.Component {
             </div>
           
             { this.state.method === 0
-              ? <SignupForm functions={this.props.functions}></SignupForm>
-              : <SigninForm functions={this.props.functions}></SigninForm>
+              ? <SignupForm 
+                  functions={this.props.functions}
+                  identity={this.props.statedata.identity}>
+                </SignupForm>
+              : <SigninForm 
+                  functions={this.props.functions}
+                  identity={this.props.statedata.identity}>
+                </SigninForm>
             }
           </div>
         }

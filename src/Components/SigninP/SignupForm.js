@@ -66,7 +66,12 @@ class SignupForm extends React.Component {
             onChange={this.handleChange}></input>
         </div>
         
-        <button className="signinFormCont" type="submit" onSubmit={this.handleSignUp} className="submitButtonOrg">Sign Up</button>
+        <button 
+          type="submit" 
+          className={this.props.identity === 0 ? "submitButtonOrg" : "submitButtonUser"}
+          onSubmit={this.handleSignUp}>
+            Sign Up
+        </button>
       </form>
     )
   }

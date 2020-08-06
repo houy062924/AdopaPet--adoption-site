@@ -40,6 +40,8 @@ class Nav extends React.Component {
               <span className="logo">AdopApet</span>
             </Link>
           </div>
+
+          {/* Not signed in */}
           { data.signedin === false &&
             <ul className="linkCont">
               <Link to="signin" onClick={()=>this.handleRedirect("user")}>
@@ -47,6 +49,8 @@ class Nav extends React.Component {
               </Link>
             </ul>
           }
+
+          {/* Org signed in */}
           { data.signedin === true && data.identity === 0 &&
             <ul className="linkCont">
               
@@ -57,6 +61,8 @@ class Nav extends React.Component {
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
           }
+
+          {/* Org signed in (homepage) */}
           { data.signedin === true && data.identity === 2 &&
             <ul className="linkCont">
               
@@ -67,6 +73,8 @@ class Nav extends React.Component {
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
           }
+
+          {/* User signed in */}
           { data.signedin === true && data.identity === 1 &&
             <ul className="linkCont">
               
