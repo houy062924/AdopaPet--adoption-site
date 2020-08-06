@@ -37,7 +37,7 @@ class Nav extends React.Component {
           <div className="logoCont" onClick={()=>this.handleRedirect("home")}>
             <Link to="/" className="logoACont">
               <img src="/src/images/logo-v8.svg"></img>
-              <span className="logo">AdopApet</span>
+              <span className="logo">AdopaPet</span>
             </Link>
           </div>
 
