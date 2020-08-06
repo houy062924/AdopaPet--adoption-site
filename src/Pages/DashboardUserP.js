@@ -1,11 +1,9 @@
 import React from "react";
-// import Likes from "../Components/DashboardUserP/Likes";
-import LikesTopNav from "../Components/DashboardUserP/LikesTopNav";
-
 import db from "../Components/Shared/Firebase";
 import { BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
-// import SideNavUser from "../Components/DashboardUserP/SideNavUser";
+
+import LikesTopNav from "../Components/DashboardUserP/LikesTopNav";
 
 
 class DashboardUserP extends React.Component {
@@ -25,7 +23,6 @@ class DashboardUserP extends React.Component {
       closeFullProfile: this.closeFullProfile.bind(this),
       toggleAdoptForm: this.toggleAdoptForm.bind(this),
       handleAdopt: this.handleAdopt.bind(this),
-      // cancelAdopt: this.cancelAdopt.bind(this),
       removeLike: this.removeLike.bind(this),
       getAcceptedOrg: this.getAcceptedOrg.bind(this),
     }
@@ -42,14 +39,13 @@ class DashboardUserP extends React.Component {
   componentWillUnmount() {
     this.likesdb();
   }
+
+  // For user profiles page on mount
   getDatabaseData() {
     this.likesdb = db.collection("members")
     .doc(this.props.statedata.uid)
     .onSnapshot((snapshot) => {
       this.filterDatabaseData(snapshot.data().likes)
-      // this.setState({
-      //   likes: snapshot.data().likes
-      // })
     }, 
     function(error) {
       console.log(error)
@@ -61,6 +57,8 @@ class DashboardUserP extends React.Component {
       likes: sorted
     })
   }
+
+  // For user my-likes page
   checkProfileStatus() {
     // determine which profiles have been adopted 
     // --> determine which profiles in like cannot be found in animals collection
@@ -100,16 +98,23 @@ class DashboardUserP extends React.Component {
       })
     })
   }
+  getAcceptedOrg(orguid) {
+    db.collection("members").doc(orguid)
+    .get()
+    .then((doc)=>{
+      this.setState({
+        acceptedorg: doc.data()
+      })
+    })
+  }
 
-  //
-
+  // Actions
   openFullProfile(profile, event, index) {
     if (!event.target.classList.contains("adoptedCont")) {
       this.setState({
         fullprofile: true,
         currentprofile: profile,
         currentprofileindex: index,
-        // adoptform: false,
       })
     }
     if (profile.adoptionstatus === 2) {
@@ -166,23 +171,13 @@ class DashboardUserP extends React.Component {
     this.closeFullProfile();
     this.getDatabaseData();
   }
-  getAcceptedOrg(orguid) {
-    db.collection("members").doc(orguid)
-    .get()
-    .then((doc)=>{
-      this.setState({
-        acceptedorg: doc.data()
-      })
-    })
-  }
+
 
   render() {
     return (
       <BrowserRouter basename="/user">
         <LikesTopNav
           statedata={this.props.statedata}
-          // likestate={this.state.likes}
-          // adoptedstate={this.state.adopted}
           dashstate={this.state}
           functions={this.functions}>
         </LikesTopNav>

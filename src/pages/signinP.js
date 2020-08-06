@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "../styles/signin.css";
 
 import SigninBase from "../Components/SigninP/SigininBase";
@@ -47,16 +47,6 @@ class SigninP extends React.Component {
             </SigninBase>
           </div>
         </div>
-
-        {/* <Route path="/org" 
-          render={()=>(
-            <SigninOrg 
-              statedata={this.props.statedata} 
-              functions={this.props.functions}>
-            </SigninOrg>
-          )}>
-        </Route> */}
-        {/* <Route path="/user" component={SigninUser}></Route>  */}
       </BrowserRouter>
     )
   }

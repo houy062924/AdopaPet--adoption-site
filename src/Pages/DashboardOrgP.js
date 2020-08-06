@@ -1,11 +1,8 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import db from "../Components/Shared/Firebase";
-import DashTopNav from "../Components/DashboardOrgP/DashTopNav";
 
-// import SideNav from "../Components/DashboardOrgP/SideNav";
-// import ProfilesOrg from "../Components/DashboardOrgP/ProfilesOrg";
-// import Calender from "../Components/DashboardOrgP/Calender";
+import DashTopNav from "../Components/DashboardOrgP/DashTopNav";
 
 
 class DashboardOrgP extends React.Component {
@@ -62,9 +59,7 @@ class DashboardOrgP extends React.Component {
     this.pendingdb = db.collection("adoptions")
     .where("orguid", "==", this.props.appstate.uid)
     .where("status", "==", 0)
-    // .orderBy("timestamp", "desc")
     .onSnapshot((querySnapshot)=>{
-      // console.log(querySnapshot.getMetadata())
       let pendingarr = [];
       querySnapshot.forEach((doc) => {
         pendingarr.push(doc.data());
@@ -197,7 +192,6 @@ class DashboardOrgP extends React.Component {
     db.collection("animals").doc(this.state.currentprofile.id)
     .delete()
     .then(() => {
-      console.log("Document successfully deleted!");
       this.closeFullProfile();
     })
     .catch((error) => {
@@ -213,13 +207,6 @@ class DashboardOrgP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/org">
-        {/* <ProfilesOrg
-          appstate={this.props.appstate} 
-          functions={this.functions} 
-          dashstate={this.state}>
-        </ProfilesOrg> */}
-        {/* <SideNav appstate={this.props.appstate}></SideNav> */}
-
         <Route 
           path="/dashboard" 
           render={()=>(
@@ -230,26 +217,6 @@ class DashboardOrgP extends React.Component {
             </DashTopNav>
           )}>
         </Route>
-        {/* <Route 
-          path="/dashboard/profiles" 
-          render={()=>(
-            <ProfilesOrg 
-              appstate={this.props.appstate} 
-              functions={this.functions} 
-              dashstate={this.state}>
-            </ProfilesOrg>
-          )}>
-        </Route> */}
-        {/* <Route 
-          path="/dashboard/calender" 
-          render={()=>(
-            <Calender 
-              appstate={this.props.appstate} 
-              functions={this.functions}>
-            </Calender>
-          )}>
-        </Route> */}
-
       </BrowserRouter>
     )
   }

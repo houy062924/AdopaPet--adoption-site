@@ -99,12 +99,10 @@ class ProfilesBase extends React.Component {
       }
     })
     .then(()=>{
-      // if (this.state.likes.length>0) {
-        difference = profiles.filter(p => !likes.some(l => p.id === l.id));
-        this.setState({
-          profiles: difference
-        })
-      // }
+      difference = profiles.filter(p => !likes.some(l => p.id === l.id));
+      this.setState({
+        profiles: difference
+      })
     })
   }
   handleCardChoice(interaction) {
@@ -116,7 +114,6 @@ class ProfilesBase extends React.Component {
 
     switch (interaction) {
       case "accept":
-        console.log("accepted")
         this.setState({
           positionX: 1000
         })
@@ -125,7 +122,6 @@ class ProfilesBase extends React.Component {
         break;
 
       case "reject":
-        console.log("rejected")
         this.setState({
           positionX: -1000
         })
@@ -153,7 +149,6 @@ class ProfilesBase extends React.Component {
         likes: likeArr,
         expandstory: false
       })
-      console.log("Set")
     })
   }
   toggleStory() {

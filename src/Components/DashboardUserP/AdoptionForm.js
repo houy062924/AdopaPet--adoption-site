@@ -52,7 +52,6 @@ class AdoptionForm extends React.Component {
         <div className="formTitle">Application Form</div>
         <form onSubmit={(e)=> {
                 e.preventDefault();
-                console.log('hello');
                 this.handleAdoptFormDb()
               }}>
           <div className="inputCont">

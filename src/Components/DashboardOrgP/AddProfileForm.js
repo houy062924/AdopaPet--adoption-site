@@ -47,7 +47,6 @@ class AddProfileForm extends React.Component {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on('state_changed', 
       (snapShot) => {
-        console.log(snapShot)
       },
       (error) => {
         console.log(error)
@@ -73,7 +72,6 @@ class AddProfileForm extends React.Component {
       name: this.state.name,
       gender: this.state.gender,
       url: this.state.url,
-      // id: this.state.id,
       story: this.state.story,
       address: this.state.address,
       date: this.state.date,
@@ -93,7 +91,6 @@ class AddProfileForm extends React.Component {
       })
     })
     .then(()=>{
-      console.log("Set")
       this.setState({
         name: "",
         gender: "",
@@ -153,7 +150,6 @@ class AddProfileForm extends React.Component {
                       type="number" 
                       min="0" 
                       className="ageInput"
-                      // value={this.state.age}
                       onChange={this.handleInputChange}
                     />
                     <label htmlFor="year" className="ageLabel">Years</label>
@@ -166,7 +162,6 @@ class AddProfileForm extends React.Component {
                       min="0"
                       max="12" 
                       className="ageInput"
-                      // value={this.state.age}
                       onChange={this.handleInputChange}
                       />
                     <label htmlFor="month" className="ageLabel">Months</label>
@@ -226,8 +221,6 @@ class AddProfileForm extends React.Component {
                     required
                     id="story"
                     name="story" 
-                    // rows="10" 
-                    // cols="70"
                     value={this.state.story}
                     onChange={this.handleInputChange}>
                   </textarea>
@@ -238,9 +231,6 @@ class AddProfileForm extends React.Component {
             </form>
           </div>
         }
-
-
-        
       </div>
     )
   }

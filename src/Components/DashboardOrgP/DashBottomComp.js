@@ -48,7 +48,6 @@ class DashBottomComp extends React.Component {
 
         { this.props.dashstate.editingprofile === true &&
           <FullProfile
-            // appstate={this.props.appstate}
             dashstate={this.props.dashstate}
             functions={this.props.functions}>
           </FullProfile>
