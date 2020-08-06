@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilesUser from "../Components/ProfilesP/ProfilesUser";
+import ProfilesBase from "../Components/ProfilesP/ProfilesBase";
 
 
 
@@ -7,9 +7,9 @@ class ProfilesP extends React.Component {
   render() {
     return (
       <div>
-        <ProfilesUser 
+        <ProfilesBase 
           userdata={this.props.statedata}>
-        </ProfilesUser>
+        </ProfilesBase>
 
       </div>
     )

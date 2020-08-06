@@ -1,5 +1,6 @@
 import React from "react";
 import ApplicationFormOrg from "./ApplicationFormOrg";
+import DashBottomPendingTable from "./DashBottomPendingTable";
 
 class DashBottomPending extends React.Component {
   constructor(props) {
@@ -8,8 +9,10 @@ class DashBottomPending extends React.Component {
       currentapplication: null,
     }
 
-    this.handleAcceptApp = this.handleAcceptApp.bind(this);
-    this.toggleApplicationForm = this.toggleApplicationForm.bind(this);
+    this.functions = {
+      handleAcceptApp: this.handleAcceptApp.bind(this),
+      toggleApplicationForm: this.toggleApplicationForm.bind(this),
+    }
   }
 
   handleAcceptApp(p) {
@@ -35,40 +38,12 @@ class DashBottomPending extends React.Component {
           </div>
           { this.props.dashstate.pendingprofiles !== undefined &&
             this.props.dashstate.pendingprofiles.map((pending, index)=>(
-              <div key={pending.docuid} className="rowCont">
-                <div className="rowNameCont firstGrid">
-                  <img 
-                    src={pending.animalimg} 
-                    className="rowAnImg">
-                  </img>
-                  <p className="rowText">
-                    <span className="rowTitle-mobile">Name</span>
-                    {pending.animalname}
-                  </p>
-                </div>
-                <p className="rowText">
-                  <span className="rowTitle-mobile">Applicant</span>
-                  {pending.username}
-                </p>
-                <p className="rowText">
-                  <span className="rowTitle-mobile">Visit Date</span>
-                  {pending.application.visitdate}
-                </p>
-                <span>
-                  <span className="rowTitle-mobile">Application</span>
-                  <img 
-                    src="/src/images/form.svg"
-                    className="rowText applicationForm" 
-                    onClick={()=>this.toggleApplicationForm(index)}>
-                  </img>
-                </span>
-                
-                <div 
-                  className="actionButton"
-                  onClick={()=>this.handleAcceptApp(p)}>
-                    Accept
-                </div>             
-              </div>
+              <DashBottomPendingTable
+                key={pending.docuid}
+                profile={pending}
+                index={index}
+                dashbottomfunctions={this.functions}>
+              </DashBottomPendingTable>
             ))
           }
           { this.props.dashstate.applicationform === true &&

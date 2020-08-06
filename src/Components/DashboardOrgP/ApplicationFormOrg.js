@@ -31,7 +31,7 @@ class ApplicationFormOrg extends React.Component {
                 </h2>
                 <p className="formId">
                   <span className="labelText blue">ID<br></br></span>
-                  {this.props.form.useruid}
+                  {application.useruid}
                 </p>
                 <p className="formGender">
                   <span className="labelText blue">Email<br></br></span>
