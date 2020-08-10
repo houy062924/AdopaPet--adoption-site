@@ -15,8 +15,7 @@ class LikesBottomCard extends React.Component {
     e.stopPropagation();
     this.props.functions.removeLike(p);
   }
-  renderAdoptionStatusButton(i) {
-    // let adoptionstatus = this.props.dashstate.likes[i].adoptionstatus;
+  renderAdoptionStatusButton() {
     let adoptionstatus = this.props.profile.adoptionstatus;
 
     switch (adoptionstatus) {
@@ -73,7 +72,7 @@ class LikesBottomCard extends React.Component {
           <div className="removeCont" onClick={(event)=>this.removeLike(this.props.profile, event)}></div>
         }
         {
-          this.renderAdoptionStatusButton(this.props.index)
+          this.renderAdoptionStatusButton()
         }
       </div>
     )
