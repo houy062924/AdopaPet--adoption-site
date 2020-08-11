@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test DashBottomCard Component 1`] = `
+<div
+  className="cardCont"
+  onClick={[Function]}
+>
+  <div
+    className="profileImg"
+  >
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/adoption-platform.appspot.com/o/images%2F%E9%98%BF%E6%B3%A2.jpg?alt=media&token=5cfd43f4-c3f2-4473-b7b4-bd0011d5bbbf"
+    />
+  </div>
+  <div
+    className="textCont"
+  >
+    <h1
+      className="profileName"
+    >
+      阿波
+    </h1>
+    <p
+      className="profileId"
+    >
+      <span
+        className="labelText"
+      >
+        ID
+        <br />
+      </span>
+      sKSHOps2CX27St0d4SKT
+    </p>
+    <p
+      className="profileDays"
+    >
+      <span
+        className="labelText"
+      >
+        Date
+        <br />
+      </span>
+      2020-08-12
+    </p>
+    <p
+      className="profileId"
+    >
+      <span
+        className="labelText"
+      >
+        Gender
+        <br />
+      </span>
+      Male
+    </p>
+    <p
+      className="profileLocation"
+    >
+      <span
+        className="labelText"
+      >
+        Location
+        <br />
+      </span>
+      浪浪別哭(台南店)
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Test DashBottomCard Component 2`] = `
+<div
+  className="cardCont"
+  onClick={[Function]}
+>
+  <div
+    className="profileImg"
+  >
+    <img />
+  </div>
+  <div
+    className="textCont"
+  >
+    <h1
+      className="profileName"
+    />
+    <p
+      className="profileId"
+    >
+      <span
+        className="labelText"
+      >
+        ID
+        <br />
+      </span>
+    </p>
+    <p
+      className="profileDays"
+    >
+      <span
+        className="labelText"
+      >
+        Date
+        <br />
+      </span>
+    </p>
+    <p
+      className="profileId"
+    >
+      <span
+        className="labelText"
+      >
+        Gender
+        <br />
+      </span>
+    </p>
+    <p
+      className="profileLocation"
+    >
+      <span
+        className="labelText"
+      >
+        Location
+        <br />
+      </span>
+    </p>
+  </div>
+</div>
+`;
