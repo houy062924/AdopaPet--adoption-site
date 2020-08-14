@@ -34,13 +34,6 @@ class LikesTopNav extends React.Component {
                </LikesBottomComp>
 
       case 1:
-        return <LikesBottomComp
-                profiles={profiles}
-                statedata={this.props.statedata}
-                dashstate={this.props.dashstate}
-                functions={this.props.functions}>
-               </LikesBottomComp>
-
       case 2:
         return <LikesBottomComp
                 profiles={profiles}

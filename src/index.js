@@ -243,7 +243,6 @@ class App extends React.Component {
         }
       }
       else {
-        console.log("not signed in");
         this.setState({
           signedin: false,
           identity: 1,
