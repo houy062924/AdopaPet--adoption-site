@@ -7,7 +7,7 @@ class SigninBase extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      method: 0, // 0: sign up; 1: sign in
+      method: 1, // 0: sign up; 1: sign in
     }
     
     this.renderSignupForm = this.renderSignupForm.bind(this);
@@ -59,14 +59,14 @@ class SigninBase extends React.Component {
             
             <div className="methodCont">
               <p 
-                onClick={this.renderSignupForm} 
-                className={ this.determineIdentityRenderButton(0) }>
-                  Sign Up
-              </p>
-              <p 
                 onClick={this.renderSigninForm} 
                 className={ this.determineIdentityRenderButton(1) }>
                   Sign In
+              </p>
+              <p 
+                onClick={this.renderSignupForm} 
+                className={ this.determineIdentityRenderButton(0) }>
+                  Sign Up
               </p>
             </div>
           

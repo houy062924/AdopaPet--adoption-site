@@ -36,6 +36,7 @@ class DashboardUserP extends React.Component {
     this.getDatabaseData();
   }
   componentWillUnmount() {
+    console.log(this.likesdb);
     this.likesdb();
   }
 

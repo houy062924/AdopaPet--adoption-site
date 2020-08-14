@@ -160,30 +160,8 @@ class App extends React.Component {
       })
     });
   }
-  handleSignOut(e) {
-    this.setState({
-      loading: true
-    })
-
+  handleSignOut() {
     firebase.auth().signOut()
-    .then(() => {
-      setTimeout(()=>{
-        this.setState({
-          loading: false
-        })
-      }, 2000)
-      
-    })
-    .then(()=>{
-      clearTimeout(this.timer);
-
-    })
-    .catch(function(error) {
-      alert(error.message);
-      this.setState({
-        loading: false
-      })
-    });
   }
   handleAuth() {
     firebase.auth().onAuthStateChanged((user)=>{
