@@ -22,7 +22,7 @@ class DashBottomComp extends React.Component {
       <div className="profilesPageCont">
         { this.props.tabstatus === 1 &&
           <AddProfileForm 
-            appstate={this.props.appstate} 
+            statedata={this.props.statedata} 
             functions={this.props.functions}
             dashstate={this.props.dashstate}>
           </AddProfileForm>
@@ -31,7 +31,7 @@ class DashBottomComp extends React.Component {
         <div className="profilesCont">
           { this.props.tabstatus === 1 && this.props.profiles.length === 0 
             ? <div>
-                <h2>Welcome, {this.props.appstate.name}!</h2>
+                <h2>Welcome, {this.props.statedata.name}!</h2>
                 <p className="welcomeText">Ready to get started? <br/> Click the above button to add a profile.</p>
                 <img src="/src/images/point.svg"></img>
               </div>

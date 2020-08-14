@@ -22,7 +22,7 @@ class SigninForm extends React.Component {
       email: this.props.signinemail,
       password: this.props.signinpass
     }
-    console.log(d)
+
     this.props.functions.handleSignIn(e, d)
   }
  

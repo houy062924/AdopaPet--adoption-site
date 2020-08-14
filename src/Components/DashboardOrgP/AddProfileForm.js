@@ -77,8 +77,8 @@ class AddProfileForm extends React.Component {
       date: this.state.date,
       year: this.state.year,
       month: this.state.month,
-      orgname: this.props.appstate.name,
-      orguid: this.props.appstate.uid,
+      orgname: this.props.statedata.name,
+      orguid: this.props.statedata.uid,
       adoptionstatus: 0,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })

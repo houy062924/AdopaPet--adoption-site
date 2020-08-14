@@ -34,7 +34,9 @@ class Nav extends React.Component {
     return (
       <nav>
         <div className={ styles }>
-          <div className="logoCont" onClick={()=>this.handleRedirect("home")}>
+          <div 
+            className="logoCont" 
+            onClick={()=>this.handleRedirect("home")}>
             <Link to="/" className="logoACont">
               <img src="/src/images/logo-v8.svg"></img>
               <span className="logo">AdopaPet</span>
@@ -44,7 +46,8 @@ class Nav extends React.Component {
           {/* Not signed in */}
           { data.signedin === false &&
             <ul className="linkCont">
-              <Link to="signin" onClick={()=>this.handleRedirect("user")}>
+              <Link to="signin" 
+                onClick={()=>this.handleRedirect("usersignin")}>
                 <li className="signinIcon">Sign In</li>
               </Link>
             </ul>
@@ -66,7 +69,8 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 2 &&
             <ul className="linkCont">
               
-              <Link to="/org/dashboard" onClick={()=>this.handleRedirect("dashboard")}>
+              <Link to="/org/dashboard" 
+                onClick={()=>this.handleRedirect("orgviewdashboard")}>
                 <li className="dashIcon">Dashboard</li>
               </Link>
               

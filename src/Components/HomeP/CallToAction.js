@@ -17,12 +17,42 @@ class CallToAction extends React.Component {
         <div className="callToActionTextCont">
           <div className="columnCont">
             <p>Want to search our profiles and find your match?</p>
-            <div className="signinUser" onClick={()=>this.handleRedirect("user")}>Sign in as a user</div>
+            <div 
+              className="signinUser" 
+              onClick={()=>this.handleRedirect("usersignin")}>
+                Sign in as a user
+            </div>
+            {/* { this.props.statedata.signedin === false
+              ? <div 
+                  className="signinUser" 
+                  onClick={()=>this.handleRedirect("usersignin")}>
+                    Sign in as a user
+                </div>
+              : <div 
+                  className="signinUser" 
+                  onClick={()=>this.handleRedirect("userviewprofiles")}>
+                    View Profiles
+                </div>
+            } */}
             <div className="signinUserImg"></div>
           </div>
           <div className="columnCont">
             <p>Want to add profiles and reach a wide audience for your animals?</p>
-            <div className="signinOrg" onClick={()=>this.handleRedirect("org")}>Sign in as an organisation</div>
+            <div 
+              className="signinOrg" 
+              onClick={()=>this.handleRedirect("orgsignin")}>
+                Sign in as an organisation
+            </div>
+            {/* { this.props.statedata.signedin === false
+              ? <div 
+                  className="signinOrg" onClick={()=>this.handleRedirect("orgsignin")}>Sign in as an organisation</div>
+              : <div 
+                  className="signinUser" 
+                  onClick={()=>this.handleRedirect("userviewprofiles")}>
+                    View Profiles
+                </div>
+            } */}
+            
             <div className="signinOrgImg"></div>
           </div>
         </div>

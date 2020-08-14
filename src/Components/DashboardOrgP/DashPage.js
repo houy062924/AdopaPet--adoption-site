@@ -25,7 +25,7 @@ class DashPage extends React.Component {
     switch (tabstatus) {
       case 0:
         return <DashBottomPending
-                appstate={this.props.appstate}
+                statedata={this.props.statedata}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
                </DashBottomPending>
@@ -34,7 +34,7 @@ class DashPage extends React.Component {
         return <DashBottomComp
                 tabstatus={tabstatus}
                 profiles={this.props.dashstate.activeprofiles}
-                appstate={this.props.appstate}
+                statedata={this.props.statedata}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
                </DashBottomComp>
@@ -43,7 +43,7 @@ class DashPage extends React.Component {
         return <DashBottomComp
                 tabstatus={tabstatus}
                 profiles={this.props.dashstate.acceptedprofiles}
-                appstate={this.props.appstate}
+                statedata={this.props.statedata}
                 dashstate={this.props.dashstate}
                 functions={this.props.functions}>
                </DashBottomComp>

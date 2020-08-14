@@ -9,8 +9,19 @@ class HomeP extends React.Component {
     return (
       <div>
         <Landing></Landing>
-        <Process functions={this.props.functions}></Process>
-        <CallToAction functions={this.props.functions}></CallToAction>
+        { this.props.statedata.signedin === false &&
+          <div>
+            <Process 
+              functions={this.props.functions}
+              statedata={this.props.statedata}>
+            </Process>
+            <CallToAction 
+              functions={this.props.functions}
+              statedata={this.props.statedata}>
+            </CallToAction>
+          </div>
+        }
+        
       </div>
     )
   }

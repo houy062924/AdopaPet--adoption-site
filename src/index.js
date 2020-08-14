@@ -25,7 +25,7 @@ class App extends React.Component {
       slide: "",
       redirect: null,
       loading: true,
-      signinemail: "testu@test.com",
+      signinemail: "test-user@test.com",
       signinpass: "testtest"
     }
 
@@ -56,8 +56,8 @@ class App extends React.Component {
   }
 
   // Redirects
-  handleRedirect(identity) {
-    if (identity === "org") {
+  handleRedirect(action) {
+    if (action === "orgsignin") {
       this.setState({
         identity: 0,
         redirect: "/signin",
@@ -66,14 +66,16 @@ class App extends React.Component {
         signinpass: "testtest"
       })
     }
-    else if (identity === "user") {
+    else if (action === "usersignin") {
       this.setState({
         identity: 1,
         redirect: "/signin",
-        slide: "slideRight"
+        slide: "slideRight",
+        signinemail: "test-user@test.com",
+        signinpass: "testtest"
       })
     }
-    else if (identity === "home") {
+    else if (action === "home") {
       if (this.state.identity === 0) {
         this.setState({
           identity: 2,
@@ -87,10 +89,16 @@ class App extends React.Component {
         })
       }     
     }
-    else if (type === "dashboard") {
+    else if (action === "orgviewdashboard") {
       this.setState({
         identity: 0,
-        redirect: null
+        redirect: "/org/dashboard"
+      })
+    }
+    else if (action === "userviewprofiles") {
+      this.setState({
+        identity: 1,
+        redirect: "/user/profiles"
       })
     }
   }
@@ -170,6 +178,10 @@ class App extends React.Component {
   }
   handleSignOut() {
     firebase.auth().signOut();
+    this.setState({
+      signinemail: "test-user@test.com",
+      signinpass: "testtest"
+    })
   }
   handleAuth() {
     firebase.auth().onAuthStateChanged((user)=>{
@@ -262,7 +274,8 @@ class App extends React.Component {
           exact path="/" 
           render={()=>(
             <HomeP
-              functions={this.functions}>
+              functions={this.functions}
+              statedata={this.state}>
             </HomeP>
           )}>
         </Route>
@@ -270,7 +283,7 @@ class App extends React.Component {
           path="/org/dashboard" 
           render={()=>(
             <DashboardOrgP 
-              appstate={this.state}>
+              statedata={this.state}>
             </DashboardOrgP>
           )}>
         </Route>

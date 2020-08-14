@@ -6,7 +6,10 @@ class Process extends React.Component {
     return (
       <div>
         <StepQuestion></StepQuestion>
-        <StepSearch functions={this.props.functions}></StepSearch>
+        <StepSearch 
+          functions={this.props.functions}
+          statedata={this.props.statedata}>
+        </StepSearch>
         <StepMeet></StepMeet>
       </div>
     )
@@ -48,9 +51,19 @@ class StepSearch extends React.Component {
             <br/>
             Have a look at our profiles!
             <br/>
-            <span className="signinUser" onClick={()=>this.handleRedirect("user")}>
-              Sign in
-            </span>
+            { this.props.statedata.signedin === false
+              ? <span 
+                  className="signinUser" 
+                  onClick={()=>this.handleRedirect("usersignin")}>
+                    Sign in
+                </span>
+              : <span 
+                  className="signinUser" 
+                  onClick={()=>this.handleRedirect("userviewprofiles")}>
+                    View Profiles
+                </span>
+            }
+            
           </p>
         </div>
       </div>

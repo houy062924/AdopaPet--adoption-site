@@ -57,7 +57,7 @@ class DashboardOrgP extends React.Component {
   // Functions running on component mount
   getPendingApplications() {
     this.pendingdb = db.collection("adoptions")
-    .where("orguid", "==", this.props.appstate.uid)
+    .where("orguid", "==", this.props.statedata.uid)
     .where("status", "==", 0)
     .onSnapshot((querySnapshot)=>{
       let pendingarr = [];
@@ -71,7 +71,7 @@ class DashboardOrgP extends React.Component {
   }
   getActiveProfiles() {
     this.activedb = db.collection("animals")
-    .where("orguid", "==", this.props.appstate.uid)
+    .where("orguid", "==", this.props.statedata.uid)
     .where("adoptionstatus", "==", 0)
     .onSnapshot((querySnapshot)=>{
       let activearr = [];
@@ -85,7 +85,7 @@ class DashboardOrgP extends React.Component {
   }
   getAcceptedProfiles() {
     this.accepteddb = db.collection("animals")
-    .where("orguid", "==", this.props.appstate.uid)
+    .where("orguid", "==", this.props.statedata.uid)
     .where("adoptionstatus", "==", 1)
     .onSnapshot((querySnapshot)=>{
       let acceptedarr = [];
@@ -211,7 +211,7 @@ class DashboardOrgP extends React.Component {
           path="/dashboard" 
           render={()=>(
             <DashPage 
-              appstate={this.props.appstate}
+              statedata={this.props.statedata}
               dashstate={this.state} 
               functions={this.functions}>
             </DashPage>
