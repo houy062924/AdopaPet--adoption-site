@@ -24,7 +24,9 @@ class App extends React.Component {
       uid: "",
       slide: "",
       redirect: null,
-      loading: true
+      loading: true,
+      signinemail: "testu@test.com",
+      signinpass: "testtest"
     }
 
     this.functions = {
@@ -59,7 +61,9 @@ class App extends React.Component {
       this.setState({
         identity: 0,
         redirect: "/signin",
-        slide: "slideLeft"
+        slide: "slideLeft",
+        signinemail: "test-org@test.com",
+        signinpass: "testtest"
       })
     }
     else if (identity === "user") {
@@ -95,12 +99,16 @@ class App extends React.Component {
   handleIdentityChange(i) {
     if ( i === 0 ) { // org
       this.setState({
-        slide: "slideLeft"
+        slide: "slideLeft",
+        signinemail: "test-org@test.com",
+        signinpass: "testtest"
       })
     }
     else if ( i === 1 ) { // user
       this.setState({
-        slide: "slideRight"
+        slide: "slideRight",
+        signinemail: "test-user@test.com",
+        signinpass: "testtest"
       })
     }
     setTimeout(() => { 
@@ -161,7 +169,7 @@ class App extends React.Component {
     });
   }
   handleSignOut() {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
   }
   handleAuth() {
     firebase.auth().onAuthStateChanged((user)=>{
@@ -220,7 +228,7 @@ class App extends React.Component {
           })
         }
       }
-      else {
+      else { // not signed in
         this.setState({
           signedin: false,
           identity: 1,
@@ -228,7 +236,7 @@ class App extends React.Component {
           email: "",
           name: "",
           uid: "",
-          redirect: "/"
+          redirect: "/",
         })
       }
     });

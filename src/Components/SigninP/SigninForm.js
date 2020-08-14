@@ -19,10 +19,10 @@ class SigninForm extends React.Component {
   }
   handleSignIn(e) {
     let d = {
-      email: this.state.email,
-      password: this.state.password
+      email: this.props.signinemail,
+      password: this.props.signinpass
     }
-
+    console.log(d)
     this.props.functions.handleSignIn(e, d)
   }
  
@@ -32,14 +32,29 @@ class SigninForm extends React.Component {
       <form onSubmit={this.handleSignIn} className="formCont">
         <div className="inputCont">
           <img src="/src/images/email.svg" className="inputIcon"></img>
-          <input 
-            type="text" 
-            id="email" 
-            name="email" 
-            placeholder="Email" 
-            onFocus={(e) => e.target.placeholder = ""}
-            onBlur={(e) => e.target.placeholder = "Email"}
-            onChange={this.handleChange} ></input>
+          { this.props.identity === 0  // org: 0; user: 1
+            ? <input 
+                type="text" 
+                id="email" 
+                name="email" 
+                placeholder="Email" 
+                value="test-org@test.com"
+                onChange={this.handleChange}
+                onFocus={(e) => e.target.placeholder = ""}
+                onBlur={(e) => e.target.placeholder = "Email"}>
+              </input>
+            : <input 
+                type="text" 
+                id="email" 
+                name="email" 
+                placeholder="Email" 
+                value="test-user@test.com"
+                onChange={this.handleChange}
+                onFocus={(e) => e.target.placeholder = ""}
+                onBlur={(e) => e.target.placeholder = "Email"}>
+              </input>
+          }
+          
         </div>
         <div className="inputCont">
           <img src="/src/images/password.svg" className="inputIcon"></img>
@@ -48,6 +63,7 @@ class SigninForm extends React.Component {
             id="password" 
             name="password" 
             placeholder="Password" 
+            value="testtest"
             onFocus={(e) => e.target.placeholder = ""} 
             onBlur={(e) => e.target.placeholder = "Password"} 
             onChange={this.handleChange}></input>

@@ -77,7 +77,9 @@ class SigninBase extends React.Component {
                 </SignupForm>
               : <SigninForm 
                   functions={this.props.functions}
-                  identity={this.props.statedata.identity}>
+                  identity={this.props.statedata.identity}
+                  signinemail={this.props.statedata.signinemail}
+                  signinpass={this.props.statedata.signinpass}>
                 </SigninForm>
             }
           </div>
