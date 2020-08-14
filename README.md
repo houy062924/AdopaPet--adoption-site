@@ -1,11 +1,11 @@
 # AdopaPet--adoption-site
-【Link】 
+# Link
 https://adoption-platform.web.app/
 
-【Introduction】
+# Introduction
 AdopaPet is a two-sided platform aimed to connect those looking for a new pet with shelter animals in search of a home. 
 
-【Functionality】
+# Functionality
 On one hand, it allows website users to 
   * quickly search through animal profiles using swipe gesture UX design,
   * view details of and match with animals of their choice, and 
