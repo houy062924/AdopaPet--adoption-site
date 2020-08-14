@@ -34,17 +34,17 @@ class FormStatusButton extends React.Component {
                   <p className="contactTitle">Please contact the following organisation and provide the ID given below</p>
                   <p className="contactText">
                     <span className="contactTextTitle">Name</span>
-                    <br></br>
+                    <br/>
                     {this.props.dashstate.acceptedorg.name}
                   </p>
                   <p className="contactText">
                     <span className="contactTextTitle">Email</span>
-                    <br></br>
+                    <br/>
                     {this.props.dashstate.acceptedorg.email}
                   </p>
                   <p className="contactText">
                     <span className="contactTextTitle">ID</span>
-                    <br></br>
+                    <br/>
                     {this.props.statedata.uid}
                     </p>
                  </div>

@@ -55,15 +55,15 @@ class LikesBottomCard extends React.Component {
             { this.props.profile.name }
           </p>
           <p className="profileDays">
-            <span className="labelText">Date<br></br></span>
+            <span className="labelText">Date<br/></span>
             { this.props.profile.date }
           </p>
           <p className="profileId">
-            <span className="labelText">Gender<br></br></span>
+            <span className="labelText">Gender<br/></span>
             { this.props.profile.gender }
           </p>
           <p className="profileLocation">
-            <span className="labelText">Location<br></br></span>
+            <span className="labelText">Location<br/></span>
             { this.props.profile.address }
           </p>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/likes.css";
 import LikesBottomComp from "./LikesBottomComp";
 
-class LikesTopNav extends React.Component {
+class LikesPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,4 +81,4 @@ class LikesTopNav extends React.Component {
   }
 }
 
-export default LikesTopNav;
+export default LikesPage;

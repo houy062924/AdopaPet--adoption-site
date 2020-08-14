@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import db from "../Components/Shared/Firebase";
 
-import DashTopNav from "../Components/DashboardOrgP/DashTopNav";
+import DashPage from "../Components/DashboardOrgP/DashPage";
 
 
 class DashboardOrgP extends React.Component {
@@ -210,11 +210,11 @@ class DashboardOrgP extends React.Component {
         <Route 
           path="/dashboard" 
           render={()=>(
-            <DashTopNav 
+            <DashPage 
               appstate={this.props.appstate}
               dashstate={this.state} 
               functions={this.functions}>
-            </DashTopNav>
+            </DashPage>
           )}>
         </Route>
       </BrowserRouter>

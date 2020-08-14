@@ -2,8 +2,7 @@ import React from "react";
 import db from "../Components/Shared/Firebase";
 import { BrowserRouter } from "react-router-dom";
 import { firebase } from "../Components/Shared/Firebase";
-
-import LikesTopNav from "../Components/DashboardUserP/LikesTopNav";
+import LikesPage from "../Components/DashboardUserP/LikesPage";
 
 
 class DashboardUserP extends React.Component {
@@ -176,11 +175,11 @@ class DashboardUserP extends React.Component {
   render() {
     return (
       <BrowserRouter basename="/user">
-        <LikesTopNav
+        <LikesPage
           statedata={this.props.statedata}
           dashstate={this.state}
           functions={this.functions}>
-        </LikesTopNav>
+        </LikesPage>
        </BrowserRouter>
     )
   }

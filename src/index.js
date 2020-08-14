@@ -257,6 +257,9 @@ class App extends React.Component {
   }
 
   render() {
+    if ( this.state.loading ) {
+      return <Loading></Loading>
+    }
     let redirect = null;
     if (this.state.redirect) {
       redirect = <Redirect to={this.state.redirect}></Redirect>
@@ -267,11 +270,7 @@ class App extends React.Component {
         <Nav 
           statedata={this.state} 
           functions={this.functions}>
-        </Nav>
-        { this.state.loading &&
-          <Loading></Loading>
-        }
-        
+        </Nav>      
         
         <Route 
           exact path="/" 

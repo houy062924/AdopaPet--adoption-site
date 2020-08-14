@@ -36,23 +36,23 @@ class FullProfile extends React.Component {
                   {currentprofile.name}
                 </h2>
                 <p className="formDays">
-                  <span className="labelText">Date<br></br></span>
+                  <span className="labelText">Date<br/></span>
                   {currentprofile.date}
                 </p>
                 <p className="formId">
-                  <span className="labelText">ID<br></br></span>
+                  <span className="labelText">ID<br/></span>
                   {currentprofile.id}
                 </p>
                 <p className="formGender">
-                  <span className="labelText">Gender<br></br></span>
+                  <span className="labelText">Gender<br/></span>
                   {currentprofile.gender}
                 </p>
                 <p className="formAge">
-                  <span className="labelText">Age<br></br></span>
+                  <span className="labelText">Age<br/></span>
                   {currentprofile.year} yrs {currentprofile.month} months
                 </p>
                 <p className="formLocation">
-                  <span className="labelText">Location<br></br></span>
+                  <span className="labelText">Location<br/></span>
                   {currentprofile.address}
                 </p>
               </div>
@@ -61,7 +61,7 @@ class FullProfile extends React.Component {
             <div className="formStoryCont">
               <p className="formStory">
                 <span className="labelText storyLabel">Story</span>
-                <br></br>
+                <br/>
                 {currentprofile.story}
               </p>
             </div>

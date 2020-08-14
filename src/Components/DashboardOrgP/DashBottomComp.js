@@ -32,7 +32,7 @@ class DashBottomComp extends React.Component {
           { this.props.tabstatus === 1 && this.props.profiles.length === 0 
             ? <div>
                 <h2>Welcome, {this.props.appstate.name}!</h2>
-                <p className="welcomeText">Ready to get started? <br></br> Click the above button to add a profile.</p>
+                <p className="welcomeText">Ready to get started? <br/> Click the above button to add a profile.</p>
                 <img src="/src/images/point.svg"></img>
               </div>
             : this.props.profiles.map((profile, index)=>(

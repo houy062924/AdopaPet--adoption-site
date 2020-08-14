@@ -5,7 +5,7 @@ import DashBottomComp from "./DashBottomComp";
 import DashBottomPending from "./DashBottomPending";
 
 
-class DashTopNav extends React.Component {
+class DashPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,4 +87,4 @@ class DashTopNav extends React.Component {
   }
 }
 
-export default DashTopNav;
+export default DashPage;

@@ -30,35 +30,35 @@ class ApplicationFormOrg extends React.Component {
                   {application.name}
                 </h2>
                 <p className="formId">
-                  <span className="labelText blue">ID<br></br></span>
+                  <span className="labelText blue">ID<br/></span>
                   {application.useruid}
                 </p>
                 <p className="formGender">
-                  <span className="labelText blue">Email<br></br></span>
+                  <span className="labelText blue">Email<br/></span>
                   {application.email}
                 </p>
                 <p className="formAge">
-                  <span className="labelText blue">Phone Number<br></br></span>
+                  <span className="labelText blue">Phone Number<br/></span>
                   {application.phone}
                 </p>
                 <p className="formDays">
-                  <span className="labelText blue">Birthdate<br></br></span>
+                  <span className="labelText blue">Birthdate<br/></span>
                   {application.birthdate}
                 </p>
                 <p className="formLocation">
-                  <span className="labelText blue">Address<br></br></span>
+                  <span className="labelText blue">Address<br/></span>
                   {application.address}
                 </p>
                 <p className="formLocation">
-                  <span className="labelText blue">House Type<br></br></span>
+                  <span className="labelText blue">House Type<br/></span>
                   {application.housetype}
                 </p>
                 <p className="formLocation">
-                  <span className="labelText blue">Current Pets<br></br></span>
+                  <span className="labelText blue">Current Pets<br/></span>
                   {application.pets}
                 </p>
                 <p className="formLocation">
-                  <span className="labelText labelText blue">Other<br></br></span>
+                  <span className="labelText labelText blue">Other<br/></span>
                   {application.other}
                 </p>
               </div>
