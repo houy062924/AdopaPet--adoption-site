@@ -15,3 +15,7 @@ On the other, these animal rescue organizations can easily
   * add and manage animal profiles,
   * view adoption application forms from interested users, and
   * manage appointment bookings of animal viewings.
+
+## Site Demo
+
+![Alt text](Picture1.gif)
