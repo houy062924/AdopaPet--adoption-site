@@ -24,16 +24,16 @@ On the other, these animal rescue organizations can easily
 
 ## Site Demo
 
-**Home Page**
+**Home Page**\
 ![Alt text](readme/home.gif)
 
-**Profiles Page**
-Implemented swipe gesture UX design using Interact.Js
+**Profiles Page**\
+Implemented swipe gesture UX design using Interact.Js\
 ![Alt text](readme/swipe.gif)
 
-**User Likes Page**
+**User Likes Page**\
 ![Alt text](readme/likes.gif)
 
-**Organization's Dashboard Page**
+**Organization's Dashboard Page**\
 ![Alt text](readme/orgaccept.gif)
 ![Alt text](readme/addprofile.gif)
