@@ -106,6 +106,28 @@
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --light-gray);
 }
+.profilesPageCont .fullProfileCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(92, 85, 82, 0.5);
+  overflow-y: initial;  
+  z-index: 999;
+}
+.profilesPageCont .fullProfileCont .fullProfileForm {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -45%);
+  padding: 75px 50px 40px 50px;
+  width: 60vw;
+  height: 70vh;
+  border-radius: 15px;
+  box-shadow: 3px 5px 10px var( --dark-gray);
+}
 .profilesPageCont .formTopCont {
   background-color: var(--dark-blue);
   color: var(--white);
@@ -241,22 +263,22 @@
 
 
 /* Full Profile ------ */
-.fullProfileCont .warningCont {
+.profilesPageCont .fullProfileCont .warningCont {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-.fullProfileCont .warningText {
+.profilesPageCont .fullProfileCont .warningText {
   color: var(--dark-blue);
   font-size: 16px;
   font-weight: bold;
   text-align: right;
 }
-.fullProfileCont .buttonsCont {
+.profilesPageCont .fullProfileCont .buttonsCont {
   display: flex;
   justify-content: flex-end;
 }
-.fullProfileCont .deleteButton {
+.profilesPageCont .fullProfileCont .deleteButton {
   border: none;
   height: 30px;
   letter-spacing: 1px;
@@ -270,11 +292,11 @@
   line-height: 30px;
   background-color: var(--light-gray);
 }
-.fullProfileCont .deleteButton:hover, .fullProfileCont .cancelButton:hover {
+.profilesPageCont .fullProfileCont .profilesPageCont .deleteButton:hover, .profilesPageCont .fullProfileCont .cancelButton:hover {
   background-color: var(--dark-blue);
   color: var(--white);
 }
-.fullProfileCont .cancelButton {
+.profilesPageCont .fullProfileCont .cancelButton {
   border: none;
   height: 30px;
   letter-spacing: 1px;
@@ -288,4 +310,57 @@
   font-size: 14px;
   text-align: center;
   line-height: 30px;
+}
+.profilesPageCont .fullProfileCont .formDataCont {
+  display: flex;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.profilesPageCont .formImgCont {
+  margin-right: 40px;
+  flex: 1;
+  position: relative;
+}
+.profilesPageCont .formImgCont img {
+  width: 100%;
+}
+.profilesPageCont .fullProfileCont .formDataCont .formImgCont img {
+  width: 100%;
+}
+.profilesPageCont .fullProfileCont .formDataCont .formTextCont {
+  flex: 1;
+}
+.profilesPageCont .fullProfileCont .formStoryCont {
+  padding-right: 15px;
+}
+.profilesPageCont .fullProfileCont .formTextCont .formName {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  padding: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.profilesPageCont .fullProfileCont .formBottomCont .labelText {
+  color: var(--dark-blue);
+  font-size: 14px;
+}
+.profilesPageCont .fullProfileCont .formBottomCont .storyLabel {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.profilesPageCont .fullProfileCont .formTextCont .formId, 
+.profilesPageCont .fullProfileCont .formTextCont .formDays,
+.profilesPageCont .fullProfileCont .formTextCont .formAge, 
+.profilesPageCont .fullProfileCont .formTextCont .formGender,
+.profilesPageCont .fullProfileCont .formTextCont .formLocation,
+.profilesPageCont .fullProfileCont .formStoryCont .formStory {
+  margin: 5px 0 15px 10px;
+  line-height: 20px;
+}
+.profilesPageCont .fullProfileCont .formStoryCont .formStory {
+  line-height: 25px;
 }

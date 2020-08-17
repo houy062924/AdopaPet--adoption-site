@@ -23,9 +23,9 @@ class DashBottomCard extends React.Component {
         </div>
         
         <div className="textCont">
-          <h1 className="profileName">
+          <p className="profileName">
             { this.props.profile.name }
-          </h1>
+          </p>
           <p className="profileId">
             <span className="labelText">ID<br/></span>
             { this.props.profile.id }

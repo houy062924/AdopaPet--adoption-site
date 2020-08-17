@@ -278,7 +278,7 @@
 
 
 /* Full Profile Form ------ */
-.fullProfileCont {
+.likeProfilesCont .fullProfileCont {
   position: fixed;
   top: 0;
   left: 0;
@@ -288,7 +288,7 @@
   overflow-y: initial;  
   z-index: 999;
 }
-.fullProfileCont .fullProfileForm {
+.likeProfilesCont .fullProfileCont .fullProfileForm {
   background-color: white;
   position: absolute;
   left: 50%;
@@ -300,7 +300,7 @@
   border-radius: 15px;
   box-shadow: 3px 5px 10px var( --dark-gray);
 }
-.fullProfileCont .formTopCont {
+.likeProfilesCont .fullProfileCont .formTopCont {
   background-color: var(--red);
   color: var(--white);
   height: 40px;
@@ -314,37 +314,37 @@
   align-items: center;
   justify-content: space-between;
 }
-.fullProfileCont .formTopCont .formTopTitle {
+.likeProfilesCont .fullProfileCont .formTopCont .formTopTitle {
   padding: 0 15px;
 }
-.fullProfileCont .formTopCont .closeFormButton {
+.likeProfilesCont .fullProfileCont .formTopCont .closeFormButton {
   padding: 0 15px;
   cursor: pointer;
 }
-.fullProfileCont .formBottomCont {
+.likeProfilesCont .fullProfileCont .formBottomCont {
   overflow-y: auto;
   height: 100%;
 }
-.fullProfileCont .formDataCont {
+.likeProfilesCont .fullProfileCont .formDataCont {
   display: flex;
   padding-right: 15px;
   padding-bottom: 15px;
 }
-.fullProfileCont .formDataCont .formImgCont {
+.likeProfilesCont .fullProfileCont .formDataCont .formImgCont {
   margin-right: 40px;
   flex: 1;
   position: relative;
 }
-.fullProfileCont .formDataCont .formImgCont img {
+.likeProfilesCont .fullProfileCont .formDataCont .formImgCont img {
   width: 100%;
 }
-.fullProfileCont .formDataCont .formTextCont {
+.likeProfilesCont .fullProfileCont .formDataCont .formTextCont {
   flex: 1;
 }
-.fullProfileCont .formStoryCont {
+.likeProfilesCont .fullProfileCont .formStoryCont {
   padding-right: 15px;
 }
-.fullProfileCont .formTextCont .formName {
+.likeProfilesCont .fullProfileCont .formTextCont .formName {
   margin-top: 0px;
   margin-bottom: 15px;
   font-size: 20px;
@@ -355,27 +355,27 @@
   text-align: center;
   font-weight: bold;
 }
-.fullProfileCont .formBottomCont .labelText {
+.likeProfilesCont .fullProfileCont .formBottomCont .labelText {
   color: var(--red);
   font-size: 14px;
 }
-.fullProfileCont .formBottomCont .storyLabel {
+.likeProfilesCont .fullProfileCont .formBottomCont .storyLabel {
   margin-bottom: 5px;
   display: inline-block;
 }
-.fullProfileCont .formTextCont .formId, 
-.fullProfileCont .formTextCont .formDays,
-.fullProfileCont .formTextCont .formAge, 
-.fullProfileCont .formTextCont .formGender,
-.fullProfileCont .formTextCont .formLocation,
-.fullProfileCont .formStoryCont .formStory {
+.likeProfilesCont .fullProfileCont .formTextCont .formId, 
+.likeProfilesCont .fullProfileCont .formTextCont .formDays,
+.likeProfilesCont .fullProfileCont .formTextCont .formAge, 
+.likeProfilesCont .fullProfileCont .formTextCont .formGender,
+.likeProfilesCont .fullProfileCont .formTextCont .formLocation,
+.likeProfilesCont .fullProfileCont .formStoryCont .formStory {
   margin: 5px 0 15px 10px;
   line-height: 20px;
 }
-.fullProfileCont .formStoryCont .formStory {
+.likeProfilesCont .fullProfileCont .formStoryCont .formStory {
   line-height: 25px;
 }
-.fullProfileCont .adoptButton, .likeCont .adoptButton {
+.likeProfilesCont .fullProfileCont .adoptButton, .likeCont .adoptButton {
   /* height: 30px; */
   padding: 5px 20px;
   letter-spacing: 1px;
@@ -392,10 +392,10 @@
   margin-bottom: 10px;
   text-align: center;
 }
-.fullProfileCont .adoptButton {
+.likeProfilesCont .fullProfileCont .adoptButton {
   margin-right: 10px;
 }
-.fullProfileCont .pendingButton, .likeCont .pendingButton {
+.likeProfilesCont .fullProfileCont .pendingButton, .likeCont .pendingButton {
   height: 30px;
   padding: 0 20px;
   letter-spacing: 1px;
@@ -411,7 +411,7 @@
   margin-bottom: 10px;
   margin-right: 10px;
 }
-.fullProfileCont .acceptedButton, .likeCont .acceptedButton {
+.likeProfilesCont .fullProfileCont .acceptedButton, .likeCont .acceptedButton {
   height: 30px;
   padding: 0 20px;
   letter-spacing: 1px;
@@ -427,41 +427,41 @@
   font-size: 16px;
   margin-bottom: 10px;
 }
-.fullProfileCont .pendingTextCont {
+.likeProfilesCont .fullProfileCont .pendingTextCont {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-.fullProfileCont .pendingTextCont p {
+.likeProfilesCont .fullProfileCont .pendingTextCont p {
   margin: 5px 20px;
   text-align: right;
 }
-/* .fullProfileCont .cancelTextCont {
+/* .likeProfilesCont .fullProfileCont .cancelTextCont {
   margin: 5px 20px;
 }
-.fullProfileCont .cancelTextCont p {
+.likeProfilesCont .fullProfileCont .cancelTextCont p {
   margin: 0;
 }
-.fullProfileCont .cancelButtonCont {
+.likeProfilesCont .fullProfileCont .cancelButtonCont {
   display: flex;
   justify-content: flex-end;
 }
-.fullProfileCont .cancelButton {
+.likeProfilesCont .fullProfileCont .cancelButton {
   padding: 5px 25px;
   border-radius: 10px;
   margin-left: 15px;
   margin-top: 15px;
   cursor: pointer;
 }
-.fullProfileCont .cancelButtonCont .yes {
+.likeProfilesCont .fullProfileCont .cancelButtonCont .yes {
   background-color: var(--light-gray);
   color: var(--black);
 }
-.fullProfileCont .cancelButtonCont .no {
+.likeProfilesCont .fullProfileCont .cancelButtonCont .no {
   background-color: var(--red);
   color: var(--white);
 } */
-.fullProfileCont .contactInfoCont {
+.likeProfilesCont .fullProfileCont .contactInfoCont {
   margin-right: 15px;
   margin-left: 10px;
   /* background-color: var(--red);
@@ -469,7 +469,7 @@
   padding: 15px 20px;
   border-radius: 10px; */
 }
-.fullProfileCont .contactTitle {
+.likeProfilesCont .fullProfileCont .contactTitle {
   font-size: 16px;
   color: var(--white);
   background-color: var(--red);
@@ -478,31 +478,31 @@
   text-align: center;
   font-weight: bold;
 }
-.fullProfileCont .contactText {
+.likeProfilesCont .fullProfileCont .contactText {
   margin: 15px 10px;
 }
-.fullProfileCont .contactTextTitle {
+.likeProfilesCont .fullProfileCont .contactTextTitle {
   font-size: 14px;
   color: var(--red);
 }
-.fullProfileCont ::-webkit-scrollbar {
+.likeProfilesCont .fullProfileCont ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-.fullProfileCont ::-webkit-scrollbar-track {
+.likeProfilesCont .fullProfileCont ::-webkit-scrollbar-track {
   background: var(--light-gray); 
 }
-.fullProfileCont ::-webkit-scrollbar-thumb {
+.likeProfilesCont .fullProfileCont ::-webkit-scrollbar-thumb {
   background: var(--red);
   border-radius: 10px;
 }
 
 
 @media screen and (max-width: 768px) {
-  .fullProfileCont .formDataCont {
+  .likeProfilesCont .fullProfileCont .formDataCont {
     flex-direction: column;
   }
-  .fullProfileCont .formDataCont .formImgCont {
+  .likeProfilesCont .fullProfileCont .formDataCont .formImgCont {
     margin-right: 0;
     margin-bottom: 25px;
   }
@@ -526,7 +526,7 @@
     width: 100%;
     height: 150px;
   }
-  .fullProfileCont .fullProfileForm {
+  .likeProfilesCont .fullProfileCont .fullProfileForm {
     padding: 75px 30px 40px 30px;
   }
   
