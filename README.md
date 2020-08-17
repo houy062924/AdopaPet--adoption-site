@@ -11,9 +11,6 @@ On one hand, it allows website users to
   * view details of and match with animals of their choice, and 
   * book appointments with the respective rescue centers to meet the animals in person. 
 
-### Swipe gesture UX design using Interact.Js
-
-
 On the other, these animal rescue organizations can easily
   * add and manage animal profiles,
   * view adoption application forms from interested users, and
