@@ -38,3 +38,9 @@ On the other, these animal rescue organizations can easily
 
 ![Alt text](readme/orgaccept.gif)
 ![Alt text](readme/orgaddprofiles.gif)
+
+
+## Plan For Future Versions
+  * Improve code efficiency by getting data from database in parts (rather than getting data all at once)
+  * Allow organizations to better manage appointments by adding calander features
+
