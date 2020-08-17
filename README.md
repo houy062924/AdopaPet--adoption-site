@@ -17,6 +17,25 @@ On the other, these animal rescue organizations can easily
   * manage appointment bookings of animal viewings.
 
 
+## Technologies Used
+
+ - Fundamental Languages
+    * HTML
+    * CSS
+    * JavaScript
+ - Front-End Frameworks
+    * React
+    * React Router
+ - Firebase
+    * Storage
+    * Cloud Firestore
+    * Authentication
+ - Other
+    * Module Bundler : Webpack
+    * Compiler : Babel
+    * Version Control : Git / GitHub
+    * Unit Testing : Jest
+    * Library : Interact.Js
 
 
 ## Site Demo
@@ -38,27 +57,6 @@ On the other, these animal rescue organizations can easily
 
 ![Alt text](readme/orgaccept.gif)
 ![Alt text](readme/orgaddprofiles.gif)
-
-
-## Technologies Used
-
- - Fundamental Languages
-    * HTML
-    * CSS
-    * JavaScript
- - Front-End Frameworks
-    * React
-    * React Router
- - Firebase
-    * Storage
-    * Cloud Firestore
-    * Authentication
- - Other
-    * Module Bundler : Webpack
-    * Compiler : Babel
-    * Version Control : Git / GitHub
-    * Unit Testing : Jest
-    * Library: Interact.Js
 
 
 ## Plans For Future Versions
