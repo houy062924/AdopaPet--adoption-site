@@ -40,4 +40,4 @@ On the other, these animal rescue organizations can easily
 **Organization's Dashboard Page**
 
 ![Alt text](readme/orgaccept.gif)
-![Alt text](readme/orgaddprofile.gif)
+![Alt text](readme/orgaddprofiles.gif)
