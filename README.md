@@ -29,7 +29,7 @@ On the other, these animal rescue organizations can easily
 ![Alt text](readme/home.gif)
 
 **Profiles Page**
-  * Implemented swipe gesture UX design using Interact.Js\
+  * Implemented swipe gesture UX design using Interact.Js
 
 ![Alt text](readme/swipe.gif)
 
