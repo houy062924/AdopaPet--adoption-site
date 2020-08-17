@@ -40,7 +40,29 @@ On the other, these animal rescue organizations can easily
 ![Alt text](readme/orgaddprofiles.gif)
 
 
-## Plan For Future Versions
+## Technologies Used
+
+ - Fundamental Languages
+    * HTML
+    * CSS
+    * JavaScript
+ - Front-End Frameworks
+    * React
+    * React Router
+ - Firebase
+    * Storage
+    * Cloud Firestore
+    * Authentication
+ - Other
+    * Module Bundler : Webpack
+    * Compiler : Babel
+    * Version Control : Git / GitHub
+    * Unit Testing : Jest
+    * Library: Interact.Js
+
+
+## Plans For Future Versions
+
   * Improve code efficiency by getting data from database in parts (rather than getting data all at once)
   * Allow organizations to better manage appointments by adding calander features
 
