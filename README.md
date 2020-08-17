@@ -18,4 +18,4 @@ On the other, these animal rescue organizations can easily
 
 ## Site Demo
 
-![Alt text](Picture1.gif)
+![Alt text](readme/home.gif)
