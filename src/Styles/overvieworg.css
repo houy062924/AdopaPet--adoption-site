@@ -60,6 +60,9 @@
   align-items: center;
   text-align: center;
 }
+.pendingTableCont .pendingText {
+  text-align: center;
+}
 .pendingTableCont .firstGrid {
   justify-self: flex-start;
 }

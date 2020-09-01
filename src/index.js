@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { firebase } from "./Components/Shared/Firebase";
 
 import db from "./Components/Shared/Firebase";
@@ -256,7 +256,7 @@ class App extends React.Component {
 
   render() {
     if ( this.state.loading ) {
-      return <Loading></Loading>
+      return <Loading />
     }
     let redirect = null;
     if (this.state.redirect) {
@@ -270,50 +270,40 @@ class App extends React.Component {
           functions={this.functions}>
         </Nav>      
         
-        <Route 
-          exact path="/" 
-          render={()=>(
-            <HomeP
-              functions={this.functions}
-              statedata={this.state}>
-            </HomeP>
-          )}>
-        </Route>
-        <Route 
-          path="/org/dashboard" 
-          render={()=>(
-            <DashboardOrgP 
-              statedata={this.state}>
-            </DashboardOrgP>
-          )}>
-        </Route>
-        <Route 
-          path="/user/profiles" 
-          render={()=>(
-            <ProfilesP 
-              statedata={this.state}>
-            </ProfilesP>
-          )}>
-        </Route>
-        <Route 
-          path="/user/dashboard" 
-          render={()=>(
-            <DashboardUserP
-              statedata={this.state}>
-            </DashboardUserP>
-          )}>
-        </Route>
-        <Route 
-          path="/signin" 
-          render={(props)=>(
-            <SigninP 
-              {...props} 
-              statedata={this.state} 
-              functions={this.functions}>
-            </SigninP>
-          )}>
-        </Route>
-
+        <Switch>
+          <Route 
+            exact path="/">
+              <HomeP
+                functions={this.functions}
+                statedata={this.state}>
+              </HomeP>
+          </Route>
+          <Route 
+            path="/org/dashboard">
+              <DashboardOrgP 
+                statedata={this.state}>
+              </DashboardOrgP>
+          </Route>
+          <Route 
+            path="/user/profiles">
+              <ProfilesP 
+                statedata={this.state}>
+              </ProfilesP>
+          </Route>
+          <Route 
+            path="/user/dashboard">
+              <DashboardUserP
+                statedata={this.state}>
+              </DashboardUserP>
+          </Route>
+          <Route 
+            path="/signin">
+              <SigninP
+                statedata={this.state} 
+                functions={this.functions}>
+              </SigninP>
+          </Route>
+        </Switch>
         {redirect}
       </div>
     )

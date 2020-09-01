@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../Styles/nav.css";
 
 
@@ -37,19 +37,20 @@ class Nav extends React.Component {
           <div 
             className="logoCont" 
             onClick={()=>this.handleRedirect("home")}>
-            <Link to="/" className="logoACont">
+            <NavLink to="/" className="logoACont">
               <img src="/src/images/logo-v8.svg"></img>
               <span className="logo">AdopaPet</span>
-            </Link>
+            </NavLink>
           </div>
 
           {/* Not signed in */}
           { data.signedin === false &&
             <ul className="linkCont">
-              <Link to="signin" 
+              <NavLink to="signin" 
+                activeClassName="activeNav"
                 onClick={()=>this.handleRedirect("usersignin")}>
                 <li className="signinIcon">Sign In</li>
-              </Link>
+              </NavLink>
             </ul>
           }
 
@@ -57,9 +58,9 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 0 &&
             <ul className="linkCont">
               
-              <Link to="/org/dashboard">
+              <NavLink to="/org/dashboard" activeClassName="activeNav">
                 <li className="dashIcon">Dashboard</li>
-              </Link>
+              </NavLink>
               
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
@@ -69,10 +70,11 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 2 &&
             <ul className="linkCont">
               
-              <Link to="/org/dashboard" 
+              <NavLink to="/org/dashboard" 
+                activeClassName="activeNav"
                 onClick={()=>this.handleRedirect("orgviewdashboard")}>
-                <li className="dashIcon">Dashboard</li>
-              </Link>
+                  <li className="dashIcon">Dashboard</li>
+              </NavLink>
               
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
@@ -82,12 +84,12 @@ class Nav extends React.Component {
           { data.signedin === true && data.identity === 1 &&
             <ul className="linkCont">
               
-              <Link to="/user/profiles">
+              <NavLink to="/user/profiles" activeClassName="activeNav">
                 <li className="profilesIcon">Profiles</li>
-              </Link>
-              <Link to="/user/dashboard">
+              </NavLink>
+              <NavLink to="/user/dashboard" activeClassName="activeNav">
                 <li className="likesIcon">My Likes</li>
-              </Link>
+              </NavLink>
               
               <li onClick={this.handleSignOut} className="signinIcon">Sign Out</li>
             </ul>

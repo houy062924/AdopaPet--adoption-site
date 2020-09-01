@@ -26,16 +26,20 @@ class DashBottomPending extends React.Component {
   }
 
   render() {
+    console.log("Test")
     return (
       <div className="overviewBottomCont"> 
         <div className="pendingTableCont">
-          <div className="pendingTableTitleCont">
-            <p className="firstGrid">Animal Name</p>
-            <p>Applicant Name</p>
-            <p>Visit Date</p>
-            <p>Application</p>
-            <p>Actions</p>
-          </div>
+          { this.props.dashstate.pendingprofiles.length > 0
+            ? <div className="pendingTableTitleCont">
+                <p className="firstGrid">Animal Name</p>
+                <p>Applicant Name</p>
+                <p>Visit Date</p>
+                <p>Application</p>
+                <p>Actions</p>
+              </div>
+            : <p className="pendingText">There are no pending profiles.</p>
+          }
           { this.props.dashstate.pendingprofiles !== undefined &&
             this.props.dashstate.pendingprofiles.map((pending, index)=>(
               <DashBottomPendingTable

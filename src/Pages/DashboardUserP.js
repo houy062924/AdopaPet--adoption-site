@@ -175,13 +175,13 @@ class DashboardUserP extends React.Component {
 
   render() {
     return (
-      <BrowserRouter basename="/user">
+      // <BrowserRouter basename="/user">
         <LikesPage
           statedata={this.props.statedata}
           dashstate={this.state}
           functions={this.functions}>
         </LikesPage>
-       </BrowserRouter>
+      //  </BrowserRouter>
     )
   }
 }

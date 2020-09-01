@@ -206,18 +206,24 @@ class DashboardOrgP extends React.Component {
 
   render() {
     return (
-      <BrowserRouter basename="/org">
-        <Route 
-          path="/dashboard" 
-          render={()=>(
-            <DashPage 
-              statedata={this.props.statedata}
-              dashstate={this.state} 
-              functions={this.functions}>
-            </DashPage>
-          )}>
-        </Route>
-      </BrowserRouter>
+      // <BrowserRouter basename="/org">
+      //   <Route 
+      //     path="/dashboard" 
+      //     render={()=>(
+      //       <DashPage 
+      //         statedata={this.props.statedata}
+      //         dashstate={this.state} 
+      //         functions={this.functions}>
+      //       </DashPage>
+      //     )}>
+      //   </Route>
+      // </BrowserRouter>
+  
+      <DashPage
+        statedata={this.props.statedata}
+        dashstate={this.state} 
+        functions={this.functions}>
+      </DashPage>
     )
   }
 }
