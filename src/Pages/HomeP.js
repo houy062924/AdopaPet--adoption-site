@@ -8,7 +8,7 @@ class HomeP extends React.Component {
   render() {
     return (
       <div>
-        <Landing></Landing>
+        <Landing />
         { this.props.statedata.signedin === false &&
           <div>
             <Process 

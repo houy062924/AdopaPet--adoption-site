@@ -65,6 +65,7 @@ a {
   width: 420px;
   height: 435px;
 }
+
 .animationCont .animation {
   background-image: url("/src/images/cat-animation/1.svg");
   background-repeat: no-repeat;

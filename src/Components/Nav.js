@@ -57,11 +57,9 @@ class Nav extends React.Component {
           {/* Org signed in */}
           { data.signedin === true && data.identity === 0 &&
             <ul className="linkCont">
-              
               <NavLink to="/org/dashboard" activeClassName="activeNav">
                 <li className="dashIcon">Dashboard</li>
               </NavLink>
-              
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
           }
@@ -69,13 +67,11 @@ class Nav extends React.Component {
           {/* Org signed in (homepage) */}
           { data.signedin === true && data.identity === 2 &&
             <ul className="linkCont">
-              
               <NavLink to="/org/dashboard" 
                 activeClassName="activeNav"
                 onClick={()=>this.handleRedirect("orgviewdashboard")}>
                   <li className="dashIcon">Dashboard</li>
               </NavLink>
-              
               <li onClick={this.handleSignOut}>Sign out</li>
             </ul>
           }
@@ -83,14 +79,12 @@ class Nav extends React.Component {
           {/* User signed in */}
           { data.signedin === true && data.identity === 1 &&
             <ul className="linkCont">
-              
               <NavLink to="/user/profiles" activeClassName="activeNav">
                 <li className="profilesIcon">Profiles</li>
               </NavLink>
               <NavLink to="/user/dashboard" activeClassName="activeNav">
                 <li className="likesIcon">My Likes</li>
               </NavLink>
-              
               <li onClick={this.handleSignOut} className="signinIcon">Sign Out</li>
             </ul>
           }

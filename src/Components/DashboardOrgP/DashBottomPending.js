@@ -38,7 +38,7 @@ class DashBottomPending extends React.Component {
                 <p>Application</p>
                 <p>Actions</p>
               </div>
-            : <p className="pendingText">There are no pending profiles.</p>
+            : <p className="pendingText">There are no pending applications.</p>
           }
           { this.props.dashstate.pendingprofiles !== undefined &&
             this.props.dashstate.pendingprofiles.map((pending, index)=>(

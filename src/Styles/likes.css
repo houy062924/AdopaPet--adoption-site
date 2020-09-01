@@ -150,7 +150,7 @@
   border: none;
 }
 .adoptFormCont .cancelButton:hover {
-  background-color: var(--red);
+  background-color: var(--light-red);
   color: var(--white);
 }
 .adoptFormCont .submitButton:focus {

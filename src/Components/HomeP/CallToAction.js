@@ -22,18 +22,6 @@ class CallToAction extends React.Component {
               onClick={()=>this.handleRedirect("usersignin")}>
                 Sign in as a user
             </div>
-            {/* { this.props.statedata.signedin === false
-              ? <div 
-                  className="signinUser" 
-                  onClick={()=>this.handleRedirect("usersignin")}>
-                    Sign in as a user
-                </div>
-              : <div 
-                  className="signinUser" 
-                  onClick={()=>this.handleRedirect("userviewprofiles")}>
-                    View Profiles
-                </div>
-            } */}
             <div className="signinUserImg"></div>
           </div>
           <div className="columnCont">
@@ -43,16 +31,6 @@ class CallToAction extends React.Component {
               onClick={()=>this.handleRedirect("orgsignin")}>
                 Sign in as an organisation
             </div>
-            {/* { this.props.statedata.signedin === false
-              ? <div 
-                  className="signinOrg" onClick={()=>this.handleRedirect("orgsignin")}>Sign in as an organisation</div>
-              : <div 
-                  className="signinUser" 
-                  onClick={()=>this.handleRedirect("userviewprofiles")}>
-                    View Profiles
-                </div>
-            } */}
-            
             <div className="signinOrgImg"></div>
           </div>
         </div>
