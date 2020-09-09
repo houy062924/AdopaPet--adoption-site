@@ -14,6 +14,9 @@
 }
 .navCont a {
   color: var(--white);
+
+  height: 100%;
+  display: flex;
 }
 .navCont .logoCont {
   font-size: 20px;
@@ -35,11 +38,18 @@
   padding: 0;
   list-style-type: none;
   display: flex;
+
+  height: 60px;
+  text-align: center;
 }
 .navCont .linkCont li {
   padding: 0 15px;
-  line-height: 60px;
+  /* line-height: 60px; */
   color: white;
+
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .navCont .linkCont li:hover {
   background-color: var(--gray);

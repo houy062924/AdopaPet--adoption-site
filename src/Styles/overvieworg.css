@@ -223,6 +223,19 @@
   border-radius: 10px;
 }
 
+/* Scroll Bar ------ */
+.profilesPageCont .fullProfileCont ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.profilesPageCont .fullProfileCont ::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  border-radius: 10px;
+}
+.profilesPageCont .fullProfileCont ::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
 @media screen and (max-width: 950px) {
   .pendingTableCont .rowNameCont {
     display: flex;
@@ -266,6 +279,29 @@
     margin-right: 0;
     margin-bottom: 25px;
   }
+    .profilesPageCont .formBottomCont {
+    padding-right: 0px;    
+  }
+  .profilesPageCont .fullProfileCont .formDataCont {
+    flex-direction: column;
+    padding-right: 0px;
+  }
+  .profilesPageCont .fullProfileCont .formDataCont .formImgCont {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+
+  .profilesPageCont .formBottomCont {
+    padding-right: 0px;    
+  }
+  .profilesPageCont .fullProfileCont .formDataCont {
+    flex-direction: column;
+    padding-right: 0px;
+  }
+  .profilesPageCont .fullProfileCont .formDataCont .formImgCont {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
 }
 @media screen and (max-width: 600px) {
   .overviewCont .overviewTopCont {
@@ -273,6 +309,17 @@
   }
   .overviewCont .overviewBox {
     height: 85px;
+  }
+
+  .profilesPageCont .overviewTopCont {
+    grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+  }
+  .profilesPageCont .overviewBox {
+    padding: 0;
+  }
+  .profilesPageCont .fullProfileCont .buttonsCont {
+    flex-direction: column;
+    align-items: flex-end;
   }
 }
 
@@ -287,4 +334,17 @@
     grid-template-columns: repeat( 1, minmax(250px, 1fr) );
   }
   
+  .likePageCont {
+    margin: 110px 30px 50px 30px;
+  }
+  .likeProfilesCont {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .likeCont .imgCont {
+    width: 100%;
+    height: 150px;
+  }
+  .profilesPageCont .fullProfileCont .fullProfileForm {
+    padding: 75px 30px 40px 30px;
+  }
 }
