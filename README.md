@@ -1,7 +1,4 @@
 # AdopaPet--adoption-site
-## Link
-https://adoption-platform.web.app/
-
 ## Introduction
 AdopaPet is a two-sided platform aimed to connect those looking for a new pet with shelter animals in search of a home. 
 
